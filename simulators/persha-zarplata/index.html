@@ -636,8 +636,54 @@
       line-height: 1.55;
       text-align: center;
     }
+    .project-footer {
+      margin-top: 24px;
+      padding: 0;
+      border: 1px solid #CFE4D4;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 92% 18%, rgba(98, 201, 107, 0.16), transparent 28%),
+        linear-gradient(135deg, #FFFFFF, #F7FBF8);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-    .hidden { display: none !important; }
+    .project-footer__inner {
+      position: relative;
+      padding: 24px 26px 24px 84px;
+    }
+
+    .project-footer__inner::before {
+      content: "CB";
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      box-shadow: 0 8px 18px rgba(23, 74, 61, .18);
+    }
+
+    .project-footer__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.72;
+    }
+
+    .project-footer__text strong {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+.hidden { display: none !important; }
 
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
@@ -678,6 +724,18 @@
       }
 
       .score__circle { margin: 0 auto; }
+
+      .project-footer__inner {
+        padding: 22px 18px 22px 72px;
+      }
+
+      .project-footer__inner::before {
+        left: 18px;
+        top: 20px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -980,6 +1038,17 @@
       </div>
     </div>
   </main>
+
+  <footer class="container project-footer">
+    <div class="project-footer__inner">
+      <p class="project-footer__text">
+        <strong>Створено в межах проєкту CASHBRAIN</strong> для формування практичних навичок фінансової грамотності:
+        розуміння податків із заробітної плати, планування обов’язкових витрат,
+        заощаджень і перших фінансових рішень.
+        ВСП «Аграрно-економічний фаховий коледж ПДАУ».
+      </p>
+    </div>
+  </footer>
 
   <script>
     (() => {
