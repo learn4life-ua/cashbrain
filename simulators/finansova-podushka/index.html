@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="description" content="CASHBRAIN — симулятор фінансової подушки">
   <title>Фінансова подушка — CASHBRAIN</title>
 
   <style>
@@ -12,104 +12,1215 @@
       --green-dark: #174A3D;
       --accent: #62C96B;
       --soft: #DFF6DF;
-      --background: #F7F9F6;
+      --surface: #F7F9F6;
       --white: #FFFFFF;
       --text: #10231C;
       --muted: #63736D;
       --border: #DDE7E0;
+      --warning: #B7791F;
+      --warning-bg: #FFF7E6;
+      --danger: #B42318;
+      --danger-bg: #FFF0EE;
+      --success: #237A3B;
+      --success-bg: #EAF8EC;
+      --shadow: 0 18px 40px rgba(23, 74, 61, .10);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background:
-        radial-gradient(
-          circle at 85% 10%,
-          rgba(98, 201, 107, 0.18),
-          transparent 30%
-        ),
-        var(--background);
+      background: var(--surface);
       color: var(--text);
       font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
     }
 
-    .card {
-      width: min(760px, 100%);
-      padding: 46px;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      background: var(--white);
-      box-shadow: 0 20px 50px rgba(23, 74, 61, 0.1);
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .label {
+    .hero {
+      padding: 54px 0 46px;
+      background:
+        radial-gradient(circle at 84% 12%, rgba(98, 201, 107, .22), transparent 28%),
+        linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+    }
+
+    .eyebrow {
       display: inline-flex;
-      margin-bottom: 18px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: var(--soft);
-      color: var(--green);
-      font-size: 11px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: #A7E8AC;
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: .12em;
       text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
     h1 {
       margin: 0;
       font-size: clamp(44px, 7vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
+      line-height: .98;
+      letter-spacing: -.055em;
     }
 
-    p {
-      max-width: 620px;
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: 15px;
+    .hero p {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.82);
+      font-size: 16px;
       line-height: 1.7;
     }
 
-    .status {
-      display: inline-flex;
+    .progress-wrap {
       margin-top: 28px;
-      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .progress {
+      flex: 1;
+      height: 8px;
+      overflow: hidden;
       border-radius: 999px;
-      background: #EFFAF0;
+      background: rgba(255,255,255,.16);
+    }
+
+    .progress__bar {
+      width: 25%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width .25s ease;
+    }
+
+    .progress__text {
+      min-width: 82px;
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .main { padding: 34px 0 56px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel,
+    .summary {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .panel { padding: 28px; }
+
+    .summary {
+      position: sticky;
+      top: 18px;
+      padding: 22px;
+    }
+
+    .step { display: none; }
+    .step.is-active { display: block; }
+
+    .step-label {
+      margin-bottom: 8px;
       color: var(--green);
       font-size: 12px;
       font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .step-intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .fields {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .field__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .field label {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .money-input,
+    .select-input {
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 800;
+      outline: none;
+    }
+
+    .money-input {
+      width: 148px;
+      padding: 10px 12px;
+      text-align: right;
+    }
+
+    .select-input {
+      width: 100%;
+      padding: 0 13px;
+    }
+
+    .money-input:focus,
+    .select-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(98,201,107,.18);
+    }
+
+    input[type="range"] {
+      --range-progress: 0%;
+      width: 100%;
+      height: 8px;
+      margin: 4px 0 0;
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          to right,
+          var(--green) 0%,
+          var(--green) var(--range-progress),
+          #DDE7E0 var(--range-progress),
+          #DDE7E0 100%
+        );
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+      margin-top: -7px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23,74,61,.24);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: #DDE7E0;
+    }
+
+    input[type="range"]::-moz-range-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23,74,61,.24);
+    }
+
+    .pct-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-left: 8px;
+      padding: 0 9px;
+      border: 1px solid #C9E8CD;
+      border-radius: 999px;
+      background: #EFFAF0;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .forecast {
+      padding: 18px;
+      border: 1px solid #C9E8CD;
+      border-radius: 18px;
+      background: #EFFAF0;
+    }
+
+    .forecast__label {
+      margin-bottom: 6px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .forecast__value {
+      margin: 0 0 6px;
+      color: var(--text);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .forecast__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .scenario {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .scenario span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .scenario strong {
+      display: block;
+      color: var(--green);
+      font-size: 19px;
+    }
+
+    .hint {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 14px;
+      font-weight: 900;
+      transition: transform .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn--primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn--secondary {
+      background: #EDF2EF;
+      color: var(--green);
+    }
+
+    .summary h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-row strong {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .summary-group {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .summary-group__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .summary-breakdown {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .summary-breakdown div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .summary-breakdown strong {
+      color: var(--text);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .balance {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--soft);
+    }
+
+    .balance span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .balance strong {
+      font-size: 26px;
+      letter-spacing: -.025em;
+    }
+
+    .result-card {
+      margin-bottom: 16px;
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .result-card p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .result-card--success {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .result-card--warning {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    .result-card--danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .score {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: center;
+      margin: 18px 0 22px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+    }
+
+    .score__circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--accent) 0deg, #E8EFEB 0deg);
+      position: relative;
+    }
+
+    .score__circle::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .score__value {
+      position: relative;
+      z-index: 1;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .score__text h3 {
+      margin: 0 0 7px;
+      font-size: 22px;
+    }
+
+    .score__text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .recommendations {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .recommendation {
+      padding: 14px 15px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .error {
+      display: none;
+      margin-bottom: 16px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--danger-bg);
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .error.is-visible { display: block; }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .project-footer {
+      margin-top: 24px;
+      padding: 0;
+      border: 1px solid #CFE4D4;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 92% 18%, rgba(98, 201, 107, 0.16), transparent 28%),
+        linear-gradient(135deg, #FFFFFF, #F7FBF8);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .project-footer__inner {
+      position: relative;
+      padding: 24px 26px 24px 84px;
+    }
+
+    .project-footer__inner::before {
+      content: "CB";
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(23, 74, 61, .18);
+    }
+
+    .project-footer__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.72;
+    }
+
+    .project-footer__text strong {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+
+      .summary {
+        position: static;
+        order: -1;
+      }
+
+      .scenario-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .card {
-        padding: 30px 22px;
-        border-radius: 21px;
+      .container { width: min(100% - 20px, 1120px); }
+      .hero { padding: 42px 0 38px; }
+      .main { padding: 20px 0 40px; }
+      .panel, .summary { border-radius: 18px; }
+      .panel { padding: 20px; }
+
+      .field__top {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .money-input {
+        width: 100%;
+        text-align: left;
+      }
+
+      .nav {
+        flex-direction: column-reverse;
+      }
+
+      .btn { width: 100%; }
+
+      .score {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .score__circle { margin: 0 auto; }
+
+      .project-footer__inner {
+        padding: 22px 18px 22px 72px;
+      }
+
+      .project-footer__inner::before {
+        left: 18px;
+        top: 20px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="card">
-    <div class="label">Симулятор CASHBRAIN</div>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Симулятор CASHBRAIN</div>
+      <h1>Фінансова подушка</h1>
+      <p>
+        Визначте потрібний розмір резерву, оберіть темп накопичення
+        та перевірте, на скільки місяців вистачить подушки у разі втрати доходу.
+      </p>
 
-    <h1>Фінансова подушка</h1>
+      <div class="progress-wrap" aria-label="Прогрес проходження">
+        <div class="progress">
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+        <div class="progress__text" id="progressText">Крок 1 із 4</div>
+      </div>
+    </div>
+  </header>
 
-    <p>
-      Інтерактивний симулятор допоможе визначити необхідний розмір
-      фінансового резерву, обрати темп накопичення та перевірити,
-      на скільки місяців вистачить подушки у разі втрати доходу.
-    </p>
+  <main class="main">
+    <div class="container">
+      <div class="layout">
 
-    <div class="status">Симулятор готується</div>
+        <section class="panel">
+          <div class="error" id="errorBox" role="alert"></div>
+
+          <div class="step is-active" data-step="1">
+            <div class="step-label">Крок 1</div>
+            <h2>Ваші обов’язкові витрати</h2>
+            <p class="step-intro">
+              Вкажіть щомісячні витрати, без яких складно обійтися.
+              Саме на їх основі розраховується фінансова подушка.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="field__top">
+                  <label for="housing">Житло і комунальні послуги</label>
+                  <input class="money-input expense" id="housing" type="number" min="0" step="100" value="5000">
+                </div>
+                <input class="expense-range" id="housingRange" type="range" min="0" max="30000" step="100" value="5000" data-for="housing">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="food">Харчування</label>
+                  <input class="money-input expense" id="food" type="number" min="0" step="100" value="5000">
+                </div>
+                <input class="expense-range" id="foodRange" type="range" min="0" max="30000" step="100" value="5000" data-for="food">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="transport">Транспорт, зв’язок, ліки</label>
+                  <input class="money-input expense" id="transport" type="number" min="0" step="100" value="2500">
+                </div>
+                <input class="expense-range" id="transportRange" type="range" min="0" max="30000" step="100" value="2500" data-for="transport">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="regular">Кредити та інші регулярні платежі</label>
+                  <input class="money-input expense" id="regular" type="number" min="0" step="100" value="1000">
+                </div>
+                <input class="expense-range" id="regularRange" type="range" min="0" max="30000" step="100" value="1000" data-for="regular">
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="2">
+            <div class="step-label">Крок 2</div>
+            <h2>Розмір подушки</h2>
+            <p class="step-intro">
+              Оберіть, на скільки місяців необхідних витрат має вистачити резерву.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <label for="targetMonths">Бажаний запас</label>
+                <select class="select-input" id="targetMonths">
+                  <option value="3">3 місяці</option>
+                  <option value="6" selected>6 місяців</option>
+                  <option value="9">9 місяців</option>
+                  <option value="12">12 місяців</option>
+                </select>
+              </div>
+
+              <div class="forecast">
+                <div class="forecast__label">Цільовий розмір подушки</div>
+                <div class="forecast__value" id="targetReserve">0 грн</div>
+                <p class="forecast__text" id="targetReserveText"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="3">
+            <div class="step-label">Крок 3</div>
+            <h2>Темп накопичення</h2>
+            <p class="step-intro">
+              Вкажіть, скільки можете регулярно відкладати щомісяця.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="field__top">
+                  <label for="monthlyContribution">Щомісячний внесок</label>
+                  <input class="money-input" id="monthlyContribution" type="number" min="0" max="200000" step="100" value="2500">
+                </div>
+                <input id="monthlyContributionRange" type="range" min="0" max="50000" step="100" value="2500">
+              </div>
+
+              <div class="forecast">
+                <div class="forecast__label">Орієнтовний строк накопичення</div>
+                <div class="forecast__value" id="savingTime">Строк не визначено</div>
+                <p class="forecast__text" id="savingTimeText"></p>
+              </div>
+
+              <div class="field">
+                <p class="hint">
+                  Розрахунок не враховує відсотки за депозитом, інфляцію
+                  та можливі зміни щомісячних витрат.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="4">
+            <div class="step-label">Крок 4</div>
+            <h2>Перевірка стійкості</h2>
+            <p class="step-intro">
+              Подивіться, як різний розмір резерву впливає на вашу фінансову безпеку.
+            </p>
+
+            <div class="score">
+              <div class="score__circle" id="scoreCircle">
+                <div class="score__value" id="scoreValue">0</div>
+              </div>
+
+              <div class="score__text">
+                <h3 id="scoreTitle">Оцінюємо план</h3>
+                <p id="scoreDescription"></p>
+              </div>
+            </div>
+
+            <div class="scenario-grid">
+              <div class="scenario">
+                <span>Подушка на 3 місяці</span>
+                <strong id="scenario3">0 грн</strong>
+              </div>
+
+              <div class="scenario">
+                <span>Подушка на 6 місяців</span>
+                <strong id="scenario6">0 грн</strong>
+              </div>
+
+              <div class="scenario">
+                <span>Подушка на 12 місяців</span>
+                <strong id="scenario12">0 грн</strong>
+              </div>
+            </div>
+
+            <div id="resultMessage" style="margin-top:16px;"></div>
+
+            <h3>Рекомендації</h3>
+            <div class="recommendations" id="recommendations"></div>
+
+            <div class="nav">
+              <button class="btn btn--secondary" type="button" id="restartBtn">Розрахувати заново</button>
+            </div>
+          </div>
+
+          <div class="nav" id="stepNav">
+            <button class="btn btn--secondary" type="button" id="prevBtn">Назад</button>
+            <button class="btn btn--primary" type="button" id="nextBtn">Далі</button>
+          </div>
+        </section>
+
+        <aside class="summary" aria-label="Поточний розрахунок">
+          <h3>Поточний розрахунок</h3>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <span>Обов’язкові витрати</span>
+              <strong id="sumNeeds">0 грн</strong>
+            </div>
+
+            <div class="summary-breakdown">
+              <div><span>Житло і комунальні</span><strong id="sumHousing">0 грн</strong></div>
+              <div><span>Харчування</span><strong id="sumFood">0 грн</strong></div>
+              <div><span>Транспорт, зв’язок, ліки</span><strong id="sumTransport">0 грн</strong></div>
+              <div><span>Регулярні платежі</span><strong id="sumRegular">0 грн</strong></div>
+            </div>
+          </div>
+
+          <div class="summary-list" style="margin-top:14px;">
+            <div class="summary-row"><span>Обраний запас</span><strong id="sumMonths">6 міс.</strong></div>
+            <div class="summary-row"><span>Цільова подушка</span><strong id="sumTarget">0 грн</strong></div>
+            <div class="summary-row"><span>Щомісячний внесок</span><strong id="sumContribution">0 грн</strong></div>
+          </div>
+
+          <div class="balance">
+            <span>Строк накопичення</span>
+            <strong id="sumTime">—</strong>
+          </div>
+
+          <p class="footer-note">
+            Дані використовуються лише для поточного розрахунку та не передаються на сервер.
+          </p>
+        </aside>
+
+      </div>
+    </div>
   </main>
+
+  <footer class="container project-footer">
+    <div class="project-footer__inner">
+      <p class="project-footer__text">
+        <strong>Створено в межах проєкту CASHBRAIN</strong> для формування практичних навичок фінансової грамотності:
+        оцінювання необхідного резерву, планування темпу накопичення
+        та прийняття рішень у разі тимчасової втрати доходу.
+        ВСП «Аграрно-економічний фаховий коледж ПДАУ».
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const state = { step: 1 };
+      const $ = (id) => document.getElementById(id);
+
+      const money = (value) => new Intl.NumberFormat("uk-UA", {
+        style: "currency",
+        currency: "UAH",
+        maximumFractionDigits: 0
+      }).format(value || 0);
+
+      function readNumber(id) {
+        const el = $(id);
+        if (!el) return 0;
+        const value = Number(el.value);
+        return Number.isFinite(value) && value >= 0 ? value : 0;
+      }
+
+      function totals() {
+        const needs =
+          readNumber("housing") +
+          readNumber("food") +
+          readNumber("transport") +
+          readNumber("regular");
+
+        const months = Number($("targetMonths").value) || 6;
+        const target = needs * months;
+        const contribution = readNumber("monthlyContribution");
+        const time = contribution > 0 ? Math.ceil(target / contribution) : 0;
+
+        return { needs, months, target, contribution, time };
+      }
+
+      function formatPeriod(months) {
+        if (!months) return "—";
+
+        const years = Math.floor(months / 12);
+        const rest = months % 12;
+
+        if (years === 0) return `${months} міс.`;
+
+        let result = `${years} р.`;
+        if (rest > 0) result += ` ${rest} міс.`;
+        return result;
+      }
+
+      function updateRangeFill(range) {
+        if (!range) return;
+        const min = Number(range.min) || 0;
+        const max = Number(range.max) || 100;
+        const value = Number(range.value) || 0;
+        const pct = max > min ? ((value - min) / (max - min)) * 100 : 0;
+        range.style.setProperty("--range-progress", `${Math.max(0, Math.min(100, pct))}%`);
+      }
+
+      function updateSummary() {
+        const t = totals();
+
+        $("sumHousing").textContent = money(readNumber("housing"));
+        $("sumFood").textContent = money(readNumber("food"));
+        $("sumTransport").textContent = money(readNumber("transport"));
+        $("sumRegular").textContent = money(readNumber("regular"));
+        $("sumNeeds").textContent = money(t.needs);
+
+        $("sumMonths").textContent = `${t.months} міс.`;
+        $("sumTarget").textContent = money(t.target);
+        $("sumContribution").textContent = money(t.contribution);
+        $("sumTime").textContent = t.contribution > 0 ? formatPeriod(t.time) : "—";
+
+        $("targetReserve").textContent = money(t.target);
+        $("targetReserveText").textContent =
+          `Ваші обов’язкові витрати становлять ${money(t.needs)} на місяць. Для фінансової подушки на ${t.months} місяців потрібно накопичити ${money(t.target)}.`;
+
+        if (t.contribution <= 0) {
+          $("savingTime").textContent = "Строк не визначено";
+          $("savingTimeText").textContent = "Вкажіть щомісячний внесок.";
+        } else {
+          $("savingTime").textContent = formatPeriod(t.time);
+          $("savingTimeText").textContent =
+            `Щоб накопичити ${money(t.target)} за внеску ${money(t.contribution)} щомісяця.`;
+        }
+
+        ["housing", "food", "transport", "regular"].forEach((id) => {
+          const range = $(`${id}Range`);
+          if (range) {
+            const value = readNumber(id);
+            range.max = Math.max(t.needs, value, 1000);
+            range.value = value;
+            updateRangeFill(range);
+          }
+        });
+
+        const contributionRange = $("monthlyContributionRange");
+        contributionRange.max = Math.max(t.needs, t.contribution, 1000);
+        contributionRange.value = t.contribution;
+        updateRangeFill(contributionRange);
+      }
+
+      function showError(message) {
+        $("errorBox").textContent = message;
+        $("errorBox").classList.add("is-visible");
+      }
+
+      function clearError() {
+        $("errorBox").classList.remove("is-visible");
+        $("errorBox").textContent = "";
+      }
+
+      function validateStep(step) {
+        clearError();
+
+        if (step === 1 && totals().needs <= 0) {
+          showError("Вкажіть хоча б одну категорію обов’язкових витрат.");
+          return false;
+        }
+
+        if (step === 3 && totals().contribution <= 0) {
+          showError("Вкажіть щомісячний внесок для розрахунку строку.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function goToStep(step) {
+        state.step = Math.max(1, Math.min(4, step));
+
+        document.querySelectorAll(".step").forEach((el) => {
+          el.classList.toggle("is-active", Number(el.dataset.step) === state.step);
+        });
+
+        $("progressBar").style.width = `${state.step * 25}%`;
+        $("progressText").textContent = `Крок ${state.step} із 4`;
+        $("prevBtn").style.visibility = state.step === 1 ? "hidden" : "visible";
+        $("nextBtn").textContent = state.step === 3 ? "Показати результат" : "Далі";
+        $("stepNav").style.display = state.step === 4 ? "none" : "flex";
+
+        if (state.step === 4) renderResult();
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function calculateScore() {
+        const t = totals();
+        if (t.needs <= 0 || t.contribution <= 0) return 0;
+
+        let score = 100;
+
+        if (t.months < 3) score -= 40;
+        else if (t.months === 3) score -= 15;
+
+        if (t.time > 60) score -= 25;
+        else if (t.time > 36) score -= 15;
+        else if (t.time > 24) score -= 8;
+
+        const ratio = t.contribution / t.needs;
+        if (ratio < 0.05) score -= 20;
+        else if (ratio < 0.1) score -= 10;
+
+        return Math.max(0, Math.min(100, Math.round(score)));
+      }
+
+      function renderResult() {
+        const t = totals();
+        const score = calculateScore();
+
+        $("scenario3").textContent = money(t.needs * 3);
+        $("scenario6").textContent = money(t.needs * 6);
+        $("scenario12").textContent = money(t.needs * 12);
+
+        $("scoreValue").textContent = score;
+        $("scoreCircle").style.background =
+          `conic-gradient(var(--accent) ${score * 3.6}deg, #E8EFEB ${score * 3.6}deg)`;
+
+        let title = "План потребує посилення";
+        let description = "Темп накопичення або обраний запас можуть бути недостатніми.";
+
+        if (score >= 85) {
+          title = "Стійкий план";
+          description = "Ви обрали реалістичний запас і достатній темп накопичення.";
+        } else if (score >= 65) {
+          title = "Непоганий план";
+          description = "План працює, але його можна зробити швидшим або надійнішим.";
+        } else if (score >= 40) {
+          title = "Є вразливі місця";
+          description = "До формування резерву знадобиться багато часу або запас надто малий.";
+        }
+
+        $("scoreTitle").textContent = title;
+        $("scoreDescription").textContent = description;
+
+        const resultClass = score >= 70 ? "success" : (score >= 45 ? "warning" : "danger");
+        $("resultMessage").innerHTML = `
+          <div class="result-card result-card--${resultClass}">
+            <h3>Ваш план</h3>
+            <p>
+              Цільова подушка: ${money(t.target)}.
+              Орієнтовний строк накопичення: ${formatPeriod(t.time)}.
+            </p>
+          </div>
+        `;
+
+        const recs = [];
+
+        if (t.months === 3) {
+          recs.push("Подушка на 3 місяці є базовим рівнем. За можливості поступово збільшуйте резерв до 6 місяців.");
+        }
+
+        if (t.months >= 6) {
+          recs.push(`Обраний запас на ${t.months} місяців забезпечує вищу фінансову стійкість.`);
+        }
+
+        if (t.time > 36) {
+          recs.push("Строк накопичення перевищує 3 роки. Спробуйте поступово збільшити щомісячний внесок.");
+        }
+
+        if (t.contribution / t.needs < 0.1) {
+          recs.push("Щомісячний внесок становить менше 10% обов’язкових витрат. Навіть невелике збільшення скоротить строк.");
+        }
+
+        recs.push("Зберігайте резерв окремо від коштів на щоденні витрати.");
+        recs.push("Переглядайте розмір подушки після зміни доходів, житла, кредитів або регулярних витрат.");
+
+        $("recommendations").innerHTML = recs
+          .map((text) => `<div class="recommendation">${text}</div>`)
+          .join("");
+      }
+
+      function restart() {
+        $("housing").value = 5000;
+        $("food").value = 5000;
+        $("transport").value = 2500;
+        $("regular").value = 1000;
+        $("targetMonths").value = "6";
+        $("monthlyContribution").value = 2500;
+        $("monthlyContributionRange").value = 2500;
+
+        updateSummary();
+        goToStep(1);
+      }
+
+      document.querySelectorAll(".expense").forEach((input) => {
+        input.addEventListener("input", () => {
+          let value = Number(input.value);
+          if (!Number.isFinite(value) || value < 0) value = 0;
+          input.value = value;
+          updateSummary();
+        });
+      });
+
+      document.querySelectorAll(".expense-range").forEach((range) => {
+        range.addEventListener("input", (event) => {
+          const targetId = event.target.dataset.for;
+          if (targetId) {
+            $(targetId).value = event.target.value;
+            updateSummary();
+          }
+        });
+      });
+
+      $("targetMonths").addEventListener("change", updateSummary);
+
+      $("monthlyContribution").addEventListener("input", () => {
+        let value = Number($("monthlyContribution").value);
+        if (!Number.isFinite(value) || value < 0) value = 0;
+        value = Math.min(200000, value);
+        $("monthlyContribution").value = value;
+        $("monthlyContributionRange").value = value;
+        updateSummary();
+      });
+
+      $("monthlyContributionRange").addEventListener("input", () => {
+        $("monthlyContribution").value = $("monthlyContributionRange").value;
+        updateSummary();
+      });
+
+      $("nextBtn").addEventListener("click", () => {
+        if (!validateStep(state.step)) return;
+        goToStep(state.step + 1);
+      });
+
+      $("prevBtn").addEventListener("click", () => goToStep(state.step - 1));
+      $("restartBtn").addEventListener("click", restart);
+
+      updateSummary();
+      document.querySelectorAll('input[type="range"]').forEach(updateRangeFill);
+      goToStep(1);
+    })();
+  </script>
 </body>
 </html>
