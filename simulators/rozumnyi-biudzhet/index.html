@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Розумний бюджет — CASHBRAIN</title>
+
+  <style>
+    :root {
+      --green: #1C5345;
+      --green-dark: #174A3D;
+      --accent: #62C96B;
+      --soft: #DFF6DF;
+      --background: #F7F9F6;
+      --white: #FFFFFF;
+      --text: #10231C;
+      --muted: #63736D;
+      --border: #DDE7E0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
+    }
+
+    .container {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 64px 0 54px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+    }
+
+    .label {
+      margin-bottom: 12px;
+      color: #A7E8AC;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, .8);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .content {
+      padding: 64px 0;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--white);
+    }
+
+    .status {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 30px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .back {
+      display: inline-flex;
+      margin-top: 24px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="label">Симулятор CASHBRAIN</div>
+
+      <h1>Розумний бюджет</h1>
+
+      <p>
+        Розподіліть дохід між обов’язковими витратами,
+        бажаннями, резервом і фінансовою ціллю.
+      </p>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="container">
+      <div class="card">
+        <div class="status">У розробці</div>
+
+        <h2>Симулятор готується</h2>
+
+        <p>
+          Тут буде інтерактивний сценарій, у якому користувач зможе
+          ввести дохід, розподілити витрати, сформувати резерв
+          та перевірити збалансованість бюджету.
+        </p>
+      </div>
+
+      <a class="back" href="../">
+        ← Повернутися до каталогу симуляторів
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>
