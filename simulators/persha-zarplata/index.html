@@ -456,6 +456,49 @@
       text-align: right;
     }
 
+    .summary-group {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .summary-group__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .summary-group__head strong {
+      text-align: right;
+    }
+
+    .summary-breakdown {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .summary-breakdown div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .summary-breakdown strong {
+      color: var(--text);
+      font-weight: 800;
+      text-align: right;
+    }
+
     .balance {
       margin-top: 16px;
       padding: 16px;
@@ -891,9 +934,37 @@
             <div class="summary-row"><span>Нараховано</span><strong id="sumGross">0 грн</strong></div>
             <div class="summary-row"><span>Податки</span><strong id="sumTaxes">0 грн</strong></div>
             <div class="summary-row"><span>До виплати</span><strong id="sumNet">0 грн</strong></div>
-            <div class="summary-row"><span>Обов’язкові витрати</span><strong id="sumNeeds">0 грн</strong></div>
-            <div class="summary-row"><span>Заощадження</span><strong id="sumSavings">0 грн</strong></div>
-            <div class="summary-row"><span>Бажання</span><strong id="sumWants">0 грн</strong></div>
+          </div>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <span>Обов’язкові витрати</span>
+              <strong id="sumNeeds">0 грн</strong>
+            </div>
+            <div class="summary-breakdown">
+              <div><span>Житло і комунальні</span><strong id="sumHousing">0 грн</strong></div>
+              <div><span>Харчування</span><strong id="sumFood">0 грн</strong></div>
+              <div><span>Транспорт і зв’язок</span><strong id="sumTransport">0 грн</strong></div>
+              <div><span>Інші регулярні платежі</span><strong id="sumRegular">0 грн</strong></div>
+            </div>
+          </div>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <span>Заощадження</span>
+              <strong id="sumSavings">0 грн</strong>
+            </div>
+            <div class="summary-breakdown">
+              <div><span>Фінансова подушка</span><strong id="sumReserve">0 грн</strong></div>
+              <div><span>Фінансова ціль</span><strong id="sumGoal">0 грн</strong></div>
+            </div>
+          </div>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <span>Бажання та розваги</span>
+              <strong id="sumWants">0 грн</strong>
+            </div>
           </div>
 
           <div class="balance">
@@ -1057,7 +1128,15 @@
         $("sumTaxes").textContent = money(t.salary.pit + t.salary.military);
         $("sumNet").textContent = money(net);
         $("sumNeeds").textContent = money(t.needs);
+        $("sumHousing").textContent = money(readNumber("housing"));
+        $("sumFood").textContent = money(readNumber("food"));
+        $("sumTransport").textContent = money(readNumber("transport"));
+        $("sumRegular").textContent = money(readNumber("regular"));
+
         $("sumSavings").textContent = money(t.savings);
+        $("sumReserve").textContent = money(t.reserve);
+        $("sumGoal").textContent = money(t.goal);
+
         $("sumWants").textContent = money(t.wants);
         $("sumBalance").textContent = money(t.balance);
         $("sumBalance").style.color = t.balance < 0 ? "var(--danger)" : "var(--text)";
