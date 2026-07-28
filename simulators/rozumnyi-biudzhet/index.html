@@ -227,8 +227,92 @@
     }
 
     input[type="range"] {
+      --range-progress: 0%;
       width: 100%;
-      accent-color: var(--green);
+      height: 8px;
+      margin: 4px 0 0;
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          to right,
+          var(--green) 0%,
+          var(--green) var(--range-progress),
+          #DDE7E0 var(--range-progress),
+          #DDE7E0 100%
+        );
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+      margin-top: -7px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23, 74, 61, .24);
+      appearance: none;
+      -webkit-appearance: none;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: #DDE7E0;
+    }
+
+    input[type="range"]::-moz-range-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23, 74, 61, .24);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    input[type="range"]:hover::-webkit-slider-thumb,
+    input[type="range"]:focus-visible::-webkit-slider-thumb {
+      transform: scale(1.08);
+      box-shadow: 0 4px 14px rgba(23, 74, 61, .32);
+    }
+
+    input[type="range"]:hover::-moz-range-thumb,
+    input[type="range"]:focus-visible::-moz-range-thumb {
+      transform: scale(1.08);
+      box-shadow: 0 4px 14px rgba(23, 74, 61, .32);
+    }
+
+    .pct-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-left: 8px;
+      padding: 0 9px;
+      border: 1px solid #C9E8CD;
+      border-radius: 999px;
+      background: #EFFAF0;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
     }
 
     .hint {
@@ -236,6 +320,56 @@
       color: var(--muted);
       font-size: 12.5px;
       line-height: 1.5;
+    }
+
+
+    .select-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 800;
+      outline: none;
+    }
+
+    .select-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(98,201,107,.18);
+    }
+
+    .goal-forecast {
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px solid #C9E8CD;
+      border-radius: 18px;
+      background: #EFFAF0;
+    }
+
+    .goal-forecast__label {
+      margin-bottom: 6px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .goal-forecast__value {
+      margin: 0 0 6px;
+      color: var(--text);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .goal-forecast__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
     }
 
     .nav {
@@ -561,67 +695,110 @@
             <div class="fields">
               <div class="field">
                 <div class="field__top">
-                  <label for="housing">Житло і комунальні послуги</label>
+                  <label for="housing">Житло і комунальні послуги <span class="pct-badge" id="housingPct">0%</span></label>
                   <input class="money-input expense" id="housing" type="number" min="0" step="100" value="5000">
                 </div>
+                <input class="expense-range" id="housingRange" type="range" min="0" max="20000" step="100" value="5000" data-for="housing">
               </div>
 
               <div class="field">
                 <div class="field__top">
-                  <label for="food">Харчування</label>
+                  <label for="food">Харчування <span class="pct-badge" id="foodPct">0%</span></label>
                   <input class="money-input expense" id="food" type="number" min="0" step="100" value="5000">
                 </div>
+                <input class="expense-range" id="foodRange" type="range" min="0" max="20000" step="100" value="5000" data-for="food">
               </div>
 
               <div class="field">
                 <div class="field__top">
-                  <label for="transport">Транспорт, зв’язок, навчання</label>
+                  <label for="transport">Транспорт, зв’язок, навчання <span class="pct-badge" id="transportPct">0%</span></label>
                   <input class="money-input expense" id="transport" type="number" min="0" step="100" value="2500">
                 </div>
+                <input class="expense-range" id="transportRange" type="range" min="0" max="20000" step="100" value="2500" data-for="transport">
               </div>
 
               <div class="field">
                 <div class="field__top">
-                  <label for="debts">Кредити та інші обов’язкові платежі</label>
+                  <label for="debts">Кредити та інші обов’язкові платежі <span class="pct-badge" id="debtsPct">0%</span></label>
                   <input class="money-input expense" id="debts" type="number" min="0" step="100" value="1000">
                 </div>
+                <input class="expense-range" id="debtsRange" type="range" min="0" max="20000" step="100" value="1000" data-for="debts">
               </div>
             </div>
           </div>
 
           <div class="step" data-step="3">
             <div class="step-label">Крок 3</div>
-            <h2>Бажання, резерв і ціль</h2>
+            <h2>Бажання, резерв і фінансова ціль</h2>
             <p class="step-intro">
-              Розподіліть решту коштів. Важливо залишити місце і для поточних бажань,
-              і для фінансової стійкості.
+              Розподіліть решту коштів і вкажіть конкретну ціль.
+              Симулятор покаже, скільки часу знадобиться для накопичення.
             </p>
 
             <div class="fields">
               <div class="field">
                 <div class="field__top">
-                  <label for="wants">Необов’язкові витрати та розваги</label>
+                  <label for="wants">Необов’язкові витрати та розваги <span class="pct-badge" id="wantsPct">0%</span></label>
                   <input class="money-input expense" id="wants" type="number" min="0" step="100" value="2500">
                 </div>
+                <input class="expense-range" id="wantsRange" type="range" min="0" max="20000" step="100" value="2500" data-for="wants">
               </div>
 
               <div class="field">
                 <div class="field__top">
-                  <label for="reserve">Фінансова подушка</label>
+                  <label for="reserve">Фінансова подушка <span class="pct-badge" id="reservePct">0%</span></label>
                   <input class="money-input expense" id="reserve" type="number" min="0" step="100" value="2000">
                 </div>
+                <input class="expense-range" id="reserveRange" type="range" min="0" max="20000" step="100" value="2000" data-for="reserve">
+              </div>
+
+              <div class="field">
+                <label for="goalType">Оберіть фінансову ціль</label>
+                <select class="select-input" id="goalType">
+                  <option value="tech">Техніка або гаджет</option>
+                  <option value="education">Навчання чи курс</option>
+                  <option value="travel">Подорож</option>
+                  <option value="car">Автомобіль</option>
+                  <option value="housing">Житло або перший внесок</option>
+                  <option value="business">Власна справа</option>
+                  <option value="other">Інша ціль</option>
+                </select>
               </div>
 
               <div class="field">
                 <div class="field__top">
-                  <label for="goal">Фінансова ціль</label>
+                  <label for="goalTarget">Вартість цілі</label>
+                  <input class="money-input" id="goalTarget" type="number" min="1000" max="5000000" step="500" value="30000">
+                </div>
+                <input id="goalTargetRange" type="range" min="1000" max="500000" step="500" value="30000">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="goalSaved">Уже накопичено</label>
+                  <input class="money-input" id="goalSaved" type="number" min="0" max="5000000" step="500" value="0">
+                </div>
+                <input id="goalSavedRange" type="range" min="0" max="30000" step="500" value="0">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="goal">Щомісячний внесок на ціль <span class="pct-badge" id="goalPct">0%</span></label>
                   <input class="money-input expense" id="goal" type="number" min="0" step="100" value="1500">
+                </div>
+                <input class="expense-range" id="goalRange" type="range" min="0" max="20000" step="100" value="1500" data-for="goal">
+
+                <div class="goal-forecast" id="goalForecast">
+                  <div class="goal-forecast__label">Орієнтовний строк</div>
+                  <div class="goal-forecast__value" id="goalMonths">20 місяців</div>
+                  <p class="goal-forecast__text" id="goalForecastText">
+                    За внеску 1 500 грн щомісяця.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="step" data-step="4">
+<div class="step" data-step="4">
             <div class="step-label">Крок 4</div>
             <h2>Результат вашого бюджету</h2>
             <p class="step-intro">
@@ -688,7 +865,7 @@
   (() => {
     "use strict";
 
-    const ids = ["income", "housing", "food", "transport", "debts", "wants", "reserve", "goal"];
+    const ids = ["income", "housing", "food", "transport", "debts", "wants", "reserve", "goal", "goalTarget", "goalSaved"];
     const state = { step: 1 };
 
     const $ = (id) => document.getElementById(id);
@@ -715,6 +892,63 @@
       return { income, needs, wants, reserve, goal, spending, balance };
     }
 
+    function updateRangeFill(range) {
+      if (!range) return;
+      const min = Number(range.min) || 0;
+      const max = Number(range.max) || 100;
+      const value = Number(range.value) || 0;
+      const pct = max > min ? ((value - min) / (max - min)) * 100 : 0;
+      range.style.setProperty("--range-progress", `${Math.max(0, Math.min(100, pct))}%`);
+    }
+
+
+    function goalName() {
+      const option = $("goalType").selectedOptions[0];
+      return option ? option.textContent : "Фінансова ціль";
+    }
+
+    function updateGoalForecast() {
+      const target = readNumber("goalTarget");
+      const saved = Math.min(readNumber("goalSaved"), target);
+      const monthly = readNumber("goal");
+      const remaining = Math.max(0, target - saved);
+
+      $("goalSaved").max = target;
+      $("goalSavedRange").max = Math.max(target, 1000);
+
+      if (readNumber("goalSaved") > target) {
+        $("goalSaved").value = target;
+        $("goalSavedRange").value = target;
+      }
+
+      if (remaining === 0) {
+        $("goalMonths").textContent = "Ціль уже досягнута";
+        $("goalForecastText").textContent = `${goalName()}: необхідна сума вже накопичена.`;
+      } else if (monthly <= 0) {
+        $("goalMonths").textContent = "Строк не визначено";
+        $("goalForecastText").textContent = "Вкажіть щомісячний внесок, щоб розрахувати строк.";
+      } else {
+        const months = Math.ceil(remaining / monthly);
+        const years = Math.floor(months / 12);
+        const restMonths = months % 12;
+        let period = `${months} міс.`;
+
+        if (years > 0) {
+          period = `${years} р.`;
+          if (restMonths > 0) period += ` ${restMonths} міс.`;
+        }
+
+        $("goalMonths").textContent = period;
+        $("goalForecastText").textContent =
+          `${goalName()}: залишилося накопичити ${money(remaining)} за внеску ${money(monthly)} щомісяця.`;
+      }
+
+      $("goalTargetRange").value = Math.min(target, Number($("goalTargetRange").max));
+      $("goalSavedRange").value = Math.min(readNumber("goalSaved"), Number($("goalSavedRange").max));
+      updateRangeFill($("goalTargetRange"));
+      updateRangeFill($("goalSavedRange"));
+    }
+
     function updateSummary() {
       const t = totals();
       $("sumIncome").textContent = money(t.income);
@@ -724,11 +958,42 @@
       $("sumGoal").textContent = money(t.goal);
       $("sumBalance").textContent = money(t.balance);
       $("sumBalance").style.color = t.balance < 0 ? "var(--danger)" : "var(--text)";
+      updateRangeFill($("incomeRange"));
+      updateGoalForecast();
+
+      // Оновлення відсоткових бейджів та максимумів повзунків
+      const expIds = ["housing", "food", "transport", "debts", "wants", "reserve", "goal"];
+      expIds.forEach((id) => {
+        const val = readNumber(id);
+        const pct = t.income > 0 ? Math.round((val / t.income) * 100) : 0;
+        const badge = $(`${id}Pct`);
+        if (badge) badge.textContent = `${pct}% від доходу`;
+
+        const range = $(`${id}Range`);
+        if (range) {
+          range.max = Math.max(t.income, val, 1000);
+          range.value = val;
+          updateRangeFill(range);
+        }
+      });
     }
 
     function syncIncome(source) {
-      if (source === "number") $("incomeRange").value = $("income").value;
-      else $("income").value = $("incomeRange").value;
+      const min = 1000;
+      const max = 200000;
+
+      if (source === "number") {
+        let value = Number($("income").value);
+
+        if (!Number.isFinite(value)) value = min;
+        value = Math.min(max, Math.max(min, value));
+
+        $("income").value = value;
+        $("incomeRange").value = value;
+      } else {
+        $("income").value = $("incomeRange").value;
+      }
+
       updateSummary();
     }
 
@@ -869,7 +1134,8 @@
       const data = {
         savedAt: new Date().toISOString(),
         values: Object.fromEntries(ids.map((id) => [id, readNumber(id)])),
-        score: calculateScore()
+        score: calculateScore(),
+        goalType: $("goalType").value
       };
 
       localStorage.setItem("cashbrain-smart-budget", JSON.stringify(data));
@@ -887,6 +1153,7 @@
         });
 
         $("incomeRange").value = $("income").value;
+        if (saved.goalType) $("goalType").value = saved.goalType;
       } catch {
         localStorage.removeItem("cashbrain-smart-budget");
       }
@@ -903,6 +1170,11 @@
       $("wants").value = 2500;
       $("reserve").value = 2000;
       $("goal").value = 1500;
+      $("goalType").value = "tech";
+      $("goalTarget").value = 30000;
+      $("goalTargetRange").value = 30000;
+      $("goalSaved").value = 0;
+      $("goalSavedRange").value = 0;
       updateSummary();
       goToStep(1);
     }
@@ -911,7 +1183,62 @@
     $("incomeRange").addEventListener("input", () => syncIncome("range"));
 
     document.querySelectorAll(".expense").forEach((input) => {
-      input.addEventListener("input", updateSummary);
+      input.addEventListener("input", () => {
+        let value = Number(input.value);
+        if (!Number.isFinite(value) || value < 0) value = 0;
+        input.value = value;
+
+        const range = $(`${input.id}Range`);
+        if (range) {
+          range.max = Math.max(readNumber("income"), value, 1000);
+          range.value = value;
+          updateRangeFill(range);
+        }
+
+        updateSummary();
+      });
+    });
+
+    document.querySelectorAll(".expense-range").forEach((range) => {
+      range.addEventListener("input", (e) => {
+        const targetId = e.target.dataset.for;
+        if (targetId) {
+          $(targetId).value = e.target.value;
+          updateSummary();
+        }
+      });
+    });
+
+
+    $("goalType").addEventListener("change", updateGoalForecast);
+
+    $("goalTarget").addEventListener("input", () => {
+      let value = Number($("goalTarget").value);
+      if (!Number.isFinite(value) || value < 1000) value = 1000;
+      value = Math.min(5000000, value);
+      $("goalTarget").value = value;
+      $("goalTargetRange").max = Math.max(500000, value);
+      $("goalTargetRange").value = value;
+      updateSummary();
+    });
+
+    $("goalTargetRange").addEventListener("input", () => {
+      $("goalTarget").value = $("goalTargetRange").value;
+      updateSummary();
+    });
+
+    $("goalSaved").addEventListener("input", () => {
+      let value = Number($("goalSaved").value);
+      if (!Number.isFinite(value) || value < 0) value = 0;
+      value = Math.min(value, readNumber("goalTarget"));
+      $("goalSaved").value = value;
+      $("goalSavedRange").value = value;
+      updateSummary();
+    });
+
+    $("goalSavedRange").addEventListener("input", () => {
+      $("goalSaved").value = $("goalSavedRange").value;
+      updateSummary();
     });
 
     $("nextBtn").addEventListener("click", () => {
@@ -925,6 +1252,7 @@
 
     loadSaved();
     updateSummary();
+    document.querySelectorAll('input[type="range"]').forEach(updateRangeFill);
     goToStep(1);
   })();
 </script>
