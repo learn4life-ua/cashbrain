@@ -3,10 +3,235 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Симулятори CASHBRAIN</title>
+
+  <style>
+    :root {
+      --green: #1C5345;
+      --green-dark: #174A3D;
+      --accent: #62C96B;
+      --soft: #DFF6DF;
+      --background: #F7F9F6;
+      --white: #FFFFFF;
+      --text: #10231C;
+      --muted: #63736D;
+      --border: #DDE7E0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 62px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+    }
+
+    .hero__label {
+      margin-bottom: 14px;
+      color: #A7E8AC;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 7vw, 78px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, .8);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .section {
+      padding: 68px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(36px, 5vw, 54px);
+      letter-spacing: -.045em;
+    }
+
+    .section__intro {
+      max-width: 720px;
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 270px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card__tag {
+      align-self: flex-start;
+      margin-bottom: 26px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .card__status {
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .back {
+      display: inline-flex;
+      margin-top: 30px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, 1160px);
+      }
+
+      .hero {
+        padding: 54px 0 48px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 230px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Симулятори CASHBRAIN</h1>
-  <p>Розділ наповнюється.</p>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero__label">CASHBRAIN</div>
+
+      <h1>Фінансові симулятори</h1>
+
+      <p>
+        Інтерактивні інструменти, у яких можна змінювати умови,
+        приймати фінансові рішення та одразу бачити їхні можливі наслідки.
+      </p>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+
+      <h2>Оберіть симулятор</h2>
+
+      <p class="section__intro">
+        Розділ поступово наповнюється. Кожен симулятор матиме окрему сторінку.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="card__tag">Бюджет</div>
+          <h3>Розумний бюджет</h3>
+          <p>
+            Розподіл доходу між обов’язковими витратами,
+            бажаннями, резервом і фінансовою ціллю.
+          </p>
+          <div class="card__status">У розробці</div>
+        </article>
+
+        <article class="card">
+          <div class="card__tag">Перший дохід</div>
+          <h3>Перша зарплата</h3>
+          <p>
+            Податки, щомісячні витрати,
+            заощадження та перший фінансовий план.
+          </p>
+          <div class="card__status">Заплановано</div>
+        </article>
+
+        <article class="card">
+          <div class="card__tag">Заощадження</div>
+          <h3>Фінансова подушка</h3>
+          <p>
+            Розрахунок необхідного резерву
+            та темпу його формування.
+          </p>
+          <div class="card__status">Заплановано</div>
+        </article>
+
+      </div>
+
+      <a class="back" href="../">
+        ← Повернутися на головну сторінку CASHBRAIN
+      </a>
+
+    </div>
+  </main>
+
 </body>
 </html>
