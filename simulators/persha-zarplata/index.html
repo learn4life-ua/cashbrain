@@ -3,70 +3,1326 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="description" content="CASHBRAIN — симулятор першої зарплати">
   <title>Перша зарплата — CASHBRAIN</title>
 
   <style>
+    :root {
+      --green: #1C5345;
+      --green-dark: #174A3D;
+      --accent: #62C96B;
+      --soft: #DFF6DF;
+      --surface: #F7F9F6;
+      --white: #FFFFFF;
+      --text: #10231C;
+      --muted: #63736D;
+      --border: #DDE7E0;
+      --warning: #B7791F;
+      --warning-bg: #FFF7E6;
+      --danger: #B42318;
+      --danger-bg: #FFF0EE;
+      --success: #237A3B;
+      --success-bg: #EAF8EC;
+      --shadow: 0 18px 40px rgba(23, 74, 61, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: #F7F9F6;
-      color: #10231C;
+      background: var(--surface);
+      color: var(--text);
       font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
     }
 
-    .card {
-      width: min(720px, 100%);
-      padding: 40px;
-      border: 1px solid #DDE7E0;
-      border-radius: 24px;
-      background: #FFFFFF;
-      text-align: center;
-      box-shadow: 0 18px 40px rgba(23, 74, 61, 0.1);
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .label {
-      display: inline-block;
-      margin-bottom: 16px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: #DFF6DF;
-      color: #1C5345;
-      font-size: 11px;
+    .hero {
+      padding: 54px 0 46px;
+      background:
+        radial-gradient(circle at 84% 12%, rgba(98, 201, 107, .22), transparent 28%),
+        linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: #A7E8AC;
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(42px, 7vw, 68px);
-      line-height: 1;
-      letter-spacing: -0.05em;
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
-    p {
+    h1 {
       margin: 0;
-      color: #63736D;
-      font-size: 15px;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .hero p {
+      max-width: 770px;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.82);
+      font-size: 16px;
       line-height: 1.7;
+    }
+
+    .progress-wrap {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .progress {
+      flex: 1;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+    }
+
+    .progress__bar {
+      width: 20%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width .25s ease;
+    }
+
+    .progress__text {
+      min-width: 82px;
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .main { padding: 34px 0 56px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel,
+    .summary {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .panel { padding: 28px; }
+
+    .summary {
+      position: sticky;
+      top: 18px;
+      padding: 22px;
+    }
+
+    .step { display: none; }
+    .step.is-active { display: block; }
+
+    .step-label {
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .step-intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .fields {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .field__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .field label {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .money-input,
+    .select-input {
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 800;
+      outline: none;
+    }
+
+    .money-input {
+      width: 148px;
+      padding: 10px 12px;
+      text-align: right;
+    }
+
+    .select-input {
+      width: 100%;
+      padding: 0 13px;
+    }
+
+    .money-input:focus,
+    .select-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(98,201,107,.18);
+    }
+
+    input[type="range"] {
+      --range-progress: 0%;
+      width: 100%;
+      height: 8px;
+      margin: 4px 0 0;
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          to right,
+          var(--green) 0%,
+          var(--green) var(--range-progress),
+          #DDE7E0 var(--range-progress),
+          #DDE7E0 100%
+        );
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+      margin-top: -7px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23,74,61,.24);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: #DDE7E0;
+    }
+
+    input[type="range"]::-moz-range-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border: 4px solid #FFFFFF;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 3px 10px rgba(23,74,61,.24);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .segmented input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .segmented label {
+      display: grid;
+      place-items: center;
+      min-height: 48px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--white);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .segmented input:checked + label {
+      border-color: var(--green);
+      background: var(--soft);
+      color: var(--green);
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .check-row input {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      accent-color: var(--green);
+    }
+
+    .check-row span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tax-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .tax-card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .tax-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tax-card strong {
+      font-size: 21px;
+      letter-spacing: -.02em;
+    }
+
+    .tax-card--highlight {
+      border-color: #BFE5C3;
+      background: #EFFAF0;
+    }
+
+    .tax-card--highlight strong { color: var(--green); }
+
+    .hint,
+    .legal-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .legal-note {
+      padding: 14px 15px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: #F0F7F2;
+    }
+
+    .pct-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-left: 8px;
+      padding: 0 9px;
+      border: 1px solid #C9E8CD;
+      border-radius: 999px;
+      background: #EFFAF0;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 14px;
+      font-weight: 900;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn--primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn--secondary {
+      background: #EDF2EF;
+      color: var(--green);
+    }
+
+    .summary h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-row strong {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .balance {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--soft);
+    }
+
+    .balance span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .balance strong {
+      font-size: 26px;
+      letter-spacing: -.025em;
+    }
+
+    .result-card {
+      margin-bottom: 16px;
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .result-card p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .result-card--success {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .result-card--warning {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    .result-card--danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .score {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: center;
+      margin: 18px 0 22px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+    }
+
+    .score__circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--accent) 0deg, #E8EFEB 0deg);
+      position: relative;
+    }
+
+    .score__circle::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .score__value {
+      position: relative;
+      z-index: 1;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .score__text h3 {
+      margin: 0 0 7px;
+      font-size: 22px;
+    }
+
+    .score__text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .recommendations {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .recommendation {
+      padding: 14px 15px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .error {
+      display: none;
+      margin-bottom: 16px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--danger-bg);
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .error.is-visible { display: block; }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .summary {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 20px, 1120px); }
+      .hero { padding: 42px 0 38px; }
+      .main { padding: 20px 0 40px; }
+      .panel, .summary { border-radius: 18px; }
+      .panel { padding: 20px; }
+
+      .field__top {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .money-input {
+        width: 100%;
+        text-align: left;
+      }
+
+      .tax-grid { grid-template-columns: 1fr; }
+
+      .nav {
+        flex-direction: column-reverse;
+      }
+
+      .btn { width: 100%; }
+
+      .score {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .score__circle { margin: 0 auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="card">
-    <div class="label">Симулятор CASHBRAIN</div>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Симулятор CASHBRAIN</div>
+      <h1>Перша зарплата</h1>
+      <p>
+        Дізнайтеся, скільки отримаєте «на руки», як формуються податки,
+        які витрати може покрити перша зарплата і скільки варто відкласти.
+      </p>
 
-    <h1>Перша зарплата</h1>
+      <div class="progress-wrap" aria-label="Прогрес проходження">
+        <div class="progress">
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+        <div class="progress__text" id="progressText">Крок 1 із 5</div>
+      </div>
+    </div>
+  </header>
 
-    <p>
-      Симулятор розрахунку податків, зарплати до виплати,
-      щомісячних витрат і першого плану заощаджень готується.
-    </p>
+  <main class="main">
+    <div class="container">
+      <div class="layout">
+
+        <section class="panel">
+          <div class="error" id="errorBox" role="alert"></div>
+
+          <div class="step is-active" data-step="1">
+            <div class="step-label">Крок 1</div>
+            <h2>Яку зарплату ви знаєте?</h2>
+            <p class="step-intro">
+              Оберіть формат суми: до оподаткування або фактичну виплату «на руки».
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="segmented">
+                  <input type="radio" name="salaryMode" id="grossMode" value="gross" checked>
+                  <label for="grossMode">До оподаткування</label>
+
+                  <input type="radio" name="salaryMode" id="netMode" value="net">
+                  <label for="netMode">На руки</label>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="salaryAmount">Сума зарплати</label>
+                  <input class="money-input" id="salaryAmount" type="number" min="1000" max="300000" step="500" value="20000">
+                </div>
+                <input id="salaryRange" type="range" min="1000" max="300000" step="500" value="20000">
+                <p class="hint" id="salaryHint">
+                  Вкажіть суму, зазначену в трудовій пропозиції або договорі.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="2">
+            <div class="step-label">Крок 2</div>
+            <h2>Податки й соціальна пільга</h2>
+            <p class="step-intro">
+              Симулятор показує базовий розрахунок для найманого працівника.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="check-row">
+                  <input type="checkbox" id="usePsp">
+                  <span>
+                    Застосувати податкову соціальну пільгу
+                  </span>
+                </div>
+              </div>
+
+              <div class="field hidden" id="pspOptions">
+                <label for="pspType">Тип пільги</label>
+                <select class="select-input" id="pspType">
+                  <option value="base">Базова ПСП</option>
+                  <option value="children">ПСП на дітей</option>
+                </select>
+
+                <div class="field hidden" id="childrenField" style="margin-top:12px;">
+                  <div class="field__top">
+                    <label for="childrenCount">Кількість дітей до 18 років</label>
+                    <input class="money-input" id="childrenCount" type="number" min="2" max="10" step="1" value="2">
+                  </div>
+                </div>
+
+                <p class="legal-note" id="pspNote">
+                  Пільга застосовується лише за наявності права на неї,
+                  заяви працівника та дотримання граничного доходу.
+                </p>
+              </div>
+
+              <div class="field">
+                <h3>Попередній розрахунок</h3>
+
+                <div class="tax-grid">
+                  <div class="tax-card">
+                    <span>Нарахована зарплата</span>
+                    <strong id="grossPreview">0 грн</strong>
+                  </div>
+
+                  <div class="tax-card">
+                    <span>ПДФО</span>
+                    <strong id="pitPreview">0 грн</strong>
+                  </div>
+
+                  <div class="tax-card">
+                    <span>Військовий збір</span>
+                    <strong id="militaryPreview">0 грн</strong>
+                  </div>
+
+                  <div class="tax-card tax-card--highlight">
+                    <span>До виплати</span>
+                    <strong id="netPreview">0 грн</strong>
+                  </div>
+                </div>
+
+                <p class="hint">
+                  ЄСВ 22% сплачує роботодавець понад суму зарплати.
+                  Він не віднімається від виплати працівникові.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="3">
+            <div class="step-label">Крок 3</div>
+            <h2>Обов’язкові витрати</h2>
+            <p class="step-intro">
+              Розподіліть зарплату «на руки» між необхідними щомісячними витратами.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="field__top">
+                  <label for="housing">Житло і комунальні послуги <span class="pct-badge" id="housingPct">0%</span></label>
+                  <input class="money-input expense" id="housing" type="number" min="0" step="100" value="4500">
+                </div>
+                <input class="expense-range" id="housingRange" type="range" min="0" max="20000" step="100" value="4500" data-for="housing">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="food">Харчування <span class="pct-badge" id="foodPct">0%</span></label>
+                  <input class="money-input expense" id="food" type="number" min="0" step="100" value="4000">
+                </div>
+                <input class="expense-range" id="foodRange" type="range" min="0" max="20000" step="100" value="4000" data-for="food">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="transport">Транспорт і зв’язок <span class="pct-badge" id="transportPct">0%</span></label>
+                  <input class="money-input expense" id="transport" type="number" min="0" step="100" value="1800">
+                </div>
+                <input class="expense-range" id="transportRange" type="range" min="0" max="20000" step="100" value="1800" data-for="transport">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="regular">Інші регулярні платежі <span class="pct-badge" id="regularPct">0%</span></label>
+                  <input class="money-input expense" id="regular" type="number" min="0" step="100" value="1000">
+                </div>
+                <input class="expense-range" id="regularRange" type="range" min="0" max="20000" step="100" value="1000" data-for="regular">
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="4">
+            <div class="step-label">Крок 4</div>
+            <h2>Перший план заощаджень</h2>
+            <p class="step-intro">
+              Визначте, скільки спрямувати на резерв, фінансову ціль і необов’язкові витрати.
+            </p>
+
+            <div class="fields">
+              <div class="field">
+                <div class="field__top">
+                  <label for="reserve">Фінансова подушка <span class="pct-badge" id="reservePct">0%</span></label>
+                  <input class="money-input expense" id="reserve" type="number" min="0" step="100" value="1200">
+                </div>
+                <input class="expense-range" id="reserveRange" type="range" min="0" max="20000" step="100" value="1200" data-for="reserve">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="goal">Фінансова ціль <span class="pct-badge" id="goalPct">0%</span></label>
+                  <input class="money-input expense" id="goal" type="number" min="0" step="100" value="1000">
+                </div>
+                <input class="expense-range" id="goalRange" type="range" min="0" max="20000" step="100" value="1000" data-for="goal">
+              </div>
+
+              <div class="field">
+                <div class="field__top">
+                  <label for="wants">Бажання та розваги <span class="pct-badge" id="wantsPct">0%</span></label>
+                  <input class="money-input expense" id="wants" type="number" min="0" step="100" value="1500">
+                </div>
+                <input class="expense-range" id="wantsRange" type="range" min="0" max="20000" step="100" value="1500" data-for="wants">
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="5">
+            <div class="step-label">Крок 5</div>
+            <h2>Результат</h2>
+            <p class="step-intro">
+              Оцінка враховує податкове навантаження, частку обов’язкових витрат,
+              заощадження та наявність дефіциту.
+            </p>
+
+            <div class="score">
+              <div class="score__circle" id="scoreCircle">
+                <div class="score__value" id="scoreValue">0</div>
+              </div>
+
+              <div class="score__text">
+                <h3 id="scoreTitle">Оцінюємо план</h3>
+                <p id="scoreDescription"></p>
+              </div>
+            </div>
+
+            <div id="resultMessage"></div>
+
+            <h3>Що варто врахувати</h3>
+            <div class="recommendations" id="recommendations"></div>
+
+            <div class="nav">
+              <button class="btn btn--secondary" type="button" id="restartBtn">Розрахувати заново</button>
+            </div>
+          </div>
+
+          <div class="nav" id="stepNav">
+            <button class="btn btn--secondary" type="button" id="prevBtn">Назад</button>
+            <button class="btn btn--primary" type="button" id="nextBtn">Далі</button>
+          </div>
+        </section>
+
+        <aside class="summary" aria-label="Поточний підсумок">
+          <h3>Поточний розрахунок</h3>
+
+          <div class="summary-list">
+            <div class="summary-row"><span>Нараховано</span><strong id="sumGross">0 грн</strong></div>
+            <div class="summary-row"><span>Податки</span><strong id="sumTaxes">0 грн</strong></div>
+            <div class="summary-row"><span>До виплати</span><strong id="sumNet">0 грн</strong></div>
+            <div class="summary-row"><span>Обов’язкові витрати</span><strong id="sumNeeds">0 грн</strong></div>
+            <div class="summary-row"><span>Заощадження</span><strong id="sumSavings">0 грн</strong></div>
+            <div class="summary-row"><span>Бажання</span><strong id="sumWants">0 грн</strong></div>
+          </div>
+
+          <div class="balance">
+            <span>Залишок</span>
+            <strong id="sumBalance">0 грн</strong>
+          </div>
+
+          <p class="footer-note">
+            Розрахунок має навчальний характер і не замінює індивідуальну податкову консультацію.
+          </p>
+        </aside>
+
+      </div>
+    </div>
   </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const PIT_RATE = 0.18;
+      const MILITARY_RATE = 0.05;
+      const ESV_RATE = 0.22;
+      const PSP_BASE = 1664;
+      const PSP_LIMIT = 4660;
+
+      const state = { step: 1 };
+      const $ = (id) => document.getElementById(id);
+
+      const money = (value) => new Intl.NumberFormat("uk-UA", {
+        style: "currency",
+        currency: "UAH",
+        maximumFractionDigits: 0
+      }).format(value || 0);
+
+      function readNumber(id) {
+        const el = $(id);
+        if (!el) return 0;
+        const value = Number(el.value);
+        return Number.isFinite(value) && value >= 0 ? value : 0;
+      }
+
+      function salaryMode() {
+        return document.querySelector('input[name="salaryMode"]:checked').value;
+      }
+
+      function pspData(gross) {
+        if (!$("usePsp").checked) {
+          return { applied: false, amount: 0, limit: PSP_LIMIT, eligible: false };
+        }
+
+        const type = $("pspType").value;
+        const children = Math.max(2, Math.min(10, Math.round(readNumber("childrenCount")) || 2));
+        const amount = type === "children" ? PSP_BASE * children : PSP_BASE;
+        const limit = type === "children" ? PSP_LIMIT * children : PSP_LIMIT;
+        const eligible = gross <= limit;
+
+        return {
+          applied: eligible,
+          amount: eligible ? amount : 0,
+          limit,
+          eligible
+        };
+      }
+
+      function fromGross(gross) {
+        const psp = pspData(gross);
+        const pitBase = Math.max(0, gross - psp.amount);
+        const pit = pitBase * PIT_RATE;
+        const military = gross * MILITARY_RATE;
+        const net = gross - pit - military;
+        const esv = gross * ESV_RATE;
+
+        return { gross, pit, military, net, esv, psp };
+      }
+
+      function fromNet(net) {
+        // For a net amount, derive gross under the current selected PSP option.
+        // Because PSP eligibility depends on gross, test both no-PSP and PSP cases.
+        let grossNoPsp = net / (1 - PIT_RATE - MILITARY_RATE);
+        const noPsp = fromGross(grossNoPsp);
+
+        if (!$("usePsp").checked) return noPsp;
+
+        const type = $("pspType").value;
+        const children = Math.max(2, Math.min(10, Math.round(readNumber("childrenCount")) || 2));
+        const pspAmount = type === "children" ? PSP_BASE * children : PSP_BASE;
+        const limit = type === "children" ? PSP_LIMIT * children : PSP_LIMIT;
+
+        const grossWithPsp = (net - pspAmount * PIT_RATE) / (1 - PIT_RATE - MILITARY_RATE);
+
+        if (grossWithPsp > 0 && grossWithPsp <= limit) {
+          return fromGross(grossWithPsp);
+        }
+
+        return noPsp;
+      }
+
+      function salaryResult() {
+        const amount = readNumber("salaryAmount");
+        return salaryMode() === "gross" ? fromGross(amount) : fromNet(amount);
+      }
+
+      function totals() {
+        const salary = salaryResult();
+        const needs =
+          readNumber("housing") +
+          readNumber("food") +
+          readNumber("transport") +
+          readNumber("regular");
+
+        const reserve = readNumber("reserve");
+        const goal = readNumber("goal");
+        const wants = readNumber("wants");
+        const savings = reserve + goal;
+        const spending = needs + savings + wants;
+        const balance = salary.net - spending;
+
+        return { salary, needs, reserve, goal, savings, wants, spending, balance };
+      }
+
+      function updateRangeFill(range) {
+        if (!range) return;
+        const min = Number(range.min) || 0;
+        const max = Number(range.max) || 100;
+        const value = Number(range.value) || 0;
+        const pct = max > min ? ((value - min) / (max - min)) * 100 : 0;
+        range.style.setProperty("--range-progress", `${Math.max(0, Math.min(100, pct))}%`);
+      }
+
+      function updatePspUi() {
+        const active = $("usePsp").checked;
+        $("pspOptions").classList.toggle("hidden", !active);
+        $("childrenField").classList.toggle("hidden", $("pspType").value !== "children");
+
+        const salary = salaryResult();
+        const psp = salary.psp;
+
+        if (!active) {
+          $("pspNote").textContent =
+            "Пільга застосовується лише за наявності права на неї, заяви працівника та дотримання граничного доходу.";
+        } else if (psp.eligible) {
+          $("pspNote").textContent =
+            `Пільга врахована. Граничний дохід для цього вибору: ${money(psp.limit)}.`;
+        } else {
+          $("pspNote").textContent =
+            `Пільга не застосована, оскільки нарахована зарплата перевищує граничний дохід ${money(psp.limit)}.`;
+        }
+      }
+
+      function updateSummary() {
+        const t = totals();
+        const net = t.salary.net;
+
+        $("grossPreview").textContent = money(t.salary.gross);
+        $("pitPreview").textContent = money(t.salary.pit);
+        $("militaryPreview").textContent = money(t.salary.military);
+        $("netPreview").textContent = money(net);
+
+        $("sumGross").textContent = money(t.salary.gross);
+        $("sumTaxes").textContent = money(t.salary.pit + t.salary.military);
+        $("sumNet").textContent = money(net);
+        $("sumNeeds").textContent = money(t.needs);
+        $("sumSavings").textContent = money(t.savings);
+        $("sumWants").textContent = money(t.wants);
+        $("sumBalance").textContent = money(t.balance);
+        $("sumBalance").style.color = t.balance < 0 ? "var(--danger)" : "var(--text)";
+
+        const expIds = ["housing", "food", "transport", "regular", "reserve", "goal", "wants"];
+
+        expIds.forEach((id) => {
+          const value = readNumber(id);
+          const pct = net > 0 ? Math.round((value / net) * 100) : 0;
+          const badge = $(`${id}Pct`);
+          if (badge) badge.textContent = `${pct}%`;
+
+          const range = $(`${id}Range`);
+          if (range) {
+            range.max = Math.max(net, value, 1000);
+            range.value = value;
+            updateRangeFill(range);
+          }
+        });
+
+        updateRangeFill($("salaryRange"));
+        updatePspUi();
+      }
+
+      function showError(message) {
+        $("errorBox").textContent = message;
+        $("errorBox").classList.add("is-visible");
+      }
+
+      function clearError() {
+        $("errorBox").classList.remove("is-visible");
+        $("errorBox").textContent = "";
+      }
+
+      function validateStep(step) {
+        clearError();
+
+        if (step === 1 && readNumber("salaryAmount") < 1000) {
+          showError("Вкажіть реалістичну суму зарплати.");
+          return false;
+        }
+
+        if (step === 3) {
+          const t = totals();
+          if (t.needs > t.salary.net * 1.5) {
+            showError("Обов’язкові витрати значно перевищують зарплату до виплати. Перевірте введені суми.");
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      function goToStep(step) {
+        state.step = Math.max(1, Math.min(5, step));
+
+        document.querySelectorAll(".step").forEach((el) => {
+          el.classList.toggle("is-active", Number(el.dataset.step) === state.step);
+        });
+
+        $("progressBar").style.width = `${state.step * 20}%`;
+        $("progressText").textContent = `Крок ${state.step} із 5`;
+        $("prevBtn").style.visibility = state.step === 1 ? "hidden" : "visible";
+        $("nextBtn").textContent = state.step === 4 ? "Показати результат" : "Далі";
+        $("stepNav").style.display = state.step === 5 ? "none" : "flex";
+
+        if (state.step === 5) renderResult();
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function calculateScore() {
+        const t = totals();
+        if (t.salary.net <= 0) return 0;
+
+        const needsPct = t.needs / t.salary.net;
+        const savingsPct = t.savings / t.salary.net;
+        const wantsPct = t.wants / t.salary.net;
+
+        let score = 100;
+
+        if (t.balance < 0) score -= Math.min(45, Math.abs(t.balance) / t.salary.net * 100);
+        if (needsPct > 0.7) score -= Math.min(20, (needsPct - 0.7) * 100);
+        if (savingsPct < 0.1) score -= 20;
+        else if (savingsPct < 0.15) score -= 10;
+        if (wantsPct > 0.3) score -= 10;
+        if (t.balance > t.salary.net * 0.25) score -= 5;
+
+        return Math.max(0, Math.min(100, Math.round(score)));
+      }
+
+      function renderResult() {
+        const t = totals();
+        const score = calculateScore();
+        const needsPct = t.salary.net ? t.needs / t.salary.net : 0;
+        const savingsPct = t.salary.net ? t.savings / t.salary.net : 0;
+        const wantsPct = t.salary.net ? t.wants / t.salary.net : 0;
+
+        $("scoreValue").textContent = score;
+        $("scoreCircle").style.background =
+          `conic-gradient(var(--accent) ${score * 3.6}deg, #E8EFEB ${score * 3.6}deg)`;
+
+        let title = "План потребує перегляду";
+        let description = "Є ризик дефіциту або надто велика частка витрат.";
+
+        if (score >= 85) {
+          title = "Вдалий перший план";
+          description = "Ви врахували податки, обов’язкові витрати та регулярні заощадження.";
+        } else if (score >= 65) {
+          title = "Непоганий старт";
+          description = "План загалом працює, але окремі категорії варто скоригувати.";
+        } else if (score >= 40) {
+          title = "Є вразливі місця";
+          description = "План може бути нестабільним через високі витрати або слабкі заощадження.";
+        }
+
+        $("scoreTitle").textContent = title;
+        $("scoreDescription").textContent = description;
+
+        const resultClass = t.balance < 0 ? "danger" : (score >= 65 ? "success" : "warning");
+        const resultTitle = t.balance < 0 ? "План має дефіцит" : "План без дефіциту";
+        const resultText = t.balance < 0
+          ? `Заплановані витрати перевищують зарплату до виплати на ${money(Math.abs(t.balance))}.`
+          : `Після всіх запланованих витрат залишається ${money(t.balance)}.`;
+
+        $("resultMessage").innerHTML = `
+          <div class="result-card result-card--${resultClass}">
+            <h3>${resultTitle}</h3>
+            <p>${resultText}</p>
+          </div>
+        `;
+
+        const recs = [];
+
+        recs.push(
+          `Із нарахованої зарплати ${money(t.salary.gross)} до виплати залишається ${money(t.salary.net)}.`
+        );
+
+        if (t.salary.psp.applied) {
+          recs.push("Податкову соціальну пільгу враховано в розрахунку ПДФО.");
+        }
+
+        if ($("usePsp").checked && !t.salary.psp.applied) {
+          recs.push("Обрана податкова соціальна пільга не спрацювала через перевищення граничного доходу.");
+        }
+
+        if (t.balance < 0) {
+          recs.push("Спочатку усуньте дефіцит: скоротіть необов’язкові витрати або перегляньте регулярні платежі.");
+        }
+
+        if (needsPct > 0.7) {
+          recs.push("Обов’язкові витрати перевищують 70% зарплати до виплати. Це зменшує фінансову гнучкість.");
+        }
+
+        if (savingsPct < 0.1) {
+          recs.push("На резерв і фінансову ціль спрямовується менше 10% зарплати. Почніть хоча б із невеликого регулярного внеску.");
+        }
+
+        if (wantsPct > 0.3) {
+          recs.push("Бажання та розваги займають понад 30% зарплати до виплати. Частину суми можна перенаправити на заощадження.");
+        }
+
+        if (t.reserve === 0) {
+          recs.push("Передбачте мінімальний внесок у фінансову подушку.");
+        }
+
+        if (t.goal === 0) {
+          recs.push("Додайте конкретну фінансову ціль, навіть якщо внесок буде невеликим.");
+        }
+
+        if (recs.length === 1) {
+          recs.push("Переглядайте план після кожної зміни зарплати або регулярних витрат.");
+        }
+
+        $("recommendations").innerHTML = recs
+          .map((text) => `<div class="recommendation">${text}</div>`)
+          .join("");
+      }
+
+      function restart() {
+        $("grossMode").checked = true;
+        $("salaryAmount").value = 20000;
+        $("salaryRange").value = 20000;
+        $("usePsp").checked = false;
+        $("pspType").value = "base";
+        $("childrenCount").value = 2;
+
+        $("housing").value = 4500;
+        $("food").value = 4000;
+        $("transport").value = 1800;
+        $("regular").value = 1000;
+        $("reserve").value = 1200;
+        $("goal").value = 1000;
+        $("wants").value = 1500;
+
+        updateSummary();
+        goToStep(1);
+      }
+
+      $("salaryAmount").addEventListener("input", () => {
+        let value = Number($("salaryAmount").value);
+        if (!Number.isFinite(value)) value = 1000;
+        value = Math.min(300000, Math.max(1000, value));
+        $("salaryAmount").value = value;
+        $("salaryRange").value = value;
+        updateSummary();
+      });
+
+      $("salaryRange").addEventListener("input", () => {
+        $("salaryAmount").value = $("salaryRange").value;
+        updateSummary();
+      });
+
+      document.querySelectorAll('input[name="salaryMode"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          $("salaryHint").textContent = salaryMode() === "gross"
+            ? "Вкажіть суму, зазначену в трудовій пропозиції або договорі."
+            : "Вкажіть суму, яку фактично отримуєте після податків.";
+          updateSummary();
+        });
+      });
+
+      $("usePsp").addEventListener("change", updateSummary);
+      $("pspType").addEventListener("change", updateSummary);
+      $("childrenCount").addEventListener("input", updateSummary);
+
+      document.querySelectorAll(".expense").forEach((input) => {
+        input.addEventListener("input", () => {
+          let value = Number(input.value);
+          if (!Number.isFinite(value) || value < 0) value = 0;
+          input.value = value;
+
+          const range = $(`${input.id}Range`);
+          if (range) {
+            range.max = Math.max(totals().salary.net, value, 1000);
+            range.value = value;
+            updateRangeFill(range);
+          }
+
+          updateSummary();
+        });
+      });
+
+      document.querySelectorAll(".expense-range").forEach((range) => {
+        range.addEventListener("input", (event) => {
+          const targetId = event.target.dataset.for;
+          if (targetId) {
+            $(targetId).value = event.target.value;
+            updateSummary();
+          }
+        });
+      });
+
+      $("nextBtn").addEventListener("click", () => {
+        if (!validateStep(state.step)) return;
+        goToStep(state.step + 1);
+      });
+
+      $("prevBtn").addEventListener("click", () => goToStep(state.step - 1));
+      $("restartBtn").addEventListener("click", restart);
+
+      updateSummary();
+      document.querySelectorAll('input[type="range"]').forEach(updateRangeFill);
+      goToStep(1);
+    })();
+  </script>
 </body>
 </html>
