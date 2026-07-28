@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="CASHBRAIN — інтерактивний симулятор платіжної безпеки «Безпечний платіж»"
+  >
+  <meta name="theme-color" content="#174A3D">
+
+  <title>Безпечний платіж — CASHBRAIN</title>
+
+  <style>
+    :root {
+      --green: #1C5345;
+      --green-dark: #174A3D;
+      --accent: #62C96B;
+      --soft: #DFF6DF;
+      --surface: #F7F9F6;
+      --white: #FFFFFF;
+      --text: #10231C;
+      --muted: #63736D;
+      --border: #DDE7E0;
+
+      --success: #237A3B;
+      --success-bg: #EAF8EC;
+      --danger: #B42318;
+      --danger-bg: #FFF0EE;
+      --warning: #9A6700;
+      --warning-bg: #FFF7E6;
+
+      --shadow: 0 18px 42px rgba(23, 74, 61, 0.10);
+      --focus: 0 0 0 4px rgba(98, 201, 107, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--text);
+      font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 54px 0 46px;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 84% 12%,
+          rgba(98, 201, 107, 0.22),
+          transparent 28%
+        ),
+        linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: #A7E8AC;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero__lead {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .hero__chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .progress {
+      flex: 1;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .progress__bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .progress__text {
+      min-width: 108px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .main {
+      padding: 34px 0 56px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel,
+    .side {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 28px;
+    }
+
+    .side {
+      position: sticky;
+      top: 18px;
+      padding: 22px;
+    }
+
+    .scenario-label {
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+    }
+
+    .intro {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .message-card,
+    .site-card {
+      margin-bottom: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .message-meta,
+    .site-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .message-title,
+    .site-title {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .message-text,
+    .site-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.62;
+    }
+
+    .fake-link {
+      display: block;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border: 1px dashed #C8D8CE;
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--danger);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.45;
+      word-break: break-all;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      position: relative;
+      width: 100%;
+      min-height: 54px;
+      padding: 15px 48px 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--white);
+      color: var(--text);
+      text-align: left;
+      font-weight: 800;
+      line-height: 1.45;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background-color 0.18s ease;
+    }
+
+    .choice::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: 17px;
+      color: #8B9C95;
+      font-size: 17px;
+      transform: translateY(-50%);
+    }
+
+    .choice:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: #A7CFAD;
+      background: #FBFDFB;
+    }
+
+    .choice:disabled {
+      cursor: default;
+      transform: none;
+    }
+
+    .choice.is-correct {
+      border-color: #8FD39A;
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .choice.is-correct::after {
+      content: "✓";
+      color: var(--success);
+    }
+
+    .choice.is-risky {
+      border-color: #E9A69F;
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .choice.is-risky::after {
+      content: "×";
+      color: var(--danger);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+    }
+
+    .feedback.is-visible {
+      display: block;
+    }
+
+    .feedback--success {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .feedback--danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .feedback h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
+    }
+
+    .feedback p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        background-color 0.18s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn--primary:hover:not(:disabled) {
+      background: var(--green-dark);
+    }
+
+    .btn--secondary {
+      background: #EDF2EF;
+      color: var(--green);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
+      transform: none;
+    }
+
+    .side h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .side-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .side-row strong {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .safety-card {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--soft);
+    }
+
+    .safety-card span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .safety-card strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+    .tip {
+      margin-top: 16px;
+      padding: 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .privacy-note {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .result.is-active {
+      display: block;
+    }
+
+    .score {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin: 18px 0 22px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+    }
+
+    .score__circle {
+      position: relative;
+      display: grid;
+      width: 130px;
+      height: 130px;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg, #E8EFEB 0deg);
+    }
+
+    .score__circle::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .score__value {
+      position: relative;
+      z-index: 1;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .score__value small {
+      font-size: 14px;
+    }
+
+    .score__text h3 {
+      margin: 0 0 7px;
+      font-size: 22px;
+    }
+
+    .score__text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .result-card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .result-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .result-card strong {
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    .section-subtitle {
+      margin: 24px 0 12px;
+      font-size: 20px;
+    }
+
+    .recommendations {
+      display: grid;
+      gap: 10px;
+    }
+
+    .recommendation {
+      padding: 14px 15px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .review-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--white);
+    }
+
+    .review-item__mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      font-weight: 900;
+    }
+
+    .review-item--success .review-item__mark {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .review-item--danger .review-item__mark {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .review-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .review-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .project-footer {
+      margin-top: 24px;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid #CFE4D4;
+      border-radius: 22px;
+      background:
+        radial-gradient(
+          circle at 92% 18%,
+          rgba(98, 201, 107, 0.16),
+          transparent 28%
+        ),
+        linear-gradient(135deg, var(--white), #F7FBF8);
+      box-shadow: var(--shadow);
+    }
+
+    .project-footer__inner {
+      position: relative;
+      padding: 24px 26px 24px 84px;
+    }
+
+    .project-footer__inner::before {
+      content: "CB";
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(23, 74, 61, 0.18);
+    }
+
+    .project-footer__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.72;
+    }
+
+    .project-footer__text strong {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .hero {
+        padding: 42px 0 38px;
+      }
+
+      .hero__lead {
+        font-size: 15px;
+      }
+
+      .progress-wrap {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .progress__text {
+        min-width: 0;
+        text-align: left;
+      }
+
+      .main {
+        padding: 20px 0 40px;
+      }
+
+      .panel,
+      .side {
+        border-radius: 18px;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .message-meta,
+      .site-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .nav {
+        flex-direction: column-reverse;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .score {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .score__circle {
+        margin: 0 auto;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-footer__inner {
+        padding: 22px 18px 22px 72px;
+      }
+
+      .project-footer__inner::before {
+        top: 20px;
+        left: 18px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Симулятор CASHBRAIN</div>
+
+      <h1>Безпечний платіж</h1>
+
+      <p class="hero__lead">
+        Перевіряйте повідомлення, сайти, посилання та обирайте
+        безпечну дію в ризикових ситуаціях.
+      </p>
+
+      <div class="hero__meta" aria-label="Параметри симулятора">
+        <span class="hero__chip">7 ситуацій</span>
+        <span class="hero__chip">6–8 хвилин</span>
+        <span class="hero__chip">Миттєві пояснення</span>
+      </div>
+
+      <div class="progress-wrap" aria-label="Прогрес проходження">
+        <div
+          class="progress"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="7"
+          aria-valuenow="1"
+          id="progressTrack"
+        >
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+
+        <div class="progress__text" id="progressText">
+          Ситуація 1 із 7
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main" id="simulator">
+    <div class="container">
+      <div class="layout">
+
+        <section class="panel" aria-labelledby="scenarioTitle">
+          <div id="scenarioView">
+            <div class="scenario-label" id="scenarioLabel">
+              Ситуація 1
+            </div>
+
+            <h2 id="scenarioTitle"></h2>
+            <p class="intro" id="scenarioIntro"></p>
+
+            <div id="scenarioVisual"></div>
+
+            <div
+              class="choices"
+              id="choices"
+              aria-label="Варіанти дій"
+            ></div>
+
+            <div
+              class="feedback"
+              id="feedback"
+              role="status"
+              aria-live="polite"
+            >
+              <h3 id="feedbackTitle"></h3>
+              <p id="feedbackText"></p>
+            </div>
+
+            <div class="nav">
+              <button
+                class="btn btn--secondary"
+                type="button"
+                id="prevBtn"
+              >
+                Назад
+              </button>
+
+              <button
+                class="btn btn--primary"
+                type="button"
+                id="nextBtn"
+                disabled
+              >
+                Далі
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="result"
+            id="resultView"
+            aria-labelledby="resultTitle"
+          >
+            <div class="scenario-label">Результат</div>
+
+            <h2 id="resultTitle">
+              Ваш рівень платіжної безпеки
+            </h2>
+
+            <p class="intro">
+              Підсумок показує, наскільки впевнено ви розпізнаєте
+              ризики та обираєте безпечну дію.
+            </p>
+
+            <div class="score">
+              <div class="score__circle" id="scoreCircle">
+                <div class="score__value">
+                  <span id="scoreValue">0</span><small>%</small>
+                </div>
+              </div>
+
+              <div class="score__text">
+                <h3 id="scoreTitle"></h3>
+                <p id="scoreDescription"></p>
+              </div>
+            </div>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <span>Безпечні рішення</span>
+                <strong id="correctCount">0</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Ризикові рішення</span>
+                <strong id="riskyCount">0</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Усього ситуацій</span>
+                <strong id="totalCount">7</strong>
+              </div>
+            </div>
+
+            <h3 class="section-subtitle">
+              Що варто запам’ятати
+            </h3>
+
+            <div
+              class="recommendations"
+              id="recommendations"
+            ></div>
+
+            <h3 class="section-subtitle">
+              Розбір ваших рішень
+            </h3>
+
+            <div class="review-list" id="reviewList"></div>
+
+            <div class="nav">
+              <button
+                class="btn btn--secondary"
+                type="button"
+                id="restartBtn"
+              >
+                Пройти ще раз
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="side" aria-label="Поточний результат">
+          <h3>Поточний результат</h3>
+
+          <div class="side-row">
+            <span>Пройдено</span>
+            <strong id="sideProgress">0 із 7</strong>
+          </div>
+
+          <div class="side-row">
+            <span>Безпечні рішення</span>
+            <strong id="sideCorrect">0</strong>
+          </div>
+
+          <div class="side-row">
+            <span>Ризикові рішення</span>
+            <strong id="sideRisky">0</strong>
+          </div>
+
+          <div class="safety-card">
+            <span>Поточний рівень</span>
+            <strong id="sideLevel">Ще не визначено</strong>
+          </div>
+
+          <div class="tip">
+            Безпечна дія майже завжди починається з паузи:
+            не поспішайте, перевіряйте джерело та не передавайте
+            секретні дані.
+          </div>
+
+          <p class="privacy-note">
+            Відповіді використовуються лише в цьому браузері
+            та не передаються на сервер.
+          </p>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="container project-footer">
+    <div class="project-footer__inner">
+      <p class="project-footer__text">
+        <strong>Створено в межах проєкту CASHBRAIN</strong>
+        для формування практичних навичок фінансової грамотності:
+        розпізнавання підозрілих повідомлень, перевірки сайтів
+        і посилань, захисту платіжних даних та вибору безпечної дії.
+        ВСП «Аграрно-економічний фаховий коледж ПДАУ».
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const scenarios = [
+        {
+          title: "Повідомлення від «банку»",
+          intro: "Ви отримали SMS про нібито блокування картки.",
+          visual: `
+            <div class="message-card">
+              <div class="message-meta">
+                <span>Відправник: BANK-SUPPORT</span>
+                <span>18:42</span>
+              </div>
+              <p class="message-title">
+                Вашу картку тимчасово заблоковано
+              </p>
+              <p class="message-text">
+                Для відновлення доступу негайно підтвердьте
+                особу за посиланням.
+              </p>
+              <span class="fake-link">
+                https://secure-bank-help.example/login
+              </span>
+            </div>
+          `,
+          choices: [
+            "Відповісти на SMS і попросити пояснення",
+            "Зателефонувати до банку за номером на офіційному сайті або картці",
+            "Перейти за посиланням і ввести дані картки"
+          ],
+          correct: 1,
+          explanation:
+            "Безпечніше самостійно звернутися до банку через офіційний канал. Посилання з повідомлення може вести на фішинговий сайт."
+        },
+        {
+          title: "Підозрілий сайт оплати",
+          intro:
+            "Ви оформлюєте покупку, але адреса сторінки відрізняється від адреси магазину.",
+          visual: `
+            <div class="site-card">
+              <div class="site-meta">
+                <span>Сторінка оплати</span>
+                <span>Нове вікно</span>
+              </div>
+              <p class="site-title">Підтвердження замовлення</p>
+              <p class="site-text">
+                Сайт просить ввести номер картки, строк дії,
+                CVV і код із SMS.
+              </p>
+              <span class="fake-link">
+                http://pay-shop-secure.example
+              </span>
+            </div>
+          `,
+          choices: [
+            "Закрити сторінку та перевірити оплату через офіційний сайт магазину",
+            "Ввести лише номер картки без CVV",
+            "Ввести всі дані, бо замовлення вже оформлено"
+          ],
+          correct: 0,
+          explanation:
+            "Підозріла адреса і запит коду з SMS є небезпечними ознаками. Оплату слід починати лише з офіційного сайту або застосунку."
+        },
+        {
+          title: "Код із SMS",
+          intro:
+            "Людина, яка назвалася працівником банку, просить назвати код підтвердження.",
+          visual: `
+            <div class="message-card">
+              <div class="message-meta">
+                <span>Вхідний дзвінок</span>
+                <span>Невідомий номер</span>
+              </div>
+              <p class="message-title">
+                «Щоб скасувати підозрілу операцію,
+                назвіть код»
+              </p>
+              <p class="message-text">
+                Співрозмовник наполягає, що діяти потрібно негайно.
+              </p>
+            </div>
+          `,
+          choices: [
+            "Назвати код, щоб швидше скасувати операцію",
+            "Назвати тільки перші дві цифри",
+            "Перервати розмову та самостійно зв’язатися з банком"
+          ],
+          correct: 2,
+          explanation:
+            "Коди підтвердження, PIN і CVV не слід повідомляти стороннім. Банк не просить такі дані для скасування операції."
+        },
+        {
+          title: "Переказ продавцю",
+          intro:
+            "Продавець просить оплатити товар наперед на особисту картку.",
+          visual: `
+            <div class="message-card">
+              <div class="message-meta">
+                <span>Оголошення</span>
+                <span>Чат із продавцем</span>
+              </div>
+              <p class="message-title">
+                «Зараз багато покупців. Переказуйте всю суму»
+              </p>
+              <p class="message-text">
+                Продавець відмовляється від безпечної доставки
+                та не надає додаткових фото товару.
+              </p>
+            </div>
+          `,
+          choices: [
+            "Відмовитися від передоплати та використати захищений спосіб оплати",
+            "Переказати половину суми",
+            "Переказати всю суму, щоб товар не купив хтось інший"
+          ],
+          correct: 0,
+          explanation:
+            "Тиск, поспіх і відмова від захищеної оплати підвищують ризик шахрайства. Краще скористатися сервісом із захистом покупця."
+        },
+        {
+          title: "Термінове прохання від знайомого",
+          intro:
+            "У месенджері знайома людина просить швидко переказати гроші.",
+          visual: `
+            <div class="message-card">
+              <div class="message-meta">
+                <span>Месенджер</span>
+                <span>Новий діалог</span>
+              </div>
+              <p class="message-title">
+                «Терміново скинь 3 000 грн. Потім усе поясню»
+              </p>
+              <p class="message-text">
+                Повідомлення написане незвичним стилем,
+                а номер картки вам невідомий.
+              </p>
+            </div>
+          `,
+          choices: [
+            "Попросити надіслати фото картки",
+            "Одразу переказати, бо ситуація термінова",
+            "Зателефонувати людині за відомим номером і перевірити прохання"
+          ],
+          correct: 2,
+          explanation:
+            "Акаунт міг бути зламаний. Перед переказом потрібно підтвердити прохання через інший, відомий канал зв’язку."
+        },
+        {
+          title: "QR-код для оплати",
+          intro:
+            "У громадському місці поверх офіційної наліпки наклеєно інший QR-код.",
+          visual: `
+            <div class="site-card">
+              <div class="site-meta">
+                <span>Оплата послуги</span>
+                <span>QR-код</span>
+              </div>
+              <p class="site-title">Скануйте та сплатіть</p>
+              <p class="site-text">
+                Після сканування відкривається сторінка
+                з незнайомою адресою та формою введення карткових даних.
+              </p>
+              <span class="fake-link">
+                https://quick-pay-check.example
+              </span>
+            </div>
+          `,
+          choices: [
+            "Ввести дані в режимі приватного перегляду",
+            "Не платити та знайти офіційний спосіб оплати",
+            "Заповнити форму, якщо сума правильна"
+          ],
+          correct: 1,
+          explanation:
+            "QR-код може бути підмінено. Безпечно перейти до оплати через офіційний сайт, застосунок або перевірений термінал."
+        },
+        {
+          title: "AI-підробка голосу",
+          intro:
+            "Вам телефонує нібито родич і просить терміново переказати кошти.",
+          visual: `
+            <div class="message-card">
+              <div class="message-meta">
+                <span>Голосовий дзвінок</span>
+                <span>Невідомий номер</span>
+              </div>
+              <p class="message-title">
+                Голос схожий, але прохання незвичне
+              </p>
+              <p class="message-text">
+                Людина просить не телефонувати іншим
+                і переказати гроші на нову картку.
+              </p>
+            </div>
+          `,
+          choices: [
+            "Поставити контрольне запитання та передзвонити на відомий номер",
+            "Попросити надіслати ще одне голосове повідомлення",
+            "Переказати, бо голос здається знайомим"
+          ],
+          correct: 0,
+          explanation:
+            "Голос можна підробити. Потрібно перевірити особу через відомий номер або контрольне запитання, відповідь на яке знає лише близька людина."
+        }
+      ];
+
+      const state = {
+        index: 0,
+        answers: Array(scenarios.length).fill(null)
+      };
+
+      const $ = (id) => document.getElementById(id);
+
+      function currentScore() {
+        return state.answers.filter(
+          (answer, index) => answer === scenarios[index].correct
+        ).length;
+      }
+
+      function answeredCount() {
+        return state.answers.filter((answer) => answer !== null).length;
+      }
+
+      function percentage(score) {
+        return Math.round((score / scenarios.length) * 100);
+      }
+
+      function levelByScore(score) {
+        const value = percentage(score);
+
+        if (value >= 86) return "Високий";
+        if (value >= 57) return "Достатній";
+        if (value >= 29) return "Початковий";
+        return "Ризиковий";
+      }
+
+      function updateSide() {
+        const correct = currentScore();
+        const answered = answeredCount();
+        const risky = answered - correct;
+
+        $("sideProgress").textContent =
+          `${answered} із ${scenarios.length}`;
+
+        $("sideCorrect").textContent = correct;
+        $("sideRisky").textContent = risky;
+
+        $("sideLevel").textContent =
+          answered ? levelByScore(correct) : "Ще не визначено";
+      }
+
+      function updateProgress() {
+        const current = state.index + 1;
+
+        $("progressBar").style.width =
+          `${(current / scenarios.length) * 100}%`;
+
+        $("progressText").textContent =
+          `Ситуація ${current} із ${scenarios.length}`;
+
+        $("progressTrack").setAttribute("aria-valuenow", String(current));
+      }
+
+      function renderScenario() {
+        const scenario = scenarios[state.index];
+        const selected = state.answers[state.index];
+
+        $("scenarioLabel").textContent =
+          `Ситуація ${state.index + 1}`;
+
+        $("scenarioTitle").textContent = scenario.title;
+        $("scenarioIntro").textContent = scenario.intro;
+        $("scenarioVisual").innerHTML = scenario.visual;
+
+        $("choices").innerHTML = scenario.choices
+          .map(
+            (choice, index) => `
+              <button
+                class="choice"
+                type="button"
+                data-choice="${index}"
+              >
+                ${choice}
+              </button>
+            `
+          )
+          .join("");
+
+        document.querySelectorAll(".choice").forEach((button) => {
+          button.addEventListener("click", () => {
+            chooseAnswer(Number(button.dataset.choice));
+          });
+        });
+
+        $("prevBtn").disabled = state.index === 0;
+
+        $("nextBtn").textContent =
+          state.index === scenarios.length - 1
+            ? "Показати результат"
+            : "Далі";
+
+        if (selected === null) {
+          $("feedback").className = "feedback";
+          $("feedbackTitle").textContent = "";
+          $("feedbackText").textContent = "";
+          $("nextBtn").disabled = true;
+        } else {
+          showStoredAnswer(selected);
+        }
+
+        updateProgress();
+        updateSide();
+      }
+
+      function chooseAnswer(choiceIndex) {
+        if (state.answers[state.index] !== null) return;
+
+        state.answers[state.index] = choiceIndex;
+        showStoredAnswer(choiceIndex);
+        updateSide();
+      }
+
+      function showStoredAnswer(choiceIndex) {
+        const scenario = scenarios[state.index];
+        const isCorrect = choiceIndex === scenario.correct;
+        const buttons = [...document.querySelectorAll(".choice")];
+
+        buttons.forEach((button, index) => {
+          button.disabled = true;
+
+          if (index === scenario.correct) {
+            button.classList.add("is-correct");
+          } else if (index === choiceIndex) {
+            button.classList.add("is-risky");
+          }
+        });
+
+        $("feedback").className =
+          `feedback is-visible ${
+            isCorrect ? "feedback--success" : "feedback--danger"
+          }`;
+
+        $("feedbackTitle").textContent =
+          isCorrect ? "Безпечне рішення" : "Ризиковане рішення";
+
+        $("feedbackText").textContent = scenario.explanation;
+        $("nextBtn").disabled = false;
+      }
+
+      function resultCopy(value) {
+        if (value >= 86) {
+          return {
+            title: "Високий рівень безпеки",
+            description:
+              "Ви впевнено розпізнаєте основні ознаки платіжного шахрайства та перевіряєте інформацію до переказу коштів."
+          };
+        }
+
+        if (value >= 57) {
+          return {
+            title: "Достатній рівень",
+            description:
+              "Більшість рішень безпечні, але окремі ризикові сценарії ще потребують уваги."
+          };
+        }
+
+        if (value >= 29) {
+          return {
+            title: "Початковий рівень",
+            description:
+              "Ви помічаєте частину ризиків, але поспіх або довіра до повідомлень можуть призвести до помилки."
+          };
+        }
+
+        return {
+          title: "Ризиковий рівень",
+          description:
+            "У кількох ситуаціях обрані дії могли призвести до втрати коштів або платіжних даних."
+        };
+      }
+
+      function renderRecommendations() {
+        const recommendations = [
+          "Не переходьте за платіжними посиланнями з несподіваних повідомлень.",
+          "Не повідомляйте PIN, CVV, паролі та коди підтвердження.",
+          "Перевіряйте адресу сайту до введення платіжних даних.",
+          "Підтверджуйте термінові прохання про гроші через інший канал зв’язку.",
+          "Для оплати використовуйте офіційні сайти, застосунки та захищені сервіси."
+        ];
+
+        $("recommendations").innerHTML = recommendations
+          .map(
+            (text) => `
+              <div class="recommendation">${text}</div>
+            `
+          )
+          .join("");
+      }
+
+      function renderReview() {
+        $("reviewList").innerHTML = scenarios
+          .map((scenario, index) => {
+            const selected = state.answers[index];
+            const isCorrect = selected === scenario.correct;
+
+            return `
+              <article class="review-item ${
+                isCorrect
+                  ? "review-item--success"
+                  : "review-item--danger"
+              }">
+                <div class="review-item__mark">
+                  ${isCorrect ? "✓" : "×"}
+                </div>
+                <div>
+                  <strong>
+                    ${index + 1}. ${scenario.title}
+                  </strong>
+                  <p>
+                    ${
+                      isCorrect
+                        ? "Обрано безпечну дію."
+                        : `Безпечна дія: ${
+                            scenario.choices[scenario.correct]
+                          }.`
+                    }
+                  </p>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      function showResult() {
+        const correct = currentScore();
+        const risky = scenarios.length - correct;
+        const value = percentage(correct);
+        const copy = resultCopy(value);
+
+        $("scenarioView").style.display = "none";
+        $("resultView").classList.add("is-active");
+
+        $("progressBar").style.width = "100%";
+        $("progressText").textContent = "Завершено";
+        $("progressTrack").setAttribute(
+          "aria-valuenow",
+          String(scenarios.length)
+        );
+
+        $("scoreValue").textContent = value;
+        $("scoreCircle").style.background =
+          `conic-gradient(
+            var(--accent) ${value * 3.6}deg,
+            #E8EFEB ${value * 3.6}deg
+          )`;
+
+        $("scoreTitle").textContent = copy.title;
+        $("scoreDescription").textContent = copy.description;
+
+        $("correctCount").textContent = correct;
+        $("riskyCount").textContent = risky;
+        $("totalCount").textContent = scenarios.length;
+
+        renderRecommendations();
+        renderReview();
+
+        $("sideProgress").textContent =
+          `${scenarios.length} із ${scenarios.length}`;
+
+        $("sideCorrect").textContent = correct;
+        $("sideRisky").textContent = risky;
+        $("sideLevel").textContent = levelByScore(correct);
+
+        document
+          .querySelector(".main")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function restart() {
+        state.index = 0;
+        state.answers = Array(scenarios.length).fill(null);
+
+        $("scenarioView").style.display = "block";
+        $("resultView").classList.remove("is-active");
+
+        renderScenario();
+
+        document
+          .querySelector(".main")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      $("prevBtn").addEventListener("click", () => {
+        if (state.index > 0) {
+          state.index -= 1;
+          renderScenario();
+        }
+      });
+
+      $("nextBtn").addEventListener("click", () => {
+        if (state.answers[state.index] === null) return;
+
+        if (state.index === scenarios.length - 1) {
+          showResult();
+        } else {
+          state.index += 1;
+          renderScenario();
+
+          document
+            .querySelector(".panel")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      $("restartBtn").addEventListener("click", restart);
+
+      renderScenario();
+    })();
+  </script>
+</body>
+</html>
