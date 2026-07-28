@@ -746,10 +746,27 @@
 
               <div class="field">
                 <div class="field__top">
-                  <label for="reserve">Фінансова подушка <span class="pct-badge" id="reservePct">0%</span></label>
+                  <label for="reserve">Щомісячний внесок у подушку <span class="pct-badge" id="reservePct">0%</span></label>
                   <input class="money-input expense" id="reserve" type="number" min="0" step="100" value="2000">
                 </div>
                 <input class="expense-range" id="reserveRange" type="range" min="0" max="20000" step="100" value="2000" data-for="reserve">
+              </div>
+
+              <div class="field">
+                <label for="reserveMonths">Бажаний розмір подушки</label>
+                <select class="select-input" id="reserveMonths">
+                  <option value="3">3 місяці обов’язкових витрат</option>
+                  <option value="6" selected>6 місяців обов’язкових витрат</option>
+                  <option value="9">9 місяців обов’язкових витрат</option>
+                  <option value="12">12 місяців обов’язкових витрат</option>
+                </select>
+              </div>
+              <div class="field">
+                <div class="goal-forecast">
+                  <div class="goal-forecast__label">Накопичення подушки</div>
+                  <div class="goal-forecast__value" id="reserveTime">Строк не визначено</div>
+                  <p class="goal-forecast__text" id="reserveForecastText"></p>
+                </div>
               </div>
 
               <div class="field">
@@ -771,14 +788,6 @@
                   <input class="money-input" id="goalTarget" type="number" min="1000" max="5000000" step="500" value="30000">
                 </div>
                 <input id="goalTargetRange" type="range" min="1000" max="500000" step="500" value="30000">
-              </div>
-
-              <div class="field">
-                <div class="field__top">
-                  <label for="goalSaved">Уже накопичено</label>
-                  <input class="money-input" id="goalSaved" type="number" min="0" max="5000000" step="500" value="0">
-                </div>
-                <input id="goalSavedRange" type="range" min="0" max="30000" step="500" value="0">
               </div>
 
               <div class="field">
@@ -823,8 +832,7 @@
             <div class="recommendations" id="recommendations"></div>
 
             <div class="nav">
-              <button class="btn btn--secondary" type="button" id="restartBtn">Почати спочатку</button>
-              <button class="btn btn--primary" type="button" id="saveBtn">Зберегти результат</button>
+              <button class="btn btn--secondary" type="button" id="restartBtn">Розрахувати заново</button>
             </div>
           </div>
 
@@ -851,7 +859,7 @@
           </div>
 
           <p class="footer-note">
-            Усі дані зберігаються лише у вашому браузері та не передаються на сервер.
+            Дані використовуються лише для поточного розрахунку та не передаються на сервер.
           </p>
         </aside>
 
@@ -865,7 +873,7 @@
   (() => {
     "use strict";
 
-    const ids = ["income", "housing", "food", "transport", "debts", "wants", "reserve", "goal", "goalTarget", "goalSaved"];
+    const ids = ["income", "housing", "food", "transport", "debts", "wants", "reserve", "goal", "goalTarget"];
     const state = { step: 1 };
 
     const $ = (id) => document.getElementById(id);
@@ -902,6 +910,37 @@
     }
 
 
+    function updateReserveForecast() {
+      const t = totals();
+      const monthsTarget = Number($("reserveMonths").value) || 6;
+      const target = t.needs * monthsTarget;
+      const monthly = readNumber("reserve");
+
+      if (target <= 0) {
+        $("reserveTime").textContent = "Спочатку вкажіть витрати";
+        $("reserveForecastText").textContent =
+          "Розмір подушки розраховується на основі обов’язкових щомісячних витрат.";
+      } else if (monthly <= 0) {
+        $("reserveTime").textContent = "Строк не визначено";
+        $("reserveForecastText").textContent =
+          `Для подушки потрібно ${money(target)}. Вкажіть щомісячний внесок.`;
+      } else {
+        const months = Math.ceil(target / monthly);
+        const years = Math.floor(months / 12);
+        const restMonths = months % 12;
+        let period = `${months} міс.`;
+
+        if (years > 0) {
+          period = `${years} р.`;
+          if (restMonths > 0) period += ` ${restMonths} міс.`;
+        }
+
+        $("reserveTime").textContent = period;
+        $("reserveForecastText").textContent =
+          `Цільова подушка: ${money(target)} за внеску ${money(monthly)} щомісяця.`;
+      }
+    }
+
     function goalName() {
       const option = $("goalType").selectedOptions[0];
       return option ? option.textContent : "Фінансова ціль";
@@ -909,26 +948,17 @@
 
     function updateGoalForecast() {
       const target = readNumber("goalTarget");
-      const saved = Math.min(readNumber("goalSaved"), target);
       const monthly = readNumber("goal");
-      const remaining = Math.max(0, target - saved);
 
-      $("goalSaved").max = target;
-      $("goalSavedRange").max = Math.max(target, 1000);
-
-      if (readNumber("goalSaved") > target) {
-        $("goalSaved").value = target;
-        $("goalSavedRange").value = target;
-      }
-
-      if (remaining === 0) {
-        $("goalMonths").textContent = "Ціль уже досягнута";
-        $("goalForecastText").textContent = `${goalName()}: необхідна сума вже накопичена.`;
+      if (target <= 0) {
+        $("goalMonths").textContent = "Вкажіть вартість цілі";
+        $("goalForecastText").textContent = "";
       } else if (monthly <= 0) {
         $("goalMonths").textContent = "Строк не визначено";
-        $("goalForecastText").textContent = "Вкажіть щомісячний внесок, щоб розрахувати строк.";
+        $("goalForecastText").textContent =
+          "Вкажіть щомісячний внесок, щоб розрахувати строк.";
       } else {
-        const months = Math.ceil(remaining / monthly);
+        const months = Math.ceil(target / monthly);
         const years = Math.floor(months / 12);
         const restMonths = months % 12;
         let period = `${months} міс.`;
@@ -940,13 +970,11 @@
 
         $("goalMonths").textContent = period;
         $("goalForecastText").textContent =
-          `${goalName()}: залишилося накопичити ${money(remaining)} за внеску ${money(monthly)} щомісяця.`;
+          `${goalName()}: потрібно накопичити ${money(target)} за внеску ${money(monthly)} щомісяця.`;
       }
 
       $("goalTargetRange").value = Math.min(target, Number($("goalTargetRange").max));
-      $("goalSavedRange").value = Math.min(readNumber("goalSaved"), Number($("goalSavedRange").max));
       updateRangeFill($("goalTargetRange"));
-      updateRangeFill($("goalSavedRange"));
     }
 
     function updateSummary() {
@@ -960,6 +988,7 @@
       $("sumBalance").style.color = t.balance < 0 ? "var(--danger)" : "var(--text)";
       updateRangeFill($("incomeRange"));
       updateGoalForecast();
+      updateReserveForecast();
 
       // Оновлення відсоткових бейджів та максимумів повзунків
       const expIds = ["housing", "food", "transport", "debts", "wants", "reserve", "goal"];
@@ -1130,37 +1159,7 @@
         .join("");
     }
 
-    function saveResult() {
-      const data = {
-        savedAt: new Date().toISOString(),
-        values: Object.fromEntries(ids.map((id) => [id, readNumber(id)])),
-        score: calculateScore(),
-        goalType: $("goalType").value
-      };
-
-      localStorage.setItem("cashbrain-smart-budget", JSON.stringify(data));
-      $("saveBtn").textContent = "Збережено";
-      setTimeout(() => $("saveBtn").textContent = "Зберегти результат", 1600);
-    }
-
-    function loadSaved() {
-      try {
-        const saved = JSON.parse(localStorage.getItem("cashbrain-smart-budget"));
-        if (!saved?.values) return;
-
-        ids.forEach((id) => {
-          if (Number.isFinite(saved.values[id])) $(id).value = saved.values[id];
-        });
-
-        $("incomeRange").value = $("income").value;
-        if (saved.goalType) $("goalType").value = saved.goalType;
-      } catch {
-        localStorage.removeItem("cashbrain-smart-budget");
-      }
-    }
-
     function restart() {
-      localStorage.removeItem("cashbrain-smart-budget");
       $("income").value = 20000;
       $("incomeRange").value = 20000;
       $("housing").value = 5000;
@@ -1169,12 +1168,11 @@
       $("debts").value = 1000;
       $("wants").value = 2500;
       $("reserve").value = 2000;
+      $("reserveMonths").value = "6";
       $("goal").value = 1500;
       $("goalType").value = "tech";
       $("goalTarget").value = 30000;
       $("goalTargetRange").value = 30000;
-      $("goalSaved").value = 0;
-      $("goalSavedRange").value = 0;
       updateSummary();
       goToStep(1);
     }
@@ -1210,7 +1208,8 @@
     });
 
 
-    $("goalType").addEventListener("change", updateGoalForecast);
+    $("reserveMonths").addEventListener("change", updateSummary);
+$("goalType").addEventListener("change", updateGoalForecast);
 
     $("goalTarget").addEventListener("input", () => {
       let value = Number($("goalTarget").value);
@@ -1226,31 +1225,14 @@
       $("goalTarget").value = $("goalTargetRange").value;
       updateSummary();
     });
-
-    $("goalSaved").addEventListener("input", () => {
-      let value = Number($("goalSaved").value);
-      if (!Number.isFinite(value) || value < 0) value = 0;
-      value = Math.min(value, readNumber("goalTarget"));
-      $("goalSaved").value = value;
-      $("goalSavedRange").value = value;
-      updateSummary();
-    });
-
-    $("goalSavedRange").addEventListener("input", () => {
-      $("goalSaved").value = $("goalSavedRange").value;
-      updateSummary();
-    });
-
-    $("nextBtn").addEventListener("click", () => {
+$("nextBtn").addEventListener("click", () => {
       if (!validateStep(state.step)) return;
       goToStep(state.step + 1);
     });
 
     $("prevBtn").addEventListener("click", () => goToStep(state.step - 1));
     $("restartBtn").addEventListener("click", restart);
-    $("saveBtn").addEventListener("click", saveResult);
 
-    loadSaved();
     updateSummary();
     document.querySelectorAll('input[type="range"]').forEach(updateRangeFill);
     goToStep(1);
