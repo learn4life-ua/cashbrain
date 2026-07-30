@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Розрахунок чистої зарплати, ПДФО, військового збору та ЄСВ у 2026 році."><meta name="theme-color" content="#174A3D">
+  <title>Зарплата на руки - CASHBRAIN</title><link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Калькулятори</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Калькулятори</a><span>/</span><span>Зарплата</span></div>
+  <div class="eyebrow">Калькулятор доходу</div><h1>Зарплата на руки</h1><p class="hero__lead">Дізнайтеся, скільки залишиться після ПДФО та військового збору, а також повну вартість працівника для роботодавця.</p>
+  <div class="hero__meta"><span class="chip">Ставки 2026 року</span><span class="chip">ПДФО 18%</span><span class="chip">Військовий збір 5%</span></div>
+</div></section>
+<section class="calc-main"><div class="container calc-grid">
+  <section class="panel"><div class="panel-head"><div class="panel-head__label">Ваші дані</div><h2>Вкажіть нараховану зарплату</h2><p>Розрахунок зроблено для загального випадку без податкової соціальної пільги та спеціальних ставок.</p></div>
+    <form id="calcForm" onsubmit="return false"><div class="fields"><div class="field"><label for="gross">Нарахована зарплата</label><div class="input-wrap"><input id="gross" type="number" min="0" max="10000000" step="100" value="30000"><span>грн</span></div></div>
+<div class="field"><label for="months">Кількість місяців</label><div class="input-wrap"><input id="months" type="number" min="1" max="12" step="1" value="12"><span>міс.</span></div></div></div><div class="actions"><button class="button button--primary" type="button" id="resetBtn">Початкові значення</button></div></form>
+  </section>
+  <aside class="result" aria-live="polite"><div class="panel-head__label">Результат</div><h2>Чистий дохід</h2><p class="result__lead">Податки утримуються із нарахованої зарплати. ЄСВ сплачує роботодавець окремо.</p>
+    <div class="result__hero"><span>До виплати за місяць</span><strong id="net">0 грн</strong></div><div class="metrics">
+<div class="metric"><span>ПДФО 18%</span><strong id="pit">0 грн</strong></div>
+<div class="metric"><span>Військовий збір 5%</span><strong id="military">0 грн</strong></div>
+<div class="metric"><span>Утримано із зарплати</span><strong id="withheld">0 грн</strong></div>
+<div class="metric"><span>ЄСВ роботодавця 22%</span><strong id="esv">0 грн</strong></div>
+<div class="metric"><span>Повна вартість працівника</span><strong id="employerCost">0 грн</strong></div>
+<div class="metric"><span>Чистий дохід за період</span><strong id="periodNet">0 грн</strong></div></div>
+    <div class="result-note" id="resultNote">Розрахунок має навчальний характер.</div>
+    <p class="source-note">Ставки перевірено 30.07.2026 за матеріалами <a href="https://tax.gov.ua/deklaratsiyna-kampaniya-2026/stavki-podatku-na-dohodi-fizichnih-osib-ta-viyskovogo-zboru" target="_blank" rel="noopener">Державної податкової служби України</a>. Окремі категорії працівників можуть мати інші умови.</p>
+  </aside>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансові калькулятори</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі калькулятори</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="../shared.js"></script><script>(function(){"use strict";function calc(){var gross=CB.n("gross");var months=CB.clamp(Math.round(CB.n("months")||1),1,12);var pit=gross*.18;var military=gross*.05;var withheld=pit+military;var net=gross-withheld;var esv=gross*.22;CB.text("net",CB.money(net));CB.text("pit",CB.money(pit));CB.text("military",CB.money(military));CB.text("withheld",CB.money(withheld));CB.text("esv",CB.money(esv));CB.text("employerCost",CB.money(gross+esv));CB.text("periodNet",CB.money(net*months));CB.text("resultNote",gross?"Із кожних 100 грн нарахованої зарплати працівник у загальному випадку отримує близько 77 грн.":"Введіть суму нарахованої зарплати.");}document.getElementById("resetBtn").addEventListener("click",function(){CB.reset("calcForm",calc)});CB.bind(calc);}());</script>
+</body></html>
