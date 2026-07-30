@@ -296,6 +296,13 @@ function addListItems(elementId, items, fallback) {
 }
 
 function getEnding() {
+  if (state.fraudLoss === 0 && state.time <= 1) {
+    return {
+      badge:"Час майже вичерпано",
+      title:"Гроші збережено, але перевірене житло ще не знайдено",
+      lead:"Ви уникнули шахрайства, проте витратили майже весь запас часу. На останній день потрібен резервний план: гуртожиток, короткострокове житло або допомога перевірених знайомих."
+    };
+  }
   if (state.fraudLoss === 0 && state.risk <= 25 && state.trust >= 70) {
     return {
       badge:"Безпечний фінал",
