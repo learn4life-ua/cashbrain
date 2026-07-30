@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про спільний студентський бюджет, оренду, комунальні платежі, продукти й борги між друзями.">
+  <meta name="theme-color" content="#174A3D"><title>Бюджет на трьох - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Бюджет на трьох</span></div>
+  <div class="eyebrow">Інтерактивний кейс · спільні гроші</div>
+  <h1>Бюджет на трьох</h1>
+  <p class="hero__lead">Троє друзів орендують квартиру, але мають різні доходи, звички й уявлення про справедливість. Чи витримають домовленості комунальний сюрприз і достроковий виїзд?</p>
+  <div class="hero__meta"><span class="chip">5 рішень</span><span class="chip">Спільні та особисті кошти</span><span class="chip">Кілька фіналів</span></div>
+</div></section>
+<section class="case-shell"><div class="container">
+  <div class="case-intro" id="case-intro">
+    <article class="brief"><span class="brief__label">Ситуація</span><h2>Дружба дружбою, а оренда щомісяця</h2><p>Ваш дохід - 11 000 грн, дохід Оксани - 9 000 грн, Максима - 15 000 грн. Оренда, комунальні послуги та інтернет коштують 24 000 грн на місяць. Окремо потрібно домовитися про продукти й побутові покупки.</p><p class="privacy-note">Це навчальний сценарій. Відповіді не зберігаються й нікуди не надсилаються.</p></article>
+    <aside class="start-card"><strong>Ваші стартові умови</strong><ul class="start-list"><li><span>Ваш дохід</span><b>11 000 грн</b></li><li><span>Спільні рахунки</span><b>24 000 грн</b></li><li><span>Довіра між друзями</span><b>60 зі 100</b></li><li><span>Фінансовий ризик</span><b>30 зі 100</b></li></ul><button class="case-start" id="start-button" type="button">Почати історію →</button></aside>
+  </div>
+  <section class="game" id="game" aria-live="polite">
+    <div class="dashboard" aria-label="Поточні показники">
+      <div class="metric"><span class="metric__label">Ваші особисті кошти</span><strong class="metric__value" id="metric-personal">11 000 грн</strong></div>
+      <div class="metric"><span class="metric__label">Спільний резерв</span><strong class="metric__value" id="metric-reserve">0 грн</strong></div>
+      <div class="metric"><span class="metric__label">Неврегульовані борги</span><strong class="metric__value" id="metric-debt">0 грн</strong></div>
+      <div class="metric"><span class="metric__label">Довіра</span><strong class="metric__value" id="metric-trust">60 / 100</strong></div>
+    </div>
+    <div class="game-grid" id="game-grid">
+      <article class="scene"><div class="progress-line" aria-hidden="true"><span id="progress"></span></div><div class="scene__step" id="scene-step">Рішення 1 із 5</div><h2 id="scene-title"></h2><p class="scene__copy" id="scene-copy"></p><div class="scene__prompt">Що ви запропонуєте?</div><div class="choices" id="choices"></div><div class="consequence" id="consequence"><div class="consequence__label">Наслідок рішення</div><h3 id="consequence-title"></h3><p id="consequence-copy"></p><button class="next-button" id="next-button" type="button">Продовжити →</button></div></article>
+      <aside class="side"><article class="side-card"><span class="side-card__label">Домовленість</span><h3>Що варто зафіксувати</h3><ul><li>які витрати спільні;</li><li>як розраховуються внески;</li><li>хто й коли оплачує рахунки;</li><li>як повертаються борги;</li><li>що відбувається під час виїзду.</li></ul></article><article class="side-card"><span class="side-card__label">Справедливість</span><h3>Не завжди означає порівну</h3><p>Рівний поділ простий. Пропорційний враховує доходи. Змішаний поєднує рівні базові платежі та особисті змінні витрати.</p></article></aside>
+    </div>
+    <section class="result" id="result">
+      <span class="result__badge" id="result-badge">Ваш фінал</span><h2 id="result-title"></h2><p class="result__lead" id="result-lead"></p>
+      <div class="result-stats"><div class="result-stat"><span>Ваш залишок</span><strong id="result-personal"></strong></div><div class="result-stat"><span>Спільний резерв</span><strong id="result-reserve"></strong></div><div class="result-stat"><span>Неврегульовані борги</span><strong id="result-debt"></strong></div><div class="result-stat"><span>Довіра</span><strong id="result-trust"></strong></div></div>
+      <div class="review-grid"><article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article><article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article><article class="review-card"><h3>Чекліст спільного бюджету</h3><ul><li>Відокремте спільні витрати від особистих.</li><li>Оберіть рівний, пропорційний або змішаний принцип внесків.</li><li>Створіть невеликий резерв на змінні комунальні рахунки.</li><li>Ведіть спільну таблицю платежів і зберігайте чеки.</li><li>Заздалегідь погодьте борги, великі покупки й умови виїзду.</li></ul></article><article class="review-card"><h3>Щомісячна розмова на 15 хвилин</h3><ul><li>Що сплачено й що ще потрібно оплатити?</li><li>Чи змінилися доходи або обов’язкові витрати?</li><li>Чи є борги між мешканцями?</li><li>Які великі витрати очікуються наступного місяця?</li></ul></article></div>
+      <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+      <div class="sources">Матеріал звірено з рекомендаціями НБУ про <a href="https://harazd.bank.gov.ua/article/finansove-planuvanna/simejnij-byudzhet/finansovi-stosunki-v-pari-zeleni-ta-cervoni-praporci" target="_blank" rel="noopener">регулярне обговорення спільних фінансів</a>, моделі <a href="https://harazd.bank.gov.ua/article/military/rodini-zahisnika/ak-upravlati-simejnim-budzetom-koli-blizka-ludina-u-vijsku" target="_blank" rel="noopener">спільного, роздільного та змішаного бюджету</a> і Рамкою фінансових компетентностей дорослого населення України.</div>
+    </section>
+  </section>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Бюджет на трьох</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body></html>
