@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Розрахунок витрат на цифрові сервіси та інші щомісячні підписки."><meta name="theme-color" content="#174A3D">
+  <title>Витрати на підписки - CASHBRAIN</title><link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Калькулятори</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Калькулятори</a><span>/</span><span>Підписки</span></div>
+  <div class="eyebrow">Калькулятор регулярних витрат</div><h1>Витрати на підписки</h1><p class="hero__lead">Зберіть регулярні платежі в одному місці й подивіться, скільки вони коштують за рік, три та п’ять років.</p>
+  <div class="hero__meta"><span class="chip">Щомісячні платежі</span><span class="chip">Річна сума</span><span class="chip">Потенціал економії</span></div>
+</div></section>
+<section class="calc-main"><div class="container calc-grid">
+  <section class="panel"><div class="panel-head"><div class="panel-head__label">Ваші дані</div><h2>Додайте щомісячні витрати</h2><p>Якщо певної категорії немає, залиште нуль.</p></div>
+    <form id="calcForm" onsubmit="return false"><div class="fields"><div class="field"><label for="mobile">Мобільний зв’язок</label><div class="input-wrap"><input id="mobile" type="number" min="0" step="10" value="300"><span>грн/міс.</span></div></div>
+<div class="field"><label for="video">Відеосервіси</label><div class="input-wrap"><input id="video" type="number" min="0" step="10" value="300"><span>грн/міс.</span></div></div>
+<div class="field"><label for="music">Музика</label><div class="input-wrap"><input id="music" type="number" min="0" step="10" value="100"><span>грн/міс.</span></div></div>
+<div class="field"><label for="cloud">Хмарні сервіси</label><div class="input-wrap"><input id="cloud" type="number" min="0" step="10" value="100"><span>грн/міс.</span></div></div>
+<div class="field"><label for="games">Ігри та застосунки</label><div class="input-wrap"><input id="games" type="number" min="0" step="10" value="200"><span>грн/міс.</span></div></div>
+<div class="field"><label for="fitness">Спорт і навчання</label><div class="input-wrap"><input id="fitness" type="number" min="0" step="10" value="600"><span>грн/міс.</span></div></div>
+<div class="field"><label for="other">Інші підписки</label><div class="input-wrap"><input id="other" type="number" min="0" step="10" value="0"><span>грн/міс.</span></div></div>
+<div class="field"><label for="cut">Можливе скорочення</label><div class="input-wrap"><input id="cut" type="number" min="0" max="100" step="5" value="20"><span>%</span></div></div></div><div class="actions"><button class="button button--primary" type="button" id="resetBtn">Початкові значення</button></div></form>
+  </section>
+  <aside class="result" aria-live="polite"><div class="panel-head__label">Результат</div><h2>Ціна регулярних платежів</h2><p class="result__lead">Навіть невеликі щомісячні суми помітні на довшому проміжку часу.</p>
+    <div class="result__hero"><span>Усього за рік</span><strong id="year">0 грн</strong></div><div class="metrics">
+<div class="metric"><span>За місяць</span><strong id="month">0 грн</strong></div>
+<div class="metric"><span>За 3 роки</span><strong id="three">0 грн</strong></div>
+<div class="metric"><span>За 5 років</span><strong id="five">0 грн</strong></div>
+<div class="metric"><span>Економія за рік</span><strong id="saving">0 грн</strong></div>
+<div class="metric"><span>Найбільша категорія</span><strong id="largest">-</strong></div></div>
+    <div class="result-note" id="resultNote">Залишайте лише ті підписки, якими справді користуєтеся.</div>
+    <p class="source-note">Калькулятор не оцінює корисність сервісів. Він лише показує сумарну вартість регулярних платежів.</p>
+  </aside>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансові калькулятори</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі калькулятори</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="../shared.js"></script><script>(function(){"use strict";var items=[["mobile","Мобільний зв’язок"],["video","Відеосервіси"],["music","Музика"],["cloud","Хмарні сервіси"],["games","Ігри та застосунки"],["fitness","Спорт і навчання"],["other","Інші"]];function calc(){var total=0,largest=0,label="-";items.forEach(function(item){var v=CB.n(item[0]);total+=v;if(v>largest){largest=v;label=item[1]}});var year=total*12;var cut=CB.clamp(CB.n("cut"),0,100);CB.text("month",CB.money(total));CB.text("year",CB.money(year));CB.text("three",CB.money(year*3));CB.text("five",CB.money(year*5));CB.text("saving",CB.money(year*cut/100));CB.text("largest",label+(largest?" · "+CB.money(largest):""));CB.text("resultNote",total?"Скорочення витрат на "+CB.num(cut,0)+"% може залишити у бюджеті "+CB.money(year*cut/100)+" за рік.":"Додайте хоча б одну щомісячну витрату.");}document.getElementById("resetBtn").addEventListener("click",function(){CB.reset("calcForm",calc)});CB.bind(calc);}());</script>
+</body></html>
