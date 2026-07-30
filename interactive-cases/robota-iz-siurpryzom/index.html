@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про першу роботу, перевірку вакансії, оплачуване випробування, офіційне оформлення та захист банківських даних.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Робота із сюрпризом - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="container hero__inner">
+    <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Робота із сюрпризом</span></div>
+    <div class="eyebrow">Інтерактивний кейс · перша робота</div>
+    <h1>Робота із сюрпризом</h1>
+    <p class="hero__lead">Гнучкий графік, висока оплата й жодного досвіду. Звучить добре, поки роботодавець не просить гроші, безоплатну зміну та вашу банківську картку.</p>
+    <div class="hero__meta"><span class="chip">5 рішень</span><span class="chip">3 варіанти на кожному кроці</span><span class="chip">Кілька фіналів</span></div>
+  </div></section>
+
+  <section class="case-shell"><div class="container">
+    <div class="case-intro" id="case-intro">
+      <article class="brief">
+        <span class="brief__label">Ситуація</span>
+        <h2>Перша зарплата потрібна вже цього місяця</h2>
+        <p>Ви шукаєте підробіток, який можна поєднати з навчанням. У студентському чаті з’являється вакансія помічника інтернет-магазину: чотири години на день, робота з телефона, до 28 000 грн на місяць і навчання з нуля.</p>
+        <p class="privacy-note">Це навчальний сценарій. Відповіді обробляються лише у вашому браузері та нікуди не надсилаються.</p>
+      </article>
+      <aside class="start-card">
+        <strong>Ваші стартові умови</strong>
+        <ul class="start-list">
+          <li><span>Гроші до першого доходу</span><b>5 000 грн</b></li>
+          <li><span>Час на пошук роботи</span><b>10 днів</b></li>
+          <li><span>Початковий ризик</span><b>35 зі 100</b></li>
+          <li><span>Надійність вакансії</span><b>30 зі 100</b></li>
+        </ul>
+        <button class="case-start" id="start-button" type="button">Почати історію →</button>
+      </aside>
+    </div>
+
+    <section class="game" id="game" aria-live="polite">
+      <div class="dashboard" aria-label="Поточні показники">
+        <div class="metric"><span class="metric__label">Доступні кошти</span><strong class="metric__value" id="metric-money">5 000 грн</strong></div>
+        <div class="metric"><span class="metric__label">Ризик, менше краще</span><strong class="metric__value" id="metric-risk">35 / 100</strong></div>
+        <div class="metric"><span class="metric__label">Час на пошук</span><strong class="metric__value" id="metric-time">10 днів</strong></div>
+        <div class="metric"><span class="metric__label">Надійність вакансії</span><strong class="metric__value" id="metric-trust">30 / 100</strong></div>
+      </div>
+      <div class="game-grid" id="game-grid">
+        <article class="scene">
+          <div class="progress-line" aria-hidden="true"><span id="progress"></span></div>
+          <div class="scene__step" id="scene-step">Рішення 1 із 5</div>
+          <h2 id="scene-title"></h2>
+          <p class="scene__copy" id="scene-copy"></p>
+          <div class="scene__prompt">Що ви зробите?</div>
+          <div class="choices" id="choices"></div>
+          <div class="consequence" id="consequence">
+            <div class="consequence__label">Наслідок рішення</div>
+            <h3 id="consequence-title"></h3>
+            <p id="consequence-copy"></p>
+            <button class="next-button" id="next-button" type="button">Продовжити →</button>
+          </div>
+        </article>
+        <aside class="side">
+          <article class="side-card"><span class="side-card__label">На що дивитися</span><h3>Червоні прапорці</h3><ul><li>високий дохід без чітких обов’язків;</li><li>плата за доступ, навчання чи страховку;</li><li>повноцінна безоплатна робоча зміна;</li><li>робота без оформлення;</li><li>переказ чужих грошей через вашу картку.</li></ul></article>
+          <article class="side-card"><span class="side-card__label">Важливо</span><h3>Тестове не дорівнює роботі</h3><p>Коротке завдання може показати навички кандидата. Але велике завдання з реальною користю для компанії або повна зміна вже схожі на безоплатну працю.</p></article>
+        </aside>
+      </div>
+
+      <section class="result" id="result">
+        <span class="result__badge" id="result-badge">Ваш фінал</span>
+        <h2 id="result-title"></h2>
+        <p class="result__lead" id="result-lead"></p>
+        <div class="result-stats">
+          <div class="result-stat"><span>Залишок коштів</span><strong id="result-money"></strong></div>
+          <div class="result-stat"><span>Втрачено на вакансії</span><strong id="result-loss"></strong></div>
+          <div class="result-stat"><span>Неоплачена робота</span><strong id="result-hours"></strong></div>
+          <div class="result-stat"><span>Фінальний ризик</span><strong id="result-risk"></strong></div>
+        </div>
+        <div class="review-grid">
+          <article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article>
+          <article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article>
+          <article class="review-card"><h3>Чекліст перед виходом на роботу</h3><ul><li>Знайдіть офіційний сайт, контакти й повну назву роботодавця.</li><li>Уточніть обов’язки, графік, фіксовану частину доходу та критерії бонусів.</li><li>Домовтеся про форму оформлення до початку реальної роботи.</li><li>Обмежте тестове завдання за часом і не виконуйте безоплатно повну зміну.</li><li>Не платіть за вакансію та не проводьте робочі кошти через особисту картку.</li></ul></article>
+          <article class="review-card"><h3>Якщо дані або гроші вже передані</h3><ul><li>Негайно зверніться до банку через офіційний номер або застосунок.</li><li>Змініть скомпрометовані паролі і не повідомляйте коди підтвердження.</li><li>Збережіть вакансію, листування, чеки, посилання й дані одержувача.</li><li>Повідомте платформу та подайте звернення до Кіберполіції.</li></ul></article>
+        </div>
+        <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+        <div class="sources">Матеріал звірено з рекомендаціями <a href="https://cyberpolice.gov.ua/article/yak-shaxrayi-obmanyuyut-proponuyuchy-robotu-816/" target="_blank" rel="noopener">Кіберполіції про шахрайські вакансії</a>, поясненням <a href="https://kyivobl.tax.gov.ua/media-ark/news-ark/819067.html" target="_blank" rel="noopener">ДПС про оформлення працівника</a> та матеріалом НБУ <a href="https://harazd.bank.gov.ua/article/sahrajstvo/scenarii-platiznogo-sahrajstva/grosovi-muli-abo-dropi-ak-vipadkovo-ne-stati-spivucasnikom-zlocinu" target="_blank" rel="noopener">про грошових мулів</a>.</div>
+      </section>
+    </section>
+  </div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Робота із сюрпризом</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body>
+</html>
