@@ -391,8 +391,10 @@
         const actualBalance = totals.income.actual - actualExpenses - totals.savings.actual;
         const mandatoryShare = totals.income.plan ? totals.mandatory.plan / totals.income.plan * 100 : 0;
         const savingsShare = totals.income.plan ? totals.savings.plan / totals.income.plan * 100 : 0;
-        const hasActualValues = [...document.querySelectorAll('.budget-row input[type="number"]:nth-of-type(3)')]
-          .some(input => input.value.trim() !== "");
+        const hasActualValues = [...document.querySelectorAll(".budget-row")].some(row => {
+          const numbers = row.querySelectorAll('input[type="number"]');
+          return numbers[1] && numbers[1].value.trim() !== "";
+        });
         const plannedBalanceText = `Залишок за планом: ${formatMoney(plannedBalance)}.`;
         const actualBalanceText = hasActualValues
           ? ` Залишок за фактом: ${formatMoney(actualBalance)}.`
