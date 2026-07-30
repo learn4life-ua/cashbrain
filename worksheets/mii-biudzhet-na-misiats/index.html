@@ -391,6 +391,12 @@
         const actualBalance = totals.income.actual - actualExpenses - totals.savings.actual;
         const mandatoryShare = totals.income.plan ? totals.mandatory.plan / totals.income.plan * 100 : 0;
         const savingsShare = totals.income.plan ? totals.savings.plan / totals.income.plan * 100 : 0;
+        const hasActualValues = [...document.querySelectorAll('.budget-row input[type="number"]:nth-of-type(3)')]
+          .some(input => input.value.trim() !== "");
+        const plannedBalanceText = `Залишок за планом: ${formatMoney(plannedBalance)}.`;
+        const actualBalanceText = hasActualValues
+          ? ` Залишок за фактом: ${formatMoney(actualBalance)}.`
+          : " Фактичний залишок з’явиться після заповнення колонки «Факт».";
 
         document.getElementById("summaryIncome").textContent = formatMoney(totals.income.plan);
         document.getElementById("summaryExpenses").textContent = formatMoney(plannedExpenses);
@@ -398,33 +404,35 @@
         document.getElementById("summaryBalance").textContent = formatMoney(plannedBalance);
         document.getElementById("mandatoryShare").textContent = `${Math.round(mandatoryShare)}%`;
         document.getElementById("savingsShare").textContent = `${Math.round(savingsShare)}%`;
-        document.getElementById("actualBalance").textContent = formatMoney(actualBalance);
+        document.getElementById("actualBalance").textContent = hasActualValues ? formatMoney(actualBalance) : "Не внесено";
         balanceCard.classList.toggle("summary-card--negative", plannedBalance < 0);
 
         verdict.className = "verdict";
         let icon = "✓";
         let title = "Бюджет збалансований";
-        let text = `Після запланованих витрат і заощаджень залишається ${formatMoney(plannedBalance)}. Визначте, для чого використаєте цей залишок.`;
+        let text = `${plannedBalanceText}${actualBalanceText} Визначте, для чого використаєте вільні кошти.`;
 
         if (totals.income.plan === 0) {
           icon = "1";
           title = "Почніть із доходів";
-          text = "Внесіть очікувані доходи та заплановані суми в кожному розділі.";
+          text = totals.income.actual > 0
+            ? `План ще не заповнено. Залишок за фактом: ${formatMoney(actualBalance)}.`
+            : "Внесіть очікувані доходи та заплановані суми в кожному розділі.";
         } else if (plannedBalance < 0) {
           verdict.classList.add("verdict--danger");
           icon = "!";
           title = "Витрати перевищують доходи";
-          text = `У плані бракує ${formatMoney(Math.abs(plannedBalance))}. Перегляньте змінні витрати, строки цілей або знайдіть додаткове джерело доходу.`;
+          text = `У плані бракує ${formatMoney(Math.abs(plannedBalance))}.${actualBalanceText} Перегляньте змінні витрати, строки цілей або знайдіть додаткове джерело доходу.`;
         } else if (totals.savings.plan === 0) {
           verdict.classList.add("verdict--warning");
           icon = "!";
           title = "У плані немає заощаджень";
-          text = "Навіть невеликий регулярний внесок формує фінансову стійкість. Перевірте, чи можете передбачити посильну суму.";
+          text = `${plannedBalanceText}${actualBalanceText} Навіть невеликий регулярний внесок формує фінансову стійкість. Перевірте, чи можете передбачити посильну суму.`;
         } else if (mandatoryShare > 70) {
           verdict.classList.add("verdict--warning");
           icon = "i";
           title = "Мало простору для змін";
-          text = `Обов’язкові витрати становлять ${Math.round(mandatoryShare)}% доходу. Це не помилка, але бюджет буде чутливим до непередбачених витрат.`;
+          text = `Обов’язкові витрати становлять ${Math.round(mandatoryShare)}% доходу. ${plannedBalanceText}${actualBalanceText} Бюджет буде чутливим до непередбачених витрат.`;
         }
 
         document.getElementById("verdictIcon").textContent = icon;
