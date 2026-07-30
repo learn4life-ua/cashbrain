@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Розрахунок повної вартості розстрочки, комісій і переплати."><meta name="theme-color" content="#174A3D">
+  <title>Справжня вартість розстрочки - CASHBRAIN</title><link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Калькулятори</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Калькулятори</a><span>/</span><span>Розстрочка</span></div>
+  <div class="eyebrow">Калькулятор покупки</div><h1>Справжня вартість розстрочки</h1><p class="hero__lead">Порівняйте ціну товару з повною сумою всіх платежів. Напис «0%» ще не гарантує відсутності комісій.</p>
+  <div class="hero__meta"><span class="chip">Усі платежі</span><span class="chip">Реальна переплата</span><span class="chip">Без рекламної магії</span></div>
+</div></section>
+<section class="calc-main"><div class="container calc-grid">
+  <section class="panel"><div class="panel-head"><div class="panel-head__label">Ваші дані</div><h2>Внесіть умови пропозиції</h2><p>Використовуйте суми з договору або паспорта споживчого кредиту.</p></div>
+    <form id="calcForm" onsubmit="return false"><div class="fields"><div class="field"><label for="cashPrice">Ціна при оплаті одразу</label><div class="input-wrap"><input id="cashPrice" type="number" min="0" step="100" value="30000"><span>грн</span></div></div>
+<div class="field"><label for="down">Перший внесок</label><div class="input-wrap"><input id="down" type="number" min="0" step="100" value="3000"><span>грн</span></div></div>
+<div class="field"><label for="monthly">Щомісячний платіж</label><div class="input-wrap"><input id="monthly" type="number" min="0" step="10" value="2500"><span>грн</span></div></div>
+<div class="field"><label for="months">Кількість платежів</label><div class="input-wrap"><input id="months" type="number" min="1" max="120" step="1" value="12"><span>міс.</span></div></div>
+<div class="field"><label for="onceFee">Разова комісія</label><div class="input-wrap"><input id="onceFee" type="number" min="0" step="10" value="0"><span>грн</span></div></div>
+<div class="field"><label for="monthlyFee">Щомісячна комісія</label><div class="input-wrap"><input id="monthlyFee" type="number" min="0" step="10" value="0"><span>грн</span></div></div>
+<div class="field field--wide"><label for="insurance">Страхування та інші обов’язкові платежі</label><div class="input-wrap"><input id="insurance" type="number" min="0" step="10" value="0"><span>грн</span></div><small>Вкажіть загальну суму за весь строк.</small></div></div><div class="actions"><button class="button button--primary" type="button" id="resetBtn">Початкові значення</button></div></form>
+  </section>
+  <aside class="result" aria-live="polite"><div class="panel-head__label">Результат</div><h2>Повна ціна покупки</h2><p class="result__lead">Калькулятор складає всі відомі платежі та порівнює їх із ціною товару.</p>
+    <div class="result__hero"><span>Усього буде сплачено</span><strong id="total">0 грн</strong></div><div class="metrics">
+<div class="metric"><span>Основні щомісячні платежі</span><strong id="basePayments">0 грн</strong></div>
+<div class="metric"><span>Усі додаткові витрати</span><strong id="fees">0 грн</strong></div>
+<div class="metric"><span>Переплата</span><strong id="overpay">0 грн</strong></div>
+<div class="metric"><span>Переплата у відсотках</span><strong id="overpayPct">0%</strong></div>
+<div class="metric"><span>Щомісячне навантаження</span><strong id="monthlyLoad">0 грн</strong></div></div>
+    <div class="result-note" id="resultNote">Перевіряйте, чи всі платежі внесено до розрахунку.</div>
+    <p class="source-note">Фінансова установа повинна розкривати реальну вартість кредиту. Звіряйте дані з договором і паспортом споживчого кредиту. Довідково: <a href="https://harazd.bank.gov.ua/article/krediti/umovi-kredituvanna/vidi-procentnih-stavok-ta-ak-voni-vplivaut-na-vartist-kreditu" target="_blank" rel="noopener">пояснення НБУ</a>.</p>
+  </aside>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансові калькулятори</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі калькулятори</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="../shared.js"></script><script>(function(){"use strict";function calc(){var price=CB.n("cashPrice"),down=CB.n("down"),monthly=CB.n("monthly"),months=CB.clamp(Math.round(CB.n("months")||1),1,120),once=CB.n("onceFee"),monthlyFee=CB.n("monthlyFee"),insurance=CB.n("insurance");var base=monthly*months;var fees=once+monthlyFee*months+insurance;var total=down+base+fees;var diff=total-price;var pct=price?diff/price*100:0;CB.text("total",CB.money(total));CB.text("basePayments",CB.money(base));CB.text("fees",CB.money(fees));CB.text("overpay",(diff>=0?"+":"")+CB.money(diff));CB.text("overpayPct",(pct>=0?"+":"")+CB.pct(pct));CB.text("monthlyLoad",CB.money(monthly+monthlyFee));var note=document.getElementById("resultNote");note.className="result-note"+(pct>20?" result-note--warning":"");CB.text("resultNote",price?(diff>0?"Розстрочка збільшує вартість покупки на "+CB.money(diff)+".":diff===0?"За введеними даними переплати немає. Перевірте, чи враховані всі комісії.":"Сума платежів нижча за ціну товару. Перевірте введені дані."):"Введіть ціну товару.");}document.getElementById("resetBtn").addEventListener("click",function(){CB.reset("calcForm",calc)});CB.bind(calc);}());</script>
+</body></html>
