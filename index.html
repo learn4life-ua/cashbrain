@@ -57,7 +57,7 @@
     .format-card__icon svg{width:23px;height:23px}.format-card h3{margin:18px 0 9px;font-size:clamp(25px,3vw,34px);line-height:1.05;letter-spacing:-.035em}.format-card:nth-child(n+3) h3{font-size:25px}
     .format-card p{max-width:470px;margin:0;color:var(--muted);font-size:13px;line-height:1.62}.format-card--active p{color:rgba(255,255,255,.70)}
     .format-card__foot{display:flex;margin-top:auto;padding-top:22px;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;font-weight:900}.format-card--active .format-card__foot{color:var(--accent-light)}
-    .format-card__arrow{display:grid;width:34px;height:34px;border-radius:50%;place-items:center;background:rgba(255,255,255,.10);transition:transform .18s ease}a.format-card:hover .format-card__arrow{transform:translateX(3px)}.format-card:not(.format-card--active) .format-card__foot{color:var(--green)}.format-card:not(.format-card--active) .format-card__arrow{background:var(--soft);color:var(--green-dark)}
+    .format-card__arrow{display:grid;width:34px;height:34px;border-radius:50%;place-items:center;background:rgba(255,255,255,.10);transition:transform .18s ease}a.format-card:hover .format-card__arrow{transform:translateX(3px)}
 
     .logic{padding:84px 0;background:var(--white)}.logic__inner{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,1.2fr);gap:70px;align-items:start}
     .logic__intro p{max-width:410px;margin:20px 0 0;color:var(--muted);font-size:14px;line-height:1.7}.steps{display:grid}
@@ -95,7 +95,7 @@
         <p class="hero__lead">Симулятори, калькулятори, тести, інтерактивні кейси та робочі аркуші в одному просторі для практики фінансової грамотності.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="#formats">Переглянути формати <span aria-hidden="true">↓</span></a>
-          <a class="button button--ghost" href="https://cashbrain.agrokoledg.poltava.ua/pro-cashbrain/">Про проєкт CASHBRAIN <span aria-hidden="true">↗</span></a>
+          <a class="button button--ghost" href="https://cashbrain.agrokoledg.poltava.ua/">Про проєкт CASHBRAIN <span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero__facts" aria-label="Особливості хабу">
           <span class="hero__fact">5 інтерактивних форматів</span><span class="hero__fact">Практичні фінансові ситуації</span><span class="hero__fact">Поступове наповнення</span>
@@ -107,7 +107,7 @@
       <div class="container">
         <div class="section-head">
           <div><div class="section-kicker">Інструменти для практики</div><h2>Оберіть потрібний формат</h2></div>
-          <p class="section-head__copy">Хаб розвивається поетапно. Симулятори й калькулятори вже доступні, а інші формати готуються до запуску.</p>
+          <p class="section-head__copy">Хаб розвивається поетапно. Симулятори, калькулятори й тести вже доступні, а інші формати готуються до запуску.</p>
         </div>
         <div class="format-grid">
           <a class="format-card format-card--active" href="./simulators/">
@@ -126,12 +126,12 @@
             <span class="format-card__foot">7 готових калькуляторів <span class="format-card__arrow">→</span></span>
           </a>
 
-          <a class="format-card" href="./tests/">
-            <div class="format-card__top"><span class="format-card__label">03 · САМОПЕРЕВІРКА</span><span class="status">У розробці</span></div>
+          <a class="format-card format-card--active" href="./tests/">
+            <div class="format-card__top"><span class="format-card__label">03 · САМОПЕРЕВІРКА</span><span class="status">Доступно</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h10v3H7zM5 5h14v16H5z"/><path d="m8 11 1.5 1.5L12 9.5M8 17h8"/></svg></span>
             <h3>Тести</h3>
-            <p>Перевірка знань, самооцінювання фінансових звичок і рекомендації для подальшої практики.</p>
-            <span class="format-card__foot">Відкрити розділ <span class="format-card__arrow">→</span></span>
+            <p>Три студентські тести для самопізнання, перевірки фінансових знань і оцінки поведінки.</p>
+            <span class="format-card__foot">3 готові тести <span class="format-card__arrow">→</span></span>
           </a>
 
           <a class="format-card" href="./interactive-cases/">
