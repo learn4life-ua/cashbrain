@@ -1111,6 +1111,28 @@
     }
   </style>
 
+
+  <style id="cashbrain-explicit-hub-nav">
+    .cb-nav__short { display: none; }
+
+    @media (max-width: 720px) {
+      .cb-nav .cb-nav__hub {
+        display: inline-flex !important;
+      }
+
+      .cb-nav .cb-nav__catalog {
+        display: none !important;
+      }
+
+      .cb-nav__wide { display: none; }
+      .cb-nav__short { display: inline; }
+    }
+
+    @media (max-width: 420px) {
+      .cb-nav a { padding: 8px 9px; }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -1125,8 +1147,15 @@
         </span>
       </a>
       <nav class="cb-nav" aria-label="Навігація симулятора">
-        <a href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
-        <a class="cb-nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+        <a class="cb-nav__hub" href="https://learn4life-ua.github.io/cashbrain/">
+          <span class="cb-nav__wide">Головний хаб</span>
+          <span class="cb-nav__short">Хаб</span>
+        </a>
+        <a class="cb-nav__catalog" href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
+        <a class="cb-nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">
+          <span class="cb-nav__wide">Сайт проєкту ↗</span>
+          <span class="cb-nav__short">Сайт ↗</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -1870,6 +1899,7 @@
         <strong>CASHBRAIN</strong> · Фінансові симулятори
       </div>
       <nav class="cb-site-footer__links" aria-label="Навігація в підвалі">
+        <a class="cb-site-footer__hub" href="https://learn4life-ua.github.io/cashbrain/">Головний хаб</a>
         <a href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
         <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
       </nav>
