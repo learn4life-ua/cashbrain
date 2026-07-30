@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний робочий аркуш CASHBRAIN для планування та аналізу особистого бюджету на місяць.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Мій бюджет на місяць - CASHBRAIN</title>
+  <style>
+    :root{
+      --green:#1C5345;--green-dark:#174A3D;--green-deep:#103A31;--accent:#62C96B;
+      --accent-light:#A8E7AD;--soft:#DFF6DF;--surface:#F7F9F6;--white:#FFFFFF;
+      --text:#10231C;--muted:#63736D;--border:#DDE7E0;--danger:#B33A3A;
+      --warning:#A66416;--shadow:0 18px 50px rgba(23,74,61,.10);
+      --focus:0 0 0 4px rgba(98,201,107,.28)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:none;box-shadow:var(--focus)}
+    .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .site-header{position:absolute;z-index:10;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.12)}
+    .site-header__inner{display:flex;min-height:76px;justify-content:space-between;align-items:center;gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:12px;color:var(--white)}
+    .brand__mark{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.10);font-size:14px;font-weight:950;letter-spacing:-.04em;backdrop-filter:blur(12px)}
+    .brand__text strong{display:block;font-size:15px;letter-spacing:.05em}
+    .brand__text span{display:block;margin-top:2px;color:rgba(255,255,255,.64);font-size:10px}
+    .nav{display:flex;align-items:center;gap:7px}
+    .nav a{padding:10px 13px;border-radius:11px;color:rgba(255,255,255,.78);font-size:12px;font-weight:800;transition:background-color .18s ease,color .18s ease}
+    .nav a:hover{background:rgba(255,255,255,.10);color:var(--white)}
+    .nav .nav__worksheets{margin-left:4px;border:1px solid rgba(255,255,255,.18);color:var(--white)}
+    .hero{position:relative;min-height:520px;overflow:hidden;background:radial-gradient(circle at 86% 18%,rgba(98,201,107,.24),transparent 27%),linear-gradient(135deg,var(--green-deep),var(--green));color:var(--white)}
+    .hero::before,.hero::after{position:absolute;border:1px solid rgba(255,255,255,.07);border-radius:50%;content:"";pointer-events:none}
+    .hero::before{top:80px;right:-105px;width:410px;height:410px}
+    .hero::after{top:145px;right:-22px;width:275px;height:275px}
+    .hero__inner{position:relative;z-index:1;display:flex;min-height:520px;padding:132px 0 60px;flex-direction:column;justify-content:center}
+    .breadcrumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px;color:rgba(255,255,255,.60);font-size:11px;font-weight:800}
+    .breadcrumb a:hover{color:var(--white)}
+    .breadcrumb span:last-child{color:var(--accent-light)}
+    .eyebrow{display:inline-flex;align-self:flex-start;min-height:30px;padding:0 11px;border:1px solid rgba(168,231,173,.22);border-radius:999px;align-items:center;background:rgba(255,255,255,.06);color:var(--accent-light);font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
+    h1{max-width:980px;margin:18px 0 0;font-size:clamp(48px,7vw,82px);line-height:.94;letter-spacing:-.06em}
+    .hero__lead{max-width:780px;margin:23px 0 0;color:rgba(255,255,255,.77);font-size:clamp(15px,2vw,18px);line-height:1.68}
+    .hero__meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:27px}
+    .hero__chip{display:inline-flex;min-height:32px;padding:0 11px;border:1px solid rgba(255,255,255,.13);border-radius:999px;align-items:center;background:rgba(255,255,255,.055);color:rgba(255,255,255,.72);font-size:10.5px;font-weight:800}
+    .workspace{padding:68px 0 80px}
+    .sheet-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-bottom:24px}
+    .section-kicker{margin-bottom:10px;color:var(--green);font-size:10.5px;font-weight:950;letter-spacing:.11em;text-transform:uppercase}
+    h2{margin:0;font-size:clamp(34px,5vw,54px);line-height:1;letter-spacing:-.05em}
+    .month-field{width:min(100%,260px)}
+    .field-label{display:block;margin:0 0 7px;color:var(--green-dark);font-size:11px;font-weight:900}
+    .field-input{width:100%;min-height:46px;padding:0 13px;border:1px solid #C9DAD0;border-radius:13px;background:var(--white);color:var(--text);transition:border-color .18s ease,box-shadow .18s ease}
+    .field-input:hover{border-color:#9FC6AA}
+    .privacy{display:flex;margin-bottom:22px;padding:14px 16px;border:1px solid #C8DED0;border-radius:15px;align-items:flex-start;gap:11px;background:var(--soft);color:#4D675D;font-size:12px;line-height:1.55}
+    .privacy__icon{display:grid;flex:0 0 auto;width:28px;height:28px;border-radius:9px;place-items:center;background:var(--white);color:var(--green-dark);font-size:11px;font-weight:950}
+    .summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+    .summary-card{min-height:112px;padding:17px;border:1px solid var(--border);border-radius:18px;background:var(--white)}
+    .summary-card__label{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.055em;text-transform:uppercase}
+    .summary-card__value{display:block;margin-top:13px;font-size:clamp(23px,3vw,32px);font-weight:950;letter-spacing:-.045em}
+    .summary-card__note{display:block;margin-top:5px;color:var(--muted);font-size:10.5px}
+    .summary-card--balance{border-color:#B9D8C1;background:linear-gradient(145deg,var(--white),#F0FAF1)}
+    .summary-card--negative{border-color:#E2B8B8;background:#FFF7F7}
+    .summary-card--negative .summary-card__value{color:var(--danger)}
+    .budget-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .budget-section{overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--white);box-shadow:0 7px 22px rgba(23,74,61,.045)}
+    .budget-section__head{display:flex;padding:20px 21px 17px;border-bottom:1px solid var(--border);justify-content:space-between;align-items:flex-start;gap:18px}
+    .budget-section__number{display:block;margin-bottom:7px;color:var(--green);font-size:10px;font-weight:950;letter-spacing:.09em}
+    .budget-section h3{margin:0;font-size:23px;line-height:1.1;letter-spacing:-.035em}
+    .budget-section__description{margin:7px 0 0;color:var(--muted);font-size:11.5px;line-height:1.5}
+    .budget-section__total{text-align:right;white-space:nowrap}
+    .budget-section__total span{display:block;color:var(--muted);font-size:9px;font-weight:900;text-transform:uppercase}
+    .budget-section__total strong{display:block;margin-top:6px;color:var(--green-dark);font-size:18px}
+    .rows{padding:10px 14px 6px}
+    .row-head,.budget-row{display:grid;grid-template-columns:minmax(0,1fr) 112px 112px 34px;gap:8px;align-items:center}
+    .row-head{padding:4px 5px 7px;color:var(--muted);font-size:9px;font-weight:900;text-transform:uppercase}
+    .row-head span:nth-child(n+2){text-align:center}
+    .budget-row{padding:5px;border-radius:12px}
+    .budget-row:focus-within{background:#F6FBF7}
+    .budget-row input{width:100%;min-width:0;height:38px;padding:0 10px;border:1px solid #D6E2DA;border-radius:10px;background:#FBFCFB;color:var(--text)}
+    .budget-row input[type="number"]{text-align:right;font-variant-numeric:tabular-nums}
+    .budget-row input:hover{border-color:#AFCCB7}
+    .remove-row{display:grid;width:32px;height:32px;padding:0;border:0;border-radius:9px;place-items:center;background:transparent;color:#809088;font-size:20px;line-height:1}
+    .remove-row:hover{background:#FCEEEE;color:var(--danger)}
+    .section-actions{display:flex;padding:9px 19px 17px;justify-content:space-between;align-items:center;gap:12px}
+    .add-row{padding:8px 0;border:0;background:transparent;color:var(--green-dark);font-size:11px;font-weight:950}
+    .add-row:hover{text-decoration:underline}
+    .section-subtotal{color:var(--muted);font-size:10.5px;font-weight:800}
+    .analysis{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:18px;margin-top:18px}
+    .analysis-card,.notes-card{padding:23px;border:1px solid var(--border);border-radius:22px;background:var(--white)}
+    .analysis-card h3,.notes-card h3{margin:0;font-size:22px;letter-spacing:-.035em}
+    .analysis-card__lead,.notes-card__lead{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    .verdict{display:grid;margin-top:18px;padding:17px;border:1px solid #C7DDCD;border-radius:16px;grid-template-columns:40px minmax(0,1fr);gap:13px;background:var(--soft)}
+    .verdict--warning{border-color:#E8CEA9;background:#FFF8ED}
+    .verdict--danger{border-color:#E6BBBB;background:#FFF3F3}
+    .verdict__icon{display:grid;width:40px;height:40px;border-radius:12px;place-items:center;background:var(--white);color:var(--green-dark);font-weight:950}
+    .verdict strong{display:block;margin-bottom:4px;font-size:14px}
+    .verdict p{margin:0;color:#536A61;font-size:11.5px;line-height:1.55}
+    .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+    .metric{padding:13px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+    .metric span{display:block;color:var(--muted);font-size:9.5px;font-weight:850}
+    .metric strong{display:block;margin-top:7px;color:var(--green-dark);font-size:17px}
+    .notes{width:100%;min-height:176px;margin-top:15px;padding:13px;border:1px solid #D4E1D8;border-radius:14px;resize:vertical;background:#FBFCFB;color:var(--text);font:inherit;font-size:12px;line-height:1.55}
+    .toolbar{position:sticky;z-index:5;bottom:16px;display:flex;width:max-content;max-width:calc(100% - 24px);margin:25px auto 0;padding:7px;border:1px solid #C8D9CE;border-radius:17px;gap:7px;background:rgba(255,255,255,.92);box-shadow:var(--shadow);backdrop-filter:blur(14px)}
+    .button{display:inline-flex;min-height:44px;padding:0 16px;border:1px solid transparent;border-radius:12px;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:950;transition:transform .18s ease,background-color .18s ease}
+    .button:hover{transform:translateY(-1px)}
+    .button--primary{background:var(--green-dark);color:var(--white)}
+    .button--primary:hover{background:var(--green)}
+    .button--secondary{border-color:var(--border);background:var(--white);color:var(--green-dark)}
+    .button--danger{background:transparent;color:var(--danger)}
+    .button svg{width:16px;height:16px}
+    .footer{padding:31px 0;border-top:1px solid rgba(255,255,255,.09);background:var(--green-deep);color:rgba(255,255,255,.62)}
+    .footer__inner{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px}
+    .footer strong{color:var(--white)}
+    .footer a{color:var(--accent-light);font-weight:850}
+    @media(max-width:940px){
+      .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .budget-grid,.analysis{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .container{width:min(100% - 24px,1180px)}
+      .site-header__inner{min-height:68px}
+      .brand__text span,.nav a:not(.nav__worksheets){display:none}
+      .nav .nav__worksheets{padding:9px 11px}
+      .hero{min-height:auto}
+      .hero::before{right:-235px}
+      .hero::after{display:none}
+      .hero__inner{min-height:515px;padding:118px 0 51px}
+      h1{font-size:clamp(46px,14.5vw,68px)}
+      .hero__lead{font-size:15px}
+      .workspace{padding:52px 0 66px}
+      .sheet-head{grid-template-columns:1fr;gap:20px}
+      .month-field{width:100%}
+      .summary{gap:9px}
+      .summary-card{min-height:100px;padding:14px}
+      .summary-card__value{font-size:22px}
+      .budget-section{border-radius:19px}
+      .budget-section__head{padding:18px;flex-direction:column;gap:12px}
+      .budget-section__total{text-align:left}
+      .rows{padding:9px 10px}
+      .row-head{display:none}
+      .budget-row{position:relative;grid-template-columns:1fr 1fr;gap:7px;padding:9px 38px 9px 6px;border-bottom:1px solid #EDF2EF;border-radius:0}
+      .budget-row input:first-child{grid-column:1/-1}
+      .budget-row input::placeholder{opacity:1}
+      .remove-row{position:absolute;top:13px;right:2px}
+      .section-actions{padding:9px 15px 16px}
+      .metrics{grid-template-columns:1fr}
+      .analysis-card,.notes-card{padding:19px;border-radius:19px}
+      .toolbar{width:calc(100% - 24px);flex-wrap:wrap;justify-content:center;bottom:9px}
+      .button{flex:1 1 120px}
+      .footer__inner{align-items:flex-start;flex-direction:column;gap:9px}
+    }
+    @media(max-width:410px){
+      .summary{grid-template-columns:1fr}
+      .summary-card{min-height:88px}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    @media print{
+      @page{size:A4 portrait;margin:9mm}
+      body{background:#fff;font-family:Arial,sans-serif;font-size:9pt}
+      .site-header,.hero,.privacy,.toolbar,.footer,.add-row,.remove-row{display:none!important}
+      .container{width:100%}
+      .workspace{padding:0}
+      .sheet-head{grid-template-columns:1fr 180px;margin-bottom:8px}
+      .sheet-head h2{font-size:23pt}
+      .section-kicker{font-size:7pt}
+      .field-input{min-height:32px;border-radius:5px}
+      .summary{grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:7px}
+      .summary-card{min-height:auto;padding:7px;border-radius:6px;box-shadow:none}
+      .summary-card__label{font-size:6.5pt}
+      .summary-card__value{margin-top:5px;font-size:13pt}
+      .summary-card__note{font-size:6.5pt}
+      .budget-grid{grid-template-columns:repeat(2,1fr);gap:7px}
+      .budget-section{break-inside:avoid;border-radius:7px;box-shadow:none}
+      .budget-section__head{padding:8px 9px 6px}
+      .budget-section__number{margin-bottom:3px;font-size:6.5pt}
+      .budget-section h3{font-size:12pt}
+      .budget-section__description{display:none}
+      .budget-section__total strong{font-size:10pt}
+      .rows{padding:3px 5px}
+      .row-head,.budget-row{grid-template-columns:minmax(0,1fr) 68px 68px;gap:3px}
+      .row-head{padding:2px;font-size:6pt}
+      .budget-row{padding:2px}
+      .budget-row input{height:24px;padding:0 4px;border-radius:3px;font-size:7.5pt}
+      .budget-row input:first-child{background:#fff}
+      .section-actions{justify-content:flex-end;padding:2px 7px 6px}
+      .section-subtotal{font-size:7pt}
+      .analysis{grid-template-columns:1.25fr .75fr;gap:7px;margin-top:7px}
+      .analysis-card,.notes-card{padding:9px;border-radius:7px;break-inside:avoid}
+      .analysis-card h3,.notes-card h3{font-size:12pt}
+      .analysis-card__lead,.notes-card__lead{display:none}
+      .verdict{margin-top:6px;padding:7px;border-radius:5px;grid-template-columns:25px 1fr;gap:6px}
+      .verdict__icon{width:25px;height:25px;border-radius:4px;font-size:7pt}
+      .verdict strong{font-size:8.5pt}
+      .verdict p{font-size:7pt;line-height:1.35}
+      .metrics{gap:4px;margin-top:5px}
+      .metric{padding:5px;border-radius:4px}
+      .metric span{font-size:6pt}
+      .metric strong{margin-top:3px;font-size:9pt}
+      .notes{min-height:86px;margin-top:6px;padding:5px;border-radius:4px;font-size:7.5pt}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+      <nav class="nav" aria-label="Навігація сторінки"><a href="../../">Головний хаб</a><a href="../../simulators/">Симулятори</a><a class="nav__worksheets" href="../">Усі аркуші</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span aria-hidden="true">/</span><a href="../">Робочі аркуші</a><span aria-hidden="true">/</span><span>Мій бюджет на місяць</span></div>
+        <span class="eyebrow">Робочий аркуш 01</span>
+        <h1>Мій бюджет на місяць</h1>
+        <p class="hero__lead">Заплануйте доходи, витрати й заощадження, а наприкінці місяця внесіть фактичні суми та порівняйте результат.</p>
+        <div class="hero__meta"><span class="hero__chip">Автоматичні підрахунки</span><span class="hero__chip">План і факт</span><span class="hero__chip">Друк на А4</span></div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container">
+        <div class="sheet-head">
+          <div><div class="section-kicker">Особистий фінансовий план</div><h2>Заповніть свій бюджет</h2></div>
+          <label class="month-field"><span class="field-label">Місяць</span><input class="field-input" id="budgetMonth" type="month" aria-label="Місяць бюджету"></label>
+        </div>
+
+        <div class="privacy"><span class="privacy__icon" aria-hidden="true">i</span><span>Дані залишаються лише на цій сторінці, не передаються та не зберігаються. Щоб залишити копію, роздрукуйте аркуш або збережіть його як PDF.</span></div>
+
+        <div class="summary" aria-live="polite">
+          <article class="summary-card"><span class="summary-card__label">Усього доходів</span><strong class="summary-card__value" id="summaryIncome">0 грн</strong><span class="summary-card__note">за планом</span></article>
+          <article class="summary-card"><span class="summary-card__label">Усього витрат</span><strong class="summary-card__value" id="summaryExpenses">0 грн</strong><span class="summary-card__note">обов’язкові та змінні</span></article>
+          <article class="summary-card"><span class="summary-card__label">Заощадження</span><strong class="summary-card__value" id="summarySavings">0 грн</strong><span class="summary-card__note">резерв і фінансові цілі</span></article>
+          <article class="summary-card summary-card--balance" id="balanceCard"><span class="summary-card__label">Залишок</span><strong class="summary-card__value" id="summaryBalance">0 грн</strong><span class="summary-card__note">доходи мінус усі заплановані суми</span></article>
+        </div>
+
+        <div class="budget-grid" id="budgetGrid">
+          <section class="budget-section" data-section="income">
+            <div class="budget-section__head"><div><span class="budget-section__number">01 · НАДХОДЖЕННЯ</span><h3>Доходи</h3><p class="budget-section__description">Усі кошти, які очікуєте отримати протягом місяця.</p></div><div class="budget-section__total"><span>План</span><strong data-total="income">0 грн</strong></div></div>
+            <div class="rows">
+              <div class="row-head"><span>Джерело</span><span>План, грн</span><span>Факт, грн</span><span></span></div>
+              <div class="budget-row"><input type="text" value="Зарплата або стипендія" aria-label="Джерело доходу"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Запланований дохід"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичний дохід"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Підробіток" aria-label="Джерело доходу"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Запланований дохід"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичний дохід"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Інші надходження" aria-label="Джерело доходу"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Запланований дохід"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичний дохід"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+            </div>
+            <div class="section-actions"><button class="add-row" type="button">+ Додати джерело</button><span class="section-subtotal">Факт: <strong data-actual="income">0 грн</strong></span></div>
+          </section>
+
+          <section class="budget-section" data-section="mandatory">
+            <div class="budget-section__head"><div><span class="budget-section__number">02 · ОСНОВА</span><h3>Обов’язкові витрати</h3><p class="budget-section__description">Платежі, без яких не можна обійтися або які важко швидко змінити.</p></div><div class="budget-section__total"><span>План</span><strong data-total="mandatory">0 грн</strong></div></div>
+            <div class="rows">
+              <div class="row-head"><span>Стаття</span><span>План, грн</span><span>Факт, грн</span><span></span></div>
+              <div class="budget-row"><input type="text" value="Житло та комунальні послуги" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Продукти" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Транспорт і зв’язок" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Навчання, ліки та інше" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+            </div>
+            <div class="section-actions"><button class="add-row" type="button">+ Додати витрату</button><span class="section-subtotal">Факт: <strong data-actual="mandatory">0 грн</strong></span></div>
+          </section>
+
+          <section class="budget-section" data-section="variable">
+            <div class="budget-section__head"><div><span class="budget-section__number">03 · ГНУЧКІ ВИТРАТИ</span><h3>Змінні витрати</h3><p class="budget-section__description">Покупки та дозвілля, суму яких можна переглядати протягом місяця.</p></div><div class="budget-section__total"><span>План</span><strong data-total="variable">0 грн</strong></div></div>
+            <div class="rows">
+              <div class="row-head"><span>Стаття</span><span>План, грн</span><span>Факт, грн</span><span></span></div>
+              <div class="budget-row"><input type="text" value="Кафе та перекуси" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Одяг і покупки" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Дозвілля та підписки" aria-label="Стаття витрат"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані витрати"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні витрати"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+            </div>
+            <div class="section-actions"><button class="add-row" type="button">+ Додати витрату</button><span class="section-subtotal">Факт: <strong data-actual="variable">0 грн</strong></span></div>
+          </section>
+
+          <section class="budget-section" data-section="savings">
+            <div class="budget-section__head"><div><span class="budget-section__number">04 · МАЙБУТНЄ</span><h3>Заощадження та цілі</h3><p class="budget-section__description">Суми, які плануєте відкласти до того, як витратите залишок.</p></div><div class="budget-section__total"><span>План</span><strong data-total="savings">0 грн</strong></div></div>
+            <div class="rows">
+              <div class="row-head"><span>Напрям</span><span>План, грн</span><span>Факт, грн</span><span></span></div>
+              <div class="budget-row"><input type="text" value="Фінансова подушка" aria-label="Напрям заощаджень"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані заощадження"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні заощадження"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+              <div class="budget-row"><input type="text" value="Фінансова ціль" aria-label="Напрям заощаджень"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Заплановані заощадження"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактичні заощадження"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button></div>
+            </div>
+            <div class="section-actions"><button class="add-row" type="button">+ Додати ціль</button><span class="section-subtotal">Факт: <strong data-actual="savings">0 грн</strong></span></div>
+          </section>
+        </div>
+
+        <div class="analysis">
+          <section class="analysis-card">
+            <h3>Підсумок бюджету</h3>
+            <p class="analysis-card__lead">Оцінка не нав’язує універсальних пропорцій. Вона показує, чи збалансовані саме ваші введені суми.</p>
+            <div class="verdict" id="verdict"><span class="verdict__icon" id="verdictIcon" aria-hidden="true">✓</span><div><strong id="verdictTitle">Почніть із доходів</strong><p id="verdictText">Внесіть очікувані доходи та заплановані суми в кожному розділі.</p></div></div>
+            <div class="metrics">
+              <div class="metric"><span>Обов’язкові витрати</span><strong id="mandatoryShare">0%</strong></div>
+              <div class="metric"><span>Заощадження</span><strong id="savingsShare">0%</strong></div>
+              <div class="metric"><span>Фактичний залишок</span><strong id="actualBalance">0 грн</strong></div>
+            </div>
+          </section>
+          <section class="notes-card">
+            <h3>Мій висновок</h3>
+            <p class="notes-card__lead">Запишіть одне рішення, яке допоможе поліпшити бюджет наступного місяця.</p>
+            <textarea class="notes" id="notes" placeholder="Наприклад: установити тижневий ліміт на незаплановані покупки..." aria-label="Мій висновок"></textarea>
+          </section>
+        </div>
+
+        <div class="toolbar" aria-label="Дії з робочим аркушем">
+          <button class="button button--primary" id="printButton" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V4h12v5M6 18H4V9h16v9h-2M7 14h10v6H7z"/></svg>Роздрукувати</button>
+          <button class="button button--secondary" id="exampleButton" type="button">Заповнити приклад</button>
+          <button class="button button--danger" id="clearButton" type="button">Очистити</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Створено в межах проєкту ВСП «АЕФК ПДАУ»</div><a href="../">Усі робочі аркуші ↑</a></div></footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const sectionNames = ["income", "mandatory", "variable", "savings"];
+      const money = new Intl.NumberFormat("uk-UA", { maximumFractionDigits: 0 });
+      const grid = document.getElementById("budgetGrid");
+      const balanceCard = document.getElementById("balanceCard");
+      const verdict = document.getElementById("verdict");
+
+      const numberValue = input => {
+        const value = Number.parseFloat(input.value);
+        return Number.isFinite(value) && value >= 0 ? value : 0;
+      };
+
+      const formatMoney = value => `${money.format(Math.round(value))} грн`;
+
+      const sectionTotals = section => {
+        const rows = [...document.querySelectorAll(`[data-section="${section}"] .budget-row`)];
+        return rows.reduce((totals, row) => {
+          const numbers = row.querySelectorAll('input[type="number"]');
+          totals.plan += numberValue(numbers[0]);
+          totals.actual += numberValue(numbers[1]);
+          return totals;
+        }, { plan: 0, actual: 0 });
+      };
+
+      const update = () => {
+        const totals = Object.fromEntries(sectionNames.map(name => [name, sectionTotals(name)]));
+        sectionNames.forEach(name => {
+          document.querySelector(`[data-total="${name}"]`).textContent = formatMoney(totals[name].plan);
+          document.querySelector(`[data-actual="${name}"]`).textContent = formatMoney(totals[name].actual);
+        });
+
+        const plannedExpenses = totals.mandatory.plan + totals.variable.plan;
+        const plannedBalance = totals.income.plan - plannedExpenses - totals.savings.plan;
+        const actualExpenses = totals.mandatory.actual + totals.variable.actual;
+        const actualBalance = totals.income.actual - actualExpenses - totals.savings.actual;
+        const mandatoryShare = totals.income.plan ? totals.mandatory.plan / totals.income.plan * 100 : 0;
+        const savingsShare = totals.income.plan ? totals.savings.plan / totals.income.plan * 100 : 0;
+
+        document.getElementById("summaryIncome").textContent = formatMoney(totals.income.plan);
+        document.getElementById("summaryExpenses").textContent = formatMoney(plannedExpenses);
+        document.getElementById("summarySavings").textContent = formatMoney(totals.savings.plan);
+        document.getElementById("summaryBalance").textContent = formatMoney(plannedBalance);
+        document.getElementById("mandatoryShare").textContent = `${Math.round(mandatoryShare)}%`;
+        document.getElementById("savingsShare").textContent = `${Math.round(savingsShare)}%`;
+        document.getElementById("actualBalance").textContent = formatMoney(actualBalance);
+        balanceCard.classList.toggle("summary-card--negative", plannedBalance < 0);
+
+        verdict.className = "verdict";
+        let icon = "✓";
+        let title = "Бюджет збалансований";
+        let text = `Після запланованих витрат і заощаджень залишається ${formatMoney(plannedBalance)}. Визначте, для чого використаєте цей залишок.`;
+
+        if (totals.income.plan === 0) {
+          icon = "1";
+          title = "Почніть із доходів";
+          text = "Внесіть очікувані доходи та заплановані суми в кожному розділі.";
+        } else if (plannedBalance < 0) {
+          verdict.classList.add("verdict--danger");
+          icon = "!";
+          title = "Витрати перевищують доходи";
+          text = `У плані бракує ${formatMoney(Math.abs(plannedBalance))}. Перегляньте змінні витрати, строки цілей або знайдіть додаткове джерело доходу.`;
+        } else if (totals.savings.plan === 0) {
+          verdict.classList.add("verdict--warning");
+          icon = "!";
+          title = "У плані немає заощаджень";
+          text = "Навіть невеликий регулярний внесок формує фінансову стійкість. Перевірте, чи можете передбачити посильну суму.";
+        } else if (mandatoryShare > 70) {
+          verdict.classList.add("verdict--warning");
+          icon = "i";
+          title = "Мало простору для змін";
+          text = `Обов’язкові витрати становлять ${Math.round(mandatoryShare)}% доходу. Це не помилка, але бюджет буде чутливим до непередбачених витрат.`;
+        }
+
+        document.getElementById("verdictIcon").textContent = icon;
+        document.getElementById("verdictTitle").textContent = title;
+        document.getElementById("verdictText").textContent = text;
+      };
+
+      const createRow = (section, label = "") => {
+        const row = document.createElement("div");
+        row.className = "budget-row";
+        const nameLabel = section === "income" ? "Джерело доходу" : section === "savings" ? "Напрям заощаджень" : "Стаття витрат";
+        row.innerHTML = `<input type="text" aria-label="${nameLabel}" placeholder="Власна назва"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Запланована сума"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактична сума"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button>`;
+        row.querySelector('input[type="text"]').value = label;
+        return row;
+      };
+
+      grid.addEventListener("input", event => {
+        if (event.target.matches('input[type="number"]')) update();
+      });
+
+      grid.addEventListener("click", event => {
+        const addButton = event.target.closest(".add-row");
+        if (addButton) {
+          const section = addButton.closest(".budget-section");
+          section.querySelector(".rows").appendChild(createRow(section.dataset.section));
+          section.querySelector(".budget-row:last-child input").focus();
+          return;
+        }
+
+        const removeButton = event.target.closest(".remove-row");
+        if (removeButton) {
+          const section = removeButton.closest(".budget-section");
+          const rows = section.querySelectorAll(".budget-row");
+          if (rows.length === 1) {
+            rows[0].querySelectorAll("input").forEach(input => input.value = "");
+          } else {
+            removeButton.closest(".budget-row").remove();
+          }
+          update();
+        }
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => window.print());
+
+      document.getElementById("clearButton").addEventListener("click", () => {
+        if (!window.confirm("Очистити всі внесені суми та нотатки?")) return;
+        document.querySelectorAll('.budget-row input[type="number"]').forEach(input => input.value = "");
+        document.getElementById("budgetMonth").value = "";
+        document.getElementById("notes").value = "";
+        update();
+      });
+
+      document.getElementById("exampleButton").addEventListener("click", () => {
+        const examples = {
+          income: [[18000,18000],[3000,3500],[0,0]],
+          mandatory: [[4500,4600],[5000,5250],[1200,1180],[800,650]],
+          variable: [[1200,1480],[1500,1100],[700,700]],
+          savings: [[1800,1800],[1000,1000]]
+        };
+        Object.entries(examples).forEach(([section, values]) => {
+          const rows = document.querySelectorAll(`[data-section="${section}"] .budget-row`);
+          values.forEach((pair, index) => {
+            const numbers = rows[index].querySelectorAll('input[type="number"]');
+            numbers[0].value = pair[0] || "";
+            numbers[1].value = pair[1] || "";
+          });
+        });
+        document.getElementById("notes").value = "Наступного місяця встановити тижневий ліміт на кафе та перекуси.";
+        update();
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
