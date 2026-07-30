@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Тест CASHBRAIN Чи вмію я заощаджувати: 12 запитань про регулярність, цілі, резерв і гнучкість фінансового плану.">
+  <meta name="theme-color" content="#174A3D"><title>Чи вмію я заощаджувати? - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Заощадження</span></div>
+  <div class="eyebrow">Тест для себе</div><h1>Чи вмію я заощаджувати?</h1>
+  <p class="hero__lead">Заощадження не обов’язково починаються з великої суми. Перевірте регулярність, ясність цілей, готовність до несподіванок і здатність продовжувати після складного місяця.</p>
+  <div class="hero__meta"><span class="chip">12 запитань</span><span class="chip">4 навички</span><span class="chip">Без правильних відповідей</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Запитання <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть чесну для себе відповідь</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Як це відбувається у вас?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Заощадження</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../simulators/finansova-tsil/">Симулятор цілі</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"Коли надходить стипендія або оплата за підробіток, коли ви відкладаєте гроші?",options:[
+      {text:"Одразу переказую визначену суму або частку",points:{regularity:3,goals:2,reserve:2,flexibility:2}},
+      {text:"Наприкінці місяця, якщо щось залишиться",points:{regularity:1,goals:1,reserve:1,flexibility:1}},
+      {text:"Лише коли отримую більше, ніж очікував",points:{regularity:1,goals:1,reserve:1,flexibility:2}},
+      {text:"Зараз не відкладаю",points:{regularity:0,goals:0,reserve:0,flexibility:0}}
+    ]},
+    {text:"Ваш дохід цього місяця невеликий. Що станеться із заощадженнями?",options:[
+      {text:"Відкладу меншу суму, але збережу саму звичку",points:{regularity:3,goals:2,reserve:2,flexibility:3}},
+      {text:"Не відкладатиму й повернуся до цього невідомо коли",points:{regularity:0,goals:1,reserve:0,flexibility:0}},
+      {text:"Відкладу звичну суму, навіть якщо доведеться позичити на потреби",points:{regularity:2,goals:2,reserve:1,flexibility:0}},
+      {text:"Перегляну витрати й визначу посильний мінімум",points:{regularity:3,goals:2,reserve:2,flexibility:3}}
+    ]},
+    {text:"Як виглядає ваша фінансова ціль?",options:[
+      {text:"Має назву, суму, строк і регулярний внесок",points:{regularity:3,goals:3,reserve:2,flexibility:2}},
+      {text:"Знаю, чого хочу, але не рахував суму й строк",points:{regularity:1,goals:2,reserve:1,flexibility:1}},
+      {text:"Просто хочу мати більше грошей",points:{regularity:0,goals:1,reserve:1,flexibility:0}},
+      {text:"Не маю конкретної цілі",points:{regularity:0,goals:0,reserve:0,flexibility:1}}
+    ]},
+    {text:"Для чого вам фінансовий резерв?",options:[
+      {text:"Для непередбачених необхідних витрат або тимчасової втрати доходу",points:{regularity:2,goals:2,reserve:3,flexibility:3}},
+      {text:"Для сезонних знижок і спонтанних покупок",points:{regularity:1,goals:0,reserve:0,flexibility:1}},
+      {text:"Не відрізняю резерв від грошей на бажання",points:{regularity:0,goals:1,reserve:0,flexibility:0}},
+      {text:"Резерв ще не створений, але маю суму й план поповнення",points:{regularity:2,goals:2,reserve:2,flexibility:2}}
+    ]},
+    {text:"Де зберігаються гроші на ціль?",options:[
+      {text:"Окремо від коштів на щоденні витрати",points:{regularity:3,goals:3,reserve:2,flexibility:2}},
+      {text:"На основній картці разом з усіма грошима",points:{regularity:1,goals:1,reserve:1,flexibility:1}},
+      {text:"Готівкою без запису суми",points:{regularity:1,goals:1,reserve:1,flexibility:1}},
+      {text:"Постійно змінюю місце й не знаю точного залишку",points:{regularity:0,goals:0,reserve:0,flexibility:0}}
+    ]},
+    {text:"Що допомагає вам відкладати регулярно?",options:[
+      {text:"Автоматичний переказ або нагадування після надходження доходу",points:{regularity:3,goals:2,reserve:2,flexibility:2}},
+      {text:"Лише сильна мотивація в окремі місяці",points:{regularity:1,goals:2,reserve:1,flexibility:1}},
+      {text:"Почуття провини після зайвих витрат",points:{regularity:1,goals:1,reserve:1,flexibility:0}},
+      {text:"Поки немає способу, який працює",points:{regularity:0,goals:0,reserve:0,flexibility:1}}
+    ]},
+    {text:"Ви вже накопичили частину суми, але побачили привабливу незаплановану покупку. Що робите?",options:[
+      {text:"Перевіряю, як покупка змінить строк досягнення цілі",points:{regularity:2,goals:3,reserve:2,flexibility:2}},
+      {text:"Беру гроші з накопичень і почну знову",points:{regularity:0,goals:1,reserve:0,flexibility:1}},
+      {text:"Даю собі паузу й шукаю іншу суму на покупку",points:{regularity:3,goals:3,reserve:2,flexibility:3}},
+      {text:"Витрачаю частину, бо заощадження мають приносити радість",points:{regularity:1,goals:1,reserve:1,flexibility:2}}
+    ]},
+    {text:"Один місяць ви нічого не відклали. Яка реакція?",options:[
+      {text:"Аналізую причину й повертаюся до плану з наступного доходу",points:{regularity:3,goals:2,reserve:2,flexibility:3}},
+      {text:"Вважаю, що план провалено, і припиняю",points:{regularity:0,goals:1,reserve:0,flexibility:0}},
+      {text:"Наступного місяця відкладаю подвійну суму за будь-яку ціну",points:{regularity:2,goals:2,reserve:1,flexibility:0}},
+      {text:"Зменшую внесок до реалістичного рівня",points:{regularity:3,goals:2,reserve:2,flexibility:3}}
+    ]},
+    {text:"Вам повернули несподіваний борг у 1 500 грн. Як використаєте?",options:[
+      {text:"Розподілю між резервом, ціллю та невеликою приємною витратою",points:{regularity:2,goals:3,reserve:3,flexibility:3}},
+      {text:"Витрачу все, бо цих грошей не було в плані",points:{regularity:0,goals:0,reserve:0,flexibility:1}},
+      {text:"Усе додам до найважливішої цілі",points:{regularity:3,goals:3,reserve:2,flexibility:2}},
+      {text:"Залишу на основній картці без рішення",points:{regularity:0,goals:1,reserve:1,flexibility:1}}
+    ]},
+    {text:"У вас є дорогий борг і водночас бажання накопичувати. Який підхід найближчий?",options:[
+      {text:"Оціню вартість боргу, збережу мінімальний резерв і пріоритетно скорочуватиму борг",points:{regularity:2,goals:3,reserve:3,flexibility:3}},
+      {text:"Ігноруватиму борг заради красивої суми накопичень",points:{regularity:2,goals:1,reserve:1,flexibility:0}},
+      {text:"Усе спрямую на борг і залишуся зовсім без запасу",points:{regularity:1,goals:2,reserve:0,flexibility:1}},
+      {text:"Не робитиму ні того, ні іншого, доки дохід не зросте",points:{regularity:0,goals:0,reserve:0,flexibility:0}}
+    ]},
+    {text:"Як часто ви перевіряєте прогрес заощаджень?",options:[
+      {text:"Регулярно, але не щодня, і за потреби коригую план",points:{regularity:3,goals:3,reserve:2,flexibility:3}},
+      {text:"Лише коли хочу щось купити",points:{regularity:1,goals:1,reserve:1,flexibility:1}},
+      {text:"Кілька разів на день і сильно хвилююся через коливання",points:{regularity:2,goals:2,reserve:2,flexibility:0}},
+      {text:"Не перевіряю й не знаю точної суми",points:{regularity:0,goals:0,reserve:0,flexibility:0}}
+    ]},
+    {text:"Яке твердження найкраще описує ваше ставлення до заощаджень?",options:[
+      {text:"Це спосіб мати більше вибору й спокою в майбутньому",points:{regularity:3,goals:3,reserve:3,flexibility:3}},
+      {text:"Це постійна відмова від нормального життя",points:{regularity:0,goals:1,reserve:1,flexibility:0}},
+      {text:"Відкладати можуть лише люди з великими доходами",points:{regularity:0,goals:0,reserve:0,flexibility:0}},
+      {text:"Це корисно, але я ще шукаю свій реалістичний спосіб",points:{regularity:2,goals:2,reserve:2,flexibility:3}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.regularity+t.goals+t.reserve+t.flexibility,max=144;
+    let title,lead;
+    if(total<48){title="Заощадження поки випадкові";lead:"Гроші відкладаються переважно тоді, коли щось залишається. Почніть не з великої суми, а з маленької повторюваної дії після кожного надходження."}
+    else if(total<84){title="Звичка формується";lead:"Ви розумієте користь заощаджень, але план ще залежить від настрою й вдалого місяця. Окрема ціль і мінімальний внесок зроблять рух стабільнішим."}
+    else if(total<116){title="Впевнений накопичувач";lead:"У вас є цілі, регулярність і здатність повертатися до плану. Перевірте найслабшу навичку, щоб один складний місяць не руйнував увесь маршрут."}
+    else{title="Гнучкий стратег заощаджень";lead:"Ви не перетворюєте заощадження на покарання. Поєднуєте регулярність, цілі, резерв і гнучкість, тому накопичення дає більше вибору, а не менше життя."}
+    const level=v=>v>=28?"сильна навичка":v>=18?"стабільна навичка":"зона для тренування";
+    return{label:"Ваш результат",title,lead,scoreLabel:"Стійкість заощаджень",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Регулярність",text:`${t.regularity} із 36, ${level(t.regularity)}. Здатність відкладати системно, а не лише із залишку.`},
+        {title:"Фінансові цілі",text:`${t.goals} із 36, ${level(t.goals)}. Сума, строк, пріоритет і зрозумілий внесок.`},
+        {title:"Резерв",text:`${t.reserve} із 36, ${level(t.reserve)}. Готовність до непередбачених необхідних витрат.`},
+        {title:"Гнучкість",text:`${t.flexibility} із 36, ${level(t.flexibility)}. Здатність змінити внесок і продовжити після зриву.`}
+      ],tipsTitle:"Один простий план на наступний місяць",tips:[
+        "Оберіть одну ціль, запишіть суму та реальний строк.",
+        "Визначте мінімальний внесок, який зможете зробити навіть у слабший місяць.",
+        "Перекажіть його одразу після доходу на окремий рахунок або інше окреме місце."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>

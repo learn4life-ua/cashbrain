@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Ситуаційний тест CASHBRAIN Несподівані 5 000 грн: 12 рішень про резерв, борги, навчання, покупки та фінансові цілі.">
+  <meta name="theme-color" content="#174A3D"><title>Несподівані 5 000 грн - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Несподівані 5 000 грн</span></div>
+  <div class="eyebrow">Ситуаційний тест</div><h1>Несподівані 5 000 грн</h1>
+  <p class="hero__lead">Подарунок, повернутий борг або додаткова оплата не мають готової інструкції. Перевірте, як ви поєднуєте безпеку, цілі, розвиток і право порадувати себе.</p>
+  <div class="hero__meta"><span class="chip">12 ситуацій</span><span class="chip">4 фінансові пріоритети</span><span class="chip">Без єдиної правильної формули</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Ситуація <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть реалістичну для себе дію</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Як ви розпорядитеся грошима?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Несподівані 5 000 грн</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../simulators/rozumnyi-biudzhet/">Симулятор бюджету</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"На картку несподівано надійшло 5 000 грн. Що ви зробите в першу годину?",options:[
+      {text:"Одразу куплю те, що давно хотілося",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Залишу гроші без руху й дам собі час визначити пріоритети",points:{safety:3,goals:2,growth:1,balance:3}},
+      {text:"Перекину всю суму в недоторканні заощадження",points:{safety:3,goals:2,growth:0,balance:1}},
+      {text:"Розподілю за звичною схемою одразу",points:{safety:2,goals:3,growth:2,balance:3}}
+    ]},
+    {text:"У вас є борг за кредитною карткою, на який нараховуються проценти. Як це вплине на рішення?",options:[
+      {text:"Спрямую значну частину на дорогий борг, залишивши невеликий запас",points:{safety:3,goals:3,growth:1,balance:3}},
+      {text:"Не чіпатиму борг, бо ці гроші несподівані",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Погашу борг повністю, навіть якщо зовсім не залишиться запасу",points:{safety:2,goals:3,growth:0,balance:1}},
+      {text:"Куплю бажане, а борг погашатиму як раніше",points:{safety:0,goals:0,growth:0,balance:1}}
+    ]},
+    {text:"Фінансової подушки ще немає. Яку роль можуть відіграти ці 5 000 грн?",options:[
+      {text:"Стати початком резерву з окремим місцем зберігання",points:{safety:3,goals:3,growth:1,balance:2}},
+      {text:"Резерв із такої суми не має сенсу",points:{safety:0,goals:0,growth:0,balance:0}},
+      {text:"Залишити на основній картці й назвати резервом",points:{safety:1,goals:1,growth:0,balance:1}},
+      {text:"Частину відкласти в резерв, частину залишити на поточні потреби",points:{safety:3,goals:2,growth:1,balance:3}}
+    ]},
+    {text:"Корисний курс для майбутньої роботи коштує 3 500 грн. Як оціните таку витрату?",options:[
+      {text:"Перевірю програму, викладача, відгуки й можливу практичну користь",points:{safety:2,goals:3,growth:3,balance:3}},
+      {text:"Куплю лише через обіцянку швидкого високого доходу",points:{safety:0,goals:1,growth:2,balance:0}},
+      {text:"Не витрачатиму несподівані гроші на навчання",points:{safety:2,goals:1,growth:0,balance:1}},
+      {text:"Оплачу без перевірки, бо будь-яке навчання корисне",points:{safety:0,goals:1,growth:2,balance:1}}
+    ]},
+    {text:"У магазині знижка на річ за 4 800 грн, якої не було у вашому плані. Що зробите?",options:[
+      {text:"Куплю, бо сума майже точно збігається",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Перевірю потребу, інші ціни й те, від яких цілей доведеться відмовитися",points:{safety:2,goals:3,growth:1,balance:3}},
+      {text:"Відмовлюся від будь-якої покупки, навіть якщо річ справді потрібна",points:{safety:3,goals:2,growth:0,balance:1}},
+      {text:"Дам собі паузу та визначу комфортну частину на бажання",points:{safety:2,goals:2,growth:1,balance:3}}
+    ]},
+    {text:"Близька людина просить позичити всю суму на місяць. Як відповісте?",options:[
+      {text:"Позичу все без уточнень, бо це близька людина",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Оціню власні потреби й позичу лише суму, яку можу втратити без шкоди",points:{safety:3,goals:2,growth:1,balance:3}},
+      {text:"Відмовлю завжди й за будь-яких умов",points:{safety:3,goals:1,growth:0,balance:1}},
+      {text:"Узгоджу суму, строк і спосіб повернення письмово",points:{safety:3,goals:2,growth:1,balance:3}}
+    ]},
+    {text:"Знайомий пропонує «гарантовано подвоїти» 5 000 грн за два тижні. Ваша дія?",options:[
+      {text:"Вкладу, бо можна швидко отримати 10 000 грн",points:{safety:0,goals:1,growth:1,balance:0}},
+      {text:"Перевірю пропозицію, але гарантія високого доходу вже є сигналом ризику",points:{safety:3,goals:2,growth:2,balance:3}},
+      {text:"Вкладу половину, щоб ризик був меншим",points:{safety:0,goals:1,growth:1,balance:1}},
+      {text:"Позичу ще гроші, щоб заробити більше",points:{safety:0,goals:0,growth:1,balance:0}}
+    ]},
+    {text:"У вас є фінансова ціль на 20 000 грн, до якої вже накопичено 8 000 грн. Що дасть нова сума?",options:[
+      {text:"Скоротить шлях до цілі, якщо додати всю або визначену частину",points:{safety:2,goals:3,growth:2,balance:2}},
+      {text:"Не вплине, бо 5 000 грн недостатньо для всієї цілі",points:{safety:1,goals:0,growth:0,balance:0}},
+      {text:"Можна переглянути строк і залишити частину на інші пріоритети",points:{safety:2,goals:3,growth:2,balance:3}},
+      {text:"Краще витратити, а до цілі повернутися пізніше",points:{safety:0,goals:0,growth:0,balance:1}}
+    ]},
+    {text:"Ноутбук для навчання працює нестабільно, ремонт коштує близько 2 000 грн. Як вирішите?",options:[
+      {text:"Перевірю діагностику, ціну ремонту й альтернативи, бо пристрій потрібен для навчання",points:{safety:2,goals:3,growth:3,balance:3}},
+      {text:"Одразу куплю новий ноутбук у кредит",points:{safety:0,goals:1,growth:2,balance:0}},
+      {text:"Не ремонтуватиму, доки він повністю не зламається",points:{safety:1,goals:1,growth:1,balance:1}},
+      {text:"Витрачу гроші на інше, бо ремонт не приносить радості",points:{safety:0,goals:0,growth:0,balance:1}}
+    ]},
+    {text:"Наступного місяця очікується менший дохід. Що це змінює?",options:[
+      {text:"Частину 5 000 грн залишу як буфер на обов’язкові витрати",points:{safety:3,goals:2,growth:1,balance:3}},
+      {text:"Нічого, це гроші цього місяця",points:{safety:0,goals:0,growth:0,balance:0}},
+      {text:"Витрачу зараз, а потім позичу",points:{safety:0,goals:0,growth:0,balance:0}},
+      {text:"Перегляну майбутній бюджет і визначу суму, яку справді можна використати зараз",points:{safety:3,goals:3,growth:2,balance:3}}
+    ]},
+    {text:"Чи варто залишити частину грошей на приємну покупку або подію?",options:[
+      {text:"Так, якщо сума визначена й не руйнує важливіші пріоритети",points:{safety:2,goals:2,growth:1,balance:3}},
+      {text:"Ні, будь-яка приємна витрата є фінансовою помилкою",points:{safety:3,goals:2,growth:0,balance:0}},
+      {text:"Так, краще витратити все на враження",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Лише якщо друзі оберуть, куди витратити",points:{safety:0,goals:0,growth:0,balance:1}}
+    ]},
+    {text:"Який остаточний спосіб розподілу 5 000 грн найближчий до вас?",options:[
+      {text:"Одна важлива ціль після перевірки всіх обставин",points:{safety:2,goals:3,growth:2,balance:2}},
+      {text:"Кілька частин: безпека, ціль або розвиток і невелика приємна сума",points:{safety:3,goals:3,growth:3,balance:3}},
+      {text:"Усе на бажання, бо гроші несподівані",points:{safety:0,goals:0,growth:0,balance:1}},
+      {text:"Не вирішувати й поступово витратити з основної картки",points:{safety:1,goals:0,growth:0,balance:0}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.safety+t.goals+t.growth+t.balance,max=144;
+    let title,lead;
+    if(total<48){title="Гроші шукають рішення самі";lead:"Несподівана сума легко перетворюється на таку саму несподівану витрату. Навіть коротка пауза й один визначений пріоритет допоможуть зберегти її користь."}
+    else if(total<84){title="Пріоритети конкурують";lead:"Ви бачите кілька можливостей, але рішення ще сильно залежить від ситуації або настрою. Простий порядок «безпека, зобов’язання, ціль, бажання» додасть ясності."}
+    else if(total<116){title="Зважений розподільник";lead:"Ви вмієте поєднати сьогоднішні потреби з майбутньою користю. Іноді один пріоритет переважає, але загальна фінансова картина залишається стійкою."}
+    else{title="Стратег несподіваної можливості";lead:"Для вас додаткові гроші не є ні дозволом витратити все, ні наказом заховати кожну гривню. Ви оцінюєте ризики, цілі, розвиток і залишаєте місце для життя."}
+    const level=v=>v>=28?"сильний пріоритет":v>=18?"стабільний пріоритет":"потребує уваги";
+    return{label:"Ваш результат",title,lead,scoreLabel:"Зваженість розподілу",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Безпека",text:`${t.safety} із 36, ${level(t.safety)}. Резерв, дорогі борги, перевірка ризиків і майбутній дохід.`},
+        {title:"Фінансові цілі",text:`${t.goals} із 36, ${level(t.goals)}. Здатність спрямувати суму туди, де вона наближає важливий результат.`},
+        {title:"Розвиток",text:`${t.growth} із 36, ${level(t.growth)}. Навчання, робочі інструменти та користь для майбутнього доходу.`},
+        {title:"Баланс",text:`${t.balance} із 36, ${level(t.balance)}. Поєднання користі, гнучкості та приємних витрат без почуття провини.`}
+      ],tipsTitle:"Універсальний порядок для несподіваної суми",tips:[
+        "Зробіть паузу хоча б до наступного дня й перевірте найближчі обов’язкові витрати.",
+        "Оцініть дорогі борги, резерв і одну важливу фінансову ціль.",
+        "Заздалегідь визначте частину, яку можна витратити на приємне без шкоди для решти плану."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
