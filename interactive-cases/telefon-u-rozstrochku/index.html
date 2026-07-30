@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про купівлю телефона в розстрочку, повну вартість кредиту, додаткові послуги та навантаження на бюджет.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Телефон у розстрочку - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="container hero__inner">
+    <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Телефон у розстрочку</span></div>
+    <div class="eyebrow">Інтерактивний кейс · покупки та кредит</div>
+    <h1>Телефон у розстрочку</h1>
+    <p class="hero__lead">На ціннику написано «0%», продавець говорить лише про зручний місячний платіж, а старий телефон вимикається посеред занять. Чи справді новий смартфон доступний вашому бюджету?</p>
+    <div class="hero__meta"><span class="chip">5 рішень</span><span class="chip">Реальні розрахунки</span><span class="chip">Кілька фіналів</span></div>
+  </div></section>
+
+  <section class="case-shell"><div class="container">
+    <div class="case-intro" id="case-intro">
+      <article class="brief">
+        <span class="brief__label">Ситуація</span>
+        <h2>Знижка закінчується сьогодні</h2>
+        <p>Старий телефон швидко розряджається, але ще працює. Новий коштує 24 000 грн готівкою. Магазин пропонує «розстрочку 0%» і переконує, що 2 400 грн на місяць може дозволити собі кожен.</p>
+        <p class="privacy-note">Це навчальний сценарій. Результати не зберігаються й нікуди не надсилаються.</p>
+      </article>
+      <aside class="start-card">
+        <strong>Ваші стартові умови</strong>
+        <ul class="start-list">
+          <li><span>Резерв</span><b>7 000 грн</b></li>
+          <li><span>Дохід на місяць</span><b>11 500 грн</b></li>
+          <li><span>Обов’язкові витрати</span><b>8 000 грн</b></li>
+          <li><span>Вільні кошти</span><b>3 500 грн/міс.</b></li>
+        </ul>
+        <button class="case-start" id="start-button" type="button">Почати історію →</button>
+      </aside>
+    </div>
+
+    <section class="game" id="game" aria-live="polite">
+      <div class="dashboard" aria-label="Поточні показники">
+        <div class="metric"><span class="metric__label">Фінансовий резерв</span><strong class="metric__value" id="metric-reserve">7 000 грн</strong></div>
+        <div class="metric"><span class="metric__label">Вільні кошти/місяць</span><strong class="metric__value" id="metric-free">3 500 грн</strong></div>
+        <div class="metric"><span class="metric__label">Нові платежі/місяць</span><strong class="metric__value" id="metric-payment">0 грн</strong></div>
+        <div class="metric"><span class="metric__label">Ризик, менше краще</span><strong class="metric__value" id="metric-risk">25 / 100</strong></div>
+      </div>
+      <div class="game-grid" id="game-grid">
+        <article class="scene">
+          <div class="progress-line" aria-hidden="true"><span id="progress"></span></div>
+          <div class="scene__step" id="scene-step">Рішення 1 із 5</div>
+          <h2 id="scene-title"></h2>
+          <p class="scene__copy" id="scene-copy"></p>
+          <div class="scene__prompt">Що ви зробите?</div>
+          <div class="choices" id="choices"></div>
+          <div class="consequence" id="consequence">
+            <div class="consequence__label">Наслідок рішення</div>
+            <h3 id="consequence-title"></h3>
+            <p id="consequence-copy"></p>
+            <button class="next-button" id="next-button" type="button">Продовжити →</button>
+          </div>
+        </article>
+        <aside class="side">
+          <article class="side-card"><span class="side-card__label">Три числа</span><h3>Не дивіться лише на платіж</h3><ul><li>ціна телефона готівкою;</li><li>сума всіх платежів за договором;</li><li>частина вільного бюджету, яку забиратиме платіж.</li></ul></article>
+          <article class="side-card"><span class="side-card__label">Перед підписанням</span><h3>Попросіть документи</h3><p>Перевірте паспорт споживчого кредиту, реальну річну процентну ставку, загальну вартість, графік платежів, додаткові послуги та наслідки прострочення.</p></article>
+        </aside>
+      </div>
+
+      <section class="result" id="result">
+        <span class="result__badge" id="result-badge">Ваш фінал</span>
+        <h2 id="result-title"></h2>
+        <p class="result__lead" id="result-lead"></p>
+        <div class="result-stats">
+          <div class="result-stat"><span>Залишок резерву</span><strong id="result-reserve"></strong></div>
+          <div class="result-stat"><span>Вартість телефона</span><strong id="result-cost"></strong></div>
+          <div class="result-stat"><span>Нові платежі/місяць</span><strong id="result-payment"></strong></div>
+          <div class="result-stat"><span>Фінальний ризик</span><strong id="result-risk"></strong></div>
+        </div>
+        <div class="review-grid">
+          <article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article>
+          <article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article>
+          <article class="review-card"><h3>Алгоритм перед розстрочкою</h3><ul><li>Визначте, чи потрібна покупка зараз і чи є дешевший спосіб вирішити проблему.</li><li>Порівняйте ціну готівкою із сумою всіх платежів.</li><li>Перевірте реальну річну процентну ставку, комісії та додаткові послуги.</li><li>Відніміть платіж від вільних коштів, а не від усього доходу.</li><li>Залиште резерв на несподівані витрати й перевірте сценарій поганого місяця.</li></ul></article>
+          <article class="review-card"><h3>Контрольні запитання</h3><ul><li>Скільки гривень я сплачу за весь строк?</li><li>Які послуги можна прибрати з договору?</li><li>Скільки залишиться після обов’язкових витрат і платежу?</li><li>Що станеться, якщо дохід зменшиться або з’явиться термінова витрата?</li><li>Чи готовий я платити за цей телефон ще через рік?</li></ul></article>
+        </div>
+        <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+        <div class="sources">Матеріал звірено з поясненням НБУ <a href="https://harazd.bank.gov.ua/article/krediti/umovi-kredituvanna/golovni-pravila-pozicalnika-so-varto-znati-pers-niz-oformluvati-kredit" target="_blank" rel="noopener">про умови кредитування</a>, пам’яткою <a href="https://bank.gov.ua/ua/file/download?file=%D0%86%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%8F_%D0%B4%D0%BB%D1%8F_%D1%81%D0%BF%D0%BE%D0%B6%D0%B8%D0%B2%D0%B0%D1%87%D0%B0-%D1%81%D0%BF%D0%BE%D0%B6%D0%B8%D0%B2%D1%87%D0%B8%D0%B9_%D0%BA%D1%80%D0%B5%D0%B4%D0%B8%D1%82.pdf" target="_blank" rel="noopener">для споживача кредиту</a> та <a href="https://zakon.rada.gov.ua/laws/show/1734-19" target="_blank" rel="noopener">Законом України «Про споживче кредитування»</a>.</div>
+      </section>
+    </section>
+  </div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Телефон у розстрочку</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body>
+</html>
