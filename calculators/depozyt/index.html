@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Розрахунок доходу депозиту після податків, із капіталізацією та оцінкою інфляції."><meta name="theme-color" content="#174A3D">
+  <title>Реальний дохід депозиту - CASHBRAIN</title><link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Калькулятори</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Калькулятори</a><span>/</span><span>Депозит</span></div>
+  <div class="eyebrow">Калькулятор заощаджень</div><h1>Реальний дохід депозиту</h1><p class="hero__lead">Оцініть не лише рекламну ставку, а чистий дохід після податків і орієнтовну купівельну спроможність майбутньої суми.</p>
+  <div class="hero__meta"><span class="chip">Податок на проценти 23%</span><span class="chip">Капіталізація</span><span class="chip">Оцінка інфляції</span></div>
+</div></section>
+<section class="calc-main"><div class="container calc-grid">
+  <section class="panel"><div class="panel-head"><div class="panel-head__label">Ваші дані</div><h2>Вкажіть умови депозиту</h2><p>Модель використовує щомісячне нарахування процентів. Реальний банківський договір може мати інший порядок.</p></div>
+    <form id="calcForm" onsubmit="return false"><div class="fields"><div class="field"><label for="initial">Початкова сума</label><div class="input-wrap"><input id="initial" type="number" min="0" step="100" value="50000"><span>грн</span></div></div>
+<div class="field"><label for="rate">Річна ставка</label><div class="input-wrap"><input id="rate" type="number" min="0" max="100" step="0.1" value="15"><span>%</span></div></div>
+<div class="field"><label for="months">Строк</label><div class="input-wrap"><input id="months" type="number" min="1" max="120" step="1" value="12"><span>міс.</span></div></div>
+<div class="field"><label for="topup">Щомісячне поповнення</label><div class="input-wrap"><input id="topup" type="number" min="0" step="100" value="1000"><span>грн</span></div></div>
+<div class="field"><label for="capitalization">Капіталізація</label><select id="capitalization"><option value="yes">Так, щомісяця</option><option value="no">Ні</option></select></div>
+<div class="field"><label for="inflation">Очікувана інфляція</label><div class="input-wrap"><input id="inflation" type="number" min="0" max="100" step="0.1" value="8"><span>% на рік</span></div></div></div><div class="actions"><button class="button button--primary" type="button" id="resetBtn">Початкові значення</button></div></form>
+  </section>
+  <aside class="result" aria-live="polite"><div class="panel-head__label">Результат</div><h2>Чистий результат</h2><p class="result__lead">Податок розраховується лише з процентного доходу, а не з внесених коштів.</p>
+    <div class="result__hero"><span>Сума наприкінці строку</span><strong id="final">0 грн</strong></div><div class="metrics">
+<div class="metric"><span>Внесено власних коштів</span><strong id="contributions">0 грн</strong></div>
+<div class="metric"><span>Нараховано процентів</span><strong id="grossInterest">0 грн</strong></div>
+<div class="metric"><span>Податки з процентів</span><strong id="tax">0 грн</strong></div>
+<div class="metric"><span>Чистий процентний дохід</span><strong id="netInterest">0 грн</strong></div>
+<div class="metric"><span>Сума в сьогоднішніх цінах</span><strong id="realValue">0 грн</strong></div></div>
+    <div class="result-note" id="resultNote">Порівнюйте чисту дохідність із очікуваною інфляцією.</div>
+    <p class="source-note">Сукупна ставка оподаткування процентного доходу за депозитом становить 23%: ПДФО 18% і військовий збір 5%. Перевірено 30.07.2026 за даними <a href="https://talan.bank.gov.ua/korysne/calc/calc-deposit" target="_blank" rel="noopener">Центру фінансових знань «Талан» НБУ</a>.</p>
+  </aside>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансові калькулятори</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі калькулятори</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="../shared.js"></script><script>(function(){"use strict";function calc(){var initial=CB.n("initial"),rate=CB.n("rate")/100,months=CB.clamp(Math.round(CB.n("months")||1),1,120),topup=CB.n("topup"),cap=CB.v("capitalization")==="yes",infl=CB.n("inflation")/100;var principal=initial,grossTotal=0,taxTotal=0,paidInterest=0;for(var i=0;i<months;i++){principal+=topup;var gross=principal*rate/12;var tax=gross*.23;var net=gross-tax;grossTotal+=gross;taxTotal+=tax;if(cap)principal+=net;else paidInterest+=net;}var final=principal+paidInterest;var contributions=initial+topup*months;var real=final/Math.pow(1+infl,months/12);CB.text("final",CB.money(final));CB.text("contributions",CB.money(contributions));CB.text("grossInterest",CB.money(grossTotal));CB.text("tax",CB.money(taxTotal));CB.text("netInterest",CB.money(grossTotal-taxTotal));CB.text("realValue",CB.money(real));var realDiff=real-contributions;var note=document.getElementById("resultNote");note.className="result-note"+(realDiff<0?" result-note--warning":"");CB.text("resultNote",realDiff>=0?"За введеного припущення щодо інфляції купівельна спроможність зростає приблизно на "+CB.money(realDiff)+".":"За введеного припущення щодо інфляції реальна вартість може бути меншою за суму внесків приблизно на "+CB.money(Math.abs(realDiff))+".");}document.getElementById("resetBtn").addEventListener("click",function(){CB.reset("calcForm",calc)});CB.bind(calc);}());</script>
+</body></html>
