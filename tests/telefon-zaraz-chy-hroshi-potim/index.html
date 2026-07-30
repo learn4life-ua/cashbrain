@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Ситуаційний тест CASHBRAIN Телефон зараз чи гроші потім: 12 рішень про потребу, знижку, розстрочку, кредит і бюджет.">
+  <meta name="theme-color" content="#174A3D"><title>Телефон зараз чи гроші потім? - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Телефон і бюджет</span></div>
+  <div class="eyebrow">Ситуаційний тест</div><h1>Телефон зараз чи гроші потім?</h1>
+  <p class="hero__lead">Уявіть, що ви справді обираєте новий смартфон. На кожному кроці вирішуйте так, як зробили б у житті, а не так, як «треба» для тесту.</p>
+  <div class="hero__meta"><span class="chip">12 рішень</span><span class="chip">4 фінансові навички</span><span class="chip">Без реклами брендів</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Рішення <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть реалістичну для себе дію</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Як ви вчините?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Телефон і бюджет</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../calculators/vartist-rozstrochky/">Калькулятор розстрочки</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"Ваш телефон працює, але повільний і має слабку батарею. З’явилася нова модель, яка дуже подобається. З чого почнете?",options:[
+      {text:"Визначу, які проблеми справді заважають і чи можна їх вирішити дешевше",points:{need:3,cost:2,terms:1,stability:3}},
+      {text:"Нова модель уже вийшла, тому час купувати",points:{need:0,cost:0,terms:0,stability:0}},
+      {text:"Не купуватиму телефон, доки старий остаточно не зламається",points:{need:2,cost:3,terms:1,stability:2}},
+      {text:"Порівняю ремонт, заміну батареї та кілька нових моделей",points:{need:3,cost:3,terms:2,stability:3}}
+    ]},
+    {text:"Потрібні функції є в моделях за 12 000, 18 000 і 28 000 грн. Як визначите бюджет?",options:[
+      {text:"Виберу найдорожчу, щоб довше не міняти",points:{need:1,cost:0,terms:1,stability:0}},
+      {text:"Визначу потрібні функції та максимальну суму без шкоди обов’язковим витратам",points:{need:3,cost:3,terms:2,stability:3}},
+      {text:"Візьму найдешевшу без перевірки характеристик",points:{need:1,cost:3,terms:0,stability:2}},
+      {text:"Орієнтуватимуся на модель, яку найчастіше показують у соцмережах",points:{need:0,cost:0,terms:0,stability:0}}
+    ]},
+    {text:"Магазин показує таймер: «Знижка 30% закінчиться через 20 хвилин». Ваша дія?",options:[
+      {text:"Куплю негайно, інакше втрачу економію",points:{need:0,cost:0,terms:0,stability:0}},
+      {text:"Перевірю ціну в інших магазинах та історію вартості",points:{need:2,cost:3,terms:2,stability:2}},
+      {text:"Відмовлюся від моделі назавжди",points:{need:1,cost:2,terms:1,stability:2}},
+      {text:"Збережу пропозицію й повернуся до рішення після паузи",points:{need:3,cost:2,terms:2,stability:3}}
+    ]},
+    {text:"Телефон коштує 18 000 грн або 1 850 грн на місяць протягом 12 місяців. Що порівняєте?",options:[
+      {text:"Лише те, чи можу заплатити 1 850 грн цього місяця",points:{need:1,cost:0,terms:0,stability:0}},
+      {text:"Повну суму 12 платежів, комісії та ціну при звичайній оплаті",points:{need:2,cost:3,terms:3,stability:2}},
+      {text:"Тільки розмір першого внеску",points:{need:0,cost:0,terms:1,stability:0}},
+      {text:"Кількість банків у переліку магазину",points:{need:0,cost:0,terms:0,stability:0}}
+    ]},
+    {text:"У рекламі написано «0%», але в умовах є щомісячна комісія та обов’язкова послуга. Як це оцінити?",options:[
+      {text:"0% означає, що переплати точно немає",points:{need:1,cost:0,terms:0,stability:0}},
+      {text:"Комісії не важливі, якщо платіж невеликий",points:{need:0,cost:0,terms:1,stability:0}},
+      {text:"Додам усі платежі й послуги до повної вартості покупки",points:{need:2,cost:3,terms:3,stability:3}},
+      {text:"Підпишу договір, а умови прочитаю вдома",points:{need:0,cost:0,terms:0,stability:0}}
+    ]},
+    {text:"Після обов’язкових витрат у вас залишається близько 3 000 грн на місяць. Платіж за телефон становитиме 2 200 грн.",options:[
+      {text:"Це нормально, ще залишиться 800 грн",points:{need:1,cost:1,terms:1,stability:0}},
+      {text:"Перевірю, чи вистачить залишку на нерегулярні витрати й резерв у кожному місяці",points:{need:2,cost:3,terms:2,stability:3}},
+      {text:"Оформлю, а за потреби позичатиму",points:{need:0,cost:0,terms:0,stability:0}},
+      {text:"Обираю дешевшу модель або відкладаю покупку",points:{need:3,cost:3,terms:2,stability:3}}
+    ]},
+    {text:"Для покупки за власні кошти доведеться використати майже всю фінансову подушку. Що зробите?",options:[
+      {text:"Витрачу резерв, бо телефон теж важливий",points:{need:1,cost:1,terms:1,stability:0}},
+      {text:"Визначу мінімальний недоторканний резерв і шукатиму інший варіант",points:{need:3,cost:3,terms:2,stability:3}},
+      {text:"Куплю в кредит і збережу весь резерв, не рахуючи платежі",points:{need:1,cost:0,terms:0,stability:1}},
+      {text:"Відкладу покупку й накопичу окрему суму",points:{need:3,cost:3,terms:2,stability:3}}
+    ]},
+    {text:"Знайшли вживаний телефон удвічі дешевше. Який підхід найрозумніший?",options:[
+      {text:"Переказати завдаток, поки товар не купив хтось інший",points:{need:1,cost:1,terms:0,stability:0}},
+      {text:"Перевірити стан, серійні дані, блокування, документи й безпечний спосіб оплати",points:{need:3,cost:3,terms:3,stability:3}},
+      {text:"Відмовитися від усіх уживаних пристроїв",points:{need:1,cost:1,terms:1,stability:2}},
+      {text:"Повірити рейтингу продавця без перевірки телефона",points:{need:1,cost:2,terms:0,stability:0}}
+    ]},
+    {text:"До телефона пропонують додаткову гарантію та страхування. Як вирішите?",options:[
+      {text:"Погоджуся на все, що рекомендує продавець",points:{need:0,cost:0,terms:1,stability:1}},
+      {text:"Відмовлюся від усього, не читаючи",points:{need:1,cost:2,terms:0,stability:1}},
+      {text:"Перевірю покриття, винятки, строк і ціну порівняно з ризиком",points:{need:3,cost:3,terms:3,stability:3}},
+      {text:"Оберу найдорожчий пакет для спокою",points:{need:1,cost:0,terms:1,stability:2}}
+    ]},
+    {text:"До вартості додаються чохол, захисне скло, зарядний пристрій і перенесення даних. Як це врахуєте?",options:[
+      {text:"Це дрібниці, їх можна не рахувати",points:{need:1,cost:0,terms:0,stability:1}},
+      {text:"Додам лише вартість чохла",points:{need:1,cost:1,terms:1,stability:1}},
+      {text:"Порахую повний стартовий бюджет і відмовлюся від непотрібних послуг",points:{need:3,cost:3,terms:3,stability:3}},
+      {text:"Візьму все в ту саму розстрочку без перегляду суми",points:{need:0,cost:0,terms:0,stability:0}}
+    ]},
+    {text:"Батьки або друг готові позичити частину суми без процентів. Що важливо зробити?",options:[
+      {text:"Взяти гроші й не обговорювати повернення",points:{need:1,cost:1,terms:0,stability:0}},
+      {text:"Чітко домовитися про суму, строки й реальний графік повернення",points:{need:2,cost:3,terms:3,stability:3}},
+      {text:"Пообіцяти повернути, коли з’явиться можливість",points:{need:1,cost:1,terms:1,stability:0}},
+      {text:"Позичити більше, щоб купити дорожчу модель",points:{need:0,cost:0,terms:1,stability:0}}
+    ]},
+    {text:"Після всіх розрахунків модель за 18 000 грн перевищує комфортний бюджет, а модель за 13 500 грн має всі потрібні функції. Ваш фінал?",options:[
+      {text:"Візьму дорожчу, бо вона більше подобається",points:{need:1,cost:0,terms:1,stability:0}},
+      {text:"Обираю модель за 13 500 грн і зберігаю запас у бюджеті",points:{need:3,cost:3,terms:3,stability:3}},
+      {text:"Відмовлюся від покупки будь-якого телефона",points:{need:1,cost:2,terms:1,stability:2}},
+      {text:"Оформлю найдовшу розстрочку на дорожчу модель",points:{need:0,cost:0,terms:0,stability:0}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.need+t.cost+t.terms+t.stability,max=144;
+    let title,lead;
+    if(total<48){title="Покупка керує рішенням";lead="Реклама, щомісячний платіж або бажання нової моделі поки переважають повний розрахунок. Перед оформленням варто зробити паузу й побачити загальну ціну для бюджету."}
+    else if(total<84){title="Раціональність із зоною ризику";lead="Ви перевіряєте частину умов, але окремі витрати або наслідки можуть залишитися за кадром. Повний кошторис і межа комфортного платежу зроблять рішення стійкішим."}
+    else if(total<116){title="Зважений покупець";lead="Ви поєднуєте потребу, характеристики, повну ціну та можливості бюджету. Іноді бажання ще впливає на вибір, але не руйнує фінансову картину."}
+    else{title="Стратег розумної покупки";lead="Ви не плутаєте доступний платіж із доступною покупкою. Перевіряєте потребу, повну вартість, договір і запас міцності, а бренд залишаєте на другому місці."}
+    const level=v=>v>=28?"сильна навичка":v>=18?"стабільна навичка":"зона для тренування";
+    return{label:"Ваш результат",title,lead,scoreLabel:"Зваженість рішення",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Реальна потреба",text:`${t.need} із 36, ${level(t.need)}. Показує, чи відповідає модель вашим завданням, а не лише бажанню оновлення.`},
+        {title:"Повна вартість",text:`${t.cost} із 36, ${level(t.cost)}. Враховує ціну, комісії, послуги, аксесуари та альтернативи.`},
+        {title:"Умови покупки",text:`${t.terms} із 36, ${level(t.terms)}. Відображає увагу до договору, гарантії, строків і способу оплати.`},
+        {title:"Стійкість бюджету",text:`${t.stability} із 36, ${level(t.stability)}. Показує, чи залишаються кошти на потреби, резерв і несподівані витрати.`}
+      ],tipsTitle:"Формула перед покупкою телефона",tips:[
+        "Запишіть три обов’язкові функції та максимальну суму, яку бюджет витримує без позик на щоденні потреби.",
+        "Порахуйте ціну телефона разом із комісіями, послугами, гарантією та потрібними аксесуарами.",
+        "Порівняйте три варіанти: купити зараз, накопичити й купити пізніше або вибрати доступнішу модель."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
