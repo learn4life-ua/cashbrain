@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про поломку ноутбука, діагностику, ремонт, уживану техніку, кредит, гарантію та захист даних.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Зламався ноутбук - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="container hero__inner">
+    <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Зламався ноутбук</span></div>
+    <div class="eyebrow">Інтерактивний кейс · несподівані витрати</div>
+    <h1>Зламався ноутбук</h1>
+    <p class="hero__lead">До здачі курсової 48 годин, а ноутбук не вмикається. Ремонт, уживана техніка, новий кредит або тимчасова заміна: яке рішення збереже і завдання, і бюджет?</p>
+    <div class="hero__meta"><span class="chip">5 рішень</span><span class="chip">Захист даних</span><span class="chip">Розгалужений фінал</span></div>
+  </div></section>
+
+  <section class="case-shell"><div class="container">
+    <div class="case-intro" id="case-intro">
+      <article class="brief">
+        <span class="brief__label">Ситуація</span>
+        <h2>Чорний екран перед дедлайном</h2>
+        <p>На ноутбуці зберігаються матеріали до курсової та особисті файли. Резерв становить 10 000 грн, вільні кошти на місяць - 3 000 грн. У сервісі попереджають, що ремонт може тривати три дні.</p>
+        <p class="privacy-note">Це навчальний сценарій. Відповіді не зберігаються й нікуди не надсилаються.</p>
+      </article>
+      <aside class="start-card">
+        <strong>Ваші стартові умови</strong>
+        <ul class="start-list">
+          <li><span>Фінансовий резерв</span><b>10 000 грн</b></li>
+          <li><span>До дедлайну</span><b>48 годин</b></li>
+          <li><span>Вільні кошти</span><b>3 000 грн/міс.</b></li>
+          <li><span>Початковий ризик</span><b>25 зі 100</b></li>
+        </ul>
+        <button class="case-start" id="start-button" type="button">Почати історію →</button>
+      </aside>
+    </div>
+
+    <section class="game" id="game" aria-live="polite">
+      <div class="dashboard" aria-label="Поточні показники">
+        <div class="metric"><span class="metric__label">Фінансовий резерв</span><strong class="metric__value" id="metric-reserve">10 000 грн</strong></div>
+        <div class="metric"><span class="metric__label">До дедлайну</span><strong class="metric__value" id="metric-hours">48 год</strong></div>
+        <div class="metric"><span class="metric__label">Заплановані витрати</span><strong class="metric__value" id="metric-cost">0 грн</strong></div>
+        <div class="metric"><span class="metric__label">Ризик, менше краще</span><strong class="metric__value" id="metric-risk">25 / 100</strong></div>
+      </div>
+      <div class="game-grid" id="game-grid">
+        <article class="scene">
+          <div class="progress-line" aria-hidden="true"><span id="progress"></span></div>
+          <div class="scene__step" id="scene-step">Рішення 1 із 5</div>
+          <h2 id="scene-title"></h2>
+          <p class="scene__copy" id="scene-copy"></p>
+          <div class="scene__prompt">Що ви зробите?</div>
+          <div class="choices" id="choices"></div>
+          <div class="consequence" id="consequence">
+            <div class="consequence__label">Наслідок рішення</div>
+            <h3 id="consequence-title"></h3>
+            <p id="consequence-copy"></p>
+            <button class="next-button" id="next-button" type="button">Продовжити →</button>
+          </div>
+        </article>
+        <aside class="side">
+          <article class="side-card"><span class="side-card__label">Порядок дій</span><h3>Спочатку не купуйте</h3><ul><li>зафіксуйте симптоми;</li><li>перевірте гарантію;</li><li>отримайте діагностику й кошторис;</li><li>захистіть дані;</li><li>знайдіть тимчасовий пристрій.</li></ul></article>
+          <article class="side-card"><span class="side-card__label">Перед сервісом</span><h3>Ноутбук містить більше, ніж деталі</h3><p>Зробіть резервну копію, якщо це можливо. Не передавайте основні паролі. Зафіксуйте комплектність і стан пристрою в документі приймання.</p></article>
+        </aside>
+      </div>
+
+      <section class="result" id="result">
+        <span class="result__badge" id="result-badge">Ваш фінал</span>
+        <h2 id="result-title"></h2>
+        <p class="result__lead" id="result-lead"></p>
+        <div class="result-stats">
+          <div class="result-stat"><span>Залишок резерву</span><strong id="result-reserve"></strong></div>
+          <div class="result-stat"><span>Загальні витрати</span><strong id="result-cost"></strong></div>
+          <div class="result-stat"><span>Платіж/місяць</span><strong id="result-payment"></strong></div>
+          <div class="result-stat"><span>Фінальний ризик</span><strong id="result-risk"></strong></div>
+        </div>
+        <div class="review-grid">
+          <article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article>
+          <article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article>
+          <article class="review-card"><h3>Алгоритм після поломки</h3><ul><li>Не приймайте дороге рішення до діагностики.</li><li>Перевірте чек, гарантію та можливість безоплатного ремонту.</li><li>Захистіть файли й доступи перед передаванням пристрою.</li><li>Попросіть письмовий кошторис, строк і гарантію на виконані роботи.</li><li>Окремо вирішіть термінове завдання за допомогою позиченого або орендованого пристрою.</li></ul></article>
+          <article class="review-card"><h3>Як перевірити вживаний ноутбук</h3><ul><li>Перевірте батарею, накопичувач, екран, клавіатуру, порти й зарядний пристрій.</li><li>Звірте серійний номер та переконайтеся, що немає чужих блокувань.</li><li>Не переказуйте завдаток до огляду.</li><li>Зафіксуйте продавця, комплектацію, ціну й факт оплати.</li></ul></article>
+        </div>
+        <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+        <div class="sources">Матеріал звірено з роз’ясненнями Держпродспоживслужби про <a href="https://dpss.gov.ua/news/znai_svoi_pravaharantiinyi_remont" target="_blank" rel="noopener">гарантійний ремонт техніки</a> та <a href="https://dpss.gov.ua/news/znai-svoi-prava-vidteper-harantiinyi-talon-mozhe-nadavatysia-v-elektronnomu-vyhliadi" target="_blank" rel="noopener">електронний гарантійний талон</a>, а також рекомендаціями <a href="https://cyberpolice.gov.ua/article/zaxyst-paroliv-yak-osnova-bezpechnogo-korystuvannya-onlajn-servisamy-1666/" target="_blank" rel="noopener">Кіберполіції щодо паролів</a>.</div>
+      </section>
+    </section>
+  </div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Зламався ноутбук</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body>
+</html>
