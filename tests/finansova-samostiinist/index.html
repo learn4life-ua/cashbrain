@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Тест CASHBRAIN Чи готовий я до фінансової самостійності: 12 запитань про бюджет, побут, платежі, резерв і відповідальність.">
+  <meta name="theme-color" content="#174A3D"><title>Чи готовий я до фінансової самостійності? - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Фінансова самостійність</span></div>
+  <div class="eyebrow">Тест для себе</div><h1>Чи готовий я до фінансової самостійності?</h1>
+  <p class="hero__lead">Оцініть не лише вміння рахувати гроші, а й готовність планувати побут, виконувати домовленості та діяти, коли місяць іде не за планом.</p>
+  <div class="hero__meta"><span class="chip">12 запитань</span><span class="chip">4 складові готовності</span><span class="chip">Без правильних відповідей</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Запитання <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть чесну для себе відповідь</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Як це відбувається у вас?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансова самостійність</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../calculators/orenda/">Калькулятор оренди</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"Ви плануєте жити окремо. Наскільки точно знаєте свої щомісячні витрати?",options:[
+      {text:"Знаю основні суми й перевіряв їх за кілька місяців",points:{planning:3,household:2,resilience:2,responsibility:3}},
+      {text:"Маю приблизне уявлення, але нічого не записував",points:{planning:1,household:1,resilience:1,responsibility:1}},
+      {text:"Орієнтуюся лише на вартість оренди",points:{planning:0,household:1,resilience:0,responsibility:0}},
+      {text:"Поки не знаю, розраховую розібратися після переїзду",points:{planning:0,household:0,resilience:1,responsibility:0}}
+    ]},
+    {text:"Ваш дохід змінюється від місяця до місяця. Як плануватимете обов’язкові платежі?",options:[
+      {text:"Братиму за основу обережний прогноз доходу й створю буфер",points:{planning:3,household:2,resilience:3,responsibility:3}},
+      {text:"Плануватиму за найкращим місяцем",points:{planning:0,household:1,resilience:0,responsibility:1}},
+      {text:"Сплачуватиму, коли надходитимуть гроші",points:{planning:0,household:1,resilience:1,responsibility:0}},
+      {text:"Знайду мінімальну суму витрат і заздалегідь визначу, що скорочувати",points:{planning:3,household:2,resilience:3,responsibility:2}}
+    ]},
+    {text:"Як ви організуєте оплату оренди, комунальних послуг і мобільного зв’язку?",options:[
+      {text:"Створю календар платежів і нагадування",points:{planning:3,household:3,resilience:2,responsibility:3}},
+      {text:"Покладатимуся на повідомлення від сервісів",points:{planning:1,household:1,resilience:1,responsibility:1}},
+      {text:"Сплачуватиму лише після нагадування або прострочення",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Попрошу когось постійно контролювати дати",points:{planning:1,household:1,resilience:0,responsibility:0}}
+    ]},
+    {text:"Потрібно спланувати харчування на тиждень. Що вам найближче?",options:[
+      {text:"Складу простий список страв і покупок у межах суми",points:{planning:3,household:3,resilience:2,responsibility:2}},
+      {text:"Купуватиму щодня те, чого захочеться",points:{planning:0,household:1,resilience:0,responsibility:1}},
+      {text:"Замовлятиму доставку, якщо не буде часу",points:{planning:0,household:1,resilience:1,responsibility:1}},
+      {text:"Визначу базові продукти, а частину бюджету залишу гнучкою",points:{planning:2,household:3,resilience:3,responsibility:2}}
+    ]},
+    {text:"Перед підписанням договору оренди ви…",options:[
+      {text:"Прочитаю умови, перевірю суми, строки, заставу й відповідальність",points:{planning:3,household:2,resilience:2,responsibility:3}},
+      {text:"Перегляну лише розмір оренди",points:{planning:1,household:1,resilience:0,responsibility:1}},
+      {text:"Підпишу, якщо квартира сподобалася",points:{planning:0,household:1,resilience:0,responsibility:0}},
+      {text:"Попрошу іншу людину вирішити все замість мене",points:{planning:1,household:0,resilience:0,responsibility:0}}
+    ]},
+    {text:"Несподівано зламався потрібний побутовий прилад. Як діятимете?",options:[
+      {text:"Оціню ремонт, альтернативи й використаю резерв за потреби",points:{planning:2,household:3,resilience:3,responsibility:3}},
+      {text:"Одразу куплю новий у кредит",points:{planning:0,household:1,resilience:1,responsibility:1}},
+      {text:"Чекатиму, поки проблему вирішить хтось інший",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Тимчасово обійдуся без нього й накопичу потрібну суму",points:{planning:2,household:2,resilience:3,responsibility:2}}
+    ]},
+    {text:"Який запас грошей ви вважаєте потрібним перед окремим життям?",options:[
+      {text:"Стартові витрати плюс резерв на кілька місяців необхідних платежів",points:{planning:3,household:2,resilience:3,responsibility:3}},
+      {text:"Лише сума за перший місяць",points:{planning:1,household:1,resilience:0,responsibility:1}},
+      {text:"Запас не потрібен, якщо є кредитна картка",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Хоча б стартова сума й невеликий буфер із планом поповнення",points:{planning:2,household:2,resilience:2,responsibility:2}}
+    ]},
+    {text:"У середині місяця ви розумієте, що витрати перевищують план. Що зробите?",options:[
+      {text:"Перевірю категорії, зупиню необов’язкове й скоригую план",points:{planning:3,household:2,resilience:3,responsibility:3}},
+      {text:"Не дивитимуся на баланс до наступного доходу",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Позичу гроші, не змінюючи витрат",points:{planning:0,household:1,resilience:1,responsibility:0}},
+      {text:"Скорочу все до мінімуму, навіть необхідне",points:{planning:1,household:1,resilience:1,responsibility:2}}
+    ]},
+    {text:"Родина готова регулярно допомагати грошима. Як це вплине на ваш план?",options:[
+      {text:"Узгоджу суму й строк допомоги, але будуватиму план поступової незалежності",points:{planning:3,household:2,resilience:2,responsibility:3}},
+      {text:"Вважатиму цю допомогу гарантованою назавжди",points:{planning:1,household:1,resilience:0,responsibility:0}},
+      {text:"Відмовлюся від будь-якої допомоги, навіть у кризовій ситуації",points:{planning:1,household:1,resilience:1,responsibility:2}},
+      {text:"Не включатиму її в бюджет, але збережу як можливий тимчасовий ресурс",points:{planning:2,household:1,resilience:3,responsibility:2}}
+    ]},
+    {text:"Ви захворіли й тимчасово не можете підробляти. Чи витримає бюджет?",options:[
+      {text:"Маю резерв і знаю, які витрати можна швидко скоротити",points:{planning:3,household:2,resilience:3,responsibility:3}},
+      {text:"Розраховую одразу позичити",points:{planning:0,household:1,resilience:1,responsibility:1}},
+      {text:"Не думав про таку ситуацію",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Маю невеликий запас і план звернення по тимчасову допомогу",points:{planning:2,household:1,resilience:2,responsibility:2}}
+    ]},
+    {text:"Як ви ставитеся до побутових обов’язків у самостійному житті?",options:[
+      {text:"Розумію їхній обсяг і готовий планувати час та витрати",points:{planning:2,household:3,resilience:2,responsibility:3}},
+      {text:"Гроші важливіші, а побут якось складеться",points:{planning:1,household:0,resilience:1,responsibility:1}},
+      {text:"Очікую, що більшість робитиме інша людина",points:{planning:0,household:0,resilience:0,responsibility:0}},
+      {text:"Не все вмію, але готовий навчатися й розподіляти завдання",points:{planning:2,household:2,resilience:3,responsibility:3}}
+    ]},
+    {text:"Що для вас означає фінансова самостійність?",options:[
+      {text:"Планувати власні кошти, виконувати зобов’язання й просити допомогу усвідомлено",points:{planning:3,household:2,resilience:3,responsibility:3}},
+      {text:"Ніколи й ні від кого не приймати допомоги",points:{planning:1,household:1,resilience:0,responsibility:2}},
+      {text:"Мати достатньо грошей на бажані покупки",points:{planning:0,household:1,resilience:0,responsibility:1}},
+      {text:"Жити окремо, навіть якщо всі витрати оплачують інші",points:{planning:0,household:1,resilience:0,responsibility:0}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.planning+t.household+t.resilience+t.responsibility,max=144;
+    let title,lead;
+    if(total<48){title="Потрібна підготовча база";lead="Окреме життя поки може принести більше фінансового напруження, ніж свободи. Почніть із власного місячного кошторису та відповідальності за кілька регулярних платежів."}
+    else if(total<84){title="Готовність формується";lead="Ви розумієте основні витрати й обов’язки, але частина рішень ще залежить від допомоги або сприятливого місяця. Резерв і побутова практика додадуть впевненості."}
+    else if(total<116){title="Майже самостійний маршрут";lead="Ви здатні планувати, виконувати домовленості й перебудовувати бюджет. Варто лише перевірити слабшу складову на реальних цифрах до переїзду."}
+    else{title="Зріла фінансова готовність";lead="Ви бачите самостійність не як відсутність допомоги, а як здатність планувати, відповідати за рішення та спокійно діяти у складній ситуації."}
+    const level=v=>v>=28?"сильна складова":v>=18?"стабільна складова":"потребує практики";
+    return{label:"Ваш результат",title,lead,scoreLabel:"Готовність до самостійності",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Планування бюджету",text:`${t.planning} із 36, ${level(t.planning)}. Доходи, постійні платежі, строки та межі витрат.`},
+        {title:"Побутова готовність",text:`${t.household} із 36, ${level(t.household)}. Харчування, житло, покупки й щоденні обов’язки.`},
+        {title:"Фінансова стійкість",text:`${t.resilience} із 36, ${level(t.resilience)}. Резерв, гнучкість і реакція на непередбачені події.`},
+        {title:"Відповідальність",text:`${t.responsibility} із 36, ${level(t.responsibility)}. Домовленості, документи й готовність відповідати за власний вибір.`}
+      ],tipsTitle:"Практична перевірка перед окремим життям",tips:[
+        "Протягом місяця ведіть власний бюджет так, ніби вже оплачуєте всі основні потреби самостійно.",
+        "Порахуйте стартову суму: перший місяць, застава, побутові покупки та резерв.",
+        "Візьміть на себе два регулярні платежі й організуйте їх без нагадувань інших."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
