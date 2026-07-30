@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про повідомлення від друга, зламаний акаунт і безпечну перевірку термінового переказу.">
+  <meta name="theme-color" content="#174A3D"><title>Терміновий переказ - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="case-hero"><div class="container">
+  <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Терміновий переказ</span></div>
+  <div class="eyebrow">Кейс 06 · Фінансова безпека</div>
+  <h1>Друг просить терміновий переказ</h1>
+  <p class="case-hero__lead">У месенджері пише знайома людина: «Виручи, будь ласка. Треба 4 200 грн просто зараз». Фото, ім’я та історія листування справжні. Але картка чужа, телефонувати незручно, а часу на роздуми нібито немає.</p>
+</div></section>
+<section class="case-shell"><div class="container">
+  <div class="case-intro" id="case-intro">
+    <article class="intro-copy"><div class="section-kicker">Вхідне повідомлення · 18:42</div><h2>Допомогти другу чи спочатку перевірити?</h2><p>Повідомлення надійшло з акаунта вашого одногрупника Артема. Він просить переказати гроші на картку «сестри» й обіцяє повернути завтра. У вас на картці 7 000 грн, а відповісти треба «за п’ять хвилин».</p><div class="signal-list"><span>Терміновість</span><span>Чужа картка</span><span>Відмова від дзвінка</span></div></article>
+    <aside class="start-card"><strong>Ваші стартові умови</strong><ul class="start-list"><li><span>Кошти на картці</span><b>7 000 грн</b></li><li><span>Перевірка особи</span><b>0 зі 100</b></li><li><span>Фінансова безпека</span><b>50 зі 100</b></li><li><span>Ризик</span><b>35 зі 100</b></li></ul><button class="case-start" id="start-button" type="button">Почати перевірку →</button></aside>
+  </div>
+  <section class="game" id="game" aria-live="polite">
+    <div class="metrics">
+      <div class="metric"><span class="metric__label">Ваші кошти</span><strong class="metric__value" id="metric-money">7 000 грн</strong></div>
+      <div class="metric"><span class="metric__label">Перевірка особи</span><strong class="metric__value" id="metric-verification">0 / 100</strong></div>
+      <div class="metric"><span class="metric__label">Фінансова безпека</span><strong class="metric__value" id="metric-safety">50 / 100</strong></div>
+      <div class="metric"><span class="metric__label">Ризик</span><strong class="metric__value" id="metric-risk">35 / 100</strong></div>
+    </div>
+    <div class="game-grid" id="game-grid">
+      <article class="scene"><div class="progress-line" aria-hidden="true"><span id="progress"></span></div><div class="scene__step" id="scene-step">Рішення 1 із 5</div><h2 id="scene-title"></h2><p class="scene__copy" id="scene-copy"></p><div class="scene__prompt">Що ви зробите?</div><div class="choices" id="choices"></div><div class="consequence" id="consequence"><div class="consequence__label">Наслідок рішення</div><h3 id="consequence-title"></h3><p id="consequence-copy"></p><button class="next-button" id="next-button" type="button">Продовжити →</button></div></article>
+      <aside class="context-card"><div class="context-card__label">Ознаки тиску</div><h3>Шахрай хоче вимкнути паузу</h3><p>Терміновість, прохання зберегти все в таємниці та чужі реквізити не доводять шахрайство окремо. Разом вони є причиною зупинитися й перевірити людину незалежним каналом.</p><ul><li>Не використовуйте номер або посилання з підозрілого повідомлення.</li><li>Не повідомляйте PIN, CVV і коди підтвердження.</li><li>Збережіть повідомлення та реквізити як докази.</li></ul></aside>
+    </div>
+    <section class="result" id="result">
+      <span class="result__badge" id="result-badge">Ваш фінал</span><h2 id="result-title"></h2><p class="result__lead" id="result-lead"></p>
+      <div class="result-stats"><div class="result-stat"><span>Залишок коштів</span><strong id="result-money"></strong></div><div class="result-stat"><span>Перевірка особи</span><strong id="result-verification"></strong></div><div class="result-stat"><span>Фінансова безпека</span><strong id="result-safety"></strong></div><div class="result-stat"><span>Ризик</span><strong id="result-risk"></strong></div></div>
+      <div class="review-grid"><article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article><article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article><article class="review-card"><h3>Алгоритм безпечної перевірки</h3><ul><li>Зупиніться й не переказуйте гроші під тиском.</li><li>Зателефонуйте людині за номером, який уже знали раніше.</li><li>Поставте запитання, відповідь на яке знає лише ваш знайомий.</li><li>Не переходьте за посиланнями з такого листування.</li><li>Попередьте інших, якщо акаунт справді зламали.</li></ul></article><article class="review-card"><h3>Якщо гроші або дані вже передано</h3><ul><li>Негайно зателефонуйте до банку за офіційним номером.</li><li>Попросіть заблокувати картку та онлайн-доступ, якщо дані скомпрометовано.</li><li>Збережіть чеки, скриншоти, посилання та реквізити.</li><li>Подайте звернення до Кіберполіції.</li><li>Не вірте особам, які обіцяють «повернути кошти» за нову оплату.</li></ul></article></div>
+      <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+      <div class="sources">Матеріал звірено з рекомендаціями НБУ про <a href="https://harazd.bank.gov.ua/article/sahrajstvo/scenarii-platiznogo-sahrajstva/scenarii-sahrajstva-v-socialnih-merezah-ta-mesendzerah" target="_blank" rel="noopener">шахрайство в соцмережах і месенджерах</a> та порадами <a href="https://cyberpolice.gov.ua/news/shaxrajska-sxema-drug-prosyt-u-borg-u-mesendzheri-prosti-pravyla-bezpeky-8700/" target="_blank" rel="noopener">Кіберполіції щодо схеми «друг просить у борг»</a>.</div>
+    </section>
+  </section>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Терміновий переказ</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body>
+</html>
