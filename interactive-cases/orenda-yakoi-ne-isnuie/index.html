@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Інтерактивний кейс CASHBRAIN про безпечну оренду житла, перевірку оголошення та захист від передоплати шахраям.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Оренда, якої не існує - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="container hero__inner">
+    <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Кейси</a><span>/</span><span>Оренда, якої не існує</span></div>
+    <div class="eyebrow">Інтерактивний кейс · житло та безпека</div>
+    <h1>Оренда, якої не існує</h1>
+    <p class="hero__lead">До початку навчання чотири дні. Ви знаходите дуже вигідну квартиру, але власник наполягає на передоплаті. Спробуйте не втратити гроші й час.</p>
+    <div class="hero__meta"><span class="chip">5 рішень</span><span class="chip">3 варіанти на кожному кроці</span><span class="chip">Кілька фіналів</span></div>
+  </div></section>
+
+  <section class="case-shell"><div class="container">
+    <div class="case-intro" id="case-intro">
+      <article class="brief">
+        <span class="brief__label">Ситуація</span>
+        <h2>Дешевше за ринок і лише сьогодні</h2>
+        <p>Оголошення обіцяє квартиру за 6 500 грн на місяць. Фото привабливі, до коледжу двадцять хвилин, а «власник» зараз за кордоном. Він готовий притримати житло, якщо ви швидко перекинете гроші.</p>
+        <p class="privacy-note">Це навчальний сценарій. Відповіді обробляються лише у вашому браузері та нікуди не надсилаються.</p>
+      </article>
+      <aside class="start-card">
+        <strong>Ваші стартові умови</strong>
+        <ul class="start-list">
+          <li><span>Гроші на заселення</span><b>18 000 грн</b></li>
+          <li><span>Час до навчання</span><b>4 дні</b></li>
+          <li><span>Початковий ризик</span><b>30 зі 100</b></li>
+          <li><span>Надійність угоди</span><b>30 зі 100</b></li>
+        </ul>
+        <button class="case-start" id="start-button" type="button">Почати історію →</button>
+      </aside>
+    </div>
+
+    <section class="game" id="game" aria-live="polite">
+      <div class="dashboard" aria-label="Поточні показники">
+        <div class="metric"><span class="metric__label">Доступні кошти</span><strong class="metric__value" id="metric-money">18 000 грн</strong></div>
+        <div class="metric"><span class="metric__label">Ризик, менше краще</span><strong class="metric__value" id="metric-risk">30 / 100</strong></div>
+        <div class="metric"><span class="metric__label">Час до навчання</span><strong class="metric__value" id="metric-time">4 дні</strong></div>
+        <div class="metric"><span class="metric__label">Надійність угоди</span><strong class="metric__value" id="metric-trust">30 / 100</strong></div>
+      </div>
+      <div class="game-grid" id="game-grid">
+        <article class="scene">
+          <div class="progress-line" aria-hidden="true"><span id="progress"></span></div>
+          <div class="scene__step" id="scene-step">Рішення 1 із 5</div>
+          <h2 id="scene-title"></h2>
+          <p class="scene__copy" id="scene-copy"></p>
+          <div class="scene__prompt">Що ви зробите?</div>
+          <div class="choices" id="choices"></div>
+          <div class="consequence" id="consequence">
+            <div class="consequence__label">Наслідок рішення</div>
+            <h3 id="consequence-title"></h3>
+            <p id="consequence-copy"></p>
+            <button class="next-button" id="next-button" type="button">Продовжити →</button>
+          </div>
+        </article>
+        <aside class="side">
+          <article class="side-card"><span class="side-card__label">На що дивитися</span><h3>Червоні прапорці</h3><ul><li>ціна помітно нижча за схожі варіанти;</li><li>поспіх і «ще один орендар уже платить»;</li><li>передоплата до огляду;</li><li>одержувач грошей не збігається з договором.</li></ul></article>
+          <article class="side-card"><span class="side-card__label">Як читати показники</span><h3>Це модель, а не гарантія</h3><p>Ризик і надійність допомагають порівняти ваші рішення всередині кейсу. У реальній угоді одного показника недостатньо.</p></article>
+        </aside>
+      </div>
+
+      <section class="result" id="result">
+        <span class="result__badge" id="result-badge">Ваш фінал</span>
+        <h2 id="result-title"></h2>
+        <p class="result__lead" id="result-lead"></p>
+        <div class="result-stats">
+          <div class="result-stat"><span>Залишок коштів</span><strong id="result-money"></strong></div>
+          <div class="result-stat"><span>Переказано шахраям</span><strong id="result-loss"></strong></div>
+          <div class="result-stat"><span>Фінальний ризик</span><strong id="result-risk"></strong></div>
+          <div class="result-stat"><span>Надійність</span><strong id="result-trust"></strong></div>
+        </div>
+        <div class="review-grid">
+          <article class="review-card"><h3>Що спрацювало</h3><ul id="result-strengths"></ul></article>
+          <article class="review-card"><h3>Що варто змінити</h3><ul id="result-improvements"></ul></article>
+          <article class="review-card"><h3>Алгоритм безпечної оренди</h3><ul><li>Порівняйте ціну з кількома схожими оголошеннями.</li><li>Перевірте фото, адресу, профіль і повторюваність оголошення.</li><li>Огляньте житло та перевірте повноваження людини, яка його здає.</li><li>Зіставте дані в документах, договорі та реквізитах оплати.</li><li>Не переказуйте гроші лише через поспіх або обіцянку «забронювати».</li></ul></article>
+          <article class="review-card"><h3>Якщо гроші вже переказані</h3><ul><li>Негайно зв’яжіться з банком через офіційний номер або застосунок.</li><li>Збережіть оголошення, листування, чеки, реквізити та посилання.</li><li>Подайте звернення до Кіберполіції, не продовжуйте платити «за повернення».</li></ul></article>
+        </div>
+        <div class="result-actions"><button class="button button--primary" id="restart-button" type="button">Пройти ще раз</button><a class="button" href="../">До всіх кейсів</a><a class="button" href="../../">На головний хаб</a></div>
+        <div class="sources">Поради в кейсі звірено з матеріалами <a href="https://cyberpolice.gov.ua/article/yak-ne-staty-zhertvoyu-afery-pid-chas-bronyuvannya-zhytla-onlajn-7562/" target="_blank" rel="noopener">Кіберполіції про оренду житла</a> та кампанією НБУ <a href="https://promo.bank.gov.ua/stopfraud/" target="_blank" rel="noopener">#ШахрайГудбай</a>.</div>
+      </section>
+    </section>
+  </div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Оренда, якої не існує</div><div class="footer__links"><a href="../">Усі кейси</a><a href="../../">Головний хаб</a><a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></div></div></footer>
+<script src="./case.js"></script>
+</body>
+</html>
