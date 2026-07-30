@@ -323,6 +323,60 @@
     }
   </style>
 
+
+  <style id="cashbrain-site-footer-style">
+    .cb-site-footer {
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,.09);
+      background: var(--green-deep, #103A31);
+      color: rgba(255,255,255,.62);
+    }
+
+    .cb-site-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+    }
+
+    .cb-site-footer__brand strong {
+      color: var(--white, #FFFFFF);
+      letter-spacing: .04em;
+    }
+
+    .cb-site-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+    }
+
+    .cb-site-footer__links a {
+      color: var(--accent-light, #A8E7AD);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .cb-site-footer__links a:hover {
+      color: var(--white, #FFFFFF);
+    }
+
+    .cb-site-footer__links a:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(98,201,107,.28);
+    }
+
+    @media (max-width: 720px) {
+      .cb-site-footer { padding: 26px 0; }
+      .cb-site-footer__inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+      }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -421,5 +475,18 @@
     $("resetBtn").addEventListener("click",reset);$("cheapestBtn").addEventListener("click",()=>{state.selectedOfferId=best(state.calculations).lowestOverpaymentId;update();document.querySelector(`[data-offer-card="${state.selectedOfferId}"]`)?.scrollIntoView({behavior:"smooth",block:"center"})});update();
   })();
   </script>
+
+  <footer class="cb-site-footer">
+    <div class="container cb-site-footer__inner">
+      <div class="cb-site-footer__brand">
+        <strong>CASHBRAIN</strong> · Фінансові симулятори
+      </div>
+      <nav class="cb-site-footer__links" aria-label="Навігація в підвалі">
+        <a href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
+        <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+      </nav>
+    </div>
+  </footer>
+
 </body>
 </html>
