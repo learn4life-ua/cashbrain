@@ -55,6 +55,12 @@
     .field-input:hover{border-color:#9FC6AA}
     .privacy{display:flex;margin-bottom:22px;padding:14px 16px;border:1px solid #C8DED0;border-radius:15px;align-items:flex-start;gap:11px;background:var(--soft);color:#4D675D;font-size:12px;line-height:1.55}
     .privacy__icon{display:grid;flex:0 0 auto;width:28px;height:28px;border-radius:9px;place-items:center;background:var(--white);color:var(--green-dark);font-size:11px;font-weight:950}
+    .how-to{margin:0 0 22px;padding:20px 21px;border:1px solid #BCD8C4;border-radius:18px;background:var(--white)}
+    .how-to__title{margin:0;color:var(--green-dark);font-size:17px;letter-spacing:-.02em}
+    .how-to__steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+    .how-to__step{display:flex;min-height:62px;padding:12px;border-radius:13px;align-items:flex-start;gap:10px;background:#F2F9F3;color:#4D675D;font-size:11.5px;line-height:1.45}
+    .how-to__number{display:grid;flex:0 0 auto;width:25px;height:25px;border-radius:8px;place-items:center;background:var(--green-dark);color:var(--white);font-size:10px;font-weight:950}
+    .how-to__hint{margin:12px 0 0;color:var(--green-dark);font-size:12px;font-weight:850}
     .summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
     .summary-card{min-height:112px;padding:17px;border:1px solid var(--border);border-radius:18px;background:var(--white)}
     .summary-card__label{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.055em;text-transform:uppercase}
@@ -74,12 +80,16 @@
     .budget-section__total strong{display:block;margin-top:6px;color:var(--green-dark);font-size:18px}
     .rows{padding:10px 14px 6px}
     .row-head,.budget-row{display:grid;grid-template-columns:minmax(0,1fr) 112px 112px 34px;gap:8px;align-items:center}
-    .row-head{padding:4px 5px 7px;color:var(--muted);font-size:9px;font-weight:900;text-transform:uppercase}
-    .row-head span:nth-child(n+2){text-align:center}
-    .budget-row{padding:5px;border-radius:12px}
+    .row-head{display:none}
+    .budget-row{padding:7px 5px;border-radius:12px}
     .budget-row:focus-within{background:#F6FBF7}
-    .budget-row input{width:100%;min-width:0;height:38px;padding:0 10px;border:1px solid #D6E2DA;border-radius:10px;background:#FBFCFB;color:var(--text)}
-    .budget-row input[type="number"]{text-align:right;font-variant-numeric:tabular-nums}
+    .field-wrap{display:block;min-width:0}
+    .field-wrap__label{display:block;min-height:14px;margin:0 0 5px;color:var(--muted);font-size:9px;font-weight:900;line-height:1.25}
+    .field-wrap--plan .field-wrap__label{color:var(--green-dark)}
+    .budget-row input{width:100%;min-width:0;height:42px;padding:0 10px;border:1px solid #D6E2DA;border-radius:10px;background:#FBFCFB;color:var(--text)}
+    .field-wrap--plan input{border-color:#9FC9AA;background:#F1FAF2}
+    .field-wrap--plan input:focus{border-color:var(--green-dark)}
+    .budget-row input[type="number"]{text-align:right;font-size:15px;font-weight:750;font-variant-numeric:tabular-nums}
     .budget-row input:hover{border-color:#AFCCB7}
     .remove-row{display:grid;width:32px;height:32px;padding:0;border:0;border-radius:9px;place-items:center;background:transparent;color:#809088;font-size:20px;line-height:1}
     .remove-row:hover{background:#FCEEEE;color:var(--danger)}
@@ -139,9 +149,13 @@
       .budget-section__head{padding:18px;flex-direction:column;gap:12px}
       .budget-section__total{text-align:left}
       .rows{padding:9px 10px}
-      .row-head{display:none}
-      .budget-row{position:relative;grid-template-columns:1fr 1fr;gap:7px;padding:9px 38px 9px 6px;border-bottom:1px solid #EDF2EF;border-radius:0}
-      .budget-row input:first-child{grid-column:1/-1}
+      .how-to{padding:17px}
+      .how-to__steps{grid-template-columns:1fr}
+      .how-to__step{min-height:auto}
+      .budget-row{position:relative;grid-template-columns:1fr 1fr;gap:9px;padding:11px 38px 11px 6px;border-bottom:1px solid #EDF2EF;border-radius:0}
+      .budget-row .field-wrap--name{grid-column:1/-1}
+      .field-wrap__label{font-size:10px}
+      .budget-row input{height:46px;font-size:16px}
       .budget-row input::placeholder{opacity:1}
       .remove-row{position:absolute;top:13px;right:2px}
       .section-actions{padding:9px 15px 16px}
@@ -229,6 +243,16 @@
         </div>
 
         <div class="privacy"><span class="privacy__icon" aria-hidden="true">i</span><span>Дані залишаються лише на цій сторінці, не передаються та не зберігаються. Щоб залишити копію, роздрукуйте аркуш або збережіть його як PDF.</span></div>
+
+        <section class="how-to" aria-labelledby="howToTitle">
+          <h3 class="how-to__title" id="howToTitle">Як заповнювати аркуш</h3>
+          <div class="how-to__steps">
+            <div class="how-to__step"><span class="how-to__number">1</span><span>Оберіть місяць і впишіть джерела доходів та статті витрат.</span></div>
+            <div class="how-to__step"><span class="how-to__number">2</span><span>У зелені поля <strong>«Сума за планом, грн»</strong> внесіть очікувані суми.</span></div>
+            <div class="how-to__step"><span class="how-to__number">3</span><span>Поля <strong>«Фактична сума, грн»</strong> заповніть наприкінці місяця.</span></div>
+          </div>
+          <p class="how-to__hint">Почніть із блоку «Доходи». Натисніть на зелене поле з нулем і введіть суму.</p>
+        </section>
 
         <div class="summary" aria-live="polite">
           <article class="summary-card"><span class="summary-card__label">Усього доходів</span><strong class="summary-card__value" id="summaryIncome">0 грн</strong><span class="summary-card__note">за планом</span></article>
@@ -322,6 +346,21 @@
       const balanceCard = document.getElementById("balanceCard");
       const verdict = document.getElementById("verdict");
 
+      const decorateMoneyFields = root => {
+        root.querySelectorAll(".budget-row").forEach(row => {
+          [...row.querySelectorAll(":scope > input")].forEach((input, index) => {
+            const wrapper = document.createElement("label");
+            wrapper.className = index === 0 ? "field-wrap field-wrap--name" : index === 1 ? "field-wrap field-wrap--plan" : "field-wrap field-wrap--actual";
+            const caption = document.createElement("span");
+            caption.className = "field-wrap__label";
+            caption.textContent = index === 0 ? (input.getAttribute("aria-label") || "Назва") : index === 1 ? "Сума за планом, грн" : "Фактична сума, грн";
+            input.parentNode.insertBefore(wrapper, input);
+            wrapper.append(caption, input);
+            if (input.type === "number") input.placeholder = "0";
+          });
+        });
+      };
+
       const numberValue = input => {
         const value = Number.parseFloat(input.value);
         return Number.isFinite(value) && value >= 0 ? value : 0;
@@ -399,8 +438,11 @@
         const nameLabel = section === "income" ? "Джерело доходу" : section === "savings" ? "Напрям заощаджень" : "Стаття витрат";
         row.innerHTML = `<input type="text" aria-label="${nameLabel}" placeholder="Власна назва"><input type="number" min="0" step="100" inputmode="decimal" placeholder="План" aria-label="Запланована сума"><input type="number" min="0" step="100" inputmode="decimal" placeholder="Факт" aria-label="Фактична сума"><button class="remove-row" type="button" aria-label="Видалити рядок">×</button>`;
         row.querySelector('input[type="text"]').value = label;
+        decorateMoneyFields(row);
         return row;
       };
+
+      decorateMoneyFields(grid);
 
       grid.addEventListener("input", event => {
         if (event.target.matches('input[type="number"]')) update();
