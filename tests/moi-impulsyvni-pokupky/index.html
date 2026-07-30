@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Тест CASHBRAIN Мої імпульсивні покупки: 12 запитань про емоції, знижки, соцмережі та зручність, які провокують зайві витрати.">
+  <meta name="theme-color" content="#174A3D"><title>Мої імпульсивні покупки - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Імпульсивні покупки</span></div>
+  <div class="eyebrow">Тест для себе</div><h1>Мої імпульсивні покупки</h1>
+  <p class="hero__lead">Дізнайтеся, що найчастіше запускає незаплановані витрати: емоції, реклама, вплив оточення чи бажання отримати все швидко й без зусиль.</p>
+  <div class="hero__meta"><span class="chip">12 запитань</span><span class="chip">4 групи тригерів</span><span class="chip">Без правильних відповідей</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Запитання <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Ваші відповіді не зберігаються</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Оберіть найближчий варіант</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Мої імпульсивні покупки</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../calculators/finansova-zvychka/">Калькулятор звички</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"profile",
+  questions:[
+    {text:"Після складного дня ви бачите річ, яка давно подобається. Що найімовірніше?",options:[
+      {text:"Куплю, щоб підняти собі настрій",points:{emotion:3,marketing:1,social:0,convenience:1}},
+      {text:"Додам у список і повернуся до рішення завтра",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Перевірю бюджет і причину, чому хочу її саме зараз",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Куплю, якщо оплату можна розділити на частини",points:{emotion:2,marketing:1,social:0,convenience:3}}
+    ]},
+    {text:"Магазин показує знижку 50% лише до опівночі. Ваша реакція?",options:[
+      {text:"Замовлю швидко, щоб не втратити вигоду",points:{emotion:1,marketing:3,social:0,convenience:1}},
+      {text:"Порівняю звичайну ціну й перевірю, чи потрібен товар",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Додам ще товарів, щоб максимально використати акцію",points:{emotion:1,marketing:3,social:0,convenience:2}},
+      {text:"Закрию сторінку й повернуся до неї після завершення таймера",points:{emotion:0,marketing:0,social:0,convenience:0}}
+    ]},
+    {text:"Улюблений блогер радить новий продукт і дає промокод. Що впливає на вас найбільше?",options:[
+      {text:"Довіра до блогера й відчуття, що всі вже користуються",points:{emotion:1,marketing:2,social:3,convenience:0}},
+      {text:"Промокод, бо шкода втрачати знижку",points:{emotion:0,marketing:3,social:1,convenience:1}},
+      {text:"Незалежні відгуки, склад або характеристики й власна потреба",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Замовлю невелику версію просто з цікавості",points:{emotion:2,marketing:1,social:2,convenience:1}}
+    ]},
+    {text:"До безкоштовної доставки не вистачає 180 грн. Що зробите?",options:[
+      {text:"Додам щось дрібне, щоб не платити за доставку",points:{emotion:0,marketing:3,social:0,convenience:2}},
+      {text:"Порівняю ціну зайвого товару з вартістю доставки",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Додам кілька речей, які можуть колись знадобитися",points:{emotion:1,marketing:3,social:0,convenience:2}},
+      {text:"Відкладу замовлення до появи справді потрібної покупки",points:{emotion:0,marketing:0,social:0,convenience:0}}
+    ]},
+    {text:"Ви гортаєте маркетплейс пізно ввечері без конкретної мети. Чим це зазвичай закінчується?",options:[
+      {text:"Часто знаходжу щось цікаве й одразу замовляю",points:{emotion:3,marketing:2,social:0,convenience:2}},
+      {text:"Додаю товари в обране, але рідко купую одразу",points:{emotion:1,marketing:1,social:0,convenience:0}},
+      {text:"Не використовую магазини як спосіб провести час",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Замовляю, якщо оплата займає один клік",points:{emotion:2,marketing:1,social:0,convenience:3}}
+    ]},
+    {text:"Друзі планують дорогий відпочинок, який не вписується у ваш бюджет. Ваша реакція?",options:[
+      {text:"Погоджуся, щоб не випадати з компанії",points:{emotion:1,marketing:0,social:3,convenience:1}},
+      {text:"Запропоную доступніший формат або чесно поясню межу",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Оплачу кредиткою й розберуся потім",points:{emotion:2,marketing:0,social:3,convenience:3}},
+      {text:"Піду лише на частину подій, яку можу оплатити",points:{emotion:0,marketing:0,social:1,convenience:0}}
+    ]},
+    {text:"Застосунок пропонує покупку зараз із оплатою пізніше. Що відчуваєте?",options:[
+      {text:"Товар здається доступнішим, тому вирішити легше",points:{emotion:1,marketing:2,social:0,convenience:3}},
+      {text:"Спершу рахую повну ціну й майбутні платежі",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Можу взяти дорожчий варіант, бо сьогодні платити не треба",points:{emotion:2,marketing:2,social:1,convenience:3}},
+      {text:"Відкладена оплата не змінює мій бюджет покупки",points:{emotion:0,marketing:0,social:0,convenience:0}}
+    ]},
+    {text:"Не хочеться готувати, хоча вдома є продукти. Що найімовірніше?",options:[
+      {text:"Замовлю доставку, бо зараз важливіша зручність",points:{emotion:1,marketing:0,social:0,convenience:3}},
+      {text:"Приготую найпростіший варіант із того, що є",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Замовлю, якщо застосунок надіслав знижку",points:{emotion:1,marketing:3,social:0,convenience:3}},
+      {text:"Домовлюся з друзями про спільне замовлення",points:{emotion:1,marketing:1,social:2,convenience:2}}
+    ]},
+    {text:"Пробний період сервісу закінчується завтра. Як діятимете?",options:[
+      {text:"Залишу підписку, бо скасувати можна пізніше",points:{emotion:0,marketing:1,social:0,convenience:3}},
+      {text:"Перевірю, чи користувався сервісом і скільки він коштує за рік",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Забуду про дату списання",points:{emotion:0,marketing:1,social:0,convenience:3}},
+      {text:"Продовжу, якщо сервіс популярний серед знайомих",points:{emotion:0,marketing:1,social:3,convenience:1}}
+    ]},
+    {text:"У кошику вже п’ять незапланованих товарів. Що відбувається перед оплатою?",options:[
+      {text:"Оплачую швидко, доки не передумав",points:{emotion:3,marketing:2,social:0,convenience:3}},
+      {text:"Видаляю те, що не купив би без знижки або реклами",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Залишаю кошик на добу й перевіряю його знову",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Додаю ще щось, щоб отримати бонус",points:{emotion:1,marketing:3,social:0,convenience:2}}
+    ]},
+    {text:"Сповіщення магазину повідомляє: «Ваш товар майже розпродано». Як це на вас діє?",options:[
+      {text:"З’являється бажання завершити покупку негайно",points:{emotion:2,marketing:3,social:1,convenience:1}},
+      {text:"Перевіряю, чи товар справді був у моєму плані",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Думаю, що інші вже оцінили товар, тому він вартий покупки",points:{emotion:1,marketing:2,social:3,convenience:0}},
+      {text:"Вимикаю рекламні сповіщення, якщо вони тиснуть",points:{emotion:0,marketing:0,social:0,convenience:0}}
+    ]},
+    {text:"Після незапланованої покупки ви розумієте, що річ не дуже потрібна. Що робите?",options:[
+      {text:"Засмучуюся, але незабаром повторюю подібну покупку",points:{emotion:3,marketing:1,social:0,convenience:1}},
+      {text:"Перевіряю можливість повернення й записую, що стало тригером",points:{emotion:0,marketing:0,social:0,convenience:0}},
+      {text:"Залишаю, бо незручно оформлювати повернення",points:{emotion:1,marketing:0,social:0,convenience:3}},
+      {text:"Показую покупку друзям, щоб переконатися, що вона вдала",points:{emotion:2,marketing:0,social:3,convenience:1}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.emotion+t.marketing+t.social+t.convenience;
+    const profiles={
+      emotion:{title:"Емоційний покупець",lead:"Незапланована покупка часто стає швидкою винагородою, способом зменшити стрес або змінити настрій. Ваш головний захист не заборона, а пауза між емоцією та оплатою."},
+      marketing:{title:"Мисливець за вигодою",lead:"Знижки, таймери, бонуси й безкоштовна доставка легко перетворюють пропозицію на відчуття необхідності. Корисно рахувати не розмір знижки, а суму, якої не було у плані."},
+      social:{title:"Покупець під впливом оточення",lead:"Рекомендації, тренди й бажання бути разом із компанією помітно впливають на витрати. Власна фінансова межа допоможе залишатися в групі без чужого бюджету."},
+      convenience:{title:"Покупець одного кліку",lead:"Швидка доставка, збережена картка й оплата пізніше прибирають корисну паузу перед рішенням. Чим простіша покупка, тим важливіше додати власний контрольний крок."}
+    };
+    const top=Object.keys(t).sort((a,b)=>t[b]-t[a])[0];
+    const low=total<25,p=low?{title:"Усвідомлений покупець",lead:"Ваші відповіді показують, що реклама, емоції та зручність рідко керують рішенням самостійно. Ви переважно залишаєте собі час і перевіряєте реальну потребу."}:profiles[top];
+    const level=v=>v>=20?"сильний вплив":v>=10?"помірний вплив":"слабкий вплив";
+    const topName=low?"Ви керуєте рішенням":top==="emotion"?"Емоції":top==="marketing"?"Маркетинг":top==="social"?"Оточення":"Зручність";
+    return{label:"Ваш фінансовий тригер",title:p.title,lead:p.lead,scoreLabel:"Найпомітніший вплив",scoreValue:topName,
+      items:[
+        {title:"Емоції",text:`${t.emotion} балів, ${level(t.emotion)} на незаплановані покупки.`},
+        {title:"Маркетингові прийоми",text:`${t.marketing} балів, ${level(t.marketing)} знижок, таймерів і бонусів.`},
+        {title:"Оточення й тренди",text:`${t.social} балів, ${level(t.social)} рекомендацій і бажання не випадати з компанії.`},
+        {title:"Зручність покупки",text:`${t.convenience} балів, ${level(t.convenience)} одного кліку, доставки й відкладеної оплати.`}
+      ],tipsTitle:"Три способи повернути рішення собі",tips:[
+        "Запровадьте паузу 24 години для незапланованих покупок дорожче визначеної вами суми.",
+        "Вимкніть рекламні сповіщення та видаліть збережену картку там, де покупки трапляються автоматично.",
+        "Перед оплатою дайте відповідь на три питання: чи планував, чи використаю, від чого відмовлюся заради цієї покупки."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
