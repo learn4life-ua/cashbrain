@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Ситуаційний тест CASHBRAIN Місяць на студентський бюджет: 12 рішень про стипендію, підробіток, оренду, покупки й несподівані витрати.">
+  <meta name="theme-color" content="#174A3D"><title>Місяць на студентський бюджет - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Студентський бюджет</span></div>
+  <div class="eyebrow">Ситуаційний тест</div><h1>Місяць на студентський бюджет</h1>
+  <p class="hero__lead">Уявіть, що це ваш звичайний місяць. Обирайте не ідеальну відповідь, а дію, яку ви справді найімовірніше зробили б.</p>
+  <div class="hero__meta"><span class="chip">12 ситуацій</span><span class="chip">4 фінансові навички</span><span class="chip">Без оцінки «добре» чи «погано»</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Ситуація <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть реалістичну для себе дію</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Що ви зробите?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Місяць на студентський бюджет</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../simulators/">Симулятори</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"На початку місяця ви отримали 4 000 грн стипендії та 3 500 грн за підробіток. Ваш перший крок?",options:[
+      {text:"Визначу обов’язкові витрати, суму на тиждень і невеликий резерв",points:{planning:3,safety:1,resilience:2,control:2}},
+      {text:"Залишу все на картці й витрачатиму за потреби",points:{planning:0,safety:0,resilience:0,control:1}},
+      {text:"Одразу відкладу більшість, навіть якщо не вистачить на щоденні потреби",points:{planning:1,safety:2,resilience:1,control:3}},
+      {text:"Спочатку куплю те, що давно хотілося",points:{planning:0,safety:0,resilience:0,control:0}}
+    ]},
+    {text:"Після пар друзі пропонують піти в заклад. Ваш тижневий ліміт майже вичерпано.",options:[
+      {text:"Запропоную дешевший формат або піду без великого замовлення",points:{planning:2,safety:1,resilience:2,control:3}},
+      {text:"Піду як завжди, наступного тижня витрачатиму менше",points:{planning:1,safety:0,resilience:1,control:1}},
+      {text:"Оплачу кредитною карткою й не змінюватиму інші плани",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Відмовлюся, не перевіряючи, чи є доступний варіант",points:{planning:1,safety:2,resilience:0,control:3}}
+    ]},
+    {text:"Навушники зламалися. Нова модель коштує 3 200 грн, а дешевша з потрібними функціями 1 700 грн.",options:[
+      {text:"Порівняю характеристики, відгуки й виберу достатній для моїх потреб варіант",points:{planning:3,safety:2,resilience:2,control:3}},
+      {text:"Візьму дорожчу в розстрочку, бо платіж виглядає невеликим",points:{planning:0,safety:0,resilience:1,control:0}},
+      {text:"Куплю найдешевшу без перевірки якості",points:{planning:1,safety:1,resilience:1,control:2}},
+      {text:"Позичу навушники й запланую суму на покупку наступного місяця",points:{planning:3,safety:2,resilience:3,control:3}}
+    ]},
+    {text:"Вам прийшло повідомлення про «повернення 800 грн», для якого треба перейти за посиланням і ввести дані картки.",options:[
+      {text:"Перевірю інформацію на офіційному сайті й не вводитиму дані за посиланням",points:{planning:1,safety:3,resilience:2,control:2}},
+      {text:"Перейду, але спочатку подивлюся, чи сайт гарний",points:{planning:0,safety:0,resilience:0,control:1}},
+      {text:"Введу дані картки без грошей, щоб перевірити",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Перешлю друзям і запитаю, чи вони вже отримали",points:{planning:0,safety:1,resilience:1,control:1}}
+    ]},
+    {text:"У середині місяця з’явився обов’язковий платіж 1 200 грн, якого ви не очікували.",options:[
+      {text:"Перегляну залишок, скорочу необов’язкове й використаю резерв за потреби",points:{planning:3,safety:2,resilience:3,control:3}},
+      {text:"Позичу всю суму, не змінюючи поточних витрат",points:{planning:0,safety:0,resilience:1,control:0}},
+      {text:"Проігнорую платіж до наступного місяця",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Продам непотрібну річ або візьму разове завдання й частково скорочу витрати",points:{planning:2,safety:1,resilience:3,control:2}}
+    ]},
+    {text:"Сервіс списав 299 грн за підписку, якою ви майже не користуєтеся.",options:[
+      {text:"Скасую продовження й перевірю інші регулярні списання",points:{planning:3,safety:2,resilience:2,control:3}},
+      {text:"Залишу, бо 299 грн не змінять бюджет",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Скасую картку, не перевіряючи умови сервісу",points:{planning:0,safety:2,resilience:0,control:2}},
+      {text:"Поставлю нагадування вирішити це наступного місяця",points:{planning:1,safety:1,resilience:1,control:1}}
+    ]},
+    {text:"Власник квартири пропонує нижчу оренду без договору й підтвердження оплати.",options:[
+      {text:"Уточню умови, попрошу договір і фіксацію платежів",points:{planning:2,safety:3,resilience:2,control:2}},
+      {text:"Погоджуся, бо економія важливіша",points:{planning:1,safety:0,resilience:0,control:1}},
+      {text:"Одразу відмовлюся від будь-якої оренди",points:{planning:0,safety:3,resilience:0,control:2}},
+      {text:"Сплачу завдаток, а документи обговоримо після заселення",points:{planning:0,safety:0,resilience:0,control:0}}
+    ]},
+    {text:"За підробіток вам пропонують на 20% більше, але без чітко визначеного обсягу роботи й строку оплати.",options:[
+      {text:"Узгоджу завдання, строк, суму й спосіб підтвердження домовленостей",points:{planning:3,safety:3,resilience:2,control:2}},
+      {text:"Погоджуся, бо ставка вища",points:{planning:0,safety:0,resilience:1,control:0}},
+      {text:"Відмовлюся від усіх неофіційних підробітків без запитань",points:{planning:1,safety:3,resilience:0,control:2}},
+      {text:"Почну роботу, а деталі уточню після виконання",points:{planning:0,safety:0,resilience:1,control:0}}
+    ]},
+    {text:"До кінця місяця 10 днів, а на змінні витрати залишилося 1 500 грн.",options:[
+      {text:"Розподілю 1 500 грн на 10 днів і визначу пріоритети",points:{planning:3,safety:1,resilience:3,control:3}},
+      {text:"Витрачатиму як завжди, а потім попрошу допомоги",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Не витрачатиму нічого, навіть на необхідне",points:{planning:1,safety:2,resilience:0,control:3}},
+      {text:"Перевірю, що можна перенести, і знайду одну доступну можливість підзаробити",points:{planning:2,safety:1,resilience:3,control:2}}
+    ]},
+    {text:"Вам повернули 2 500 грн, на які ви вже не розраховували.",options:[
+      {text:"Частину додам у резерв, частину спряму на ціль або приємну покупку",points:{planning:3,safety:2,resilience:2,control:2}},
+      {text:"Витрачу всю суму сьогодні, бо це несподіваний бонус",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Залишу на основній картці без рішення",points:{planning:0,safety:1,resilience:1,control:1}},
+      {text:"Всю суму сховаю й не використаю навіть за потреби",points:{planning:1,safety:3,resilience:1,control:3}}
+    ]},
+    {text:"Друг просить позичити 1 000 грн до кінця тижня. Ці гроші потрібні вам для запланованого платежу.",options:[
+      {text:"Чесно поясню межу й запропоную інший спосіб допомоги",points:{planning:3,safety:2,resilience:2,control:3}},
+      {text:"Позичу, а свій платіж якось перенесу",points:{planning:0,safety:0,resilience:0,control:1}},
+      {text:"Візьму кредит, щоб вистачило обом",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Позичу лише суму, яку можу втратити без шкоди для обов’язкових витрат",points:{planning:2,safety:3,resilience:2,control:2}}
+    ]},
+    {text:"Наприкінці місяця у вас залишилося 600 грн. Який фінал найімовірніший?",options:[
+      {text:"Перевірю підсумки місяця й перенесу залишок у резерв або ціль",points:{planning:3,safety:2,resilience:3,control:3}},
+      {text:"Витрачу залишок, бо скоро нове надходження",points:{planning:0,safety:0,resilience:0,control:0}},
+      {text:"Залишу як буфер на початок наступного місяця",points:{planning:2,safety:3,resilience:3,control:2}},
+      {text:"Не аналізуватиму, головне, що не пішов у мінус",points:{planning:0,safety:1,resilience:1,control:1}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.planning+t.safety+t.resilience+t.control,max=144;
+    let title,lead;
+    if(total<48){title="Місяць потребує опори";lead="Частина рішень приймалася вже після появи проблеми. Найбільший ефект дасть не складна система, а одна проста межа витрат і невеликий резерв."}
+    else if(total<84){title="Гнучкий балансувальник";lead="Ви часто знаходите вихід із ситуації, але не всі рішення мають запас міцності. Трохи більше планування на початку місяця зменшить потребу виправляти бюджет наприкінці."}
+    else if(total<116){title="Впевнений керманич бюджету";lead="Ви поєднуєте план, обережність і здатність адаптуватися. Більшість несподіванок не руйнують місяць, бо ви бачите альтернативи та наслідки."}
+    else{title="Стратег із запасом міцності";lead="Ваші рішення добре захищають і поточні потреби, і майбутні можливості. Ви перевіряєте умови, тримаєте межі та вмієте змінити план без фінансової паніки."}
+    const level=v=>v>=28?"сильна навичка":v>=18?"стабільна навичка":"зона для тренування";
+    return{label:"Ваш стиль поведінки",title,lead,scoreLabel:"Стійкість фінансових рішень",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Планування",text:`${t.planning} із 36, ${level(t.planning)}. Показує, чи має рішення місце у загальній картині місяця.`},
+        {title:"Безпека",text:`${t.safety} із 36, ${level(t.safety)}. Відображає перевірку умов, захист даних і фінансових меж.`},
+        {title:"Гнучкість",text:`${t.resilience} із 36, ${level(t.resilience)}. Показує здатність адаптуватися до несподіваних витрат.`},
+        {title:"Контроль імпульсу",text:`${t.control} із 36, ${level(t.control)}. Відображає паузу між бажанням і витратою.`}
+      ],tipsTitle:"Одна зміна на наступний місяць",tips:[
+        "На початку місяця визначте обов’язкові платежі, тижневий ліміт і невелику суму без пояснень для себе.",
+        "Створіть правило паузи перед незапланованою покупкою: 24 години або перевірка трьох альтернатив.",
+        "Наприкінці місяця запишіть лише три цифри: загальний дохід, обов’язкові витрати та залишок."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
