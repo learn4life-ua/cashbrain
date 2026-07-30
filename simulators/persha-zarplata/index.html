@@ -745,9 +745,390 @@
       }
     }
   </style>
+
+  <style id="cashbrain-modern-shell">
+    :root {
+      --green-deep: #103A31;
+      --accent-light: #A8E7AD;
+      --shell-shadow: 0 14px 38px rgba(23, 74, 61, .09);
+    }
+
+    body { overflow-x: hidden; }
+
+    .cb-topbar {
+      position: absolute;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: var(--white);
+    }
+
+    .cb-topbar__inner {
+      display: flex;
+      min-height: 76px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .cb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .cb-brand__mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 13px;
+      background: rgba(255,255,255,.10);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: -.04em;
+      backdrop-filter: blur(12px);
+    }
+
+    .cb-brand__text strong {
+      display: block;
+      color: var(--white);
+      font-size: 15px;
+      letter-spacing: .05em;
+    }
+
+    .cb-brand__text span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255,255,255,.64);
+      font-size: 10px;
+    }
+
+    .cb-nav {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .cb-nav a {
+      padding: 10px 13px;
+      border-radius: 11px;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background-color .18s ease, color .18s ease;
+    }
+
+    .cb-nav a:hover {
+      background: rgba(255,255,255,.10);
+      color: var(--white);
+    }
+
+    .cb-nav .cb-nav__site {
+      margin-left: 4px;
+      border: 1px solid rgba(255,255,255,.18);
+      color: var(--white);
+    }
+
+    .cb-topbar a:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(98,201,107,.28);
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: 520px;
+      padding: 136px 0 58px;
+      overflow: hidden;
+      align-items: center;
+      background:
+        radial-gradient(circle at 86% 20%, rgba(98,201,107,.24), transparent 26%),
+        radial-gradient(circle at 8% 92%, rgba(168,231,173,.10), transparent 25%),
+        linear-gradient(135deg, var(--green-deep), var(--green)) !important;
+    }
+
+    .hero::after {
+      position: absolute;
+      top: 126px;
+      right: -80px;
+      width: 390px;
+      height: 390px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      max-width: 980px;
+      font-size: clamp(50px, 7.5vw, 84px);
+      line-height: .93;
+      letter-spacing: -.064em;
+    }
+
+    .hero .eyebrow {
+      margin-bottom: 18px;
+      color: var(--accent-light);
+      font-size: 11px;
+      letter-spacing: .13em;
+    }
+
+    .hero__lead,
+    .hero > .container > p {
+      max-width: 800px;
+      color: rgba(255,255,255,.78) !important;
+    }
+
+    .hero__chip {
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.75);
+    }
+
+    .progress {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.11);
+    }
+
+    .main { padding: 30px 0 56px; }
+
+    .panel,
+    .summary,
+    .side,
+    .project-footer {
+      border-color: var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shell-shadow);
+    }
+
+    .panel { min-width: 0; }
+
+    .field,
+    .preset,
+    .choice,
+    .scenario,
+    .metric,
+    .option,
+    .result-card,
+    .decision,
+    .chart-card {
+      border-radius: 16px;
+    }
+
+    .field,
+    .preset,
+    .choice,
+    .option {
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .preset:hover,
+    .choice:hover,
+    .option:hover {
+      border-color: #AFD4B8;
+      box-shadow: 0 10px 24px rgba(23,74,61,.07);
+      transform: translateY(-1px);
+    }
+
+    .btn,
+    .offer__select,
+    .option__button {
+      border-radius: 13px;
+    }
+
+    input,
+    select,
+    .money-input,
+    .percent-input,
+    .number-input,
+    .text-input,
+    .select-input {
+      border-radius: 12px;
+    }
+
+    .project-footer {
+      margin-top: 22px;
+      background:
+        radial-gradient(circle at 92% 18%, rgba(98,201,107,.14), transparent 28%),
+        linear-gradient(135deg, var(--white), #F7FBF8);
+    }
+
+    @media (max-width: 900px) {
+      .hero { min-height: 490px; }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .cb-topbar__inner { min-height: 68px; }
+      .cb-brand__text span { display: none; }
+      .cb-nav a:not(.cb-nav__site) { display: none; }
+      .cb-nav .cb-nav__site {
+        margin-left: 0;
+        padding: 9px 11px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 116px 0 48px;
+      }
+
+      .hero::after {
+        top: 130px;
+        right: -235px;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 15vw, 68px);
+      }
+
+      .hero__lead,
+      .hero > .container > p {
+        font-size: 15px;
+      }
+
+      .panel,
+      .summary,
+      .side,
+      .project-footer {
+        border-radius: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .cb-brand { gap: 9px; }
+      .cb-brand__mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+      .cb-brand__text strong { font-size: 13px; }
+      .cb-nav .cb-nav__site { font-size: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .preset, .choice, .option { transition: none !important; }
+    }
+  </style>
+
+
+  <style id="cashbrain-site-footer-style">
+    .cb-site-footer {
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,.09);
+      background: var(--green-deep, #103A31);
+      color: rgba(255,255,255,.62);
+    }
+
+    .cb-site-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+    }
+
+    .cb-site-footer__brand strong {
+      color: var(--white, #FFFFFF);
+      letter-spacing: .04em;
+    }
+
+    .cb-site-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+    }
+
+    .cb-site-footer__links a {
+      color: var(--accent-light, #A8E7AD);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .cb-site-footer__links a:hover {
+      color: var(--white, #FFFFFF);
+    }
+
+    .cb-site-footer__links a:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(98,201,107,.28);
+    }
+
+    @media (max-width: 720px) {
+      .cb-site-footer { padding: 26px 0; }
+      .cb-site-footer__inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+      }
+    }
+  </style>
+
+
+  <style id="cashbrain-explicit-hub-nav">
+    .cb-nav__short { display: none; }
+
+    @media (max-width: 720px) {
+      .cb-nav .cb-nav__hub {
+        display: inline-flex !important;
+      }
+
+      .cb-nav .cb-nav__catalog {
+        display: none !important;
+      }
+
+      .cb-nav__wide { display: none; }
+      .cb-nav__short { display: inline; }
+    }
+
+    @media (max-width: 420px) {
+      .cb-nav a { padding: 8px 9px; }
+    }
+  </style>
+
 </head>
 
 <body>
+
+  <header class="cb-topbar">
+    <div class="container cb-topbar__inner">
+      <a class="cb-brand" href="https://learn4life-ua.github.io/cashbrain/" aria-label="CASHBRAIN, головний хаб">
+        <span class="cb-brand__mark">CB</span>
+        <span class="cb-brand__text">
+          <strong>CASHBRAIN</strong>
+          <span>Центр фінансової грамотності</span>
+        </span>
+      </a>
+      <nav class="cb-nav" aria-label="Навігація симулятора">
+        <a class="cb-nav__hub" href="https://learn4life-ua.github.io/cashbrain/">
+          <span class="cb-nav__wide">Головний хаб</span>
+          <span class="cb-nav__short">Хаб</span>
+        </a>
+        <a class="cb-nav__catalog" href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
+        <a class="cb-nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">
+          <span class="cb-nav__wide">Сайт проєкту ↗</span>
+          <span class="cb-nav__short">Сайт ↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
   <header class="hero">
     <div class="container">
       <div class="eyebrow">Симулятор CASHBRAIN</div>
@@ -1472,5 +1853,19 @@
       goToStep(1);
     })();
   </script>
+
+  <footer class="cb-site-footer">
+    <div class="container cb-site-footer__inner">
+      <div class="cb-site-footer__brand">
+        <strong>CASHBRAIN</strong> · Фінансові симулятори
+      </div>
+      <nav class="cb-site-footer__links" aria-label="Навігація в підвалі">
+        <a class="cb-site-footer__hub" href="https://learn4life-ua.github.io/cashbrain/">Головний хаб</a>
+        <a href="https://learn4life-ua.github.io/cashbrain/simulators/">Усі симулятори</a>
+        <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+      </nav>
+    </div>
+  </footer>
+
 </body>
 </html>
