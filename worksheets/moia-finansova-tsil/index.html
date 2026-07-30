@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний робочий аркуш CASHBRAIN для планування особистої фінансової цілі.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Моя фінансова ціль - CASHBRAIN</title>
+  <style>
+    :root{--green:#1C5345;--green-dark:#174A3D;--green-deep:#103A31;--accent:#62C96B;--accent-light:#A8E7AD;--soft:#DFF6DF;--surface:#F7F9F6;--white:#fff;--text:#10231C;--muted:#63736D;--border:#DDE7E0;--danger:#B33A3A;--warning:#A66416;--shadow:0 18px 50px rgba(23,74,61,.10);--focus:0 0 0 4px rgba(98,201,107,.28)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--focus)}.container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .site-header{position:absolute;z-index:10;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.12)}.site-header__inner{display:flex;min-height:76px;justify-content:space-between;align-items:center;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;color:var(--white)}.brand__mark{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.10);font-size:14px;font-weight:950;letter-spacing:-.04em;backdrop-filter:blur(12px)}.brand__text strong{display:block;font-size:15px;letter-spacing:.05em}.brand__text span{display:block;margin-top:2px;color:rgba(255,255,255,.64);font-size:10px}.nav{display:flex;align-items:center;gap:7px}.nav a{padding:10px 13px;border-radius:11px;color:rgba(255,255,255,.78);font-size:12px;font-weight:800}.nav a:hover{background:rgba(255,255,255,.10);color:var(--white)}.nav .nav__worksheets{margin-left:4px;border:1px solid rgba(255,255,255,.18);color:var(--white)}
+    .hero{position:relative;min-height:500px;overflow:hidden;background:radial-gradient(circle at 86% 18%,rgba(98,201,107,.24),transparent 27%),linear-gradient(135deg,var(--green-deep),var(--green));color:var(--white)}.hero::before,.hero::after{position:absolute;border:1px solid rgba(255,255,255,.07);border-radius:50%;content:"";pointer-events:none}.hero::before{top:75px;right:-105px;width:410px;height:410px}.hero::after{top:140px;right:-22px;width:275px;height:275px}.hero__inner{position:relative;z-index:1;display:flex;min-height:500px;padding:128px 0 56px;flex-direction:column;justify-content:center}.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px;color:rgba(255,255,255,.60);font-size:11px;font-weight:800}.breadcrumb a:hover{color:var(--white)}.breadcrumb span:last-child{color:var(--accent-light)}.eyebrow{display:inline-flex;align-self:flex-start;min-height:30px;padding:0 11px;border:1px solid rgba(168,231,173,.22);border-radius:999px;align-items:center;background:rgba(255,255,255,.06);color:var(--accent-light);font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}h1{max-width:980px;margin:18px 0 0;font-size:clamp(48px,7vw,82px);line-height:.94;letter-spacing:-.06em}.hero__lead{max-width:790px;margin:23px 0 0;color:rgba(255,255,255,.77);font-size:clamp(15px,2vw,18px);line-height:1.68}.hero__meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.hero__chip{display:inline-flex;min-height:32px;padding:0 11px;border:1px solid rgba(255,255,255,.13);border-radius:999px;align-items:center;background:rgba(255,255,255,.055);color:rgba(255,255,255,.72);font-size:10.5px;font-weight:800}
+    .workspace{padding:66px 0 80px}.sheet-head{margin-bottom:22px}.section-kicker{margin-bottom:10px;color:var(--green);font-size:10.5px;font-weight:950;letter-spacing:.11em;text-transform:uppercase}h2{margin:0;font-size:clamp(34px,5vw,54px);line-height:1;letter-spacing:-.05em}.privacy{display:flex;margin-bottom:20px;padding:14px 16px;border:1px solid #C8DED0;border-radius:15px;align-items:flex-start;gap:11px;background:var(--soft);color:#4D675D;font-size:12px;line-height:1.55}.privacy__icon{display:grid;flex:0 0 auto;width:28px;height:28px;border-radius:9px;place-items:center;background:var(--white);color:var(--green-dark);font-size:11px;font-weight:950}
+    .how-to{margin-bottom:20px;padding:19px 20px;border:1px solid #BCD8C4;border-radius:18px;background:var(--white)}.how-to h3{margin:0;font-size:17px}.how-to__steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}.how-to__step{display:flex;padding:12px;border-radius:13px;gap:10px;background:#F2F9F3;color:#4D675D;font-size:11.5px;line-height:1.45}.how-to__number{display:grid;flex:0 0 auto;width:25px;height:25px;border-radius:8px;place-items:center;background:var(--green-dark);color:var(--white);font-size:10px;font-weight:950}
+    .goal-card{padding:24px;border:1px solid var(--border);border-radius:22px;background:var(--white);box-shadow:0 7px 22px rgba(23,74,61,.045)}.goal-card__head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.goal-card__head h3{margin:0;font-size:25px;letter-spacing:-.035em}.goal-card__head p{max-width:620px;margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.goal-grid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:12px}.field-label{display:block;margin:0 0 7px;color:var(--green-dark);font-size:10.5px;font-weight:900}.field{width:100%;min-height:48px;padding:0 12px;border:1px solid #C9DAD0;border-radius:12px;background:#FBFCFB;color:var(--text);font-size:14px}.field[type=number]{text-align:right;font-weight:850;font-variant-numeric:tabular-nums}.field--money{border-color:#8DC79A;background:#F1FAF2}.field-help{display:block;margin-top:6px;color:var(--muted);font-size:9.5px;line-height:1.35}
+    .summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:18px}.summary-card{min-height:112px;padding:16px;border:1px solid var(--border);border-radius:17px;background:var(--white)}.summary-card__label{display:block;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}.summary-card__value{display:block;margin-top:13px;font-size:clamp(20px,2.4vw,28px);font-weight:950;letter-spacing:-.04em}.summary-card__note{display:block;margin-top:5px;color:var(--muted);font-size:9.5px;line-height:1.35}.summary-card--accent{border-color:#A9D0B2;background:linear-gradient(145deg,var(--white),#F0FAF1)}
+    .progress-card{margin-top:18px;padding:21px;border:1px solid var(--border);border-radius:20px;background:var(--white)}.progress-card__top{display:flex;justify-content:space-between;align-items:end;gap:18px}.progress-card h3{margin:0;font-size:20px}.progress-card p{margin:6px 0 0;color:var(--muted);font-size:11px}.progress-value{color:var(--green-dark);font-size:22px;font-weight:950}.progress-track{height:14px;margin-top:15px;overflow:hidden;border-radius:999px;background:#E9F0EB}.progress-fill{width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green-dark),var(--accent));transition:width .25s ease}
+    .analysis{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(310px,.8fr);gap:18px;margin-top:18px}.analysis-card,.plan-card{padding:23px;border:1px solid var(--border);border-radius:22px;background:var(--white)}.analysis-card h3,.plan-card h3{margin:0;font-size:22px;letter-spacing:-.035em}.analysis-card__lead,.plan-card__lead{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.verdict{display:grid;margin-top:17px;padding:17px;border:1px solid #C7DDCD;border-radius:16px;grid-template-columns:40px minmax(0,1fr);gap:13px;background:var(--soft)}.verdict--neutral{border-color:var(--border);background:var(--surface)}.verdict--warning{border-color:#E8CEA9;background:#FFF8ED}.verdict--danger{border-color:#E8BABA;background:#FFF2F2}.verdict__icon{display:grid;width:40px;height:40px;border-radius:12px;place-items:center;background:var(--white);color:var(--green-dark);font-weight:950}.verdict strong{display:block;margin-bottom:4px;font-size:14px}.verdict p{margin:0;color:#536A61;font-size:11.5px;line-height:1.55}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.option-field{display:block}.option-field select{width:100%}.plan-list{display:grid;gap:10px;margin-top:15px}.plan-row{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:center}.plan-row__number{display:grid;width:32px;height:32px;border-radius:10px;place-items:center;background:var(--soft);color:var(--green-dark);font-size:11px;font-weight:950}.plan-row .field{min-height:43px}.reflection{margin-top:12px}.reflection textarea{width:100%;min-height:92px;margin-top:7px;padding:12px;border:1px solid #D4E1D8;border-radius:13px;resize:vertical;background:#FBFCFB;color:var(--text);font-size:12px;line-height:1.55}
+    .toolbar{position:sticky;z-index:5;bottom:16px;display:flex;width:max-content;max-width:calc(100% - 24px);margin:25px auto 0;padding:7px;border:1px solid #C8D9CE;border-radius:17px;gap:7px;background:rgba(255,255,255,.92);box-shadow:var(--shadow);backdrop-filter:blur(14px)}.button{display:inline-flex;min-height:44px;padding:0 16px;border:1px solid transparent;border-radius:12px;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:950}.button:hover{transform:translateY(-1px)}.button--primary{background:var(--green-dark);color:var(--white)}.button--secondary{border-color:var(--border);background:var(--white);color:var(--green-dark)}.button--danger{background:transparent;color:var(--danger)}.footer{padding:31px 0;border-top:1px solid rgba(255,255,255,.09);background:var(--green-deep);color:rgba(255,255,255,.62)}.footer__inner{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px}.footer strong{color:var(--white)}.footer a{color:var(--accent-light);font-weight:850}
+    @media(max-width:1020px){.goal-grid{grid-template-columns:repeat(2,1fr)}.goal-grid label:first-child{grid-column:1/-1}.summary{grid-template-columns:repeat(3,1fr)}.analysis{grid-template-columns:1fr}}
+    @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__worksheets){display:none}.hero{min-height:auto}.hero::before{right:-235px}.hero::after{display:none}.hero__inner{min-height:500px;padding:116px 0 50px}h1{font-size:clamp(44px,14.5vw,66px)}.workspace{padding:50px 0 66px}.how-to__steps,.goal-grid{grid-template-columns:1fr}.goal-grid label:first-child{grid-column:auto}.goal-card{padding:18px;border-radius:19px}.goal-card__head{flex-direction:column}.field{min-height:50px;font-size:16px}.summary{grid-template-columns:1fr 1fr}.summary-card{min-height:100px;padding:14px}.summary-card__value{font-size:21px}.progress-card__top{align-items:flex-start;flex-direction:column}.analysis-card,.plan-card{padding:19px;border-radius:19px}.options{grid-template-columns:1fr}.toolbar{width:calc(100% - 24px);flex-wrap:wrap;justify-content:center;bottom:9px}.button{flex:1 1 120px}.footer__inner{align-items:flex-start;flex-direction:column;gap:9px}}
+    @media(max-width:420px){.summary{grid-template-columns:1fr}.plan-row{grid-template-columns:28px minmax(0,1fr)}.plan-row__number{width:28px;height:28px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    @media print{@page{size:A4 portrait;margin:9mm}body{background:#fff;font-family:Arial,sans-serif}.site-header,.hero,.privacy,.how-to,.toolbar,.footer{display:none!important}.container{width:100%}.workspace{padding:0}.sheet-head{margin-bottom:7px}.sheet-head h2{font-size:22pt}.goal-card{padding:9px;border-radius:6px;box-shadow:none}.goal-card__head{margin-bottom:7px}.goal-card__head h3{font-size:13pt}.goal-card__head p{display:none}.goal-grid{grid-template-columns:1.5fr repeat(4,1fr);gap:5px}.field{min-height:27px;padding:0 5px;border-radius:4px;font-size:8pt}.field-label{margin-bottom:3px;font-size:6.5pt}.field-help{display:none}.summary{grid-template-columns:repeat(5,1fr);gap:5px;margin-top:7px}.summary-card{min-height:auto;padding:6px;border-radius:5px}.summary-card__label{font-size:6pt}.summary-card__value{margin-top:4px;font-size:12pt}.summary-card__note{font-size:6pt}.progress-card{margin-top:7px;padding:8px;border-radius:6px}.progress-card h3{font-size:10pt}.progress-card p{font-size:6.5pt}.progress-value{font-size:11pt}.progress-track{height:7px;margin-top:5px}.analysis{grid-template-columns:1.05fr .95fr;gap:7px;margin-top:7px}.analysis-card,.plan-card{padding:8px;border-radius:6px;break-inside:avoid}.analysis-card h3,.plan-card h3{font-size:11pt}.analysis-card__lead,.plan-card__lead{display:none}.verdict{margin-top:5px;padding:6px;border-radius:5px;grid-template-columns:25px 1fr;gap:6px}.verdict__icon{width:25px;height:25px;border-radius:4px;font-size:7pt}.verdict strong{font-size:8pt}.verdict p{font-size:7pt}.options{gap:5px;margin-top:6px}.plan-list{gap:4px;margin-top:6px}.plan-row{grid-template-columns:22px 1fr;gap:4px}.plan-row__number{width:22px;height:22px;border-radius:3px;font-size:6pt}.plan-row .field{min-height:25px}.reflection{margin-top:5px}.reflection textarea{min-height:42px;margin-top:3px;padding:4px;border-radius:4px;font-size:7pt}}
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="container site-header__inner">
+    <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+    <nav class="nav" aria-label="Навігація сторінки"><a href="../../">Головний хаб</a><a href="../../simulators/">Симулятори</a><a class="nav__worksheets" href="../">Усі аркуші</a></nav>
+  </div></header>
+  <main>
+    <section class="hero"><div class="container hero__inner">
+      <div class="breadcrumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Робочі аркуші</a><span>/</span><span>Моя фінансова ціль</span></div>
+      <span class="eyebrow">Робочий аркуш 03</span>
+      <h1>Моя фінансова ціль</h1>
+      <p class="hero__lead">Перетворіть бажання на конкретний план: визначте потрібну суму, строк, регулярний внесок і перші дії для досягнення цілі.</p>
+      <div class="hero__meta"><span class="hero__chip">Перевірка реалістичності</span><span class="hero__chip">Точний щомісячний внесок</span><span class="hero__chip">Друк на А4</span></div>
+    </div></section>
+    <section class="workspace"><div class="container">
+      <div class="sheet-head"><div class="section-kicker">Від бажання до плану</div><h2>Сплануйте свою ціль</h2></div>
+      <div class="privacy"><span class="privacy__icon">i</span><span>Дані залишаються лише на цій сторінці, не передаються та не зберігаються. Щоб залишити копію, роздрукуйте аркуш або збережіть його як PDF.</span></div>
+      <section class="how-to">
+        <h3>Як заповнити аркуш</h3>
+        <div class="how-to__steps">
+          <div class="how-to__step"><span class="how-to__number">1</span><span>Назвіть ціль і вкажіть її повну вартість. Якщо частина коштів уже є, внесіть цю суму окремо.</span></div>
+          <div class="how-to__step"><span class="how-to__number">2</span><span>Оберіть дату досягнення та введіть суму, яку реально плануєте відкладати щомісяця.</span></div>
+          <div class="how-to__step"><span class="how-to__number">3</span><span>Порівняйте план із розрахунком, за потреби змініть строк або внесок і запишіть перші кроки.</span></div>
+        </div>
+      </section>
+      <section class="goal-card">
+        <div class="goal-card__head"><div><h3>Параметри цілі</h3><p>Заповнюйте зелені грошові поля у гривнях. Підсумок змінюється одразу після введення даних.</p></div></div>
+        <div class="goal-grid">
+          <label><span class="field-label">Що я хочу профінансувати?</span><input class="field" id="goalName" type="text" maxlength="80" placeholder="Наприклад, ноутбук для навчання"><span class="field-help">Сформулюйте ціль конкретно.</span></label>
+          <label><span class="field-label">Повна вартість, грн</span><input class="field field--money" id="targetAmount" type="number" min="0" step="100" inputmode="decimal" placeholder="0"><span class="field-help">Уся потрібна сума.</span></label>
+          <label><span class="field-label">Уже накопичено, грн</span><input class="field field--money" id="savedAmount" type="number" min="0" step="100" inputmode="decimal" placeholder="0"><span class="field-help">Якщо коштів немає, залиште 0.</span></label>
+          <label><span class="field-label">Бажана дата</span><input class="field" id="targetDate" type="date"><span class="field-help" id="monthsHelp">Оберіть майбутню дату.</span></label>
+          <label><span class="field-label">Планую відкладати, грн/міс.</span><input class="field field--money" id="monthlyAmount" type="number" min="0" step="100" inputmode="decimal" placeholder="0"><span class="field-help">Реальна регулярна сума.</span></label>
+        </div>
+      </section>
+      <section class="summary" aria-label="Розрахунок фінансової цілі">
+        <article class="summary-card"><span class="summary-card__label">Залишилося накопичити</span><strong class="summary-card__value" id="remainingValue">0 грн</strong><span class="summary-card__note">вартість мінус наявні кошти</span></article>
+        <article class="summary-card summary-card--accent"><span class="summary-card__label">Потрібно щомісяця</span><strong class="summary-card__value" id="requiredValue">-</strong><span class="summary-card__note">для досягнення у строк</span></article>
+        <article class="summary-card"><span class="summary-card__label">Мій внесок</span><strong class="summary-card__value" id="monthlyValue">0 грн</strong><span class="summary-card__note">заплановано щомісяця</span></article>
+        <article class="summary-card"><span class="summary-card__label">Прогноз на дату</span><strong class="summary-card__value" id="forecastValue">-</strong><span class="summary-card__note">накопичена сума за планом</span></article>
+        <article class="summary-card"><span class="summary-card__label" id="gapLabel">Різниця</span><strong class="summary-card__value" id="gapValue">-</strong><span class="summary-card__note" id="gapNote">заповніть суму й дату</span></article>
+      </section>
+      <section class="progress-card">
+        <div class="progress-card__top"><div><h3>Поточний прогрес</h3><p id="progressText">Укажіть вартість цілі та вже накопичену суму.</p></div><strong class="progress-value" id="progressValue">0%</strong></div>
+        <div class="progress-track" role="progressbar" aria-label="Прогрес накопичення" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+      </section>
+      <div class="analysis">
+        <section class="analysis-card">
+          <h3>Висновок</h3>
+          <p class="analysis-card__lead">Аркуш оцінює лише арифметичну можливість досягнення цілі. Остаточний внесок має залишатися безпечним для вашого бюджету.</p>
+          <div class="verdict verdict--neutral" id="verdict"><span class="verdict__icon" id="verdictIcon">?</span><div><strong id="verdictTitle">Заповніть основні поля</strong><p id="verdictText">Вкажіть вартість цілі, дату та запланований щомісячний внесок.</p></div></div>
+          <div class="options">
+            <label class="option-field"><span class="field-label">Звідки братиму кошти?</span><select class="field" id="fundingSource"><option value="">Оберіть варіант</option><option>Частина стипендії або зарплати</option><option>Економія на окремих витратах</option><option>Додатковий дохід</option><option>Поєднання кількох джерел</option></select></label>
+            <label class="option-field"><span class="field-label">Як часто переказуватиму?</span><select class="field" id="frequency"><option value="">Оберіть варіант</option><option>Щотижня</option><option>Двічі на місяць</option><option>Одразу після надходження доходу</option><option>Наприкінці місяця</option></select></label>
+          </div>
+          <label class="reflection"><span class="field-label">Що може завадити і як я це попереджу?</span><textarea id="riskPlan" placeholder="Наприклад: імпульсивні покупки. Перед покупкою чекатиму 24 години."></textarea></label>
+        </section>
+        <section class="plan-card">
+          <h3>Мої перші кроки</h3>
+          <p class="plan-card__lead">Запишіть три конкретні дії. Добрий крок починається з дієслова й має зрозумілий строк.</p>
+          <div class="plan-list">
+            <label class="plan-row"><span class="plan-row__number">1</span><input class="field" id="step1" type="text" maxlength="120" placeholder="Наприклад, відкрити окрему скарбничку"></label>
+            <label class="plan-row"><span class="plan-row__number">2</span><input class="field" id="step2" type="text" maxlength="120" placeholder="Налаштувати регулярний переказ"></label>
+            <label class="plan-row"><span class="plan-row__number">3</span><input class="field" id="step3" type="text" maxlength="120" placeholder="Перевіряти прогрес щомісяця"></label>
+          </div>
+          <label class="reflection"><span class="field-label">Моє рішення після розрахунку</span><textarea id="decision" placeholder="Залишаю план без змін або коригую суму чи дату..."></textarea></label>
+        </section>
+      </div>
+      <div class="toolbar" aria-label="Дії з аркушем">
+        <button class="button button--secondary" id="sampleButton" type="button">Показати приклад</button>
+        <button class="button button--primary" type="button" onclick="window.print()">Роздрукувати / PDF</button>
+        <button class="button button--danger" id="clearButton" type="button">Очистити</button>
+      </div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Робочий аркуш «Моя фінансова ціль»</div><a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a></div></footer>
+  <script>
+    (() => {
+      const ids=["goalName","targetAmount","savedAmount","targetDate","monthlyAmount","fundingSource","frequency","riskPlan","step1","step2","step3","decision"];
+      const el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+      const money=new Intl.NumberFormat("uk-UA",{maximumFractionDigits:0});
+      const fmt=value=>`${money.format(Math.max(0,Math.round(value||0)))} грн`;
+      const num=input=>Math.max(0,Number(input.value)||0);
+      const monthsUntil=dateString=>{
+        if(!dateString)return 0;
+        const today=new Date();today.setHours(0,0,0,0);
+        const target=new Date(`${dateString}T00:00:00`);
+        if(!Number.isFinite(target.getTime())||target<=today)return 0;
+        const days=(target-today)/86400000;
+        return Math.max(1,Math.ceil(days/30.4375));
+      };
+      const setText=(id,value)=>document.getElementById(id).textContent=value;
+      function update(){
+        const target=num(el.targetAmount),saved=Math.min(num(el.savedAmount),target||num(el.savedAmount)),monthly=num(el.monthlyAmount),months=monthsUntil(el.targetDate.value);
+        const remaining=Math.max(0,target-saved),required=months?remaining/months:0,forecast=months?saved+monthly*months:0,difference=months?forecast-target:0;
+        setText("remainingValue",fmt(remaining));setText("monthlyValue",fmt(monthly));
+        setText("requiredValue",target>0&&months?fmt(required):"-");
+        setText("forecastValue",target>0&&months?fmt(forecast):"-");
+        const progress=target>0?Math.min(100,saved/target*100):0;
+        setText("progressValue",`${Math.round(progress)}%`);
+        document.getElementById("progressFill").style.width=`${progress}%`;
+        document.querySelector(".progress-track").setAttribute("aria-valuenow",String(Math.round(progress)));
+        setText("progressText",target>0?(remaining>0?`Уже накопичено ${fmt(saved)} із ${fmt(target)}. Залишилося ${fmt(remaining)}.`:`Ціль уже профінансована повністю.`):"Укажіть вартість цілі та вже накопичену суму.");
+        setText("monthsHelp",months?`До обраної дати приблизно ${months} міс.`:"Оберіть майбутню дату.");
+        const gapLabel=document.getElementById("gapLabel"),gapValue=document.getElementById("gapValue"),gapNote=document.getElementById("gapNote");
+        if(!target||!months){gapLabel.textContent="Різниця";gapValue.textContent="-";gapNote.textContent="заповніть суму й дату"}
+        else if(difference>=0){gapLabel.textContent="Запас за планом";gapValue.textContent=fmt(difference);gapNote.textContent="понад вартість цілі"}
+        else{gapLabel.textContent="Не вистачатиме";gapValue.textContent=fmt(Math.abs(difference));gapNote.textContent="за нинішнього внеску"}
+        const verdict=document.getElementById("verdict");verdict.className="verdict verdict--neutral";
+        if(!target){setText("verdictIcon","?");setText("verdictTitle","Укажіть вартість цілі");setText("verdictText","Почніть із повної суми, яка потрібна для вашої цілі.");return}
+        if(saved>=target){setText("verdictIcon","✓");setText("verdictTitle","Ціль уже профінансована");setText("verdictText",`Накопичено достатньо коштів для цілі «${el.goalName.value.trim()||"ваша фінансова ціль"}». Перед витратою перевірте повну вартість.`);verdict.className="verdict";return}
+        if(!months){setText("verdictIcon","!");setText("verdictTitle","Оберіть майбутню дату");setText("verdictText",`Залишилося накопичити ${fmt(remaining)}, але без дати неможливо визначити потрібний щомісячний внесок.`);verdict.className="verdict verdict--warning";return}
+        if(!monthly){setText("verdictIcon","₴");setText("verdictTitle",`Потрібно близько ${fmt(required)} на місяць`);setText("verdictText",`Щоб накопичити ${fmt(remaining)} приблизно за ${months} міс., внесіть реальну суму щомісячного поповнення.`);verdict.className="verdict verdict--warning";return}
+        if(difference>=0){setText("verdictIcon","✓");setText("verdictTitle","За розрахунком план реалістичний");setText("verdictText",`Внесок ${fmt(monthly)} на місяць дає змогу досягти цілі приблизно за ${months} міс. Прогнозований запас становить ${fmt(difference)}. Перевірте, чи безпечний цей внесок для вашого бюджету.`);verdict.className="verdict"}
+        else{const neededExtra=Math.max(0,required-monthly);setText("verdictIcon","!");setText("verdictTitle",`План потребує коригування`);setText("verdictText",`На обрану дату не вистачатиме ${fmt(Math.abs(difference))}. Збільште щомісячний внесок приблизно на ${fmt(neededExtra)} або перенесіть дату.`);verdict.className="verdict verdict--danger"}
+      }
+      ids.slice(0,5).forEach(id=>el[id].addEventListener("input",update));
+      el.targetDate.addEventListener("change",update);
+      document.getElementById("sampleButton").addEventListener("click",()=>{
+        const date=new Date();date.setMonth(date.getMonth()+10);
+        el.goalName.value="Ноутбук для навчання";el.targetAmount.value=36000;el.savedAmount.value=6000;el.targetDate.value=[date.getFullYear(),String(date.getMonth()+1).padStart(2,"0"),String(date.getDate()).padStart(2,"0")].join("-");el.monthlyAmount.value=3000;el.fundingSource.value="Частина стипендії або зарплати";el.frequency.value="Одразу після надходження доходу";el.riskPlan.value="Незаплановані покупки. Використовуватиму список і правило 24 годин.";el.step1.value="Відкрити окрему банківську скарбничку";el.step2.value="Налаштувати щомісячний переказ 3 000 грн";el.step3.value="Перевіряти прогрес першого числа кожного місяця";el.decision.value="План реалістичний. Залишаю внесок 3 000 грн на місяць.";update();
+      });
+      document.getElementById("clearButton").addEventListener("click",()=>{if(!confirm("Очистити всі внесені дані?"))return;ids.forEach(id=>el[id].value="");update();});
+      update();
+    })();
+  </script>
+</body>
+</html>
