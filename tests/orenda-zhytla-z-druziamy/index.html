@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Ситуаційний тест CASHBRAIN Оренда житла з друзями: 12 рішень про договір, заставу, комунальні платежі, спільні покупки й конфлікти.">
+  <meta name="theme-color" content="#174A3D"><title>Оренда житла з друзями - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Оренда з друзями</span></div>
+  <div class="eyebrow">Ситуаційний тест</div><h1>Оренда житла з друзями</h1>
+  <p class="hero__lead">Дружба не замінює чітких домовленостей. Пройдіть шлях від перегляду квартири до виїзду й перевірте, як ви вирішуватимете спільні фінансові питання.</p>
+  <div class="hero__meta"><span class="chip">12 ситуацій</span><span class="chip">4 навички</span><span class="chip">Практика спільних рішень</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Ситуація <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Оберіть реалістичну для себе дію</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Як ви вчините?</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Оренда житла з друзями</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../calculators/orenda/">Калькулятор оренди</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"behavior",
+  questions:[
+    {text:"Ви знайшли квартиру з привабливою ціною. Що перевірите до рішення?",options:[
+      {text:"Лише фото й відстань до навчання",points:{planning:1,agreements:0,safety:1,fairness:1}},
+      {text:"Стан житла, власника, документи, платежі, район і транспорт",points:{planning:3,agreements:2,safety:3,fairness:2}},
+      {text:"Погоджуся швидко, щоб квартиру не забрали",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Попрошу друга вирішити, бо житимемо разом",points:{planning:1,agreements:1,safety:0,fairness:0}}
+    ]},
+    {text:"У друзів різні за розміром кімнати. Як поділити орендну плату?",options:[
+      {text:"Порівну, бо всі друзі",points:{planning:2,agreements:1,safety:1,fairness:2}},
+      {text:"Домовитися до заселення з урахуванням кімнат і спільних зон",points:{planning:3,agreements:3,safety:1,fairness:3}},
+      {text:"Хто перший обере кімнату, той і вирішить",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Визначити суму після першого конфлікту",points:{planning:0,agreements:0,safety:0,fairness:0}}
+    ]},
+    {text:"Власник пропонує передати заставу готівкою без договору й підтвердження. Що зробите?",options:[
+      {text:"Передам, якщо квартира подобається",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Попрошу письмові умови, підтвердження платежу й опис призначення застави",points:{planning:3,agreements:3,safety:3,fairness:2}},
+      {text:"Передам лише половину без документів",points:{planning:1,agreements:0,safety:1,fairness:1}},
+      {text:"Нехай заставу передасть інший мешканець",points:{planning:0,agreements:1,safety:0,fairness:0}}
+    ]},
+    {text:"Настав час першої оплати комунальних послуг. Який порядок найзручніший?",options:[
+      {text:"Одна людина платить усе, а решта повертає коли зможе",points:{planning:1,agreements:1,safety:1,fairness:1}},
+      {text:"Зафіксувати показники, рахунки, частки й дату переказу кожного",points:{planning:3,agreements:3,safety:2,fairness:3}},
+      {text:"Ділити суму на око",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Платити лише після нагадування власника",points:{planning:0,agreements:0,safety:1,fairness:0}}
+    ]},
+    {text:"Для квартири потрібні чайник, сушарка й посуд. Як організуєте покупки?",options:[
+      {text:"Кожен купує щось без обговорення",points:{planning:1,agreements:0,safety:1,fairness:1}},
+      {text:"Скласти список, бюджет і визначити, кому належатиме кожна річ",points:{planning:3,agreements:3,safety:2,fairness:3}},
+      {text:"Нехай платить той, кому найбільше потрібно",points:{planning:1,agreements:1,safety:0,fairness:1}},
+      {text:"Купити найдорожче в розстрочку на одного мешканця",points:{planning:0,agreements:0,safety:0,fairness:0}}
+    ]},
+    {text:"Один із друзів не може вчасно внести свою частину оренди. Як реагуєте?",options:[
+      {text:"Спокійно обговорити причину, строк і тимчасове рішення, зафіксувавши домовленість",points:{planning:2,agreements:3,safety:2,fairness:3}},
+      {text:"Мовчки заплатити за нього й чекати",points:{planning:1,agreements:0,safety:1,fairness:1}},
+      {text:"Одразу вимагати, щоб він виїхав сьогодні",points:{planning:0,agreements:1,safety:1,fairness:0}},
+      {text:"Не платити всім, доки він не знайде гроші",points:{planning:0,agreements:0,safety:0,fairness:0}}
+    ]},
+    {text:"Друг часто запрошує гостей, які залишаються на кілька днів. Що робити?",options:[
+      {text:"Терпіти, щоб не псувати дружбу",points:{planning:0,agreements:0,safety:1,fairness:0}},
+      {text:"Домовитися про правила гостей, тишу, безпеку й додаткові витрати",points:{planning:2,agreements:3,safety:3,fairness:3}},
+      {text:"Також запрошувати більше своїх гостей",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Скаржитися іншим, але не говорити з другом",points:{planning:0,agreements:0,safety:1,fairness:0}}
+    ]},
+    {text:"У квартирі пошкоджено стіл, але незрозуміло, хто винен. Як вирішити?",options:[
+      {text:"Звинувачувати того, хто був удома останнім",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Перевірити початковий опис майна, обговорити обставини й узгодити справедливе рішення",points:{planning:2,agreements:3,safety:2,fairness:3}},
+      {text:"Приховати пошкодження від власника",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Нехай платить той, на кого оформлено договір",points:{planning:1,agreements:1,safety:1,fairness:0}}
+    ]},
+    {text:"Один мешканець вирішив виїхати раніше. Що потрібно врахувати?",options:[
+      {text:"Нічого, це його особиста справа",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Строк попередження, пошук заміни, частку платежів, заставу й умови договору",points:{planning:3,agreements:3,safety:2,fairness:3}},
+      {text:"Він має одразу знайти будь-яку заміну без погодження",points:{planning:1,agreements:1,safety:0,fairness:1}},
+      {text:"Решта просто ділить його витрати між собою",points:{planning:1,agreements:0,safety:1,fairness:1}}
+    ]},
+    {text:"Для спільних платежів друг пропонує передати йому пароль від вашого банкінгу. Ваша відповідь?",options:[
+      {text:"Передам, бо довіряю другові",points:{planning:0,agreements:1,safety:0,fairness:0}},
+      {text:"Не передаватиму доступ, використаємо окремі перекази й спільний облік",points:{planning:3,agreements:2,safety:3,fairness:3}},
+      {text:"Передам лише на час оплати",points:{planning:1,agreements:1,safety:0,fairness:1}},
+      {text:"Надішлю фото картки замість пароля",points:{planning:0,agreements:0,safety:0,fairness:0}}
+    ]},
+    {text:"Через різні звички виник конфлікт щодо прибирання й спільних витрат. Що найкраще?",options:[
+      {text:"Обговорити конкретні проблеми й оновити розподіл обов’язків та витрат",points:{planning:2,agreements:3,safety:2,fairness:3}},
+      {text:"Мовчати, поки хтось сам не здогадається",points:{planning:0,agreements:0,safety:1,fairness:0}},
+      {text:"Припинити оплачувати спільні потреби",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Робити все самостійно й накопичувати образу",points:{planning:1,agreements:0,safety:1,fairness:1}}
+    ]},
+    {text:"Оренда завершується. Як правильно організувати виїзд?",options:[
+      {text:"Зібрати свої речі й залишити ключі сусідові",points:{planning:1,agreements:0,safety:1,fairness:0}},
+      {text:"Перевірити платежі, стан майна, показники, повернення застави й передачу ключів",points:{planning:3,agreements:3,safety:3,fairness:3}},
+      {text:"Виїхати раніше й не брати участі в прибиранні",points:{planning:0,agreements:0,safety:0,fairness:0}},
+      {text:"Нехай усім займається той, хто останнім залишає квартиру",points:{planning:0,agreements:1,safety:1,fairness:0}}
+    ]}
+  ],
+  getResult(t){
+    const total=t.planning+t.agreements+t.safety+t.fairness,max=144;
+    let title,lead;
+    if(total<48){title="Дружбі потрібні правила";lead:"У складній ситуації усні очікування можуть швидко перетворитися на борги й образи. Найкращий перший крок не нова квартира, а спільний список фінансових і побутових домовленостей."}
+    else if(total<84){title="Домовленості ще крихкі";lead:"Ви бачите частину ризиків, але часто розраховуєте, що друзі порозуміються без деталей. Саме деталі про гроші, гостей, майно й виїзд найчастіше рятують дружбу."}
+    else if(total<116){title="Надійний співмешканець";lead:"Ви вмієте планувати спільні витрати й говорити про незручні питання до конфлікту. Залишається посилити найслабшу з чотирьох навичок."}
+    else{title="Архітектор чесної оренди";lead:"Ви розумієте просте правило: чітка домовленість не руйнує дружбу, а захищає її. Фіксуєте платежі, межі, відповідальність і можливі зміни заздалегідь."}
+    const level=v=>v>=28?"сильна навичка":v>=18?"стабільна навичка":"зона для тренування";
+    return{label:"Ваш результат",title,lead,scoreLabel:"Готовність до спільної оренди",scoreValue:`${total} / ${max}`,
+      items:[
+        {title:"Планування",text:`${t.planning} із 36, ${level(t.planning)}. Бюджет, платежі, майно та сценарій виїзду.`},
+        {title:"Домовленості",text:`${t.agreements} із 36, ${level(t.agreements)}. Здатність обговорювати правила й фіксувати рішення.`},
+        {title:"Безпека",text:`${t.safety} із 36, ${level(t.safety)}. Документи, платежі, доступи та перевірка житла.`},
+        {title:"Справедливість",text:`${t.fairness} із 36, ${level(t.fairness)}. Розподіл витрат, обов’язків і відповідальності.`}
+      ],tipsTitle:"Що погодити до заселення",tips:[
+        "Запишіть частку оренди, комунальних платежів, застави й спільних покупок для кожного.",
+        "Визначте правила гостей, тиші, прибирання, пошкодження майна та тимчасових боргів.",
+        "Домовтеся про строк попередження й порядок дій, якщо хтось вирішить виїхати раніше."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
