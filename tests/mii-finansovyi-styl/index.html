@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Тест CASHBRAIN Мій фінансовий стиль: 12 запитань про планування, витрати, заощадження та ставлення до фінансових рішень.">
+  <meta name="theme-color" content="#174A3D"><title>Мій фінансовий стиль - CASHBRAIN</title>
+  <link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+<header class="site-header"><div class="container site-header__inner">
+  <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+  <nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="container hero__inner">
+  <div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Тести</a><span>/</span><span>Мій фінансовий стиль</span></div>
+  <div class="eyebrow">Тест для себе</div><h1>Мій фінансовий стиль</h1>
+  <p class="hero__lead">Оберіть відповідь, яка найбільше схожа на вас у реальному житті. Тут немає правильних або неправильних варіантів.</p>
+  <div class="hero__meta"><span class="chip">12 запитань</span><span class="chip">Приблизно 4 хвилини</span><span class="chip">Особистий профіль</span></div>
+</div></section>
+<section class="test-shell"><div class="container"><div class="test-card">
+  <div id="questionView">
+    <div class="test-progress"><div class="test-progress__row"><span>Запитання <span id="currentQuestion">1</span> із <span id="totalQuestions">12</span></span><span>Ваші відповіді не зберігаються</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="question"><div class="question__type">Оберіть найближчий варіант</div><h2 id="questionTitle"></h2><div class="answers" id="answers"></div><div class="explanation" id="explanation"></div></div>
+    <div class="test-actions"><button class="button" id="backButton" type="button">Назад</button><button class="button button--primary" id="nextButton" type="button">Далі</button></div>
+  </div>
+  <div class="result-view" id="resultView"><div class="result-view__label" id="resultLabel"></div><h2 id="resultTitle"></h2><p class="result-view__lead" id="resultLead"></p><div class="score-box"><span id="scoreLabel"></span><strong id="scoreValue"></strong></div><div class="result-grid" id="resultGrid"></div><div class="result-tips" id="resultTips"></div><div class="result-actions"><button class="button button--primary" id="restartButton" type="button">Пройти ще раз</button><a class="button" href="../">Усі тести</a></div></div>
+</div></div></section>
+</main>
+<footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Мій фінансовий стиль</div><div class="footer__links"><a href="../../">Головний хаб</a><a href="../">Усі тести</a><a href="../../simulators/">Симулятори</a></div></div></footer>
+<script>
+window.testConfig={
+  type:"profile",
+  questions:[
+    {text:"Ви отримали стипендію або оплату за підробіток. Що робите спочатку?",options:[
+      {text:"Розподіляю на обов’язкові витрати, цілі й вільні гроші",points:{plan:3,impulse:0,safety:2,growth:1}},
+      {text:"Купую те, що давно хотілося, а потім дивлюся на залишок",points:{plan:0,impulse:3,safety:0,growth:1}},
+      {text:"Переказую частину в заощадження, решту витрачаю вільно",points:{plan:2,impulse:1,safety:3,growth:1}},
+      {text:"Поки не чіпаю гроші й вирішую пізніше",points:{plan:1,impulse:0,safety:2,growth:0}}
+    ]},
+    {text:"Друзі кличуть на незаплановану подію, а бюджет місяця вже напружений. Ваша реакція?",options:[
+      {text:"Перевіряю бюджет і шукаю доступніший формат",points:{plan:3,impulse:0,safety:2,growth:1}},
+      {text:"Йду, бо враження важливіші, якось розберуся",points:{plan:0,impulse:3,safety:0,growth:1}},
+      {text:"Одразу відмовляюся, навіть не рахуючи",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Порівнюю ціну з іншими планами й обираю, що важливіше",points:{plan:3,impulse:1,safety:1,growth:2}}
+    ]},
+    {text:"Як ви зазвичай стежите за повсякденними витратами?",options:[
+      {text:"Веду застосунок, таблицю або нотатки",points:{plan:3,impulse:0,safety:2,growth:1}},
+      {text:"Орієнтуюся за балансом на картці",points:{plan:1,impulse:2,safety:0,growth:0}},
+      {text:"Перевіряю лише тоді, коли грошей стає мало",points:{plan:0,impulse:2,safety:0,growth:0}},
+      {text:"Маю приблизні ліміти за категоріями, без детального обліку",points:{plan:2,impulse:1,safety:1,growth:1}}
+    ]},
+    {text:"Побачили телефон зі знижкою 25%, але не планували покупку. Що найближче до вас?",options:[
+      {text:"Перевірю потребу, інші ціни та повну вартість",points:{plan:3,impulse:0,safety:2,growth:2}},
+      {text:"Знижка велика, беру, поки не закінчилася",points:{plan:0,impulse:3,safety:0,growth:0}},
+      {text:"Не купуватиму нічого дорогого за жодних умов",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Дам собі кілька днів і повернуся до рішення",points:{plan:2,impulse:0,safety:2,growth:1}}
+    ]},
+    {text:"Що для вас означають заощадження?",options:[
+      {text:"Конкретні фонди: резерв, цілі, великі покупки",points:{plan:3,impulse:0,safety:3,growth:2}},
+      {text:"Гроші, що випадково залишилися наприкінці місяця",points:{plan:0,impulse:2,safety:1,growth:0}},
+      {text:"Недоторканний запас, який страшно витрачати навіть за потреби",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Ресурс, який можна вкладати в розвиток і нові можливості",points:{plan:2,impulse:1,safety:1,growth:3}}
+    ]},
+    {text:"Перед оформленням розстрочки ви найімовірніше…",options:[
+      {text:"Порахую повну суму, комісії та вплив платежу на бюджет",points:{plan:3,impulse:0,safety:3,growth:1}},
+      {text:"Дивлюся переважно на розмір щомісячного платежу",points:{plan:1,impulse:2,safety:0,growth:0}},
+      {text:"Уникаю будь-яких розстрочок, навіть вигідних",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Порівняю розстрочку з накопиченням і купівлею пізніше",points:{plan:3,impulse:0,safety:2,growth:2}}
+    ]},
+    {text:"Вам несподівано повернули 2 000 грн старого боргу. Як використаєте?",options:[
+      {text:"Додам до фінансової цілі або резерву",points:{plan:2,impulse:0,safety:3,growth:1}},
+      {text:"Влаштую собі приємну незаплановану покупку",points:{plan:0,impulse:3,safety:0,growth:1}},
+      {text:"Частину відкладу, частину витрачу без почуття провини",points:{plan:2,impulse:1,safety:2,growth:2}},
+      {text:"Залишу на картці без конкретного рішення",points:{plan:0,impulse:1,safety:1,growth:0}}
+    ]},
+    {text:"Як ви ставитеся до нового фінансового застосунку або інструменту?",options:[
+      {text:"Вивчу умови й спробую на невеликій сумі",points:{plan:2,impulse:0,safety:2,growth:3}},
+      {text:"Підключу одразу, якщо всі навколо користуються",points:{plan:0,impulse:2,safety:0,growth:2}},
+      {text:"Краще не ризикувати й користуватися лише звичним",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Порівняю кілька сервісів і відгуки перед рішенням",points:{plan:3,impulse:0,safety:2,growth:2}}
+    ]},
+    {text:"Коли грошей до наступної виплати залишається мало, ви…",options:[
+      {text:"Скорочую необов’язкові витрати за чітким планом",points:{plan:3,impulse:0,safety:2,growth:1}},
+      {text:"Продовжую жити як завжди, сподіваючись, що вистачить",points:{plan:0,impulse:3,safety:0,growth:0}},
+      {text:"Починаю хвилюватися й майже нічого не витрачаю",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Шукаю додатковий дохід або продаю непотрібне",points:{plan:2,impulse:0,safety:1,growth:3}}
+    ]},
+    {text:"Як ви обираєте платну підписку на сервіс?",options:[
+      {text:"Перевіряю користь, ціну за рік і дату списання",points:{plan:3,impulse:0,safety:2,growth:1}},
+      {text:"Підключаю пробний період і часто забуваю скасувати",points:{plan:0,impulse:3,safety:0,growth:0}},
+      {text:"Намагаюся взагалі не мати платних підписок",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Тестую місяць і залишаю лише те, чим реально користуюся",points:{plan:2,impulse:0,safety:2,growth:2}}
+    ]},
+    {text:"У вас з’явилася фінансова ціль на 20 000 грн. З чого почнете?",options:[
+      {text:"Визначу строк і щомісячну суму",points:{plan:3,impulse:0,safety:2,growth:2}},
+      {text:"Відкладатиму, коли буде настрій або зайві гроші",points:{plan:0,impulse:2,safety:1,growth:1}},
+      {text:"Відкладу максимально багато й сильно обмежу всі витрати",points:{plan:1,impulse:0,safety:3,growth:1}},
+      {text:"Подумую, як одночасно скоротити витрати й збільшити дохід",points:{plan:2,impulse:0,safety:1,growth:3}}
+    ]},
+    {text:"Яке твердження найбільше схоже на ваше ставлення до грошей?",options:[
+      {text:"Гроші потребують плану, але план має бути гнучким",points:{plan:3,impulse:0,safety:2,growth:2}},
+      {text:"Гроші потрібні, щоб жити зараз і не відкладати враження",points:{plan:0,impulse:3,safety:0,growth:1}},
+      {text:"Головне не втратити те, що вже маєш",points:{plan:1,impulse:0,safety:3,growth:0}},
+      {text:"Гроші дають можливість навчатися, пробувати й розвиватися",points:{plan:1,impulse:1,safety:1,growth:3}}
+    ]}
+  ],
+  getResult(t){
+    const profiles={
+      plan:{title:"Усвідомлений планувальник",lead:"Ви любите розуміти, куди йдуть гроші, і приймати рішення з опорою на план. Ваша сила в послідовності, а зона уваги в тому, щоб план не ставав надто жорстким."},
+      impulse:{title:"Спонтанний дослідник",lead:"Ви легко обираєте нові враження й не хочете, щоб фінанси керували життям. Це додає гнучкості, але непомітні регулярні витрати можуть забирати свободу майбутніх рішень."},
+      safety:{title:"Обережний захисник",lead:"Для вас важливо мати запас і не потрапляти в ризиковані ситуації. Ви добре захищаєте базову стабільність, хоча інколи обережність може заважати корисним можливостям."},
+      growth:{title:"Фінансовий стратег розвитку",lead:"Ви сприймаєте гроші як інструмент для цілей, навчання та нових можливостей. Ваш ресурс у перспективному мисленні, а зона уваги в перевірці ризиків і щоденній дисципліні."}
+    };
+    const top=Object.keys(t).sort((a,b)=>t[b]-t[a])[0],p=profiles[top],max=36;
+    const level=v=>v>=27?"виражена":v>=18?"стабільна":"потребує уваги";
+    return{label:"Ваш фінансовий профіль",title:p.title,lead:p.lead,scoreLabel:"Найсильніша риса профілю",scoreValue:top==="plan"?"Планування":top==="impulse"?"Спонтанність":top==="safety"?"Обережність":"Розвиток",
+      items:[
+        {title:"Планування",text:`${t.plan} із ${max} балів, ${level(t.plan)} риса.`},
+        {title:"Фінансова обережність",text:`${t.safety} із ${max} балів, ${level(t.safety)} риса.`},
+        {title:"Відкритість до можливостей",text:`${t.growth} із ${max} балів, ${level(t.growth)} риса.`},
+        {title:"Спонтанність",text:`${t.impulse} із ${max} балів. Це не недолік, а сигнал про те, скільки рішень приймаються в моменті.`}
+      ],tipsTitle:"Що спробувати протягом наступного тижня",tips:[
+        "Виберіть одну регулярну витрату й перевірте її реальну користь.",
+        "Створіть одне просте правило: сума на вільні витрати, автоматичне заощадження або 24 години перед великою покупкою.",
+        "Повторіть тест через місяць після нової фінансової звички."
+      ]};
+  }
+};
+</script>
+<script src="../shared.js"></script>
+</body></html>
