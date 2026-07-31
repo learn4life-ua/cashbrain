@@ -17,10 +17,10 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-    button,input{font:inherit}
+    button,input,textarea{font:inherit}
     button{cursor:pointer}
     a{color:inherit;text-decoration:none}
-    a:focus-visible,button:focus-visible,input:focus-visible{outline:none;box-shadow:var(--focus)}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--focus)}
     .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
     .site-header{position:absolute;z-index:10;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.12)}
     .site-header__inner{display:flex;min-height:76px;justify-content:space-between;align-items:center;gap:24px}
@@ -111,8 +111,8 @@
     .metric{padding:13px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
     .metric span{display:block;color:var(--muted);font-size:9.5px;font-weight:850}
     .metric strong{display:block;margin-top:7px;color:var(--green-dark);font-size:17px}
-    .notes{width:100%;min-height:176px;margin-top:15px;padding:13px;border:1px solid #D4E1D8;border-radius:14px;resize:vertical;background:#FBFCFB;color:var(--text);font:inherit;font-size:12px;line-height:1.55}
-    .toolbar{position:sticky;z-index:5;bottom:16px;display:flex;width:max-content;max-width:calc(100% - 24px);margin:25px auto 0;padding:7px;border:1px solid #C8D9CE;border-radius:17px;gap:7px;background:rgba(255,255,255,.92);box-shadow:var(--shadow);backdrop-filter:blur(14px)}
+    .notes{width:100%;min-height:176px;overflow:hidden;margin-top:15px;padding:13px;border:1px solid #D4E1D8;border-radius:14px;resize:none;background:#FBFCFB;color:var(--text);font-size:12px;line-height:1.55}
+    .toolbar{display:flex;width:max-content;max-width:calc(100% - 24px);margin:25px auto 0;padding:7px;border:1px solid #C8D9CE;border-radius:17px;gap:7px;background:var(--white);box-shadow:var(--shadow)}
     .button{display:inline-flex;min-height:44px;padding:0 16px;border:1px solid transparent;border-radius:12px;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:950;transition:transform .18s ease,background-color .18s ease}
     .button:hover{transform:translateY(-1px)}
     .button--primary{background:var(--green-dark);color:var(--white)}
@@ -161,7 +161,7 @@
       .section-actions{padding:9px 15px 16px}
       .metrics{grid-template-columns:1fr}
       .analysis-card,.notes-card{padding:19px;border-radius:19px}
-      .toolbar{width:calc(100% - 24px);flex-wrap:wrap;justify-content:center;bottom:9px}
+      .toolbar{width:calc(100% - 24px);flex-wrap:wrap;justify-content:center}
       .button{flex:1 1 120px}
       .footer__inner{align-items:flex-start;flex-direction:column;gap:9px}
     }
@@ -173,7 +173,7 @@
     @media print{
       @page{size:A4 portrait;margin:9mm}
       body{background:#fff;font-family:Arial,sans-serif;font-size:9pt}
-      .site-header,.hero,.privacy,.toolbar,.footer,.add-row,.remove-row{display:none!important}
+      .site-header,.hero,.privacy,.how-to,.toolbar,.footer,.add-row,.remove-row{display:none!important}
       .container{width:100%}
       .workspace{padding:0}
       .sheet-head{grid-template-columns:1fr 180px;margin-bottom:8px}
@@ -197,7 +197,8 @@
       .row-head{padding:2px;font-size:6pt}
       .budget-row{padding:2px}
       .budget-row input{height:24px;padding:0 4px;border-radius:3px;font-size:7.5pt}
-      .budget-row input:first-child{background:#fff}
+      .field-wrap__label{font-size:5.8pt}
+      .field-wrap--name input{background:#fff}
       .section-actions{justify-content:flex-end;padding:2px 7px 6px}
       .section-subtotal{font-size:7pt}
       .analysis{grid-template-columns:1.25fr .75fr;gap:7px;margin-top:7px}
@@ -212,7 +213,7 @@
       .metric{padding:5px;border-radius:4px}
       .metric span{font-size:6pt}
       .metric strong{margin-top:3px;font-size:9pt}
-      .notes{min-height:86px;margin-top:6px;padding:5px;border-radius:4px;font-size:7.5pt}
+      .notes{min-height:86px;height:auto!important;overflow:visible;margin-top:6px;padding:5px;border-radius:4px;font-size:7.5pt;white-space:pre-wrap}
     }
   </style>
 </head>
@@ -346,8 +347,16 @@
       const balanceCard = document.getElementById("balanceCard");
       const verdict = document.getElementById("verdict");
 
+      const defaultRows = {
+        income: ["Зарплата або стипендія", "Підробіток", "Інші надходження"],
+        mandatory: ["Житло та комунальні послуги", "Продукти", "Транспорт і зв’язок", "Навчання, ліки та інше"],
+        variable: ["Кафе та перекуси", "Одяг і покупки", "Дозвілля та підписки"],
+        savings: ["Фінансова подушка", "Фінансова ціль"]
+      };
+
       const decorateMoneyFields = root => {
-        root.querySelectorAll(".budget-row").forEach(row => {
+        const rows = root.matches && root.matches(".budget-row") ? [root] : [...root.querySelectorAll(".budget-row")];
+        rows.forEach(row => {
           [...row.querySelectorAll(":scope > input")].forEach((input, index) => {
             const wrapper = document.createElement("label");
             wrapper.className = index === 0 ? "field-wrap field-wrap--name" : index === 1 ? "field-wrap field-wrap--plan" : "field-wrap field-wrap--actual";
@@ -391,14 +400,25 @@
         const actualBalance = totals.income.actual - actualExpenses - totals.savings.actual;
         const mandatoryShare = totals.income.plan ? totals.mandatory.plan / totals.income.plan * 100 : 0;
         const savingsShare = totals.income.plan ? totals.savings.plan / totals.income.plan * 100 : 0;
-        const hasActualValues = [...document.querySelectorAll(".budget-row")].some(row => {
+        const rows = [...document.querySelectorAll(".budget-row")];
+        const hasActualValues = rows.some(row => {
           const numbers = row.querySelectorAll('input[type="number"]');
           return numbers[1] && numbers[1].value.trim() !== "";
         });
+        const plannedRows = rows.filter(row => {
+          const plan = row.querySelectorAll('input[type="number"]')[0];
+          return plan && numberValue(plan) > 0;
+        });
+        const actualComplete = hasActualValues && plannedRows.every(row => {
+          const actual = row.querySelectorAll('input[type="number"]')[1];
+          return actual && actual.value.trim() !== "";
+        });
         const plannedBalanceText = `Залишок за планом: ${formatMoney(plannedBalance)}.`;
-        const actualBalanceText = hasActualValues
-          ? ` Залишок за фактом: ${formatMoney(actualBalance)}.`
-          : " Фактичний залишок з’явиться після заповнення колонки «Факт».";
+        const actualBalanceText = !hasActualValues
+          ? " Фактичний залишок з’явиться після заповнення колонки «Факт»."
+          : actualComplete
+            ? ` Залишок за фактом: ${formatMoney(actualBalance)}.`
+            : ` Попередній залишок за внесеними фактичними сумами: ${formatMoney(actualBalance)}. Колонку «Факт» заповнено не повністю.`;
 
         document.getElementById("summaryIncome").textContent = formatMoney(totals.income.plan);
         document.getElementById("summaryExpenses").textContent = formatMoney(plannedExpenses);
@@ -406,7 +426,11 @@
         document.getElementById("summaryBalance").textContent = formatMoney(plannedBalance);
         document.getElementById("mandatoryShare").textContent = `${Math.round(mandatoryShare)}%`;
         document.getElementById("savingsShare").textContent = `${Math.round(savingsShare)}%`;
-        document.getElementById("actualBalance").textContent = hasActualValues ? formatMoney(actualBalance) : "Не внесено";
+        document.getElementById("actualBalance").textContent = !hasActualValues
+          ? "Не внесено"
+          : actualComplete
+            ? formatMoney(actualBalance)
+            : `${formatMoney(actualBalance)} · частково`;
         balanceCard.classList.toggle("summary-card--negative", plannedBalance < 0);
 
         verdict.className = "verdict";
@@ -418,13 +442,18 @@
           icon = "1";
           title = "Почніть із доходів";
           text = totals.income.actual > 0
-            ? `План ще не заповнено. Залишок за фактом: ${formatMoney(actualBalance)}.`
+            ? `План ще не заповнено.${actualBalanceText}`
             : "Внесіть очікувані доходи та заплановані суми в кожному розділі.";
         } else if (plannedBalance < 0) {
           verdict.classList.add("verdict--danger");
           icon = "!";
           title = "Витрати перевищують доходи";
           text = `У плані бракує ${formatMoney(Math.abs(plannedBalance))}.${actualBalanceText} Перегляньте змінні витрати, строки цілей або знайдіть додаткове джерело доходу.`;
+        } else if (actualComplete && actualBalance < 0) {
+          verdict.classList.add("verdict--danger");
+          icon = "!";
+          title = "Фактичні витрати перевищили доходи";
+          text = `${plannedBalanceText} За фактом бракує ${formatMoney(Math.abs(actualBalance))}. Порівняйте план із фактом і визначте, які витрати вийшли за межі плану.`;
         } else if (totals.savings.plan === 0) {
           verdict.classList.add("verdict--warning");
           icon = "!";
@@ -452,7 +481,22 @@
         return row;
       };
 
+      const resetRows = () => {
+        Object.entries(defaultRows).forEach(([section, labels]) => {
+          const rowsContainer = document.querySelector(`[data-section="${section}"] .rows`);
+          rowsContainer.querySelectorAll(".budget-row").forEach(row => row.remove());
+          labels.forEach(label => rowsContainer.appendChild(createRow(section, label)));
+        });
+      };
+
+      const autoGrow = textarea => {
+        textarea.style.height = "auto";
+        textarea.style.height = `${Math.max(176, textarea.scrollHeight)}px`;
+      };
+
       decorateMoneyFields(grid);
+      const notes = document.getElementById("notes");
+      notes.addEventListener("input", () => autoGrow(notes));
 
       grid.addEventListener("input", event => {
         if (event.target.matches('input[type="number"]')) update();
@@ -483,10 +527,11 @@
       document.getElementById("printButton").addEventListener("click", () => window.print());
 
       document.getElementById("clearButton").addEventListener("click", () => {
-        if (!window.confirm("Очистити всі внесені суми та нотатки?")) return;
-        document.querySelectorAll('.budget-row input[type="number"]').forEach(input => input.value = "");
+        if (!window.confirm("Очистити всі внесені дані та повернути початкові рядки?")) return;
+        resetRows();
         document.getElementById("budgetMonth").value = "";
-        document.getElementById("notes").value = "";
+        notes.value = "";
+        autoGrow(notes);
         update();
       });
 
@@ -497,6 +542,7 @@
           variable: [[1200,1480],[1500,1100],[700,700]],
           savings: [[1800,1800],[1000,1000]]
         };
+        resetRows();
         Object.entries(examples).forEach(([section, values]) => {
           const rows = document.querySelectorAll(`[data-section="${section}"] .budget-row`);
           values.forEach((pair, index) => {
@@ -505,10 +551,12 @@
             numbers[1].value = pair[1] || "";
           });
         });
-        document.getElementById("notes").value = "Наступного місяця встановити тижневий ліміт на кафе та перекуси.";
+        notes.value = "Наступного місяця встановити тижневий ліміт на кафе та перекуси.";
+        autoGrow(notes);
         update();
       });
 
+      autoGrow(notes);
       update();
     })();
   </script>
