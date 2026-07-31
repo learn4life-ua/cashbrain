@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивний робочий аркуш CASHBRAIN для перевірки повної вартості та наслідків великої покупки.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Перед великою покупкою - CASHBRAIN</title>
+  <style>
+    :root{--green:#1C5345;--dark:#174A3D;--deep:#103A31;--accent:#62C96B;--light:#A8E7AD;--soft:#DFF6DF;--surface:#F7F9F6;--white:#fff;--text:#10231C;--muted:#63736D;--border:#DDE7E0;--danger:#B33A3A;--warning:#A66416;--focus:0 0 0 4px rgba(98,201,107,.28)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--focus)}.container{width:min(1180px,calc(100% - 40px));margin:auto}
+    .header{position:absolute;z-index:5;width:100%;border-bottom:1px solid rgba(255,255,255,.12)}.header__in{display:flex;min-height:76px;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;color:#fff}.brand__mark{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.1);font-size:14px;font-weight:950}.brand strong{display:block;font-size:15px;letter-spacing:.05em}.brand small{display:block;margin-top:2px;color:rgba(255,255,255,.64);font-size:10px}.nav{display:flex;gap:7px}.nav a{padding:10px 13px;border-radius:11px;color:rgba(255,255,255,.78);font-size:12px;font-weight:800}.nav a:hover{background:rgba(255,255,255,.1);color:#fff}.nav .nav__all{border:1px solid rgba(255,255,255,.18);color:#fff}
+    .hero{position:relative;min-height:500px;overflow:hidden;background:radial-gradient(circle at 86% 18%,rgba(98,201,107,.25),transparent 27%),linear-gradient(135deg,var(--deep),var(--green));color:#fff}.hero:before,.hero:after{position:absolute;border:1px solid rgba(255,255,255,.07);border-radius:50%;content:""}.hero:before{top:75px;right:-105px;width:410px;height:410px}.hero:after{top:140px;right:-22px;width:275px;height:275px}.hero__in{position:relative;z-index:1;display:flex;min-height:500px;padding:128px 0 56px;flex-direction:column;justify-content:center}.crumb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;color:rgba(255,255,255,.6);font-size:11px;font-weight:800}.crumb span:last-child{color:var(--light)}.eyebrow{align-self:flex-start;padding:8px 11px;border:1px solid rgba(168,231,173,.22);border-radius:99px;background:rgba(255,255,255,.06);color:var(--light);font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}h1{max-width:1050px;margin:18px 0 0;font-size:clamp(46px,6.7vw,78px);line-height:.95;letter-spacing:-.055em}.hero p{max-width:820px;margin:23px 0 0;color:rgba(255,255,255,.77);font-size:clamp(15px,2vw,18px);line-height:1.68}.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.chip{padding:9px 11px;border:1px solid rgba(255,255,255,.13);border-radius:99px;background:rgba(255,255,255,.055);color:rgba(255,255,255,.72);font-size:10.5px;font-weight:800}
+    .workspace{padding:66px 0 80px}.sheet-head{margin-bottom:22px}.kicker{margin-bottom:10px;color:var(--green);font-size:10.5px;font-weight:950;letter-spacing:.11em;text-transform:uppercase}h2{margin:0;font-size:clamp(34px,5vw,54px);line-height:1;letter-spacing:-.05em}.notice{display:flex;margin-bottom:20px;padding:14px 16px;border:1px solid #C8DED0;border-radius:15px;gap:11px;background:var(--soft);color:#4D675D;font-size:12px;line-height:1.55}.notice b{display:grid;flex:0 0 28px;height:28px;place-items:center;border-radius:9px;background:#fff;color:var(--dark)}
+    .how{margin-bottom:20px;padding:19px 20px;border:1px solid #BCD8C4;border-radius:18px;background:#fff}.how h3{margin:0;font-size:17px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.step{display:flex;padding:12px;border-radius:13px;gap:10px;background:#F2F9F3;color:#4D675D;font-size:11.5px;line-height:1.45}.step b{display:grid;flex:0 0 25px;height:25px;place-items:center;border-radius:8px;background:var(--dark);color:#fff;font-size:10px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{padding:23px;border:1px solid var(--border);border-radius:22px;background:#fff;box-shadow:0 7px 22px rgba(23,74,61,.045)}.card h3{margin:0;font-size:23px;letter-spacing:-.035em}.lead{margin:7px 0 18px;color:var(--muted);font-size:12px;line-height:1.55}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.label{display:block;margin-bottom:7px;color:var(--dark);font-size:10.5px;font-weight:900}.field{width:100%;min-height:50px;padding:0 12px;border:1px solid #C9DAD0;border-radius:12px;background:#FBFCFB;color:var(--text);font-size:14px}.money{border-color:#8DC79A;background:#F1FAF2;text-align:right;font-weight:850;font-variant-numeric:tabular-nums}.help{display:block;margin-top:6px;color:var(--muted);font-size:9.5px;line-height:1.35}.subtotal{display:flex;margin-top:14px;padding:13px 14px;border-radius:13px;justify-content:space-between;gap:14px;background:var(--dark);color:#fff}.subtotal span{font-size:11px;font-weight:800}.subtotal strong{text-align:right;font-size:20px}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.summary article{min-height:112px;padding:16px;border:1px solid var(--border);border-radius:17px;background:#fff}.summary span{display:block;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}.summary strong{display:block;margin-top:13px;font-size:clamp(20px,2.4vw,28px);letter-spacing:-.04em}.summary small{display:block;margin-top:5px;color:var(--muted);font-size:9.5px;line-height:1.35}.summary .accent{border-color:#A9D0B2;background:linear-gradient(145deg,#fff,#F0FAF1)}
+    .result-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.verdict{display:grid;margin-top:16px;padding:17px;border:1px solid #C7DDCD;border-radius:16px;grid-template-columns:40px 1fr;gap:13px;background:var(--soft)}.verdict.neutral{border-color:var(--border);background:var(--surface)}.verdict.warning{border-color:#E8CEA9;background:#FFF8ED}.verdict.danger{border-color:#E8BABA;background:#FFF2F2}.verdict__icon{display:grid;width:40px;height:40px;border-radius:12px;place-items:center;background:#fff;color:var(--dark);font-weight:950}.verdict strong{display:block;margin-bottom:4px;font-size:14px}.verdict p{margin:0;color:#536A61;font-size:11.5px;line-height:1.55}.checks{display:grid;gap:8px;margin-top:12px}.check{display:flex;padding:10px 11px;border:1px solid var(--border);border-radius:12px;justify-content:space-between;gap:12px;background:#FBFCFB;font-size:10.5px}.check span{color:var(--muted)}.check strong{text-align:right;color:var(--dark)}.actions{display:grid;gap:10px;margin-top:15px}.action{display:grid;grid-template-columns:32px 1fr;gap:10px}.action b{display:grid;width:32px;height:32px;margin-top:7px;border-radius:10px;place-items:center;background:var(--soft);color:var(--dark);font-size:11px}.action textarea{min-height:66px;padding:10px 12px;resize:vertical;line-height:1.45}
+    .toolbar{position:sticky;z-index:3;bottom:16px;display:flex;width:max-content;max-width:calc(100% - 24px);margin:25px auto 0;padding:7px;border:1px solid #C8D9CE;border-radius:17px;gap:7px;background:rgba(255,255,255,.92);box-shadow:0 18px 50px rgba(23,74,61,.1);backdrop-filter:blur(14px)}.btn{min-height:44px;padding:0 16px;border:1px solid transparent;border-radius:12px;font-size:11px;font-weight:950}.primary{background:var(--dark);color:#fff}.secondary{border-color:var(--border);background:#fff;color:var(--dark)}.clear{background:transparent;color:var(--danger)}.footer{padding:31px 0;background:var(--deep);color:rgba(255,255,255,.62)}.footer__in{display:flex;justify-content:space-between;gap:20px;font-size:12px}.footer strong{color:#fff}.footer a{color:var(--light);font-weight:850}
+    @media(max-width:980px){.grid,.result-grid{grid-template-columns:1fr}.summary{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.container{width:min(100% - 24px,1180px)}.brand small,.nav a:not(.nav__all){display:none}.hero,.hero__in{min-height:520px}.hero__in{padding:116px 0 50px}h1{font-size:clamp(42px,13.6vw,64px)}.workspace{padding:50px 0 66px}.steps,.field-grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:18px}.field{font-size:16px}.summary{grid-template-columns:1fr 1fr}.toolbar{width:calc(100% - 24px);flex-wrap:wrap}.btn{flex:1 1 120px}.footer__in{flex-direction:column}}@media(max-width:420px){.summary{grid-template-columns:1fr}}
+    @media print{@page{size:A4 portrait;margin:7mm}body{background:#fff;font-family:Arial,sans-serif}.header,.hero,.notice,.how,.toolbar,.footer{display:none!important}.container{width:100%}.workspace{padding:0}.sheet-head{margin-bottom:5px}.sheet-head h2{font-size:19pt}.grid{grid-template-columns:1fr 1fr;gap:5px}.card{padding:7px;border-radius:4px;box-shadow:none}.card h3{font-size:10pt}.lead,.help{display:none}.field-grid{gap:3px}.field{min-height:23px;padding:0 4px;border-radius:3px;font-size:7pt}.label{margin-bottom:2px;font-size:5.8pt}.subtotal{margin-top:3px;padding:4px;border-radius:3px}.subtotal span{font-size:5.8pt}.subtotal strong{font-size:8.5pt}.summary{grid-template-columns:repeat(4,1fr);gap:3px;margin-top:5px}.summary article{min-height:auto;padding:4px;border-radius:3px}.summary span{font-size:5pt}.summary strong{margin-top:2px;font-size:9pt}.summary small{font-size:5pt}.result-grid{grid-template-columns:1.1fr .9fr;gap:5px;margin-top:5px}.verdict{margin-top:3px;padding:4px;border-radius:3px;grid-template-columns:22px 1fr;gap:4px}.verdict__icon{width:22px;height:22px;border-radius:3px;font-size:6pt}.verdict strong{font-size:7pt}.verdict p{font-size:5.8pt}.checks{gap:2px;margin-top:3px}.check{padding:3px;border-radius:3px;font-size:5.5pt}.actions{gap:2px;margin-top:3px}.action{grid-template-columns:18px 1fr;gap:3px}.action b{width:18px;height:18px;margin-top:0;border-radius:3px;font-size:5.5pt}.action textarea{min-height:28px;padding:3px;resize:none;overflow:hidden;font-size:6pt}}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="container header__in"><a class="brand" href="../../"><span class="brand__mark">CB</span><span><strong>CASHBRAIN</strong><small>Центр фінансової грамотності</small></span></a><nav class="nav"><a href="../../">Головний хаб</a><a href="../../simulators/">Симулятори</a><a class="nav__all" href="../">Усі аркуші</a></nav></div></header>
+  <main>
+    <section class="hero"><div class="container hero__in"><div class="crumb"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Робочі аркуші</a><span>/</span><span>Велика покупка</span></div><span class="eyebrow">Робочий аркуш 07</span><h1>Перед великою покупкою</h1><p>Перевірте повну вартість, джерела оплати, вплив на фінансову подушку та можливі альтернативи до того, як витратите кошти.</p><div class="chips"><span class="chip">Повна вартість</span><span class="chip">Наслідки для бюджету</span><span class="chip">Друк на А4</span></div></div></section>
+    <section class="workspace"><div class="container">
+      <div class="sheet-head"><div class="kicker">Рішення до оплати</div><h2>Дивимося далі за цінник</h2></div>
+      <div class="notice"><b>i</b><span>Аркуш аналізує одну конкретну покупку. Враховуйте доставку, налаштування, обслуговування та регулярні платежі. Дані на сторінці не зберігаються.</span></div>
+      <section class="how"><h3>Як заповнити аркуш</h3><div class="steps"><div class="step"><b>1</b><span>Опишіть покупку й чесно визначте, яку проблему вона має вирішити.</span></div><div class="step"><b>2</b><span>Внесіть разові та майбутні витрати, джерела оплати й резерв.</span></div><div class="step"><b>3</b><span>Порівняйте альтернативу, перевірте наслідки та зафіксуйте рішення.</span></div></div></section>
+      <div class="grid">
+        <section class="card"><h3>1. Покупка та її повна вартість</h3><p class="lead">Не обмежуйтеся ціною товару на сайті або ціннику.</p><div class="field-grid">
+          <label class="full"><span class="label">Що планую придбати</span><input id="item" class="field" type="text" maxlength="80" placeholder="Наприклад: ноутбук для навчання"></label>
+          <label class="full"><span class="label">Яку потребу або проблему вирішить покупка</span><input id="purpose" class="field" type="text" maxlength="120" placeholder="Наприклад: потрібен для навчальних програм і практичних робіт"></label>
+          <label><span class="label">Це передусім</span><select id="priority" class="field calc"><option value="">Оберіть</option><option value="need">Необхідність</option><option value="mixed">І потреба, і бажання</option><option value="want">Бажання</option></select></label>
+          <label><span class="label">Планований строк використання, років</span><input id="years" class="field money calc" type="number" min="1" max="30" step="1" inputmode="numeric" placeholder="0"></label>
+          <label><span class="label">Ціна покупки, грн</span><input id="price" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Доставка та встановлення, грн</span><input id="delivery" class="field money calc" type="number" min="0" step="10" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Необхідні аксесуари або налаштування, грн</span><input id="setup" class="field money calc" type="number" min="0" step="10" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Обслуговування й витратні матеріали, грн/рік</span><input id="annualCost" class="field money calc" type="number" min="0" step="10" inputmode="decimal" placeholder="0"></label>
+          <label class="full"><span class="label">Підписки, зв’язок або інші регулярні витрати, грн/міс.</span><input id="monthlyCost" class="field money calc" type="number" min="0" step="10" inputmode="decimal" placeholder="0"></label>
+        </div><div class="subtotal"><span>Потрібно сплатити одразу</span><strong id="upfrontTotal">0 грн</strong></div></section>
+        <section class="card"><h3>2. Джерела оплати та запас міцності</h3><p class="lead">Окремо покажіть кошти на покупку й недоторканний резерв.</p><div class="field-grid">
+          <label><span class="label">Відкладено саме на цю покупку, грн</span><input id="savedForPurchase" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Із фінансової подушки планую взяти, грн</span><input id="reserveUse" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Фінансова подушка зараз, грн</span><input id="reserveNow" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Мінімальний резерв, який хочу зберегти, грн</span><input id="reserveMinimum" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Чистий місячний дохід, грн</span><input id="income" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Обов’язкові витрати, грн/міс.</span><input id="essential" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label class="full"><span class="label">Планові заощадження, грн/міс.</span><input id="monthlySaving" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+        </div><div class="subtotal"><span>Залишиться вільно щомісяця з урахуванням покупки</span><strong id="monthlyFree">0 грн</strong></div></section>
+      </div>
+      <div class="summary">
+        <article><span>Повна вартість користування</span><strong id="ownershipTotal">0 грн</strong><small id="ownershipNote">Вкажіть строк використання</small></article>
+        <article><span>Бракує для оплати зараз</span><strong id="fundingGap">0 грн</strong><small>Після коштів на покупку та зазначеної суми з резерву</small></article>
+        <article><span>Подушка після покупки</span><strong id="reserveAfter">0 грн</strong><small id="reserveNote">Не враховано без даних про резерв</small></article>
+        <article class="accent"><span>Орієнтовна вартість на місяць</span><strong id="costPerMonth">0 грн</strong><small>За весь зазначений строк використання</small></article>
+      </div>
+      <div class="result-grid">
+        <section class="card"><h3>3. Альтернатива та висновок</h3><p class="lead">Порівняння потрібне не для відмови від покупки, а для сильнішого рішення.</p><div class="field-grid">
+          <label><span class="label">Ціна найкращої прийнятної альтернативи, грн</span><input id="alternativePrice" class="field money calc" type="number" min="0" step="100" inputmode="decimal" placeholder="0"></label>
+          <label><span class="label">Чи порівняно щонайменше 3 пропозиції</span><select id="compared" class="field calc"><option value="">Оберіть</option><option value="yes">Так</option><option value="no">Ні</option></select></label>
+          <label class="full"><span class="label">Що станеться, якщо відкласти покупку на 30 днів</span><input id="delayEffect" class="field" type="text" maxlength="140" placeholder="Наприклад: навчанню не завадить, а я накопичу ще частину суми"></label>
+        </div>
+        <div id="verdict" class="verdict neutral"><span class="verdict__icon">i</span><div><strong>Заповніть основні поля</strong><p>Потрібні ціна, строк використання, джерела оплати та дані про резерв.</p></div></div>
+        <div class="checks"><div class="check"><span>Додаткові витрати понад ціну</span><strong id="extraCosts">0 грн</strong></div><div class="check"><span>Можлива економія на альтернативі</span><strong id="alternativeSaving">Не визначено</strong></div><div class="check"><span>Різниця до мінімального резерву</span><strong id="reserveGap">0 грн</strong></div><div class="check"><span>Частка разової оплати від місячного доходу</span><strong id="incomeShare">0%</strong></div></div>
+        </section>
+        <section class="card"><h3>Моє рішення і перші дії</h3><p class="lead">Запишіть конкретні кроки до оплати або свідомої відмови.</p><div class="actions"><label class="action"><b>1</b><textarea class="field" maxlength="160" placeholder="Наприклад: перевірити гарантію, сервіс і остаточну ціну у трьох продавців"></textarea></label><label class="action"><b>2</b><textarea class="field" maxlength="160" placeholder="Наприклад: не використовувати фінансову подушку й накопичити суму, якої бракує"></textarea></label><label class="action"><b>3</b><textarea class="field" maxlength="160" placeholder="Моє рішення: купую зараз, відкладаю, обираю альтернативу або відмовляюся"></textarea></label></div></section>
+      </div>
+      <div class="toolbar"><button id="exampleBtn" class="btn secondary" type="button">Заповнити приклад</button><button class="btn primary" type="button" onclick="window.print()">Друкувати / PDF</button><button id="clearBtn" class="btn clear" type="button">Очистити</button></div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="container footer__in"><div><strong>CASHBRAIN</strong> · Робочий аркуш</div><a href="../">Усі робочі аркуші ↑</a></div></footer>
+  <script>
+    const ids=["price","delivery","setup","annualCost","monthlyCost","savedForPurchase","reserveUse","reserveNow","reserveMinimum","income","essential","monthlySaving","years","alternativePrice"];
+    const val=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+    const money=value=>`${Math.round(value).toLocaleString("uk-UA")} грн`;
+    const set=(id,value)=>document.getElementById(id).textContent=value;
+    function calculate(){
+      const price=val("price"),delivery=val("delivery"),setup=val("setup"),annual=val("annualCost"),monthly=val("monthlyCost"),years=val("years");
+      const saved=val("savedForPurchase"),reserveUse=val("reserveUse"),reserve=val("reserveNow"),reserveMin=val("reserveMinimum");
+      const income=val("income"),essential=val("essential"),monthlySaving=val("monthlySaving"),alternative=val("alternativePrice");
+      const upfront=price+delivery+setup;
+      const ownership=upfront+(annual*years)+(monthly*12*years);
+      const gap=Math.max(0,upfront-saved-reserveUse);
+      const reserveAfter=reserve-reserveUse;
+      const freeMonthly=income-essential-monthlySaving-monthly;
+      const extra=Math.max(0,ownership-price);
+      const reserveGap=reserveAfter-reserveMin;
+      const costMonth=years>0?ownership/(years*12):0;
+      set("upfrontTotal",money(upfront));set("ownershipTotal",money(ownership));set("fundingGap",money(gap));set("reserveAfter",money(reserveAfter));set("monthlyFree",money(freeMonthly));set("costPerMonth",money(costMonth));set("extraCosts",money(extra));set("reserveGap",money(reserveGap));set("incomeShare",income>0?`${Math.round(upfront/income*100)}%`:"0%");
+      set("ownershipNote",years>0?`За ${years} ${years===1?"рік":years<5?"роки":"років"} використання`:"Вкажіть строк використання");
+      set("reserveNote",reserve||reserveUse?`Після використання ${money(reserveUse)} з резерву`:"Не враховано без даних про резерв");
+      set("alternativeSaving",alternative>0?(price>=alternative?money(price-alternative):`Дорожча на ${money(alternative-price)}`):"Не визначено");
+      const verdict=document.getElementById("verdict"),priority=document.getElementById("priority").value,compared=document.getElementById("compared").value;
+      let cls="neutral",icon="i",title="Заповніть основні поля",text="Потрібні ціна, строк використання, джерела оплати та дані про резерв.";
+      if(price>0&&years>0){
+        if(reserveUse>reserve){
+          cls="danger";icon="!";title="Сума з подушки перевищує наявний резерв";text="Зменште суму, яку плануєте взяти з фінансової подушки, або змініть спосіб оплати.";
+        }else if(gap>0){
+          cls="danger";icon="!";title=`Для оплати бракує ${money(gap)}`;text="Не перекривайте нестачу випадковим кредитом. Відкладіть покупку, накопичте різницю або оберіть дешевшу альтернативу.";
+        }else if(reserveAfter<reserveMin){
+          cls="danger";icon="!";title=`Покупка зменшить резерв нижче обраного мінімуму`;text=`Після покупки не вистачатиме ${money(Math.abs(reserveGap))} до мінімального запасу. Безпечніше не використовувати ці кошти або відкласти рішення.`;
+        }else if(income>0&&freeMonthly<0){
+          cls="danger";icon="!";title="Майбутні витрати не вміщаються в місячний бюджет";text=`З урахуванням обслуговування щомісячний дефіцит становитиме ${money(Math.abs(freeMonthly))}. Перегляньте модель або відкладіть покупку.`;
+        }else if(priority==="want"||compared==="no"||reserveUse>0||(alternative>0&&alternative<price)){
+          cls="warning";icon="?";title="Рішення потребує ще однієї перевірки";
+          const reasons=[];if(priority==="want")reasons.push("це переважно бажання");if(compared==="no")reasons.push("ще не порівняно три пропозиції");if(reserveUse>0)reasons.push("використовується фінансова подушка");if(alternative>0&&alternative<price)reasons.push(`альтернатива дешевша на ${money(price-alternative)}`);
+          text=`Зверніть увагу: ${reasons.join("; ")}. Пауза й порівняння допоможуть уникнути поспішної витрати.`;
+        }else{
+          cls="";icon="✓";title="План виглядає фінансово керованим";text=`Коштів для разової оплати вистачає, мінімальний резерв зберігається${income>0?", а щомісячний бюджет залишається додатним":""}. Остаточно перевірте гарантію, умови повернення та альтернативи.`;
+        }
+      }
+      verdict.className=`verdict ${cls}`.trim();verdict.innerHTML=`<span class="verdict__icon">${icon}</span><div><strong>${title}</strong><p>${text}</p></div>`;
+    }
+    document.querySelectorAll(".calc").forEach(el=>{el.addEventListener("input",calculate);el.addEventListener("change",calculate)});
+    document.getElementById("exampleBtn").addEventListener("click",()=>{
+      const data={item:"Ноутбук для навчання",purpose:"Потрібен для навчальних програм і практичних робіт",priority:"need",years:4,price:28000,delivery:0,setup:1500,annualCost:1200,monthlyCost:0,savedForPurchase:29500,reserveUse:0,reserveNow:45000,reserveMinimum:42000,income:19500,essential:12000,monthlySaving:2500,alternativePrice:25000,compared:"yes",delayEffect:"Можу відкласти на 30 днів і ще раз перевірити ціни"};
+      Object.entries(data).forEach(([id,value])=>document.getElementById(id).value=value);calculate();
+    });
+    document.getElementById("clearBtn").addEventListener("click",()=>{
+      document.querySelectorAll("input,select,textarea").forEach(el=>el.value="");calculate();window.scrollTo({top:document.querySelector(".workspace").offsetTop,behavior:"smooth"});
+    });
+    calculate();
+  </script>
+</body>
+</html>
