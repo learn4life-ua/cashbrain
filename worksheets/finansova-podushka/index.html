@@ -98,6 +98,8 @@
       const expenses = [...document.querySelectorAll(".expense")];
       const income = q("monthlyIncome"), saved = q("savedAmount"), coverage = q("coverageMonths"), date = q("targetDate"), contribution = q("monthlyContribution");
       const textareas = [...document.querySelectorAll("textarea")];
+      const expenseNames = [...document.querySelectorAll(".expense-name")];
+      const defaultExpenseNames = expenseNames.map(el => el.value);
       const autosize = el => { el.style.height = "auto"; el.style.height = `${Math.max(el.scrollHeight, el.classList.contains("expense-name") ? 48 : 0)}px`; };
       const localISO = value => `${value.getFullYear()}-${String(value.getMonth()+1).padStart(2,"0")}-${String(value.getDate()).padStart(2,"0")}`;
       date.min = localISO(new Date());
@@ -186,6 +188,7 @@
       document.querySelectorAll("input,select,textarea").forEach(el => el.addEventListener("input", () => { if (el.tagName === "TEXTAREA") autosize(el); calculate(); }));
       textareas.forEach(autosize);
       q("exampleButton").addEventListener("click", () => {
+        defaultExpenseNames.forEach((v,i) => expenseNames[i].value = v);
         [6500,5500,1200,800,0,1000].forEach((v,i) => expenses[i].value = v);
         coverage.value = "6"; income.value = "28000"; saved.value = "18000"; contribution.value = "3500";
         const target = new Date(); target.setMonth(target.getMonth() + 24); date.value = localISO(target);
@@ -194,7 +197,8 @@
       });
       q("clearButton").addEventListener("click", () => {
         if (!confirm("Очистити всі введені дані цього аркуша?")) return;
-        document.querySelectorAll("input[type=number],input[type=date],.action-row textarea,textarea").forEach(el => el.value = "");
+        document.querySelectorAll("input[type=number],input[type=date],.action-row textarea,.reflection textarea").forEach(el => el.value = "");
+        defaultExpenseNames.forEach((v,i) => expenseNames[i].value = v);
         coverage.value = "6"; textareas.forEach(autosize); calculate();
       });
       calculate();
