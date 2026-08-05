@@ -37,7 +37,9 @@ const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 
 function renderEvidence(){
-  $('#evidence-board').innerHTML=evidence.map((item,i)=>`<button class="evidence-card" data-evidence="${item.id}" type="button"><span class="evidence-id">МАТЕРІАЛ ${String(i+1).padStart(2,'0')}</span><span class="evidence-type">${item.type}</span><strong>${item.title}</strong><span class="evidence-preview">${item.preview}</span></button>`).join('');
+  const marks={sms:'SMS',url:'URL',form:'WEB',otp:'OTP',session:'LOG',statement:'₴',wifi:'WI-FI',receipt:'DOC'};
+  const cards=evidence.map((item,i)=>`<button class="evidence-card" data-evidence="${item.id}" data-kind="${item.id}" type="button" aria-label="Відкрити матеріал: ${item.title}"><span class="evidence-pin" aria-hidden="true"></span><span class="evidence-topline"><span class="evidence-id">МАТЕРІАЛ ${String(i+1).padStart(2,'0')}</span><span class="evidence-state">Не оглянуто</span></span><span class="evidence-icon" aria-hidden="true">${marks[item.id]}</span><span class="evidence-type">${item.type}</span><strong>${item.title}</strong><span class="evidence-preview">${item.preview}</span><span class="evidence-open">Відкрити матеріал →</span></button>`).join('');
+  $('#evidence-board').innerHTML=`<div class="board-toolbar"><div><span>Слідча дошка · справа CB-01412</span><strong>Матеріали інциденту</strong></div><div class="board-counter"><span>Оглянуто</span><strong id="board-viewed">0 / 8</strong></div></div><div class="board-canvas">${cards}</div><section class="selection-folder" aria-labelledby="selection-title"><div class="selection-folder-head"><div><span>РОБОЧА ПАПКА</span><strong id="selection-title">Докази, долучені до справи</strong></div><small>Оберіть рівно 5 матеріалів</small></div><ol id="selected-evidence" class="selected-evidence" aria-live="polite"></ol></section>`;
 }
 function renderChoices(){
   $('#timeline-options').innerHTML=timelines.map(x=>`<button class="timeline-option" data-timeline="${x.id}" type="button"><span class="option-mark">${x.label.slice(-1)}</span><span><strong>${x.label}</strong><span>${x.text}</span></span></button>`).join('');
@@ -64,8 +66,25 @@ function toggleEvidence(){
   const id=state.currentEvidence;if(state.selected.has(id))state.selected.delete(id);else if(state.selected.size<5)state.selected.add(id);
   $$('.evidence-card').forEach(card=>card.classList.toggle('is-selected',state.selected.has(card.dataset.evidence)));updateModalButton();updateEvidenceControls();
 }
+function refreshBoardState(){
+  const selectedItems=[...state.selected].map(id=>evidence.find(item=>item.id===id));
+  $('.evidence-card').forEach(card=>{
+    const id=card.dataset.evidence;
+    const status=card.querySelector('.evidence-state');
+    const selected=state.selected.has(id);
+    const viewed=state.viewed.has(id);
+    card.classList.toggle('is-selected',selected);
+    card.classList.toggle('is-viewed',viewed);
+    status.textContent=selected?'Долучено':viewed?'Оглянуто':'Не оглянуто';
+  });
+  $('#board-viewed').textContent=`${state.viewed.size} / 8`;
+  $('#selected-evidence').innerHTML=Array.from({length:5},(_,index)=>{
+    const item=selectedItems[index];
+    return item?`<li class="is-filled"><span>${index+1}</span><strong>${item.title}</strong><button type="button" data-remove-evidence="${item.id}" aria-label="Вилучити доказ ${item.title}">×</button></li>`:`<li class="is-empty"><span>${index+1}</span><em>Вільне місце для доказу</em></li>`;
+  }).join('');
+}
 function updateEvidenceControls(){
-  updateDashboard(1);const all=state.viewed.size===8,full=state.selected.size===5;$('#check-evidence').disabled=!(all&&full);
+  refreshBoardState();updateDashboard(1);const all=state.viewed.size===8,full=state.selected.size===5;$('#check-evidence').disabled=!(all&&full);
   $('#evidence-hint').textContent=!all?`Оглянуто ${state.viewed.size} із 8 матеріалів.`:!full?`Долучено ${state.selected.size} із 5 доказів.`:'Матеріали оглянуто. Можна фіксувати версію.';
 }
 function showStage(id,number){$$('.stage').forEach(x=>x.classList.remove('is-active'));$(id).classList.add('is-active');updateDashboard(number);window.scrollTo({top:$(id).offsetTop-90,behavior:'smooth'})}
@@ -90,7 +109,16 @@ function reset(){state.viewed.clear();state.selected.clear();state.responses.cle
 
 renderEvidence();renderChoices();
 $('#start-button').addEventListener('click',()=>{$('#investigation').classList.add('is-visible');$('#briefing').style.display='none';window.scrollTo({top:$('#investigation').offsetTop-20,behavior:'smooth'})});
-$('#evidence-board').addEventListener('click',e=>{const card=e.target.closest('[data-evidence]');if(card)openEvidence(card.dataset.evidence)});
+$('#evidence-board').addEventListener('click',e=>{
+  const remove=e.target.closest('[data-remove-evidence]');
+  if(remove){
+    state.selected.delete(remove.dataset.removeEvidence);
+    updateEvidenceControls();
+    return;
+  }
+  const card=e.target.closest('[data-evidence]');
+  if(card)openEvidence(card.dataset.evidence);
+});
 $('#modal-select').addEventListener('click',toggleEvidence);$$('[data-close-modal]').forEach(x=>x.addEventListener('click',closeModal));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#evidence-modal').hidden)closeModal()});
 $('#check-evidence').addEventListener('click',checkEvidence);
 $('#timeline-options').addEventListener('click',e=>{const b=e.target.closest('[data-timeline]');if(!b)return;chooseSingle('.timeline-option','timeline',b.dataset.timeline,b);$('#check-timeline').disabled=false});
