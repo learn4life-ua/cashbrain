@@ -15,25 +15,25 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 
-/* Clear step-by-step work order */
+/* Full-width step-by-step work order */
 .assignment-note{margin:17px 0 0;padding:13px 14px;border-radius:12px;background:rgba(255,255,255,.58);color:var(--muted);font-size:11.5px;line-height:1.55}.assignment-note strong{color:var(--green-dark)}
 .work-order{padding:0;overflow:hidden;border:1px solid #C9DDD0;background:#fff;box-shadow:0 18px 45px rgba(16,58,49,.1)}
 .work-order-heading{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr);gap:35px;padding:27px 29px 24px;align-items:end;background:linear-gradient(135deg,var(--deep),var(--green));color:#fff}
 .work-order-heading .section-label{color:#A8E7AD}
 .work-order-heading h2{margin:9px 0 0;font-size:32px;line-height:1.04;letter-spacing:-.04em}
 .work-order-heading p{margin:0;color:rgba(255,255,255,.76);font-size:13px;line-height:1.65}
-.work-steps{counter-reset:workstep;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;padding:0;list-style:none;background:#fff}
-.work-steps li{position:relative;display:flex;min-height:235px;padding:26px 21px 23px;border:0;border-right:1px solid var(--line);border-radius:0;gap:15px;background:#fff}
-.work-steps li:last-child{border-right:0}
-.work-steps li:not(:last-child):after{position:absolute;z-index:2;top:34px;right:-12px;display:grid;width:24px;height:24px;border:1px solid var(--line);border-radius:50%;place-items:center;background:#fff;color:var(--green);content:"›";font-size:20px;font-weight:900}
-.step-number{display:flex!important;width:42px!important;height:54px!important;min-width:42px;border-radius:12px!important;align-items:center;justify-content:center;flex-direction:column;background:var(--mint)!important;color:var(--green-dark)!important;font-weight:950}
-.step-number small{font-size:7px;line-height:1;letter-spacing:.08em;text-transform:uppercase}
-.step-number b{margin-top:3px;font-size:21px;line-height:1}
-.step-content{min-width:0}
-.step-kicker{display:block;color:var(--green);font-size:8.5px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-.work-steps h3{margin:8px 0 0;font-size:16px;line-height:1.2;letter-spacing:-.015em}
-.work-steps p{margin:9px 0 0;color:var(--muted);font-size:11.5px;line-height:1.58}
-.work-steps em{display:block;margin-top:14px;padding-top:11px;border-top:1px dashed #C8D7CD;color:var(--green-dark);font-size:9.5px;font-style:normal;font-weight:850;line-height:1.4}
+.work-steps{display:grid;grid-template-columns:1fr;gap:12px;margin:0;padding:24px 28px;list-style:none;background:#F5F8F5}
+.work-steps li{position:relative;display:grid;grid-template-columns:92px minmax(0,1fr);min-height:136px;padding:22px 24px;border:1px solid var(--line);border-radius:18px;align-items:stretch;gap:24px;background:#fff;box-shadow:0 8px 22px rgba(16,58,49,.055)}
+.work-steps li:last-child{border:1px solid var(--line)}
+.work-steps li:not(:last-child):after{position:absolute;z-index:2;bottom:-18px;left:61px;display:grid;width:24px;height:24px;border:1px solid #C9DDD0;border-radius:50%;place-items:center;background:#fff;color:var(--green);content:"↓";font-size:13px;font-weight:950}
+.step-number{display:flex!important;width:92px!important;height:100%!important;min-width:92px;border-radius:14px!important;align-items:center;justify-content:center;flex-direction:column;background:var(--mint)!important;color:var(--green-dark)!important;font-weight:950}
+.step-number small{font-size:8px;line-height:1;letter-spacing:.11em;text-transform:uppercase}
+.step-number b{margin-top:6px;font-size:34px;line-height:1}
+.step-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.38fr);grid-template-rows:auto auto 1fr;column-gap:30px;align-content:center;min-width:0}
+.step-kicker{grid-column:1;display:block;color:var(--green);font-size:8.5px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+.work-steps h3{grid-column:1;margin:7px 0 0;font-size:19px;line-height:1.18;letter-spacing:-.02em}
+.work-steps p{grid-column:1;margin:8px 0 0;color:var(--muted);font-size:12.5px;line-height:1.58}
+.work-steps em{grid-column:2;grid-row:1/4;display:flex;margin:0;padding:14px 0 14px 24px;border-top:0;border-left:1px dashed #BFD0C5;align-items:center;color:var(--green-dark);font-size:11px;font-style:normal;font-weight:850;line-height:1.5}
 .board-guide{display:flex;margin:0 28px;padding:17px 0;border-top:1px solid var(--line);align-items:flex-start;gap:12px}
 .guide-mark{display:grid;width:27px;height:27px;min-width:27px;border-radius:50%;place-items:center;background:var(--mint);color:var(--green-dark);font-family:Georgia,serif;font-size:15px;font-weight:900}
 .board-guide p{margin:2px 0 0;color:var(--muted);font-size:11.5px;line-height:1.6}.board-guide strong{display:block;margin-bottom:2px;color:var(--text)}
@@ -43,18 +43,22 @@
 
 @media(max-width:920px){
   .work-order-heading{grid-template-columns:1fr;gap:10px}
-  .work-steps{grid-template-columns:1fr 1fr}
-  .work-steps li{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .work-steps li:nth-child(2n){border-right:0}
-  .work-steps li:nth-child(n+3){border-bottom:0}
-  .work-steps li:after{display:none!important}
+  .work-steps li{grid-template-columns:76px minmax(0,1fr);gap:19px}
+  .step-number{width:76px!important;min-width:76px}
+  .work-steps li:not(:last-child):after{left:48px}
+  .step-content{grid-template-columns:1fr}
+  .work-steps em{grid-column:1;grid-row:auto;margin-top:11px;padding:10px 0 0;border-top:1px dashed #C8D7CD;border-left:0}
 }
 @media(max-width:680px){
   .work-order-heading{padding:23px 21px}
   .work-order-heading h2{font-size:28px}
-  .work-steps{grid-template-columns:1fr}
-  .work-steps li{min-height:auto;padding:21px;border-right:0!important;border-bottom:1px solid var(--line)!important}
-  .work-steps li:last-child{border-bottom:0!important}
+  .work-steps{padding:17px 16px;gap:11px}
+  .work-steps li{grid-template-columns:1fr;min-height:auto;padding:18px;border:1px solid var(--line)!important;gap:15px}
+  .work-steps li:not(:last-child):after{display:none}
+  .step-number{width:100%!important;height:43px!important;min-width:0;align-items:center;justify-content:flex-start;flex-direction:row;gap:7px}
+  .step-number small{font-size:8px}
+  .step-number b{margin:0;font-size:21px}
+  .work-steps h3{font-size:17px}
   .board-guide{margin:0 21px}
   .work-order-actions{padding:18px 21px;align-items:stretch;flex-direction:column}
   .work-order-actions .primary-button{width:100%;min-width:0}
