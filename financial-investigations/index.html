@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Фінансові розслідування CASHBRAIN: аналізуйте докази, викривайте фінансові пастки та обирайте обґрунтовані рішення.">
+  <meta name="theme-color" content="#174A3D">
+  <title>Фінансові розслідування - CASHBRAIN</title>
+  <style>
+    :root {
+      --green:#1C5345;--green-dark:#174A3D;--green-deep:#103A31;
+      --accent:#62C96B;--accent-light:#A8E7AD;--soft:#DFF6DF;
+      --surface:#F7F9F6;--white:#FFFFFF;--text:#10231C;
+      --muted:#63736D;--border:#DDE7E0;
+      --shadow:0 18px 50px rgba(23,74,61,.10);
+      --focus:0 0 0 4px rgba(98,201,107,.28)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible{outline:none;box-shadow:var(--focus)}
+    .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+
+    .site-header{position:absolute;z-index:10;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.12)}
+    .site-header__inner{display:flex;min-height:76px;justify-content:space-between;align-items:center;gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:12px;color:var(--white)}
+    .brand__mark{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.10);font-size:14px;font-weight:950;letter-spacing:-.04em;backdrop-filter:blur(12px)}
+    .brand__text strong{display:block;font-size:15px;letter-spacing:.05em}
+    .brand__text span{display:block;margin-top:2px;color:rgba(255,255,255,.64);font-size:10px}
+    .nav{display:flex;align-items:center;gap:7px}
+    .nav a{padding:10px 13px;border-radius:11px;color:rgba(255,255,255,.78);font-size:12px;font-weight:800;transition:background-color .18s ease,color .18s ease}
+    .nav a:hover{background:rgba(255,255,255,.10);color:var(--white)}
+    .nav .nav__site{margin-left:4px;border:1px solid rgba(255,255,255,.18);color:var(--white)}
+
+    .hero{position:relative;min-height:590px;overflow:hidden;background:radial-gradient(circle at 86% 20%,rgba(98,201,107,.24),transparent 26%),radial-gradient(circle at 8% 92%,rgba(168,231,173,.09),transparent 24%),linear-gradient(135deg,var(--green-deep),var(--green));color:var(--white)}
+    .hero::before,.hero::after{position:absolute;border:1px solid rgba(255,255,255,.07);border-radius:50%;content:"";pointer-events:none}
+    .hero::before{top:92px;right:-96px;width:440px;height:440px}
+    .hero::after{top:160px;right:-20px;width:305px;height:305px}
+    .hero__inner{position:relative;z-index:1;display:flex;min-height:590px;padding:142px 0 70px;flex-direction:column;justify-content:center}
+    .breadcrumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:22px;color:rgba(255,255,255,.60);font-size:11px;font-weight:800}
+    .breadcrumb a:hover{color:var(--white)}
+    .breadcrumb span{color:var(--accent-light)}
+    .eyebrow{display:inline-flex;align-items:center;align-self:flex-start;gap:10px;margin-bottom:20px;color:var(--accent-light);font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+    .eyebrow::before{width:28px;height:2px;border-radius:999px;background:var(--accent);content:""}
+    h1{max-width:1000px;margin:0;font-size:clamp(54px,8vw,88px);line-height:.93;letter-spacing:-.065em}
+    .hero__lead{max-width:790px;margin:25px 0 0;color:rgba(255,255,255,.78);font-size:clamp(16px,2vw,18px);line-height:1.68}
+    .hero__meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
+    .chip{display:inline-flex;min-height:33px;padding:0 12px;border:1px solid rgba(255,255,255,.13);border-radius:999px;align-items:center;background:rgba(255,255,255,.055);color:rgba(255,255,255,.74);font-size:10.5px;font-weight:800}
+
+    .catalog{padding:84px 0}
+    .section-head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.7fr);gap:64px;align-items:end;margin-bottom:34px}
+    .section-kicker{margin-bottom:12px;color:var(--green);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    h2{margin:0;font-size:clamp(38px,5.5vw,60px);line-height:.99;letter-spacing:-.05em}
+    .section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.72}
+    .cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+    .case-card{position:relative;isolation:isolate;display:flex;grid-column:span 2;min-height:322px;overflow:hidden;padding:26px;border:1px solid #CFE1D5;border-radius:24px;background:radial-gradient(circle at 100% 0,rgba(98,201,107,.12),transparent 38%),linear-gradient(145deg,var(--white),#F3FAF4);flex-direction:column;box-shadow:0 8px 24px rgba(23,74,61,.045)}
+    .case-card::before{position:absolute;z-index:-1;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--green-dark),var(--accent));content:""}
+    .case-card::after{position:absolute;z-index:-1;right:-58px;bottom:-74px;width:170px;height:170px;border:1px solid rgba(28,83,69,.08);border-radius:50%;content:""}
+    .case-card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+    .case-card__number{color:var(--green-dark);font-size:10px;font-weight:950;letter-spacing:.09em}
+    .status{display:inline-flex;min-height:25px;padding:0 9px;border-radius:999px;align-items:center;background:#EDF2EF;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+    .case-card--next{border-color:#9FC9AA;background:radial-gradient(circle at 100% 0,rgba(98,201,107,.22),transparent 40%),linear-gradient(145deg,var(--white),#EFF9F0);box-shadow:var(--shadow)}
+    .case-card--next .status{background:var(--soft);color:var(--green-dark)}
+    .case-card__icon{display:grid;width:48px;height:48px;margin-top:29px;place-items:center;border-radius:15px;background:linear-gradient(145deg,var(--green-dark),var(--green));color:var(--white);font-size:16px;font-weight:950;box-shadow:0 10px 22px rgba(23,74,61,.16)}
+    .case-card h3{max-width:430px;margin:18px 0 11px;font-size:27px;line-height:1.06;letter-spacing:-.035em}
+    .case-card p{max-width:470px;margin:0;color:var(--muted);font-size:13px;line-height:1.62}
+    .case-card__foot{display:flex;margin-top:auto;padding-top:24px;justify-content:space-between;align-items:center;color:var(--green-dark);font-size:11px;font-weight:900}
+    .case-card__foot span:last-child{display:grid;width:34px;height:34px;border-radius:50%;place-items:center;background:var(--soft)}
+
+    .method{padding:72px 0;background:var(--white)}
+    .method__inner{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(0,1.25fr);gap:70px;align-items:start}
+    .method__intro p{max-width:410px;margin:18px 0 0;color:var(--muted);font-size:14px;line-height:1.7}
+    .method__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .method__item{padding:20px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
+    .method__item span{display:block;margin-bottom:14px;color:var(--green);font-size:11px;font-weight:950}
+    .method__item strong{display:block;margin-bottom:7px;font-size:17px}
+    .method__item p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+
+    .back-wrap{padding:34px 0 66px;background:var(--white)}
+    .back{display:flex;padding:21px 23px;border:1px solid #C8DED0;border-radius:19px;justify-content:space-between;align-items:center;gap:20px;background:var(--soft);color:var(--green-dark);font-size:13px;font-weight:900;transition:transform .18s ease}
+    .back:hover{transform:translateY(-2px)}
+    .back span:last-child{display:grid;width:36px;height:36px;place-items:center;border-radius:50%;background:var(--white)}
+    .footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.09);background:var(--green-deep);color:rgba(255,255,255,.62)}
+    .footer__inner{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px}
+    .footer strong{color:var(--white)}
+    .footer__links{display:flex;flex-wrap:wrap;gap:18px}
+    .footer a{color:var(--accent-light);font-weight:850}
+
+    @media(max-width:960px){.section-head,.method__inner{grid-template-columns:1fr;gap:22px}.section-head p{max-width:670px}.cards{grid-template-columns:repeat(4,minmax(0,1fr))}.case-card{grid-column:span 2}.method__intro p{max-width:650px}}
+    @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__site){display:none}.nav .nav__site{padding:9px 11px}.hero{min-height:auto}.hero::before{right:-220px}.hero::after{display:none}.hero__inner{min-height:575px;padding:120px 0 54px}h1{font-size:clamp(48px,15vw,69px)}.hero__lead{font-size:15px}.catalog,.method{padding:58px 0}.section-head{margin-bottom:25px}.cards{grid-template-columns:1fr}.case-card{grid-column:auto;min-height:285px;border-radius:20px}.case-card h3{font-size:26px}.method__list{grid-template-columns:1fr}.back-wrap{padding:15px 0 50px}.back{align-items:flex-start}.footer__inner{align-items:flex-start;flex-direction:column;gap:12px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
+      <nav class="nav" aria-label="Навігація сторінки"><a href="#catalog">Розслідування</a><a href="#method">Як працювати</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/praktykum/" target="_blank" rel="noopener">Практикум ↗</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero"><div class="container hero__inner">
+      <div class="breadcrumb"><a href="../">Інтерактивний хаб</a><span aria-hidden="true">/</span><span>Фінансові розслідування</span></div>
+      <div class="eyebrow">Факти · докази · обґрунтований висновок</div>
+      <h1>Фінансові розслідування</h1>
+      <p class="hero__lead">Досліджуйте фінансову ситуацію як детектив: відокремлюйте факти від припущень, перевіряйте докази, знаходьте приховані ризики та формулюйте власний висновок.</p>
+      <div class="hero__meta"><span class="chip">10 навчальних розслідувань</span><span class="chip">Практичні фінансові ситуації</span><span class="chip">Без реєстрації</span></div>
+    </div></section>
+
+    <section class="catalog" id="catalog"><div class="container">
+      <div class="section-head"><div><div class="section-kicker">Оберіть справу</div><h2>Що будемо розслідувати?</h2></div><p>Кожна справа присвячена окремій фінансовій загадці. Інтерактиви відкриватимуться поступово після перевірки змісту, розгалужень і висновків.</p></div>
+      <div class="cards">
+        <article class="case-card case-card--next"><div class="case-card__top"><span class="case-card__number">СПРАВА 01 · БЕЗПЕКА</span><span class="status">Наступна</span></div><span class="case-card__icon" aria-hidden="true">!</span><h3>Фінансова безпека</h3><p>Шахрайські схеми, підозрілі повідомлення та вибір безпечної дії.</p><div class="case-card__foot"><span>Готується до запуску</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 02 · БЮДЖЕТ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">₴</span><h3>Розумний бюджет</h3><p>Куди зникають гроші та чому бюджет не сходиться.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 03 · ДОХІД</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">₴</span><h3>Перша зарплата</h3><p>Податки, обов’язкові витрати, заощадження та фінансові помилки.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 04 · КРЕДИТ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">%</span><h3>Кредитна пастка</h3><p>Реальна вартість кредиту, приховані платежі, переплата та прострочення.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 05 · КАРТКА</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">•••</span><h3>Таємниця банківської картки</h3><p>Як стороння особа отримала доступ до рахунку: фішинг, CVV, одноразові коди, підроблений сайт.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 06 · ЗАОЩАДЖЕННЯ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">↘</span><h3>Зниклі заощадження</h3><p>Інфляція, невигідне зберігання грошей, відсутність резерву та ризикові рішення.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 07 · ПОКУПКА</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">?</span><h3>Підозріла онлайн-покупка</h3><p>Фальшивий магазин, надто низька ціна, передоплата, підроблені відгуки та відсутність реквізитів.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 08 · ІНВЕСТИЦІЇ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">↗</span><h3>Інвестиція без гарантій</h3><p>Обіцянки надприбутку, фінансова піраміда, ризик, ліквідність і перевірка пропозиції.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 09 · ПОДАТКИ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">=</span><h3>Податкова загадка</h3><p>Чому сума «на руки» відрізняється від нарахованого доходу.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+        <article class="case-card"><div class="case-card__top"><span class="case-card__number">СПРАВА 10 · ПІДПИСКИ</span><span class="status">Заплановано</span></div><span class="case-card__icon" aria-hidden="true">⟳</span><h3>Фінансовий слід підписки</h3><p>Автоматичні списання, пробний період, приховані умови та регулярні платежі.</p><div class="case-card__foot"><span>Розслідування готується</span><span aria-hidden="true">…</span></div></article>
+      </div>
+    </div></section>
+
+    <section class="method" id="method"><div class="container method__inner">
+      <div class="method__intro"><div class="section-kicker">Логіка розслідування</div><h2>Від підозри до висновку</h2><p>Тут недостатньо вгадати відповідь. Потрібно простежити фінансовий слід і пояснити, які факти підтверджують рішення.</p></div>
+      <div class="method__list">
+        <article class="method__item"><span>01</span><strong>Вивчіть справу</strong><p>Ознайомтеся з умовою, учасниками, документами та відомими фактами.</p></article>
+        <article class="method__item"><span>02</span><strong>Перевірте докази</strong><p>Зіставте суми, повідомлення, умови й ознаки фінансового ризику.</p></article>
+        <article class="method__item"><span>03</span><strong>Сформулюйте висновок</strong><p>Визначте причину події, безпечну дію та правило для реального життя.</p></article>
+      </div>
+    </div></section>
+
+    <section class="back-wrap"><div class="container"><a class="back" href="../"><span>← Повернутися до інтерактивного хабу CASHBRAIN</span><span aria-hidden="true">→</span></a></div></section>
+  </main>
+
+  <footer class="footer"><div class="container footer__inner"><div><strong>CASHBRAIN</strong> · Фінансові розслідування</div><div class="footer__links"><a href="../">Головний хаб</a><a href="../interactive-cases/">Інтерактивні кейси</a><a href="https://cashbrain.agrokoledg.poltava.ua/praktykum/" target="_blank" rel="noopener">Практикум ↗</a></div></div></footer>
+</body>
+</html>
