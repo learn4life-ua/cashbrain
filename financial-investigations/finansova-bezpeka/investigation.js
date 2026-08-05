@@ -68,7 +68,7 @@ function toggleEvidence(){
 }
 function refreshBoardState(){
   const selectedItems=[...state.selected].map(id=>evidence.find(item=>item.id===id));
-  $('.evidence-card').forEach(card=>{
+  document.querySelectorAll('.evidence-card').forEach(card=>{
     const id=card.dataset.evidence;
     const status=card.querySelector('.evidence-state');
     const selected=state.selected.has(id);
