@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивне фінансове розслідування CASHBRAIN про фішинг, викрадення карткових даних і безпечне реагування.">
+  <meta name="theme-color" content="#103A31">
+  <title>Справа 01: Зникнення о 14:12 - CASHBRAIN</title>
+  <link rel="stylesheet" href="./investigation.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб">
+        <span class="brand-mark">CB</span>
+        <span><strong>CASHBRAIN</strong><small>Фінансові розслідування</small></span>
+      </a>
+      <nav class="nav" aria-label="Навігація">
+        <a href="../">Усі справи</a>
+        <a class="nav-main" href="https://cashbrain.agrokoledg.poltava.ua/praktykum/finansovi-rozsliduvannya/" target="_blank" rel="noopener">Практикум ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="breadcrumbs"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Розслідування</a><span>/</span><b>Справа 01</b></div>
+        <div class="case-stamp">СПРАВА № CB-01412 · ДОСТУП ВІДКРИТО</div>
+        <p class="eyebrow">Фінансова безпека</p>
+        <h1>Зникнення<br><span>о 14:12</span></h1>
+        <p class="hero-lead">З картки студентки зникли 5 800 грн. Банк не телефонував, картка весь час була при ній, а пароль вона нікому не називала. Хто і як отримав доступ до коштів?</p>
+        <div class="hero-meta"><span>12-18 хвилин</span><span>8 матеріалів справи</span><span>4 етапи розслідування</span></div>
+      </div>
+    </section>
+
+    <section class="case-shell">
+      <div class="container">
+        <section class="briefing" id="briefing">
+          <article class="brief-card">
+            <span class="section-label">Оперативне зведення</span>
+            <h2>Гроші зникли за п'ять хвилин</h2>
+            <p>О 14:07 Марта отримала повідомлення про нібито заблокований платіж. Вона виконала інструкції на сторінці за посиланням. О 14:12 застосунок банку повідомив про списання 5 800 грн на користь невідомого отримувача.</p>
+            <p>Ваше завдання - не вгадати відповідь, а довести версію фактами, відновити послідовність подій і скласти правильний план реагування.</p>
+          </article>
+          <aside class="assignment-card">
+            <span class="section-label">Завдання детектива</span>
+            <ul>
+              <li><span>Знайти ключові докази</span><b>5</b></li>
+              <li><span>Відновити хронологію</span><b>1</b></li>
+              <li><span>Викрити схему</span><b>1</b></li>
+              <li><span>Зупинити збитки</span><b>4 дії</b></li>
+            </ul>
+            <button class="primary-button" id="start-button" type="button">Відкрити матеріали справи</button>
+            <small>Результат не зберігається і не передається.</small>
+          </aside>
+        </section>
+
+        <section class="investigation" id="investigation" aria-live="polite">
+          <div class="case-dashboard">
+            <div class="dash-item"><span>Етап</span><strong id="dash-stage">1 / 4</strong></div>
+            <div class="dash-item"><span>Вивчено</span><strong id="dash-viewed">0 / 8</strong></div>
+            <div class="dash-item"><span>У справі</span><strong id="dash-selected">0 / 5</strong></div>
+            <div class="dash-item"><span>Точність</span><strong id="dash-score">0%</strong></div>
+          </div>
+
+          <section class="stage is-active" id="stage-evidence" data-stage="1">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 1 · Огляд місця події</span><h2>Дошка доказів</h2></div>
+              <p>Відкрийте всі матеріали. До справи долучіть рівно п'ять доказів, які безпосередньо пояснюють зникнення коштів.</p>
+            </div>
+
+            <div class="evidence-layout">
+              <div class="evidence-board" id="evidence-board"></div>
+              <aside class="case-notes">
+                <div class="folder-tab">ДОСЬЄ</div>
+                <h3>Марта, 18 років</h3>
+                <dl>
+                  <div><dt>Картка</dt><dd>весь час при власниці</dd></div>
+                  <div><dt>Телефон</dt><dd>не втрачала</dd></div>
+                  <div><dt>Пароль</dt><dd>словами не повідомляла</dd></div>
+                  <div><dt>Збиток</dt><dd>5 800 грн</dd></div>
+                </dl>
+                <p class="pencil-note">Не кожна дивна деталь є доказом. Шукайте зв'язок із часом, доступом і підтвердженням операції.</p>
+              </aside>
+            </div>
+
+            <div class="stage-action">
+              <p id="evidence-hint">Спочатку огляньте всі 8 матеріалів.</p>
+              <button class="primary-button" id="check-evidence" type="button" disabled>Зафіксувати докази</button>
+            </div>
+          </section>
+
+          <section class="stage" id="stage-timeline" data-stage="2">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 2 · Хронологія</span><h2>Що сталося між 14:07 і 14:12?</h2></div>
+              <p>Оберіть єдину версію, яка пояснює всі часові мітки без суперечностей.</p>
+            </div>
+            <div class="timeline-options" id="timeline-options"></div>
+            <div class="stage-action"><button class="primary-button" id="check-timeline" type="button" disabled>Перевірити хронологію</button></div>
+          </section>
+
+          <section class="stage" id="stage-verdict" data-stage="3">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 3 · Версія слідства</span><h2>Назвіть механізм злочину</h2></div>
+              <p>Висновок має пояснювати і підроблену сторінку, і новий пристрій, і використання одноразового коду.</p>
+            </div>
+            <div class="suspects" id="suspects"></div>
+            <div class="stage-action"><button class="primary-button" id="check-verdict" type="button" disabled>Висунути обвинувачення</button></div>
+          </section>
+
+          <section class="stage" id="stage-response" data-stage="4">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 4 · Перші хвилини</span><h2>Зупиніть подальші втрати</h2></div>
+              <p>Оберіть чотири першочергові дії. Порядок важливий: спочатку захист коштів і доступу, потім фіксація та повідомлення.</p>
+            </div>
+            <div class="response-list" id="response-list"></div>
+            <div class="stage-action"><p id="response-hint">Оберіть 4 дії.</p><button class="primary-button" id="finish-button" type="button" disabled>Закрити справу</button></div>
+          </section>
+
+          <section class="result" id="result">
+            <div class="result-top"><span class="result-seal" id="result-seal">СПРАВУ ЗАКРИТО</span><span class="result-score" id="result-score">0 / 100</span></div>
+            <h2 id="result-title"></h2>
+            <p class="result-lead" id="result-lead"></p>
+            <div class="result-grid">
+              <article><span>Причина</span><strong>Фішинг і соціальна інженерія</strong><p>Підроблена сторінка виманила карткові реквізити, а одноразовий код дав змогу завершити вхід або операцію.</p></article>
+              <article><span>Ключовий момент</span><strong>14:10 - передано код</strong><p>Саме код із банківського SMS перетворив зібрані реквізити на реальний доступ до коштів.</p></article>
+              <article><span>Правило</span><strong>Пауза. Перевірка. Офіційний канал.</strong><p>Не переходьте за посиланням із тривожного повідомлення. Відкрийте застосунок самостійно або зателефонуйте за номером на картці.</p></article>
+            </div>
+            <div class="report">
+              <h3>Рапорт детектива</h3>
+              <div id="report-content"></div>
+            </div>
+            <div class="official-actions">
+              <h3>Як діяти в реальній ситуації</h3>
+              <ol><li>Негайно зв'яжіться з банком через офіційний номер і заблокуйте картку та онлайн-доступ.</li><li>Змініть пароль до банкінгу з безпечного пристрою та завершіть сторонні сесії.</li><li>Збережіть SMS, адресу сайту, листування, чеки й повідомлення про операції.</li><li>Подайте заяву до Кіберполіції або найближчого підрозділу поліції.</li></ol>
+            </div>
+            <div class="sources">Зміст звірено з матеріалами <a href="https://promo.bank.gov.ua/stopfraud/" target="_blank" rel="noopener">НБУ #ШахрайГудбай</a> та <a href="https://cyberpolice.gov.ua/article/groshi-na-kartku-vid-supermarketu-kiberpolicziya-poperedzhaye-pro-novu-shaxrajsku-sxemu-1767/" target="_blank" rel="noopener">рекомендаціями Кіберполіції щодо фішингових ресурсів</a>.</div>
+            <div class="result-actions"><button class="primary-button" id="restart-button" type="button">Розслідувати ще раз</button><a class="secondary-button" href="../">До всіх справ</a><a class="secondary-button" href="../../">На головний хаб</a></div>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="evidence-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-card">
+      <button class="modal-close" type="button" data-close-modal aria-label="Закрити">×</button>
+      <span class="section-label" id="modal-label"></span>
+      <h2 id="modal-title"></h2>
+      <div class="modal-visual" id="modal-visual"></div>
+      <p id="modal-copy"></p>
+      <button class="evidence-toggle" id="modal-select" type="button"></button>
+    </article>
+  </div>
+
+  <footer class="footer"><div class="container footer-inner"><div><strong>CASHBRAIN</strong> · Справа № CB-01412</div><div><a href="../">Усі розслідування</a><a href="../../">Головний хаб</a></div></div></footer>
+  <script src="./investigation.js"></script>
+</body>
+</html>
