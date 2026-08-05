@@ -51,23 +51,67 @@
               <li><span>Викрити схему</span><b>1</b></li>
               <li><span>Зупинити збитки</span><b>4 дії</b></li>
             </ul>
-            <button class="primary-button" id="start-button" type="button">Відкрити матеріали справи</button>
+            <p class="assignment-note"><strong>Спочатку</strong> ознайомтеся з порядком роботи нижче. Після цього відкрийте матеріали справи.</p>
             <small>Результат не зберігається і не передається.</small>
           </aside>
 
           <article class="work-order" aria-labelledby="work-order-title">
-            <div class="work-order-intro">
-              <span class="section-label">Порядок роботи</span>
-              <h2 id="work-order-title">Як провести розслідування</h2>
-              <p>Ви працюєте як фінансовий детектив. Не поспішайте обирати першу правдоподібну відповідь: уважно зіставляйте час, адресу відправника, дії Марти та банківські повідомлення. У справі є важливі докази й деталі, які можуть відволікати.</p>
-            </div>
-            <ol class="work-steps">
-              <li><span>01</span><div><strong>Огляньте матеріали</strong><p>Відкрийте всі 8 карток на дошці та прочитайте їх повністю.</p></div></li>
-              <li><span>02</span><div><strong>Відберіть докази</strong><p>Долучіть рівно 5 матеріалів, які безпосередньо пояснюють зникнення коштів.</p></div></li>
-              <li><span>03</span><div><strong>Побудуйте версію</strong><p>Відновіть хронологію та визначте механізм шахрайства без суперечностей.</p></div></li>
-              <li><span>04</span><div><strong>Зупиніть збитки</strong><p>Оберіть 4 першочергові дії та розташуйте їх у правильній послідовності.</p></div></li>
+            <header class="work-order-heading">
+              <div>
+                <span class="section-label">Порядок роботи</span>
+                <h2 id="work-order-title">Ваш маршрут у справі</h2>
+              </div>
+              <p>Проходьте етапи послідовно. Кожен наступний відкриється після завершення попереднього.</p>
+            </header>
+
+            <ol class="work-steps" aria-label="Чотири кроки розслідування">
+              <li>
+                <span class="step-number"><small>Крок</small><b>1</b></span>
+                <div class="step-content">
+                  <span class="step-kicker">Огляд</span>
+                  <h3>Вивчіть усі матеріали</h3>
+                  <p>Відкрийте кожну з 8 карток на дошці та прочитайте документ повністю.</p>
+                  <em>Мета: оглянути 8 із 8 карток</em>
+                </div>
+              </li>
+              <li>
+                <span class="step-number"><small>Крок</small><b>2</b></span>
+                <div class="step-content">
+                  <span class="step-kicker">Відбір</span>
+                  <h3>Долучіть ключові докази</h3>
+                  <p>Оберіть рівно 5 матеріалів, які безпосередньо пояснюють зникнення коштів.</p>
+                  <em>Мета: відсіяти хибні сліди</em>
+                </div>
+              </li>
+              <li>
+                <span class="step-number"><small>Крок</small><b>3</b></span>
+                <div class="step-content">
+                  <span class="step-kicker">Версія</span>
+                  <h3>Відновіть перебіг подій</h3>
+                  <p>Побудуйте хронологію, а потім визначте механізм шахрайства без суперечностей.</p>
+                  <em>Мета: довести одну версію</em>
+                </div>
+              </li>
+              <li>
+                <span class="step-number"><small>Крок</small><b>4</b></span>
+                <div class="step-content">
+                  <span class="step-kicker">Реагування</span>
+                  <h3>Зупиніть подальші втрати</h3>
+                  <p>Оберіть 4 першочергові дії та розташуйте їх у правильній послідовності.</p>
+                  <em>Мета: захистити кошти й доступ</em>
+                </div>
+              </li>
             </ol>
-            <p class="investigator-note"><strong>Як працювати з дошкою:</strong> натисніть картку, вивчіть документ і виберіть «Долучити до справи», якщо вважаєте його доказом. Вибір можна змінювати до натискання кнопки «Зафіксувати докази».</p>
+
+            <div class="board-guide">
+              <span class="guide-mark" aria-hidden="true">i</span>
+              <p><strong>Як працювати з дошкою</strong> Натисніть картку, прочитайте матеріал і виберіть «Долучити до справи», якщо це доказ. До фіксації вибір можна змінити.</p>
+            </div>
+
+            <div class="work-order-actions">
+              <div><strong>Готові?</strong><span>Почніть з огляду всіх восьми матеріалів.</span></div>
+              <button class="primary-button" id="start-button" type="button">Відкрити матеріали справи</button>
+            </div>
           </article>
         </section>
 
