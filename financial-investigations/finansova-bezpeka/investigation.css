@@ -63,3 +63,58 @@
   .work-order-actions{padding:18px 21px;align-items:stretch;flex-direction:column}
   .work-order-actions .primary-button{width:100%;min-width:0}
 }
+
+
+/* Investigation board: clear evidence states and working folder */
+.evidence-board{display:block;padding:0;overflow:hidden;border:11px solid #654129;border-radius:18px;background-color:var(--cork);background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px),radial-gradient(rgba(45,23,10,.12) 1px,transparent 1px);background-position:0 0,7px 7px;background-size:14px 14px}
+.evidence-board:after{display:none}
+.board-toolbar{position:relative;z-index:3;display:flex;min-height:76px;padding:17px 22px;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,#183F35,#0F2F28);color:#fff}
+.board-toolbar span,.selection-folder-head span{display:block;font-size:8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+.board-toolbar span{color:#A8E7AD}.board-toolbar strong{display:block;margin-top:5px;font-size:17px}
+.board-counter{min-width:98px;padding:9px 13px;border:1px solid rgba(255,255,255,.16);border-radius:11px;background:rgba(255,255,255,.06);text-align:right}
+.board-counter strong{font-size:19px}
+.board-canvas{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:21px;padding:34px 30px 37px}
+.evidence-card{min-height:224px;padding:19px 17px 16px;border:1px solid rgba(79,59,38,.16);border-radius:2px;background:#FBF8EE;box-shadow:0 9px 18px rgba(42,23,11,.27);isolation:isolate}
+.evidence-card:nth-child(2n){transform:rotate(.8deg)}.evidence-card:nth-child(3n){transform:rotate(-.7deg)}
+.evidence-card[data-kind="sms"],.evidence-card[data-kind="otp"]{background:#F7F7F2}
+.evidence-card[data-kind="url"],.evidence-card[data-kind="session"]{background:#EEF3F1}
+.evidence-card[data-kind="form"],.evidence-card[data-kind="statement"]{background:#F8F1E3}
+.evidence-card[data-kind="wifi"],.evidence-card[data-kind="receipt"]{background:#F3EBDD}
+.evidence-card:before{display:none}
+.evidence-pin{position:absolute;top:-8px;left:50%;width:15px;height:15px;border:2px solid rgba(255,255,255,.38);border-radius:50%;background:#A62F2B;box-shadow:0 3px 5px rgba(0,0,0,.32);transform:translateX(-50%)}
+.evidence-card:nth-child(4n+2) .evidence-pin{background:#C99132}.evidence-card:nth-child(4n+3) .evidence-pin{background:#315D72}
+.evidence-topline{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.evidence-state{padding:4px 6px;border:1px solid #D8D2C7;border-radius:999px;color:#8A8071;font-size:7px;font-weight:950;letter-spacing:.05em;text-transform:uppercase}
+.evidence-icon{display:grid;width:39px;height:39px;margin-top:17px;border:1px solid rgba(28,83,69,.18);border-radius:10px;place-items:center;background:rgba(255,255,255,.52);color:var(--green-dark);font-family:"Courier New",monospace;font-size:9px;font-weight:950}
+.evidence-type{margin-top:12px}.evidence-card strong{font-size:17px}.evidence-preview{min-height:30px}
+.evidence-open{position:absolute;right:16px;bottom:14px;color:#776E60;font-size:8.5px;font-weight:900}
+.evidence-card.is-viewed:not(.is-selected) .evidence-state{border-color:#A8C9B1;background:#EDF7EF;color:var(--green-dark)}
+.evidence-card.is-viewed:not(.is-selected):after{position:absolute;right:13px;bottom:37px;padding:5px 7px;border:1px solid rgba(28,83,69,.28);border-radius:3px;color:rgba(28,83,69,.7);content:"ОГЛЯНУТО";font-size:7px;font-weight:950;letter-spacing:.09em;transform:rotate(-5deg)}
+.evidence-card.is-selected{outline:4px solid var(--accent);box-shadow:0 10px 24px rgba(20,63,52,.3)}
+.evidence-card.is-selected .evidence-state{border-color:var(--green-dark);background:var(--green-dark);color:#fff}
+.evidence-card.is-selected:after{right:13px;bottom:38px}
+.selection-folder{position:relative;z-index:2;margin:0 22px 23px;padding:21px;border:1px solid #C7B48E;border-radius:5px;background:#E8D6AF;box-shadow:0 10px 25px rgba(50,25,10,.2)}
+.selection-folder:before{position:absolute;top:-14px;left:20px;width:150px;height:16px;border:1px solid #C7B48E;border-bottom:0;border-radius:7px 7px 0 0;background:#E8D6AF;content:""}
+.selection-folder-head{display:flex;align-items:end;justify-content:space-between;gap:15px}.selection-folder-head span{color:#756548}.selection-folder-head strong{display:block;margin-top:5px;font-size:15px}.selection-folder-head small{color:#756B57;font-size:9px;font-weight:850}
+.selected-evidence{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:15px 0 0;padding:0;list-style:none}
+.selected-evidence li{position:relative;display:flex;min-height:70px;padding:10px;border:1px dashed #B7A37D;border-radius:9px;align-items:flex-start;gap:8px;background:rgba(255,255,255,.28)}
+.selected-evidence li>span{display:grid;width:21px;height:21px;min-width:21px;border-radius:6px;place-items:center;background:rgba(101,65,41,.1);color:#6C5A3E;font-size:8px;font-weight:950}
+.selected-evidence em{color:#88785B;font-size:9px;font-style:normal;line-height:1.4}
+.selected-evidence strong{padding-right:17px;color:#493E2D;font-size:10px;line-height:1.35}
+.selected-evidence button{position:absolute;top:6px;right:6px;width:22px;height:22px;padding:0;border:0;border-radius:50%;background:rgba(101,65,41,.1);color:#5F4A2E;cursor:pointer;font-size:15px;line-height:1}
+.selected-evidence .is-filled{border-style:solid;background:#FFF9EA;box-shadow:0 3px 8px rgba(72,52,28,.09)}
+
+@media(max-width:920px){
+  .board-canvas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .selected-evidence{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+  .evidence-board{border-width:8px}
+  .board-toolbar{padding:15px 16px}.board-toolbar strong{font-size:14px}.board-counter{min-width:82px}
+  .board-canvas{grid-template-columns:1fr;gap:15px;padding:25px 16px}
+  .evidence-card{min-height:188px}
+  .selection-folder{margin:0 12px 15px;padding:17px 13px}
+  .selection-folder-head{align-items:flex-start;flex-direction:column;gap:5px}
+  .selected-evidence{grid-template-columns:1fr}
+  .selected-evidence li{min-height:48px;align-items:center}
+}
