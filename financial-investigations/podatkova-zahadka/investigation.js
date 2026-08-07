@@ -68,7 +68,7 @@ function finish(){const correct=[...state.plans].filter(id=>plans.find(x=>x.id==
 function reset(){state.viewed.clear();state.selected.clear();state.calculation=null;state.suspect=null;state.plans.clear();state.evidenceScore=state.calculationScore=state.verdictScore=state.planScore=0;$('#result').classList.remove('is-visible');renderEvidence();renderChoices();$('#check-calculation').disabled=true;$('#check-verdict').disabled=true;$('#finish-button').disabled=true;showStage('#stage-evidence',1);}
 
 renderEvidence();renderChoices();updateEvidence();
-$('#start-button').addEventListener('click',()=>{$('#investigation').scrollIntoView({behavior:'smooth'});});
+$('#start-button').addEventListener('click',()=>{$('#investigation').classList.add('is-visible');$('#briefing').style.display='none';window.scrollTo({top:$('#investigation').offsetTop-20,behavior:'smooth'});});
 $('#evidence-board').addEventListener('click',e=>{const card=e.target.closest('[data-evidence]');if(card)openEvidence(card.dataset.evidence);const remove=e.target.closest('[data-remove]');if(remove){state.selected.delete(remove.dataset.remove);updateEvidence();}});
 $('#selected-evidence').addEventListener('click',e=>{const remove=e.target.closest('[data-remove]');if(remove){state.selected.delete(remove.dataset.remove);updateEvidence();}});
 $$('[data-close-modal]').forEach(x=>x.addEventListener('click',closeModal));$('#modal-select').addEventListener('click',toggleEvidence);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#evidence-modal').hidden)closeModal();});
