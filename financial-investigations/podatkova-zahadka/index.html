@@ -1,65 +1,169 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Інтерактивне фінансове розслідування CASHBRAIN про ПДВ у ціні товару, чек, базову ціну та різницю між податком і націнкою продавця.">
-  <meta name="theme-color" content="#103a31">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Інтерактивне фінансове розслідування CASHBRAIN про податкову складову в ціні товару, чек, базову ціну та різницю між податком і націнкою продавця.">
+  <meta name="theme-color" content="#103A31">
   <title>Справа 09: Податкова загадка - CASHBRAIN</title>
   <link rel="stylesheet" href="./investigation.css">
 </head>
 <body>
-  <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="../../"><span class="brand-mark">CB</span><span><strong>CASHBRAIN</strong><small>Фінансові розслідування</small></span></a>
-    <nav class="nav" aria-label="Навігація"><a href="../">Усі справи</a><a class="nav-main" href="https://cashbrain.agrokoledg.poltava.ua/praktykum/finansovi-rozsliduvannya/" target="_blank" rel="noopener">Практикум ↗</a></nav>
-  </div></header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб">
+        <span class="brand-mark">CB</span>
+        <span><strong>CASHBRAIN</strong><small>Фінансові розслідування</small></span>
+      </a>
+      <nav class="nav" aria-label="Навігація">
+        <a href="../">Усі справи</a>
+        <a class="nav-main" href="https://cashbrain.agrokoledg.poltava.ua/praktykum/finansovi-rozsliduvannya/" target="_blank" rel="noopener">Практикум ↗</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
-    <section class="hero"><div class="container hero-inner">
-      <div class="breadcrumbs"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Розслідування</a><span>/</span><b>Справа 09</b></div>
-      <div class="case-stamp">СПРАВА № CB-12020 · ДОСТУП ВІДКРИТО</div>
-      <p class="eyebrow">Податкова загадка</p>
-      <h1>У чеку 12 000 грн.<br><span>Де тут податок?</span></h1>
-      <p class="hero-lead">Олег купує техніку за 12 000 грн. У чеку вказано, що в ціні вже є податкова складова. Знайомий переконує: «Це магазин просто додав собі 20% націнки». Ваше завдання — відновити структуру ціни та з’ясувати, чим податок відрізняється від націнки продавця.</p>
-      <div class="hero-meta"><span>15–20 хвилин</span><span>8 матеріалів справи</span><span>4 етапи розслідування</span></div>
-    </div></section>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="breadcrumbs"><a href="../../">Інтерактивний хаб</a><span>/</span><a href="../">Розслідування</a><span>/</span><b>Справа 09</b></div>
+        <div class="case-stamp">СПРАВА № CB-12020 · ДОСТУП ВІДКРИТО</div>
+        <p class="eyebrow">Податкова загадка</p>
+        <h1>Де податок<br><span>у ціні?</span></h1>
+        <p class="hero-lead">Олег купив техніку за 12 000 грн. У чеку зазначено податкову складову 2 000 грн, а знайомий переконує, що це просто націнка магазину. Відновіть структуру ціни й перевірте, чи має він рацію.</p>
+        <div class="hero-meta"><span>12-18 хвилин</span><span>8 матеріалів справи</span><span>4 етапи розслідування</span></div>
+      </div>
+    </section>
 
-    <section class="case-shell"><div class="container">
-      <section class="briefing" id="briefing">
-        <article class="brief-card"><span class="section-label">Оперативне зведення</span><h2>Фінальна ціна — 12 000 грн, але це не означає «10 000 + 20% націнки магазину»</h2><p>У навчальному прикладі базова ціна без податку становить 10 000 грн. До неї застосовується задана ставка 20%, тому податкова складова дорівнює 2 000 грн, а фінальна ціна — 12 000 грн.</p><p>Мета справи — зрозуміти структуру ціни: податкова складова входить у суму, яку платить покупець, але вона не є автоматично прибутком чи націнкою продавця.</p></article>
-        <aside class="assignment-card"><span class="section-label">Завдання детектива</span><ul><li><span>Знайти ключові докази</span><b>5</b></li><li><span>Відновити структуру ціни</span><b>1</b></li><li><span>Відрізнити податок від націнки</span><b>1</b></li><li><span>Скласти алгоритм перевірки</span><b>4 дії</b></li></ul><p class="assignment-note"><strong>Важливо:</strong> ставка 20% прямо задана як умова навчального прикладу. Завдання перевіряє логіку формування ціни, а не знання чинного податкового законодавства.</p><small>Навчальна ситуація. Для реальних операцій перевіряйте актуальні правила та документи.</small></aside>
+    <section class="case-shell">
+      <div class="container">
+        <section class="briefing" id="briefing">
+          <article class="brief-card">
+            <span class="section-label">Оперативне зведення</span>
+            <h2>У чеку 12 000 грн, але не всі 2 000 грн є заробітком магазину</h2>
+            <p>За умовою навчальної справи базова ціна товару становить 10 000 грн. Податкова складова за заданою ставкою 20% дорівнює 2 000 грн, тому покупець сплачує 12 000 грн.</p>
+            <p>Ваше завдання - не вгадати відповідь, а довести її документами, відновити розрахунок і відрізнити податок від націнки та прибутку продавця.</p>
+          </article>
+          <aside class="assignment-card">
+            <span class="section-label">Завдання детектива</span>
+            <ul>
+              <li><span>Знайти ключові докази</span><b>5</b></li>
+              <li><span>Відновити розрахунок</span><b>1</b></li>
+              <li><span>Зробити висновок</span><b>1</b></li>
+              <li><span>Скласти алгоритм перевірки</span><b>4 дії</b></li>
+            </ul>
+            <button class="primary-button" id="start-button" type="button">Відкрити матеріали справи</button>
+            <small>Навчальна ситуація. Результат не зберігається і не передається.</small>
+          </aside>
+        </section>
 
-        <article class="work-order" aria-labelledby="route-title"><header class="work-order-heading"><div><span class="section-label">Порядок роботи</span><h2 id="route-title">Маршрут податкового детектива</h2></div><p>Пройдіть чотири етапи послідовно. Наступний відкриється після завершення попереднього.</p></header>
-          <ol class="work-steps">
-            <li><span class="step-number"><small>Крок</small><b>1</b></span><div class="step-content"><span class="step-kicker">Документи</span><h3>Огляньте всі матеріали</h3><p>Відкрийте 8 карток і долучіть рівно 5 доказів, які пояснюють, як утворилася фінальна ціна 12 000 грн.</p><em>Результат: факти відділено від припущень</em></div></li>
-            <li><span class="step-number"><small>Крок</small><b>2</b></span><div class="step-content"><span class="step-kicker">Розрахунок</span><h3>Відновіть структуру ціни</h3><p>Оберіть правильний арифметичний ланцюг для базової ціни 10 000 грн і заданої ставки 20%.</p><em>Результат: податкову складову обчислено</em></div></li>
-            <li><span class="step-number"><small>Крок</small><b>3</b></span><div class="step-content"><span class="step-kicker">Класифікація</span><h3>Знайдіть помилкове твердження</h3><p>Визначте, чому податкова складова в чеку не дорівнює націнці або чистому прибутку магазину.</p><em>Результат: податок і націнку розмежовано</em></div></li>
-            <li><span class="step-number"><small>Крок</small><b>4</b></span><div class="step-content"><span class="step-kicker">Перевірка</span><h3>Складіть алгоритм читання ціни</h3><p>Оберіть 4 дії, які допомагають правильно читати чек, рахунок і структуру фінальної суми.</p><em>Результат: готовий алгоритм перевірки</em></div></li>
-          </ol>
-          <div class="board-guide"><span class="guide-mark">i</span><p><strong>Як працювати з матеріалами</strong> Не обирайте картки за порядком. Перевіряйте, чи документ підтверджує базову ціну, ставку, податкову складову або фінальну суму.</p></div>
-          <div class="work-order-actions"><div><strong>Готові відкрити справу?</strong><span>Почніть із перевірки всіх восьми матеріалів.</span></div><button class="primary-button" id="start-button" type="button">Відкрити матеріали справи</button></div>
-        </article>
-      </section>
+        <section class="investigation" id="investigation" aria-live="polite">
+          <div class="case-dashboard">
+            <div class="dash-item"><span>Етап</span><strong id="dash-stage">1 / 4</strong></div>
+            <div class="dash-item"><span>Вивчено</span><strong id="dash-viewed">0 / 8</strong></div>
+            <div class="dash-item"><span>У справі</span><strong id="dash-selected">0 / 5</strong></div>
+            <div class="dash-item"><span>Точність</span><strong id="dash-score">0%</strong></div>
+          </div>
 
-      <section class="investigation" id="investigation" aria-live="polite">
-        <div class="case-dashboard"><div class="dash-item"><span>Етап</span><strong id="dash-stage">1 / 4</strong></div><div class="dash-item"><span>Оглянуто</span><strong id="dash-viewed">0 / 8</strong></div><div class="dash-item"><span>У справі</span><strong id="dash-selected">0 / 5</strong></div><div class="dash-item"><span>Точність</span><strong id="dash-score">0%</strong></div></div>
+          <section class="stage is-active" id="stage-evidence" data-stage="1">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 1 · Аналіз документів</span><h2>Дошка доказів</h2></div>
+              <p>Відкрийте всі матеріали. До справи долучіть рівно п'ять доказів, які пояснюють, як утворилася фінальна ціна 12 000 грн.</p>
+            </div>
+            <div class="evidence-layout">
+              <div class="evidence-board" id="evidence-board"></div>
+              <aside class="case-notes">
+                <div class="folder-tab">ДОСЬЄ</div>
+                <h3>Покупка техніки</h3>
+                <dl>
+                  <div><dt>Базова ціна</dt><dd>10 000 грн</dd></div>
+                  <div><dt>Ставка у справі</dt><dd>20%</dd></div>
+                  <div><dt>Податкова складова</dt><dd>2 000 грн</dd></div>
+                  <div><dt>До сплати</dt><dd>12 000 грн</dd></div>
+                </dl>
+                <p class="pencil-note">Не кожна різниця між цінами є податком або націнкою. Перевіряйте, що саме підтверджують документи.</p>
+              </aside>
+            </div>
+            <div class="stage-action">
+              <p id="evidence-hint">Спочатку огляньте всі 8 матеріалів.</p>
+              <button class="primary-button" id="check-evidence" type="button" disabled>Зафіксувати докази</button>
+            </div>
+          </section>
 
-        <section class="stage is-active" id="stage-evidence"><div class="stage-head"><div><span class="section-label">Етап 1 · Податкові сліди</span><h2>Матеріали справи</h2></div><p>Огляньте всі документи й долучіть рівно п’ять ключових доказів.</p></div><div class="evidence-layout"><div class="evidence-board" id="evidence-board"></div><aside class="case-notes"><div class="folder-tab">СПРАВА ПРО ЦІНУ</div><h3>Покупка техніки</h3><dl><div><dt>Базова ціна</dt><dd>10 000 грн</dd></div><div><dt>Ставка у справі</dt><dd>20%</dd></div><div><dt>Податкова складова</dt><dd>2 000 грн</dd></div><div><dt>До сплати</dt><dd>12 000 грн</dd></div></dl><p class="pencil-note">Одна й та сама фінальна ціна може містити різні складові. Не називайте кожну різницю «націнкою», поки не перевірили документи.</p></aside></div><div class="stage-action"><p id="evidence-hint">Спочатку огляньте всі 8 матеріалів.</p><button class="primary-button" id="check-evidence" type="button" disabled>Зафіксувати докази</button></div></section>
+          <section class="stage" id="stage-timeline" data-stage="2">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 2 · Розрахунок</span><h2>Як отримали 12 000 грн?</h2></div>
+              <p>Оберіть єдиний розрахунок, який відповідає всім матеріалам справи.</p>
+            </div>
+            <div class="timeline-options" id="timeline-options"></div>
+            <div class="stage-action"><button class="primary-button" id="check-timeline" type="button" disabled>Перевірити розрахунок</button></div>
+          </section>
 
-        <section class="stage" id="stage-calculation"><div class="stage-head"><div><span class="section-label">Етап 2 · Структура ціни</span><h2>Як отримали 12 000 грн?</h2></div><p>Оберіть правильний розрахунок за умовами справи.</p></div><div class="choice-list" id="calculation-options"></div><div class="stage-action"><button class="primary-button" id="check-calculation" type="button" disabled>Зафіксувати розрахунок</button></div></section>
+          <section class="stage" id="stage-verdict" data-stage="3">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 3 · Висновок</span><h2>Податок чи націнка?</h2></div>
+              <p>Оберіть твердження, яке правильно пояснює роль податкової складової у фінальній ціні.</p>
+            </div>
+            <div class="suspects" id="suspects"></div>
+            <div class="stage-action"><button class="primary-button" id="check-verdict" type="button" disabled>Зафіксувати висновок</button></div>
+          </section>
 
-        <section class="stage" id="stage-verdict"><div class="stage-head"><div><span class="section-label">Етап 3 · Податок чи націнка</span><h2>Чому 2 000 грн — не «прибуток магазину»?</h2></div><p>Визначте пояснення, яке правильно описує роль податкової складової у фінальній ціні.</p></div><div class="suspects" id="suspects"></div><div class="stage-action"><button class="primary-button" id="check-verdict" type="button" disabled>Зафіксувати висновок</button></div></section>
+          <section class="stage" id="stage-response" data-stage="4">
+            <div class="stage-head">
+              <div><span class="section-label">Етап 4 · Перевірка ціни</span><h2>Як читати чек і рахунок?</h2></div>
+              <p>Оберіть чотири дії, які допомагають не плутати базову ціну, податок, націнку та фінальну суму.</p>
+            </div>
+            <div class="response-list" id="response-list"></div>
+            <div class="stage-action"><p id="response-hint">Оберіть 4 дії.</p><button class="primary-button" id="finish-button" type="button" disabled>Закрити справу</button></div>
+          </section>
 
-        <section class="stage" id="stage-plan"><div class="stage-head"><div><span class="section-label">Етап 4 · Перевірка ціни</span><h2>Що дивитися в чеку та рахунку?</h2></div><p>Оберіть чотири дії, які допомагають не плутати базову ціну, податок і націнку.</p></div><div class="response-list" id="plan-options"></div><div class="stage-action"><p id="plan-hint">Оберіть 4 дії.</p><button class="primary-button" id="finish-button" type="button" disabled>Закрити справу</button></div></section>
-
-        <section class="result" id="result"><div class="result-top"><span class="result-seal">СПРАВУ ЗАКРИТО</span><span class="result-score" id="result-score">0 / 100</span></div><h2 id="result-title"></h2><p class="result-lead" id="result-lead"></p><div class="result-grid"><article><span>Базова ціна</span><strong>10 000 грн</strong><p>Сума до додавання податкової складової в межах навчального прикладу.</p></article><article><span>Податкова складова</span><strong>2 000 грн</strong><p>20% від 10 000 грн за умовою справи.</p></article><article><span>Фінальна ціна</span><strong>12 000 грн</strong><p>10 000 + 2 000 = 12 000 грн.</p></article></div><div class="report"><h3>Рапорт податкового детектива</h3><div id="report-content"></div></div><div class="official-actions"><h3>Алгоритм перевірки ціни</h3><ol><li>Знайти фінальну суму до сплати.</li><li>Перевірити, чи податкова складова вже включена в ціну.</li><li>Не ототожнювати податок із націнкою або прибутком продавця.</li><li>Для реальних операцій звіряти чек, рахунок і чинні правила.</li></ol></div><div class="result-actions"><button class="secondary-button" id="restart-button" type="button">Пройти ще раз</button><a class="primary-button" href="../">До всіх розслідувань</a></div></section>
-      </section>
-    </div></section>
+          <section class="result" id="result">
+            <div class="result-top"><span class="result-seal" id="result-seal">СПРАВУ ЗАКРИТО</span><span class="result-score" id="result-score">0 / 100</span></div>
+            <h2 id="result-title"></h2>
+            <p class="result-lead" id="result-lead"></p>
+            <div class="result-grid">
+              <article><span>Базова ціна</span><strong>10 000 грн</strong><p>Сума, від якої в навчальному прикладі обчислюється податкова складова.</p></article>
+              <article><span>Податкова складова</span><strong>2 000 грн</strong><p>20% від 10 000 грн за умовою цієї справи.</p></article>
+              <article><span>Фінальна ціна</span><strong>12 000 грн</strong><p>10 000 грн + 2 000 грн = 12 000 грн.</p></article>
+            </div>
+            <div class="report">
+              <h3>Рапорт податкового детектива</h3>
+              <div id="report-content"></div>
+            </div>
+            <div class="official-actions">
+              <h3>Як перевіряти структуру ціни</h3>
+              <ol>
+                <li>Знайдіть фінальну суму до сплати в чеку або рахунку.</li>
+                <li>Перевірте, чи податкова складова вже включена у фінальну ціну.</li>
+                <li>Не ототожнюйте податок із націнкою або чистим прибутком продавця.</li>
+                <li>Для реальних операцій звіряйте документи та актуальні правила.</li>
+              </ol>
+            </div>
+            <div class="sources">Ставка 20% прямо задана як умова навчального прикладу. Для реальних покупок перевіряйте актуальні правила та документи.</div>
+            <div class="result-actions"><button class="primary-button" id="restart-button" type="button">Розслідувати ще раз</button><a class="secondary-button" href="../">До всіх справ</a><a class="secondary-button" href="../../">На головний хаб</a></div>
+          </section>
+        </section>
+      </div>
+    </section>
   </main>
 
-  <div class="evidence-modal" id="evidence-modal" hidden><div class="modal-backdrop" data-close-modal></div><article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" type="button" data-close-modal aria-label="Закрити">×</button><span class="section-label" id="modal-label"></span><h2 id="modal-title"></h2><pre class="document-visual" id="modal-visual"></pre><p id="modal-copy"></p><div class="modal-actions"><button class="secondary-button" type="button" data-close-modal>Закрити</button><button class="primary-button" id="modal-select" type="button">Долучити до робочої папки</button></div></article></div>
+  <div class="modal" id="evidence-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Закрити">×</button>
+      <span class="section-label" id="modal-label"></span>
+      <h2 id="modal-title"></h2>
+      <pre class="modal-visual" id="modal-visual"></pre>
+      <p id="modal-copy"></p>
+      <button class="evidence-toggle" id="modal-select" type="button"></button>
+    </article>
+  </div>
 
-  <footer class="footer"><div class="container footer-inner"><div><strong>CASHBRAIN</strong> · Справа 09</div><div><a href="../">Усі розслідування</a><a href="../../">Інтерактивний хаб</a></div></div></footer>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>CASHBRAIN</strong> · Справа 09</div>
+      <div><a href="../">Усі розслідування</a><a href="../../">Інтерактивний хаб</a></div>
+    </div>
+  </footer>
   <script src="./investigation.js"></script>
 </body>
 </html>
