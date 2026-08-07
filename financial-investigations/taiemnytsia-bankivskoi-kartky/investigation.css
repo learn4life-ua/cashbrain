@@ -1,1 +1,22 @@
 @import url("../kredytna-pastka/investigation.css");
+
+/* Змішуємо ключові докази з відволікаючими матеріалами, щоб порядок не підказував відповідь. */
+.evidence-card[data-evidence="sms"]{order:1}
+.evidence-card[data-evidence="friend"]{order:2}
+.evidence-card[data-evidence="site"]{order:3}
+.evidence-card[data-evidence="receipt"]{order:4}
+.evidence-card[data-evidence="otp"]{order:5}
+.evidence-card[data-evidence="history"]{order:6}
+.evidence-card[data-evidence="wifi"]{order:7}
+.evidence-card[data-evidence="official"]{order:8}
+
+.evidence-card .evidence-top>span:first-child{font-size:0}
+.evidence-card .evidence-top>span:first-child::after{font-size:8px}
+.evidence-card[data-evidence="sms"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 01"}
+.evidence-card[data-evidence="friend"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 02"}
+.evidence-card[data-evidence="site"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 03"}
+.evidence-card[data-evidence="receipt"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 04"}
+.evidence-card[data-evidence="otp"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 05"}
+.evidence-card[data-evidence="history"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 06"}
+.evidence-card[data-evidence="wifi"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 07"}
+.evidence-card[data-evidence="official"] .evidence-top>span:first-child::after{content:"МАТЕРІАЛ 08"}
