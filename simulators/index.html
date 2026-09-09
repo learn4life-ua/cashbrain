@@ -20,18 +20,23 @@
     @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__hub){display:none}.nav .nav__hub{padding:9px 11px}.hero{min-height:auto}.hero:before{right:-220px}.hero:after{display:none}.hero__inner{min-height:560px;padding:120px 0 54px}h1{font-size:clamp(49px,16vw,72px)}.hero__lead{font-size:15px}.catalog,.guide{padding:58px 0}.section-head{margin-bottom:25px}.grid{grid-template-columns:1fr}.card:nth-child(n){grid-column:auto;min-height:252px;border-radius:20px}.card h3,.card:nth-child(n+3) h3{margin-top:26px;font-size:26px}.guide__list{grid-template-columns:1fr}.back-wrap{padding:15px 0 50px}.back{align-items:flex-start}.footer__inner{align-items:flex-start;flex-direction:column;gap:9px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
+  <link rel="stylesheet" href="../assets/ui.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a>
-      <nav class="nav" aria-label="Навігація сторінки"><a href="#catalog">Симулятори</a><a href="#guide">Як працювати</a><a class="nav__hub" href="../">Усі формати</a></nav>
-    </div>
-  </header>
+<body class="cb-page cb-simulators cb-shell">
+  <!-- cashbrain-navigation:start -->
+<header class="cb-header"><div class="cb-shell-width cb-header-inner">
+  <a class="cb-logo" href="../" aria-label="CASHBRAIN — головна"><span aria-hidden="true">CB</span><strong>CASHBRAIN</strong></a>
+  <nav class="cb-global-nav" aria-label="Головна навігація">
+    <details class="cb-menu"><summary>Усі формати</summary><ul><li><a href="../simulators/" aria-current="page">Симулятори</a></li><li><a href="../calculators/">Калькулятори</a></li><li><a href="../tests/">Тести</a></li><li><a href="../interactive-cases/">Інтерактивні кейси</a></li><li><a href="../worksheets/">Робочі аркуші</a></li><li><a href="../financial-investigations/">Фінансові розслідування</a></li></ul></details>
+    <a href="#catalog">Симулятори</a><a href="#guide">Як працювати</a><a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a>
+  </nav>
+</div></header>
+<div class="cb-trail"><nav class="cb-shell-width" aria-label="Хлібні крихти"><ol><li><a href="../">Головна</a></li><li><span aria-current="page">Симулятори</span></li></ol></nav></div>
+<!-- cashbrain-navigation:end -->
 
   <main>
     <section class="hero"><div class="container hero__inner">
-      <div class="breadcrumb"><a href="../">Інтерактивний хаб</a><span aria-hidden="true">/</span><span>Симулятори</span></div>
+
       <h1>Фінансові симулятори</h1>
       <p class="hero__lead">Практикуйте рішення в життєвих фінансових ситуаціях: змінюйте умови, порівнюйте варіанти й одразу оцінюйте наслідки.</p>
       <div class="hero__meta"><span class="hero__chip">6 готових інструментів</span><span class="hero__chip">Без реального фінансового ризику</span><span class="hero__chip">Зручно зі смартфона</span></div>
