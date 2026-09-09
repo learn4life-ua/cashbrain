@@ -72,33 +72,32 @@
     @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__site){display:none}.nav .nav__site{padding:9px 11px}.hero{min-height:auto}.hero:before{top:150px;right:-220px}.hero:after{display:none}.hero__inner{min-height:650px;padding:125px 0 56px}h1{font-size:clamp(51px,17vw,76px)}.hero__lead{margin-top:22px;font-size:15px}.hero__actions{margin-top:26px}.button{width:100%}.hero__facts{margin-top:34px}.hero__fact{min-height:31px;font-size:10.5px}.formats,.logic{padding:60px 0}.section-head{margin-bottom:26px}.format-grid{grid-template-columns:1fr}.format-card:nth-child(n){grid-column:auto;min-height:250px;border-radius:20px}.format-card h3,.format-card:nth-child(n+3) h3{font-size:26px}.step{grid-template-columns:44px minmax(0,1fr);gap:14px}.step__number{width:40px;height:40px;border-radius:12px}.development{padding:16px 0 50px}.development__box{grid-template-columns:1fr;padding:20px}.footer__inner{align-items:flex-start;flex-direction:column;gap:9px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
+  <link rel="stylesheet" href="assets/ui.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="./" aria-label="CASHBRAIN, головна сторінка">
-        <span class="brand__mark">CB</span>
-        <span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span>
-      </a>
-      <nav class="nav" aria-label="Головна навігація">
-        <a href="#formats">Формати</a><a href="#how-it-works">Як працює</a>
-        <a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a>
-      </nav>
-    </div>
-  </header>
+<body class="cb-page cb-home cb-shell">
+  <!-- cashbrain-navigation:start -->
+<header class="cb-header"><div class="cb-shell-width cb-header-inner">
+  <a class="cb-logo" href="./" aria-label="CASHBRAIN — головна"><span aria-hidden="true">CB</span><strong>CASHBRAIN</strong></a>
+  <nav class="cb-global-nav" aria-label="Головна навігація">
+    <details class="cb-menu"><summary>Усі формати</summary><ul><li><a href="./simulators/">Симулятори</a></li><li><a href="./calculators/">Калькулятори</a></li><li><a href="./tests/">Тести</a></li><li><a href="./interactive-cases/">Інтерактивні кейси</a></li><li><a href="./worksheets/">Робочі аркуші</a></li><li><a href="./financial-investigations/">Фінансові розслідування</a></li></ul></details>
+    <a href="#formats">Формати</a><a href="#how-it-works">Як працює</a><a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a>
+  </nav>
+</div></header>
+
+<!-- cashbrain-navigation:end -->
 
   <main>
     <section class="hero">
       <div class="container hero__inner">
         <div class="eyebrow">Інтерактивний хаб CASHBRAIN</div>
         <h1>Фінансові знання, які стають <span>рішеннями</span></h1>
-        <p class="hero__lead">Симулятори, калькулятори, тести, інтерактивні кейси та робочі аркуші в одному просторі для практики фінансової грамотності.</p>
+        <p class="hero__lead">Симулятори, калькулятори, тести, інтерактивні кейси, робочі аркуші та фінансові розслідування в одному просторі для практики фінансової грамотності.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="#formats">Переглянути формати <span aria-hidden="true">↓</span></a>
           <a class="button button--ghost" href="https://cashbrain.agrokoledg.poltava.ua/">Про проєкт CASHBRAIN <span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero__facts" aria-label="Особливості хабу">
-          <span class="hero__fact">5 інтерактивних форматів</span><span class="hero__fact">Практичні фінансові ситуації</span><span class="hero__fact">Поступове наповнення</span>
+          <span class="hero__fact">6 інтерактивних форматів</span><span class="hero__fact">Практичні фінансові ситуації</span><span class="hero__fact">Поступове наповнення</span>
         </div>
       </div>
     </section>
@@ -111,43 +110,50 @@
         </div>
         <div class="format-grid">
           <a class="format-card format-card--active" href="./simulators/">
-            <div class="format-card__top"><span class="format-card__label">01 · ПРАКТИКА РІШЕНЬ</span><span class="status">Доступно</span></div>
+            <div class="format-card__top"><span class="format-card__label">01 · ПРАКТИКА РІШЕНЬ</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5zM8 8h8M8 12h3M14 12h2M8 16h8"/></svg></span>
             <h3>Фінансові симулятори</h3>
             <p>Змінюйте умови, приймайте рішення та одразу бачте їхні можливі наслідки для власного бюджету.</p>
             <span class="format-card__foot">6 готових симуляторів <span class="format-card__arrow">→</span></span>
           </a>
 
-          <a class="format-card format-card--active" href="./calculators/">
-            <div class="format-card__top"><span class="format-card__label">02 · РОЗРАХУНКИ</span><span class="status">Доступно</span></div>
+          <a class="format-card" href="./calculators/">
+            <div class="format-card__top"><span class="format-card__label">02 · РОЗРАХУНКИ</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.1M8 15h2M12 15h2M16 15h.1"/></svg></span>
             <h3>Калькулятори</h3>
             <p>Сім швидких інструментів для зарплати, покупок, заощаджень, оренди, податків і щоденних витрат.</p>
             <span class="format-card__foot">7 готових калькуляторів <span class="format-card__arrow">→</span></span>
           </a>
 
-          <a class="format-card format-card--active" href="./tests/">
-            <div class="format-card__top"><span class="format-card__label">03 · САМОПЕРЕВІРКА</span><span class="status">Доступно</span></div>
+          <a class="format-card" href="./tests/">
+            <div class="format-card__top"><span class="format-card__label">03 · САМОПЕРЕВІРКА</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h10v3H7zM5 5h14v16H5z"/><path d="m8 11 1.5 1.5L12 9.5M8 17h8"/></svg></span>
             <h3>Тести</h3>
             <p>Дванадцять студентських тестів для самопізнання, перевірки фінансових знань і оцінки поведінки.</p>
             <span class="format-card__foot">12 готових тестів <span class="format-card__arrow">→</span></span>
           </a>
 
-          <a class="format-card format-card--active" href="./interactive-cases/">
-            <div class="format-card__top"><span class="format-card__label">04 · ВИБІР ДІЇ</span><span class="status">Доступно</span></div>
+          <a class="format-card" href="./interactive-cases/">
+            <div class="format-card__top"><span class="format-card__label">04 · ВИБІР ДІЇ</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4zM8 10h8M8 14h5"/><path d="m17 3 3 3-3 3"/></svg></span>
             <h3>Інтерактивні кейси</h3>
             <p>Життєві ситуації з кількома варіантами дій, наслідками вибору та поясненням рішення.</p>
             <span class="format-card__foot">6 готових інтерактивних кейсів <span class="format-card__arrow">→</span></span>
           </a>
 
-          <a class="format-card format-card--active" href="./worksheets/">
-            <div class="format-card__top"><span class="format-card__label">05 · ВЛАСНИЙ ПЛАН</span><span class="status">12 доступних</span></div>
+          <a class="format-card" href="./worksheets/">
+            <div class="format-card__top"><span class="format-card__label">05 · ВЛАСНИЙ ПЛАН</span></div>
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h3"/><path d="m15 16 2 2 3-4"/></svg></span>
             <h3>Робочі аркуші</h3>
             <p>Матеріали для планування, підрахунків, самоаналізу, збереження у PDF і друку.</p>
             <span class="format-card__foot">Відкрити розділ <span class="format-card__arrow">→</span></span>
+          </a>
+          <a class="format-card" href="./financial-investigations/">
+            <div class="format-card__top"><span class="format-card__label">06 · АНАЛІЗ ДОКАЗІВ</span></div>
+            <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span>
+            <h3>Фінансові розслідування</h3>
+            <p>Аналізуйте докази, знаходьте фінансові пастки та обґрунтовуйте власні висновки.</p>
+            <span class="format-card__foot">Переглянути справи <span class="format-card__arrow">→</span></span>
           </a>
         </div>
       </div>

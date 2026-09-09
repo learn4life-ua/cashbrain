@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="Розрахунок доступності оренди, щомісячного навантаження та стартової суми для переїзду."><meta name="theme-color" content="#174A3D"><title>Чи можу я дозволити собі оренду - CASHBRAIN</title><link rel="stylesheet" href="../shared.css"></head>
-<body>
-<header class="site-header"><div class="container site-header__inner"><a class="brand" href="../../" aria-label="CASHBRAIN, головний хаб"><span class="brand__mark">CB</span><span class="brand__text"><strong>CASHBRAIN</strong><span>Центр фінансової грамотності</span></span></a><nav class="nav" aria-label="Навігація"><a href="../../">Головний хаб</a><a href="../">Калькулятори</a><a class="nav__site" href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a></nav></div></header>
-<main><section class="hero"><div class="container hero__inner"><div class="breadcrumb"><a href="../../">Хаб</a><span>/</span><a href="../">Калькулятори</a><span>/</span><span>Оренда</span></div><div class="eyebrow">Калькулятор житла</div><h1>Чи можу я дозволити собі оренду</h1><p class="hero__lead">Порахуйте не лише орендну плату, а комунальні послуги, заставу, комісію, переїзд та інші обов’язкові витрати.</p><div class="hero__meta"><span class="chip">Щомісячний бюджет</span><span class="chip">Стартова сума</span><span class="chip">Орієнтир навантаження</span></div></div></section>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="Розрахунок доступності оренди, щомісячного навантаження та стартової суми для переїзду."><meta name="theme-color" content="#174A3D"><title>Чи можу я дозволити собі оренду - CASHBRAIN</title><link rel="stylesheet" href="../shared.css">  <link rel="stylesheet" href="../../assets/ui.css">
+</head>
+<body class="cb-page cb-calculators cb-shell">
+<!-- cashbrain-navigation:start -->
+<header class="cb-header"><div class="cb-shell-width cb-header-inner">
+  <a class="cb-logo" href="../../" aria-label="CASHBRAIN — головна"><span aria-hidden="true">CB</span><strong>CASHBRAIN</strong></a>
+  <nav class="cb-global-nav" aria-label="Головна навігація">
+    <details class="cb-menu"><summary>Усі формати</summary><ul><li><a href="../../simulators/">Симулятори</a></li><li><a href="../../calculators/" aria-current="true">Калькулятори</a></li><li><a href="../../tests/">Тести</a></li><li><a href="../../interactive-cases/">Інтерактивні кейси</a></li><li><a href="../../worksheets/">Робочі аркуші</a></li><li><a href="../../financial-investigations/">Фінансові розслідування</a></li></ul></details>
+    <a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a>
+  </nav>
+</div></header>
+<div class="cb-trail"><nav class="cb-shell-width" aria-label="Хлібні крихти"><ol><li><a href="../../">Головна</a></li><li><a href="../">Калькулятори</a></li><li><span aria-current="page">Чи можу я дозволити собі оренду</span></li></ol></nav></div>
+<!-- cashbrain-navigation:end -->
+<main><section class="hero"><div class="container hero__inner"><div class="eyebrow">Калькулятор житла</div><h1>Чи можу я дозволити собі оренду</h1><p class="hero__lead">Порахуйте не лише орендну плату, а комунальні послуги, заставу, комісію, переїзд та інші обов’язкові витрати.</p><div class="hero__meta"><span class="chip">Щомісячний бюджет</span><span class="chip">Стартова сума</span><span class="chip">Орієнтир навантаження</span></div></div></section>
 <section class="calc-main"><div class="container calc-grid"><section class="panel"><div class="panel-head"><div class="panel-head__label">Ваші дані</div><h2>Вкажіть дохід і витрати</h2><p>Оцінка є орієнтовною. Комфортна частка витрат залежить від складу родини, міста й стабільності доходу.</p></div><form id="calcForm" onsubmit="return false"><div class="fields"><div class="field"><label for="income">Чистий місячний дохід</label><div class="input-wrap"><input id="income" type="number" min="0" step="100" value="30000"><span>грн</span></div></div>
 <div class="field"><label for="rent">Орендна плата</label><div class="input-wrap"><input id="rent" type="number" min="0" step="100" value="10000"><span>грн</span></div></div>
 <div class="field"><label for="utilities">Комунальні послуги</label><div class="input-wrap"><input id="utilities" type="number" min="0" step="100" value="2500"><span>грн</span></div></div>
