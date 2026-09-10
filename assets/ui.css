@@ -146,3 +146,19 @@
     .cb-tests .cards { grid-template-columns: minmax(0, 1fr); }
   }
 }
+
+/* Frame the supplied emblem without altering the original image. */
+.cb-logo > .cb-logo-mark { position: relative; display: block; flex: 0 0 58px; width: 58px; height: 44px; overflow: hidden; border: 0; border-radius: 8px; }
+.cb-logo-mark img { position: absolute; width: 126px; height: 126px; max-width: none; left: -34px; top: -34px; }
+
+
+/* Light shared header and breadcrumb navigation. */
+.cb-header, .cb-trail { background: #F7FAF6; color: #174A3D; }
+.cb-header { border-bottom-color: #DDE7E0; }
+.cb-header a { color: #174A3D; }
+.cb-menu summary { border-color: #B8CEC1; }
+.cb-global-nav > a:hover, .cb-menu summary:hover { background: #E4F1E5; }
+.cb-trail a { color: #315E4E; }
+.cb-trail [aria-current] { color: #174A3D; }
+.cb-trail li + li::before { color: #607B6E; }
+.cb-header :is(a, summary):focus-visible, .cb-trail a:focus-visible { outline-color: #21813A; }
