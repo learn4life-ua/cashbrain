@@ -1,0 +1,96 @@
+/* One responsive presentation for every investigation, including opened stages. */
+body.cb-investigation { font-family: system-ui, "Segoe UI", Arial, sans-serif; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.cb-investigation *, .cb-investigation *::before, .cb-investigation *::after { box-sizing: border-box; }
+.cb-investigation :is(.container, .wrap) { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+.cb-investigation :is(.hero-inner, .hero__inner) { min-height: 0; padding: 40px 0 48px; }
+.cb-investigation .hero { min-height: 0; }
+.cb-investigation .hero h1 { max-width: 100%; font-size: clamp(36px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.cb-investigation .case-stamp { position: static; display: inline-block; margin-bottom: 20px; transform: none; font-size: 12px; }
+.cb-investigation :is(.hero-lead, .hero__lead) { font-size: 18px; line-height: 1.65; }
+.cb-investigation :is(.briefing, .stage-head, .evidence-layout, .board-canvas, .cards, .work-order-heading, .step-content) > * { min-width: 0; }
+.cb-investigation :is(.brief-card p, .stage-head p, .section-head p, .case-card p, .method p,
+ .work-order-heading p, .work-steps p, .board-guide p, .work-order-actions span,
+ .case-notes dd, .case-notes p, .stage-action p, .modal-card p, .result-lead,
+ .result-grid p, .report p, .official-actions li) { font-size: 16px; line-height: 1.6; }
+.cb-investigation :is(.hero-meta span, .hero__meta .chip, .section-label, .step-kicker,
+ .case-card__number, .status, .assignment-card small, .sources, .result-grid span) { font-size: 13px; line-height: 1.5; }
+.cb-investigation :is(.primary-button, .secondary-button, .evidence-toggle) { min-height: 48px; padding: 12px 18px; font: inherit; font-weight: 700; line-height: 1.4; }
+.cb-investigation .briefing { margin-top: 24px; }
+.cb-investigation .case-card__top { flex-wrap: wrap; }
+.cb-investigation .case-card__foot { font-size: 15px; gap: 12px; }
+.cb-investigation .case-dashboard { position: static; }
+.cb-investigation .dash-item span { font-size: 13px; letter-spacing: 0; }
+.cb-investigation .dash-item strong { font-size: 20px; }
+
+/* Both existing board renderers use these selectors. No scoring logic changes. */
+.cb-investigation .evidence-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; }
+.cb-investigation .evidence-board { display: block; padding: 0; min-width: 0; overflow: hidden; border: 6px solid #765338; border-radius: 18px; background: #ac8058; background-image: radial-gradient(#ffffff18 1px, transparent 1px); background-size: 9px 9px; box-shadow: 0 10px 28px #103a3114; }
+.cb-investigation .evidence-board::after { display: none; }
+.cb-investigation .board-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; min-height: 0; padding: 20px; background: #174A3D; color: #fff; }
+.cb-investigation .board-toolbar :is(span, small) { display: block; font-size: 13px; line-height: 1.5; letter-spacing: 0; color: #DFF6DF; }
+.cb-investigation .board-toolbar :is(strong, b) { display: block; margin-top: 4px; font-size: 20px; line-height: 1.35; }
+.cb-investigation .board-counter { min-width: 0; padding: 0; border: 0; background: transparent; text-align: right; }
+.cb-investigation .board-canvas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 28px 20px; }
+.cb-investigation .evidence-card { position: relative; display: flex; flex-direction: column; gap: 0; min-width: 0; min-height: 260px; padding: 20px; border: 1px solid #ddcfb6; border-radius: 12px; background: #FFFCF4; color: #10231C; font-family: inherit; text-align: left; transform: none; box-shadow: 0 5px 12px #32200d26; overflow-wrap: anywhere; }
+.cb-investigation .evidence-card[data-kind] { background: #FFFCF4; }
+.cb-investigation .evidence-card:nth-child(n) { transform: none; }
+.cb-investigation .evidence-pin { display: none; }
+.cb-investigation .evidence-card::before { display: block; position: absolute; top: -7px; left: calc(50% - 6px); width: 12px; height: 12px; border-radius: 50%; background: #a7443e; content: ''; box-shadow: 0 2px 3px #0003; }
+.cb-investigation :is(.evidence-top, .evidence-topline) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; line-height: 1.5; letter-spacing: 0; color: #62594b; }
+.cb-investigation .evidence-id { font: inherit; }
+.cb-investigation .evidence-state { position: static; padding: 4px 8px; border: 1px solid #d8cdbb; border-radius: 20px; color: #62594b; background: #fff; font-size: 12px; line-height: 1.5; letter-spacing: 0; }
+.cb-investigation .evidence-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-top: 16px; border: 0; border-radius: 12px; background: #DFF6DF; color: #174A3D; font-size: 15px; }
+.cb-investigation .evidence-type { display: block; margin-top: 16px; color: #73553b; font-size: 13px; line-height: 1.5; letter-spacing: 0; }
+.cb-investigation .evidence-card > strong { display: block; margin-top: 6px; font-size: 20px; line-height: 1.35; }
+.cb-investigation :is(.evidence-card > small, .evidence-preview) { display: block; min-height: 0; margin-top: 10px; font-family: inherit; font-size: 16px; line-height: 1.6; color: #62594b; }
+.cb-investigation :is(.evidence-card > em, .evidence-open) { position: static; display: block; margin-top: auto; padding-top: 20px; color: #174A3D; font-size: 14px; font-weight: 700; font-style: normal; line-height: 1.5; }
+.cb-investigation .evidence-card.is-viewed:not(.is-selected)::after { display: none; }
+.cb-investigation .evidence-card.is-viewed .evidence-state { background: #edf7ef; color: #174A3D; }
+.cb-investigation .evidence-card.is-selected { outline: 3px solid #62C96B; }
+.cb-investigation .evidence-card.is-selected .evidence-state { background: #174A3D; color: #fff; }
+.cb-investigation .evidence-card.is-selected::after { display: none; }
+.cb-investigation .selection-folder { margin: 0 20px 20px; padding: 20px; border: 1px solid #d6c298; border-radius: 12px; background: #F7EBD1; box-shadow: none; }
+.cb-investigation .selection-folder::before { display: none; }
+.cb-investigation :is(.selection-folder > header, .selection-folder-head) { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 0; background: transparent; }
+.cb-investigation :is(.selection-folder > header, .selection-folder-head) :is(span, small) { display: block; color: #62543d; font-size: 13px; line-height: 1.5; letter-spacing: 0; }
+.cb-investigation :is(.selection-folder > header, .selection-folder-head) strong { display: block; margin-top: 4px; font-size: 18px; line-height: 1.4; color: #10231C; }
+.cb-investigation .selection-folder ol { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 16px 0 0; padding: 0; list-style: none; }
+.cb-investigation .selection-folder li { position: relative; display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 12px 48px 12px 12px; border: 1px dashed #c2ad82; border-radius: 10px; background: #fff8e7; }
+.cb-investigation .selection-folder li :is(strong, em) { padding: 0; font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; color: #62543d; }
+.cb-investigation .selection-folder li > span { display: grid; place-items: center; flex-shrink: 0; width: 26px; height: 26px; font-size: 13px; }
+.cb-investigation .selection-folder li button { position: absolute; right: 2px; top: calc(50% - 22px); width: 44px; height: 44px; border: 0; background: transparent; color: #174A3D; font-size: 24px; }
+.cb-investigation .case-notes { min-width: 0; margin-top: 24px; transform: none; }
+.cb-investigation .case-notes dt { font-size: 13px; }
+.cb-investigation :is(.choice-option, .timeline-option, .suspect, .response-option) { min-width: 0; }
+.cb-investigation :is(.choice-option, .timeline-option, .suspect, .response-option) strong { font-size: 18px; line-height: 1.4; }
+.cb-investigation :is(.choice-option small, .timeline-option span:last-child, .suspect span:last-child, .response-option span:last-child) { font-size: 16px; line-height: 1.6; }
+.cb-investigation .modal { z-index: 1000; padding: 16px; }
+.cb-investigation .modal-card { width: min(640px, 100%); max-height: calc(100dvh - 32px); padding: 24px; overscroll-behavior: contain; }
+.cb-investigation .modal-close { width: 44px; height: 44px; }
+.cb-investigation .modal-visual { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.6; }
+.cb-investigation :is(a, button):focus-visible { outline: 3px solid #21813a; outline-offset: 3px; }
+@media (max-width: 960px) {
+  .cb-investigation :is(.evidence-layout, .briefing, .stage-head, .work-order-heading) { grid-template-columns: minmax(0, 1fr); }
+  .cb-investigation .step-content { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .cb-investigation :is(.container, .wrap) { width: calc(100% - 32px); }
+  .cb-investigation :is(.hero-inner, .hero__inner) { min-height: 0; padding: 28px 0; }
+  .cb-investigation .hero h1 { font-size: clamp(32px, 8vw, 44px); line-height: 1.12; }
+  .cb-investigation :is(.hero-lead, .hero__lead) { font-size: 17px; }
+  .cb-investigation :is(.catalog, .method) { padding-block: 32px; }
+  .cb-investigation .cards { grid-template-columns: minmax(0, 1fr); }
+  .cb-investigation .case-card { grid-column: auto; min-height: 0; padding: 20px; }
+  .cb-investigation :is(.section-head h2, .stage-head h2, .brief-card h2, .work-order h2, .modal-card h2) { font-size: 28px; line-height: 1.2; }
+  .cb-investigation .board-canvas { grid-template-columns: minmax(0, 1fr); padding: 24px 12px; gap: 20px; }
+  .cb-investigation .evidence-board { border-width: 4px; border-radius: 14px; }
+  .cb-investigation .board-toolbar { padding: 16px; }
+  .cb-investigation .evidence-card { min-height: 0; padding: 18px; }
+  .cb-investigation .selection-folder { margin: 0 12px 12px; padding: 16px; }
+  .cb-investigation :is(.brief-card, .assignment-card, .work-order-heading, .result) { padding: 20px; }
+  .cb-investigation .case-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cb-investigation :is(.suspects, .response-list, .result-grid) { grid-template-columns: minmax(0, 1fr); }
+  .cb-investigation .stage-action { align-items: stretch; flex-direction: column; }
+  .cb-investigation .modal { padding: 8px; }
+  .cb-investigation .modal-card { max-height: calc(100dvh - 16px); padding: 20px 16px; }
+}
