@@ -38,7 +38,7 @@ for file in ROOT.rglob('*.html'):
         trail = f'<div class="cb-trail"><nav class="cb-shell-width" aria-label="Хлібні крихти"><ol>{items}</ol></nav></div>'
     header = f'''<!-- cashbrain-navigation:start -->
 <header class="cb-header"><div class="cb-shell-width cb-header-inner">
-  <a class="cb-logo" href="{prefix}" aria-label="CASHBRAIN — головна"><span class="cb-logo-mark" aria-hidden="true"><img src="{prefix}assets/cashbrain-logo.png" alt="" width="1170" height="1170"></span><strong>CASHBRAIN</strong></a>
+  <a class="cb-logo" href="{prefix}" aria-label="CASHBRAIN — головна"><span class="cb-logo-mark" aria-hidden="true" style="position:relative;display:block;flex:0 0 58px;width:58px;height:44px;overflow:hidden"><img src="{prefix}assets/cashbrain-logo.png" alt="" width="126" height="126" style="position:absolute;width:126px;height:126px;max-width:none;left:-34px;top:-34px"></span><strong>CASHBRAIN</strong></a>
   <nav class="cb-global-nav" aria-label="Головна навігація">
     <details class="cb-menu"><summary>Усі формати</summary><ul>{links}</ul></details>
     {anchor_links}<a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a>
@@ -60,6 +60,7 @@ for file in ROOT.rglob('*.html'):
     text = re.sub(r'<div class="(?:breadcrumb|breadcrumbs)">.*?</div>', '', text, flags=re.S)
     if 'assets/ui.css' not in text:
         text = text.replace('</head>', f'<link rel="stylesheet" href="{prefix}assets/ui.css">\n</head>')
+    text = re.sub(r'assets/ui\.css(?:\?[^"\s]*)?', 'assets/ui.css?v=20260910-logo2', text)
     if 'rel="icon"' not in text:
         text = text.replace('</head>', f'<link rel="icon" type="image/png" href="{prefix}assets/cashbrain-logo.png">\n</head>')
     if 'cb-shell' not in re.search(r'<body[^>]*>', text)[0]:
