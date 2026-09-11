@@ -173,7 +173,7 @@
 
 
 /* Show the complete supplied logo within a circular frame. */
-.cb-logo > .cb-logo-mark { flex: 0 0 80px !important; width: 80px !important; height: 80px !important; border-radius: 50%; background: #14554D; }
+.cb-logo > .cb-logo-mark { flex: 0 0 72px !important; width: 72px !important; height: 72px !important; border-radius: 50%; background: #14554D; }
 .cb-logo-mark img { position: static !important; display: block; width: 100% !important; height: 100% !important; max-width: 100% !important; object-fit: contain; }
-@media (max-width: 720px) { .cb-logo > .cb-logo-mark { flex-basis: 64px !important; width: 64px !important; height: 64px !important; } }
+@media (max-width: 720px) { .cb-logo > .cb-logo-mark { flex-basis: 56px !important; width: 56px !important; height: 56px !important; } }
 
