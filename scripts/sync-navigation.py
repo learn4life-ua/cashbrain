@@ -60,7 +60,7 @@ for file in ROOT.rglob('*.html'):
     text = re.sub(r'<div class="(?:breadcrumb|breadcrumbs)">.*?</div>', '', text, flags=re.S)
     if 'assets/ui.css' not in text:
         text = text.replace('</head>', f'<link rel="stylesheet" href="{prefix}assets/ui.css">\n</head>')
-    text = re.sub(r'assets/ui\.css(?:\?[^"\s]*)?', 'assets/ui.css?v=20260911-full-logo', text)
+    text = re.sub(r'assets/ui\.css(?:\?[^"\s]*)?', 'assets/ui.css?v=20260911-logo-compact', text)
     if 'rel="icon"' not in text:
         text = text.replace('</head>', f'<link rel="icon" type="image/png" href="{prefix}assets/cashbrain-logo.png">\n</head>')
     if 'cb-shell' not in re.search(r'<body[^>]*>', text)[0]:
