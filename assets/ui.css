@@ -162,3 +162,11 @@
 .cb-trail [aria-current] { color: #174A3D; }
 .cb-trail li + li::before { color: #607B6E; }
 .cb-header :is(a, summary):focus-visible, .cb-trail a:focus-visible { outline-color: #21813A; }
+
+
+/* Dark breadcrumbs separate the light header from page content. */
+.cb-trail { background: #103A31; color: #fff; }
+.cb-trail a { color: #E3EEE7; }
+.cb-trail [aria-current] { color: #A8E7AD; }
+.cb-trail li + li::before { color: #9BB9AC; }
+.cb-trail a:focus-visible { outline-color: #A8E7AD; }
