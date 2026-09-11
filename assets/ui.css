@@ -170,3 +170,9 @@
 .cb-trail [aria-current] { color: #A8E7AD; }
 .cb-trail li + li::before { color: #9BB9AC; }
 .cb-trail a:focus-visible { outline-color: #A8E7AD; }
+
+
+/* Show the complete supplied logo within a circular frame. */
+.cb-logo > .cb-logo-mark { flex: 0 0 112px !important; width: 112px !important; height: 112px !important; border-radius: 50%; background: #14554D; }
+.cb-logo-mark img { position: static !important; display: block; width: 100% !important; height: 100% !important; max-width: 100% !important; object-fit: contain; }
+@media (max-width: 720px) { .cb-logo > .cb-logo-mark { flex-basis: 96px !important; width: 96px !important; height: 96px !important; } }
