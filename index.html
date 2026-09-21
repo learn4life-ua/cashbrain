@@ -59,6 +59,8 @@
     .format-card__foot{display:flex;margin-top:auto;padding-top:22px;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;font-weight:900}.format-card--active .format-card__foot{color:var(--accent-light)}
     .format-card__arrow{display:grid;width:34px;height:34px;border-radius:50%;place-items:center;background:rgba(255,255,255,.10);transition:transform .18s ease}a.format-card:hover .format-card__arrow{transform:translateX(3px)}
 
+    .team{padding:84px 0;background:linear-gradient(180deg,#EDF8EF 0%,var(--white) 100%)}.team__inner{display:grid;grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);gap:54px;align-items:center}.team__copy{position:relative;z-index:1}.team__copy p{max-width:500px;margin:22px 0 0;color:var(--muted);font-size:14px;line-height:1.75}.team__action{display:inline-flex;min-height:50px;margin-top:28px;padding:0 19px;border-radius:14px;align-items:center;gap:9px;background:var(--green-dark);color:var(--white);font-size:13px;font-weight:900;transition:transform .18s ease,background-color .18s ease}.team__action:hover{transform:translateY(-2px);background:var(--green)}.team__visual{display:flex;min-width:0;justify-content:center;align-items:flex-end}.team__visual img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;filter:drop-shadow(0 22px 34px rgba(23,74,61,.13))}
+
     .logic{padding:84px 0;background:var(--white)}.logic__inner{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,1.2fr);gap:70px;align-items:start}
     .logic__intro p{max-width:410px;margin:20px 0 0;color:var(--muted);font-size:14px;line-height:1.7}.steps{display:grid}
     .step{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:24px 0;border-bottom:1px solid var(--border)}.step:first-child{padding-top:3px}.step:last-child{border-bottom:0}
@@ -68,8 +70,8 @@
     .development__icon{display:grid;width:42px;height:42px;place-items:center;border-radius:13px;background:var(--white);color:var(--green);font-weight:950}.development strong{color:var(--green-dark)}
     .footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.09);background:var(--green-deep);color:rgba(255,255,255,.62)}.footer__inner{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px}.footer strong{color:var(--white)}.footer a{color:var(--accent-light);font-weight:850}
 
-    @media(max-width:960px){.hero,.hero__inner{min-height:650px}.hero__inner{padding-top:136px}.section-head,.logic__inner{grid-template-columns:1fr;gap:22px}.section-head__copy{max-width:670px}.format-card:nth-child(n){grid-column:span 6}.format-card:last-child{grid-column:1/-1}.logic__intro p{max-width:650px}}
-    @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__site){display:none}.nav .nav__site{padding:9px 11px}.hero{min-height:auto}.hero:before{top:150px;right:-220px}.hero:after{display:none}.hero__inner{min-height:650px;padding:125px 0 56px}h1{font-size:clamp(51px,17vw,76px)}.hero__lead{margin-top:22px;font-size:15px}.hero__actions{margin-top:26px}.button{width:100%}.hero__facts{margin-top:34px}.hero__fact{min-height:31px;font-size:10.5px}.formats,.logic{padding:60px 0}.section-head{margin-bottom:26px}.format-grid{grid-template-columns:1fr}.format-card:nth-child(n){grid-column:auto;min-height:250px;border-radius:20px}.format-card h3,.format-card:nth-child(n+3) h3{font-size:26px}.step{grid-template-columns:44px minmax(0,1fr);gap:14px}.step__number{width:40px;height:40px;border-radius:12px}.development{padding:16px 0 50px}.development__box{grid-template-columns:1fr;padding:20px}.footer__inner{align-items:flex-start;flex-direction:column;gap:9px}}
+    @media(max-width:960px){.hero,.hero__inner{min-height:650px}.hero__inner{padding-top:136px}.section-head,.logic__inner,.team__inner{grid-template-columns:1fr;gap:22px}.section-head__copy{max-width:670px}.format-card:nth-child(n){grid-column:span 6}.format-card:last-child{grid-column:1/-1}.logic__intro p{max-width:650px}}
+    @media(max-width:720px){.container{width:min(100% - 24px,1180px)}.site-header__inner{min-height:68px}.brand__text span,.nav a:not(.nav__site){display:none}.nav .nav__site{padding:9px 11px}.hero{min-height:auto}.hero:before{top:150px;right:-220px}.hero:after{display:none}.hero__inner{min-height:650px;padding:125px 0 56px}h1{font-size:clamp(51px,17vw,76px)}.hero__lead{margin-top:22px;font-size:15px}.hero__actions{margin-top:26px}.button{width:100%}.hero__facts{margin-top:34px}.hero__fact{min-height:31px;font-size:10.5px}.formats,.logic,.team{padding:60px 0}.section-head{margin-bottom:26px}.team__inner{gap:30px}.team__copy p{font-size:13.5px}.team__action{width:100%}.team__visual img{max-height:390px}.format-grid{grid-template-columns:1fr}.format-card:nth-child(n){grid-column:auto;min-height:250px;border-radius:20px}.format-card h3,.format-card:nth-child(n+3) h3{font-size:26px}.step{grid-template-columns:44px minmax(0,1fr);gap:14px}.step__number{width:40px;height:40px;border-radius:12px}.development{padding:16px 0 50px}.development__box{grid-template-columns:1fr;padding:20px}.footer__inner{align-items:flex-start;flex-direction:column;gap:9px}}
 
     /* CASHBRAIN characters */
     .eyebrow,h1,.hero__lead,.hero__actions,.hero__facts{position:relative;z-index:2}
@@ -193,6 +195,18 @@
             <span class="format-card__foot">Переглянути справи <span class="format-card__arrow">→</span></span>
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="container team__inner">
+        <div class="team__copy">
+          <div class="section-kicker">Команда CASHBRAIN</div>
+          <h2>Команда помічників CASHBRAIN</h2>
+          <p>Кожен герой має свою роль: допомагає аналізувати фінансові ситуації, виконувати розрахунки, планувати бюджет, перевіряти ризики та приймати обґрунтовані рішення. А Фейк створює пастки, які вчать помічати маніпуляції та небезпечні пропозиції.</p>
+          <a class="team__action" href="https://cashbrain.agrokoledg.poltava.ua/komanda-pomichnykiv-cashbrain/" target="_blank" rel="noopener">Познайомитися з командою <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="team__visual"><img src="./assets/cashbrain-team.webp?v=20260921" alt="Команда помічників CASHBRAIN" width="1200" height="800" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
