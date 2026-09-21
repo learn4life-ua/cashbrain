@@ -77,7 +77,7 @@
     .eyebrow,h1,.hero__lead,.hero__actions,.hero__facts{position:relative;z-index:2}
     .hero__character{position:absolute;right:-18px;bottom:-8px;width:clamp(180px,24vw,300px);height:auto;z-index:1;pointer-events:none;user-select:none;filter:drop-shadow(0 22px 36px rgba(0,0,0,.18))}
     .format-card__top,.format-card__icon,.format-card h3,.format-card p,.format-card__foot{position:relative;z-index:2}
-    .format-card__character{position:absolute;right:-6px;bottom:42px;width:clamp(86px,10vw,124px);height:auto;z-index:1;pointer-events:none;user-select:none;transition:transform .2s ease;filter:drop-shadow(0 10px 18px rgba(16,58,49,.11))}
+    .format-card__character--fake{right:58px!important;bottom:48px!important;width:92px!important;z-index:0!important;opacity:.58;filter:drop-shadow(0 8px 14px rgba(111,24,35,.13))!important}.format-card__character{position:absolute;right:-6px;bottom:42px;width:clamp(86px,10vw,124px);height:auto;z-index:1;pointer-events:none;user-select:none;transition:transform .2s ease;filter:drop-shadow(0 10px 18px rgba(16,58,49,.11))}
     a.format-card:hover .format-card__character{transform:translateY(-4px)}
     .format-card h3{max-width:74%}.format-card p{max-width:70%}
 
@@ -89,7 +89,7 @@
       .hero__inner{min-height:700px;padding:125px 0 178px}
       .hero__character{right:-2px;bottom:0;width:clamp(132px,40vw,174px)}
       .format-card{min-height:260px}
-      .format-card__character{right:-2px;bottom:38px;width:clamp(76px,25vw,98px)}
+      .format-card__character{right:-2px;bottom:38px;width:clamp(76px,25vw,98px)}.format-card__character--fake{right:48px!important;bottom:43px!important;width:72px!important;opacity:.52}
       .format-card h3{max-width:68%}
       .format-card p{max-width:65%;font-size:12.8px;line-height:1.55}
     }
@@ -191,7 +191,7 @@
             <span class="format-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span>
             <h3>Фінансові розслідування</h3>
             <p>Аналізуйте докази, знаходьте фінансові пастки та обґрунтовуйте власні висновки.</p>
-            <img class="format-card__character" src="./assets/characters/cyberdog.webp?v=20260921-2" alt="" aria-hidden="true" width="220" height="275" loading="lazy" decoding="async">
+            <img class="format-card__character format-card__character--fake" src="./assets/characters/fake.webp?v=20260921-4" alt="" aria-hidden="true" width="150" height="188" loading="lazy" decoding="async"><img class="format-card__character" src="./assets/characters/cyberdog.webp?v=20260921-2" alt="" aria-hidden="true" width="220" height="275" loading="lazy" decoding="async">
             <span class="format-card__foot">Переглянути справи <span class="format-card__arrow">→</span></span>
           </a>
         </div>
