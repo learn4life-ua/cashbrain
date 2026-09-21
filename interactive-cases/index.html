@@ -12,12 +12,11 @@
 
 <style>
   /* CASHBRAIN hero character */
-  .hero__inner{position:relative;padding-right:280px}
-  .hero__inner>:not(.hero__character){position:relative;z-index:2}
-  .hero__character{position:absolute;z-index:1;right:-8px;bottom:0;width:clamp(190px,24vw,300px);height:auto;max-height:430px;object-fit:contain;object-position:right bottom;pointer-events:none;user-select:none;filter:drop-shadow(0 22px 34px rgba(0,0,0,.18))}
-  @media(max-width:960px){.hero__inner{padding-right:205px}.hero__character{right:0;width:clamp(165px,23vw,220px);max-height:340px}}
-  @media(max-width:720px){.hero__inner{padding-right:0;padding-bottom:185px!important}.hero__character{right:0;bottom:0;width:clamp(145px,42vw,185px);max-height:205px}}
-  @media(max-width:420px){.hero__inner{padding-bottom:165px!important}.hero__character{width:150px;max-height:180px}}
+  .hero__inner{position:relative;z-index:2;padding-right:300px}
+  .hero__character{position:absolute;z-index:1;right:max(20px,calc((100vw - 1180px)/2));bottom:0;width:auto;height:min(430px,calc(100% - 88px));max-width:300px;object-fit:contain;object-position:center bottom;pointer-events:none;user-select:none;filter:drop-shadow(0 22px 34px rgba(0,0,0,.18))}
+  @media(max-width:960px){.hero__inner{padding-right:220px}.hero__character{right:20px;height:min(350px,calc(100% - 82px));max-width:220px}}
+  @media(max-width:720px){.hero__inner{padding-right:0;padding-bottom:185px!important}.hero__character{right:12px;bottom:0;width:auto;height:180px;max-width:46vw}}
+  @media(max-width:420px){.hero__inner{padding-bottom:165px!important}.hero__character{height:160px;max-width:48vw}}
 </style>
 </head>
 <body class="cb-page cb-interactive-cases cb-shell">
@@ -38,7 +37,7 @@
     <h1>Інтерактивні кейси</h1>
     <p class="hero__lead">Не тест із готовою правильною відповіддю, а коротка життєва історія. Ви приймаєте рішення, бачите їхній вплив на гроші, час і ризик, а у фіналі отримуєте практичний алгоритм.</p>
     <div class="hero__meta"><span class="chip">6 готових кейсів</span><span class="chip">Кілька фіналів</span><span class="chip">Без реєстрації</span></div>
-  <img class="hero__character" src="../assets/characters/strategist.webp?v=20260921-3" alt="Юний стратег CASHBRAIN" width="300" height="400" decoding="async"></div></section>
+  </div><img class="hero__character" src="../assets/characters/strategist.webp?v=20260921-3" alt="Юний стратег CASHBRAIN" width="300" height="400" decoding="async"></section>
 
   <section class="catalog"><div class="container">
     <div class="section-head"><div><div class="section-kicker">Оберіть ситуацію</div><h2>Що вирішуватимемо?</h2></div><p>Шість практичних історій уже доступні. У кожній рішення змінюють перебіг подій, фінансові показники та підсумкові рекомендації.</p></div>
