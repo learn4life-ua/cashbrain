@@ -22,6 +22,72 @@
 h1{max-width:920px;font-size:clamp(44px,7vw,74px)}.lead{font-size:16px}.main{padding:42px 0 70px}.panel{border-radius:22px;box-shadow:0 16px 42px rgba(23,74,61,.09)}.btn,.action{border-radius:13px}.footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px}.footer a{color:#A8E7AD;font-weight:850}
 @media(max-width:620px){.container,.wrap{width:min(100% - 24px,1120px)}.hero{padding:48px 0 40px}.hero:after{right:-240px}.lead{font-size:15px}.footer .wrap{align-items:flex-start;flex-direction:column}}
 </style>
+
+<style id="cashbrain-existing-simulator-shell">
+  .cb-header { background: #F7FAF6 !important; color: #174A3D !important; border-bottom-color: #DDE7E0 !important; }
+  .cb-header a { color: #174A3D !important; }
+  .cb-menu summary { border-color: #B8CEC1 !important; }
+  .cb-global-nav > a:hover, .cb-menu summary:hover { background: #E4F1E5 !important; }
+  .cb-trail { background: #103A31 !important; color: #FFFFFF !important; }
+  .cb-trail a { color: #E3EEE7 !important; }
+  .cb-trail [aria-current] { color: #A8E7AD !important; }
+  .cb-trail li + li::before { color: #9BB9AC !important; }
+  .cb-page .hero {
+    position: relative;
+    display: flex;
+    min-height: 520px;
+    padding: 136px 0 58px;
+    overflow: hidden;
+    align-items: center;
+    background:
+      radial-gradient(circle at 86% 20%, rgba(98,201,107,.24), transparent 26%),
+      radial-gradient(circle at 8% 92%, rgba(168,231,173,.10), transparent 25%),
+      linear-gradient(135deg, #103A31, var(--g, var(--green, #1C5345))) !important;
+    color: #FFFFFF;
+  }
+  .cb-page .hero::after {
+    position: absolute; top: 126px; right: -80px; width: 390px; height: 390px;
+    border: 1px solid rgba(255,255,255,.07); border-radius: 50%; content: ""; pointer-events: none;
+  }
+  .cb-page .hero > :is(.container,.wrap) { position: relative; z-index: 1; }
+  .cb-page .hero h1 { max-width: 980px; font-size: clamp(50px,7.5vw,84px); line-height: .93; letter-spacing: -.064em; }
+  .cb-page .hero :is(.eyebrow,.tag) { margin-bottom: 18px; color: #A8E7AD; font-size: 11px; letter-spacing: .13em; }
+  .cb-page .hero :is(.lead,.hero__lead,p) { max-width: 800px; color: rgba(255,255,255,.78); font-size: 17px; line-height: 1.65; }
+  .cb-page .main { padding: 30px 0 56px; }
+  .cb-page :is(.panel,.result,.summary) { border-radius: 22px; box-shadow: 0 14px 38px rgba(23,74,61,.09); }
+  .project-footer {
+    width: min(1120px,calc(100% - 32px)); margin: 24px auto; padding: 0; overflow: hidden;
+    border: 1px solid #CFE4D4; border-radius: 22px;
+    background: radial-gradient(circle at 92% 18%,rgba(98,201,107,.16),transparent 28%),linear-gradient(135deg,#FFFFFF,#F7FBF8);
+    box-shadow: 0 14px 38px rgba(23,74,61,.09);
+  }
+  .project-footer__inner { position: relative; padding: 24px 26px 24px 84px; }
+  .project-footer__inner::before {
+    position: absolute; top: 22px; left: 22px; display: grid; width: 42px; height: 42px; place-items: center;
+    border-radius: 14px; background: linear-gradient(135deg,#1C5345,#174A3D); color: #FFFFFF;
+    box-shadow: 0 8px 18px rgba(23,74,61,.18); content: "CB"; font-size: 15px; font-weight: 900;
+  }
+  .project-footer__text { margin: 0; color: #63736D; font-size: 13px; line-height: 1.72; }
+  .project-footer__text strong { color: #1C5345; font-weight: 900; }
+  .cb-site-footer { padding: 30px 0; border-top: 1px solid rgba(255,255,255,.09); background: #103A31; color: rgba(255,255,255,.62); }
+  .cb-site-footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 12px; }
+  .cb-site-footer__brand strong { color: #FFFFFF; letter-spacing: .04em; }
+  .cb-site-footer__links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+  .cb-site-footer__links a { color: #A8E7AD; font-weight: 850; text-decoration: none; }
+  .cb-site-footer__links a:hover { color: #FFFFFF; }
+  @media (max-width:900px) { .cb-page .hero { min-height: 490px; } }
+  @media (max-width:720px) {
+    .cb-page .hero { min-height: auto; padding: 116px 0 48px; }
+    .cb-page .hero::after { top: 130px; right: -235px; }
+    .cb-page .hero h1 { font-size: clamp(46px,15vw,68px); }
+    .project-footer { width: min(100% - 24px,1120px); border-radius: 18px; }
+    .project-footer__inner { padding: 70px 20px 22px; }
+    .project-footer__inner::before { top: 18px; left: 20px; }
+    .cb-site-footer { padding: 26px 0; }
+    .cb-site-footer__inner { align-items: flex-start; flex-direction: column; gap: 13px; }
+  }
+</style>
+
 </head>
 <body class="cb-page cb-shell">
 <header class="cb-header"><div class="cb-shell-width cb-header-inner">
@@ -65,7 +131,22 @@ h1{max-width:920px;font-size:clamp(44px,7vw,74px)}.lead{font-size:16px}.main{pad
 <div class="question"><strong>Чи реальний план?</strong><span>Перевірте, чи враховані сезонні покупки, навчання, лікування та відпочинок.</span></div>
 </div></section>
 </div></div></main>
-<footer class="footer"><div class="wrap"><span><strong>CASHBRAIN</strong> · Мистецтво розумних рішень</span><a href="../">← До розділу «Симулятори»</a></div></footer>
+<footer class="project-footer">
+  <div class="project-footer__inner"><p class="project-footer__text">
+    <strong>Створено в межах проєкту CASHBRAIN</strong> для формування практичних навичок фінансової грамотності: планування бюджету, резерву, фінансової цілі та боргових зобов'язань на 12 місяців.
+    ВСП «Аграрно-економічний фаховий коледж ПДАУ».
+  </p></div>
+</footer>
+<footer class="cb-site-footer">
+  <div class="container cb-site-footer__inner">
+    <div class="cb-site-footer__brand"><strong>CASHBRAIN</strong> · Фінансові симулятори</div>
+    <nav class="cb-site-footer__links" aria-label="Навігація в підвалі">
+      <a href="../../">Головний хаб</a>
+      <a href="../../simulators/">Усі фінансові симулятори</a>
+      <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+    </nav>
+  </div>
+</footer>
 <script>
 const monthNames=['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
 const el=id=>document.getElementById(id);
