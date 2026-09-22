@@ -91,7 +91,8 @@ function calculate(){
   let available=actualIncome-regularExpenses-extraExpense;
   let addedGoal=0;
   if(available>=0){
-   addedGoal=Math.min(plannedGoal,available);
+   const remainingGoal=Math.max(0,goalTarget-goal);
+   addedGoal=goalTarget>0?Math.min(plannedGoal,available,remainingGoal):0;
    goal+=addedGoal;
    reserve+=available-addedGoal;
   }else{
