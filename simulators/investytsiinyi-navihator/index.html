@@ -1,2 +1,101 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#174A3D"><title>Інвестиційний навігатор - CASHBRAIN</title><link rel="icon" href="../../assets/cashbrain-logo.png"><style>
-:root{--g:#1C5345;--gd:#174A3D;--a:#62C96B;--s:#DFF6DF;--bg:#F7F9F6;--t:#10231C;--m:#63736D;--b:#DDE7E0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1040px,calc(100% - 28px));margin:auto}.top{padding:18px 0;background:#103A31;color:white}.top .wrap{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900}.top a{font-size:13px;color:#DFF6DF}.hero{padding:64px 0 48px;background:var(--gd);color:white}.tag{font-size:11px;font-weight:900;letter-spacing:.12em;color:#A8E7AD;text-transform:uppercase}h1{margin:12px 0;font-size:clamp(38px,7vw,68px);line-height:1;letter-spacing:-.045em}.lead{max-width:760px;margin:0;color:#D8E5E0;line-height:1.65}.main{padding:42px 0 68px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}.panel{padding:26px;border:1px solid var(--b);border-radius:20px;background:white;box-shadow:0 12px 34px rgba(23,74,61,.07)}h2{margin:0 0 18px;font-size:25px}.field{margin:0 0 16px}.field label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:white;font:inherit}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.btn{width:100%;min-height:48px;border:0;border-radius:12px;background:var(--gd);color:white;font-weight:900;cursor:pointer}.result{position:sticky;top:18px}.metric{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--b)}.metric strong{text-align:right}.note{margin-top:18px;padding:16px;border-radius:12px;background:var(--s);color:#315A4D;line-height:1.55}.choices{display:grid;gap:10px}.choice{padding:15px;border:1px solid var(--b);border-radius:12px;background:white;text-align:left;font:inherit;cursor:pointer}.choice:hover,.choice.active{border-color:var(--a);background:#F1FAF2}.footer{padding:25px 0;background:#103A31;color:#BDD0C8;font-size:12px}@media(max-width:760px){.grid,.row{grid-template-columns:1fr}.hero{padding:46px 0 36px}.main{padding-top:26px}.panel{padding:20px}.result{position:static}}</style></head><body><header class="top"><div class="wrap"><a class="brand" href="../../">CASHBRAIN</a><a href="../">← До розділу</a></div></header><section class="hero"><div class="wrap"><div class="tag">Симулятор · Маршрут 08</div><h1>Інвестиційний навігатор</h1><p class="lead">Порівняйте прості й складні проценти та оцініть, як інфляція змінює реальну вартість результату.</p></div></section><main class="main"><div class="wrap"><div class="grid"><section class="panel"><h2>Задайте умови</h2><div class="field"><label>Початкова сума, грн</label><input id="sum" type="number" min="0" value="20000"></div><div class="row"><div class="field"><label>Річна ставка, %</label><input id="rate" type="number" min="0" step=".1" value="12"></div><div class="field"><label>Строк, років</label><input id="years" type="number" min="1" max="30" value="5"></div></div><div class="row"><div class="field"><label>Інфляція, % на рік</label><input id="infl" type="number" min="0" step=".1" value="8"></div><div class="field"><label>Рівень ризику</label><select id="risk"><option>Низький</option><option selected>Середній</option><option>Високий</option></select></div></div><button class="btn" onclick="calc()">Побудувати порівняння</button></section><aside class="panel result"><h2>Порівняння</h2><div class="metric"><span>Прості проценти</span><strong id="simple"></strong></div><div class="metric"><span>Складні проценти</span><strong id="compound"></strong></div><div class="metric"><span>Реальна вартість</span><strong id="real"></strong></div><div class="note" id="advice"></div></aside></div></div></main><footer class="footer"><div class="wrap">CASHBRAIN · Мистецтво розумних рішень</div></footer><script>const v=id=>Math.max(0,Number(document.getElementById(id).value)||0),m=x=>Math.round(x).toLocaleString('uk-UA')+' грн';function calc(){let s=v('sum'),r=v('rate')/100,y=v('years'),i=v('infl')/100,sp=s*(1+r*y),cp=s*Math.pow(1+r,y),rv=cp/Math.pow(1+i,y);simple.textContent=m(sp);compound.textContent=m(cp);real.textContent=m(rv);advice.textContent='Ризик: '+document.getElementById('risk').value+'. Вища очікувана дохідність не є гарантією результату. Порівнюйте ліквідність, комісії, податки та можливість втрати коштів.'}calc();</script></body></html>
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#174A3D">
+<title>Інвестиційний навігатор - CASHBRAIN</title>
+<link rel="icon" href="../../assets/cashbrain-logo.png">
+<style>
+:root{--g:#1C5345;--gd:#174A3D;--a:#62C96B;--s:#DFF6DF;--bg:#F7F9F6;--t:#10231C;--m:#63736D;--b:#DDE7E0;--warn:#FFF4D6;--red:#B33A3A}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1100px,calc(100% - 28px));margin:auto}.top{padding:18px 0;background:#103A31;color:white}.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900}.top a{font-size:13px;color:#DFF6DF}.hero{padding:60px 0 46px;background:var(--gd);color:white}.tag{font-size:11px;font-weight:900;letter-spacing:.12em;color:#A8E7AD;text-transform:uppercase}h1{margin:12px 0;font-size:clamp(36px,7vw,66px);line-height:1;letter-spacing:-.045em}.lead{max-width:760px;margin:0;color:#D8E5E0;line-height:1.65}.main{padding:36px 0 68px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.panel{padding:25px;border:1px solid var(--b);border-radius:20px;background:white;box-shadow:0 12px 34px rgba(23,74,61,.07)}h2{margin:0 0 8px;font-size:24px}.intro{margin:0 0 20px;color:var(--m);font-size:14px;line-height:1.55}.field{margin:0 0 15px}.field label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:white;font:inherit;color:var(--t)}.field input:focus,.field select:focus{outline:3px solid rgba(98,201,107,.25);border-color:var(--a)}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.btn{width:100%;min-height:49px;border:0;border-radius:12px;background:var(--gd);color:white;font-weight:900;cursor:pointer}.btn:hover{background:var(--g)}.result{position:sticky;top:18px}.metric{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--b)}.metric span{color:var(--m)}.metric strong{text-align:right}.metric.primary{margin:8px -10px 0;padding:15px 10px;background:var(--s);border:0;border-radius:12px}.metric.primary span,.metric.primary strong{color:var(--gd)}.hint{display:block;margin-top:5px;color:var(--m);font-size:11px;line-height:1.4}.chart{display:grid;gap:13px;margin:22px 0}.bar-row{display:grid;grid-template-columns:84px 1fr 92px;gap:10px;align-items:center;font-size:12px}.track{height:13px;background:#EAF0EC;border-radius:20px;overflow:hidden}.bar{height:100%;min-width:2px;border-radius:20px;background:var(--a);transition:width .35s}.bar.down{background:#E58B8B}.bar.up{background:#2E9460}.bar-value{text-align:right;font-weight:800}.note,.warning{margin-top:16px;padding:15px;border-radius:12px;line-height:1.55;font-size:13px}.note{background:var(--s);color:#315A4D}.warning{background:var(--warn);color:#6B5318}.formula{margin-top:14px;color:var(--m);font-size:11px;line-height:1.55}.quiz{grid-column:1/-1}.questions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.q{padding:16px;border:1px solid var(--b);border-radius:13px;background:#FBFCFB}.q strong{display:block;margin-bottom:6px}.q span{color:var(--m);font-size:13px;line-height:1.45}.footer{padding:25px 0;background:#103A31;color:#BDD0C8;font-size:12px}
+@media(max-width:800px){.grid,.questions{grid-template-columns:1fr}.hero{padding:44px 0 34px}.main{padding-top:24px}.panel{padding:20px}.result{position:static}.quiz{grid-column:auto}}
+@media(max-width:480px){.row{grid-template-columns:1fr}.bar-row{grid-template-columns:72px 1fr}.bar-value{grid-column:2;text-align:left}.top .wrap{align-items:flex-start}.top a:last-child{text-align:right}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="../../">CASHBRAIN</a><a href="../">← До фінансових симуляторів</a></div></header>
+<section class="hero"><div class="wrap"><div class="tag">Симулятор · Маршрут 08</div><h1>Інвестиційний навігатор</h1><p class="lead">Перевірте, як ставка, час, регулярні внески, капіталізація, комісії та інфляція впливають на результат. Оцініть не лише очікуваний дохід, а й можливий ризик.</p></div></section>
+<main class="main"><div class="wrap"><div class="grid">
+<section class="panel">
+<h2>Ваш сценарій</h2><p class="intro">Задайте однакові умови та порівняйте прості й складні проценти.</p>
+<div class="row"><div class="field"><label for="sum">Початкова сума, грн</label><input id="sum" type="number" min="0" max="100000000" step="100" value="20000"></div><div class="field"><label for="monthly">Щомісячний внесок, грн</label><input id="monthly" type="number" min="0" max="10000000" step="100" value="1000"></div></div>
+<div class="row"><div class="field"><label for="rate">Очікувана річна ставка, %</label><input id="rate" type="number" min="-50" max="100" step="0.1" value="12"></div><div class="field"><label for="years">Строк, років</label><input id="years" type="number" min="1" max="40" step="1" value="5"></div></div>
+<div class="row"><div class="field"><label for="frequency">Капіталізація</label><select id="frequency"><option value="1">Щороку</option><option value="4">Щокварталу</option><option value="12" selected>Щомісяця</option></select></div><div class="field"><label for="infl">Інфляція, % на рік</label><input id="infl" type="number" min="0" max="100" step="0.1" value="8"></div></div>
+<div class="row"><div class="field"><label for="fee">Щорічна комісія, %</label><input id="fee" type="number" min="0" max="20" step="0.1" value="1"></div><div class="field"><label for="risk">Рівень коливань</label><select id="risk"><option value="3">Низький</option><option value="8" selected>Середній</option><option value="15">Високий</option></select></div></div>
+<button class="btn" id="calculate" type="button">Побудувати порівняння</button>
+<div class="warning">Очікувана ставка є припущенням, а не обіцянкою. Симулятор не враховує податки та не є інвестиційною порадою.</div>
+</section>
+<aside class="panel result" aria-live="polite">
+<h2>Результат</h2><p class="intro" id="periodLabel"></p>
+<div class="metric"><span>Внесено власних коштів</span><strong id="contributed">0 грн</strong></div>
+<div class="metric"><span>Прості проценти</span><strong id="simple">0 грн</strong></div>
+<div class="metric"><span>Складні проценти</span><strong id="compound">0 грн</strong></div>
+<div class="metric primary"><span>Реальна вартість після інфляції</span><strong id="real">0 грн</strong></div>
+<span class="hint">У сьогоднішніх цінах, після врахування комісії та заданої інфляції.</span>
+<div class="chart" aria-label="Сценарії результату">
+<div class="bar-row"><span>Негативний</span><div class="track"><div class="bar down" id="barDown"></div></div><span class="bar-value" id="down">0 грн</span></div>
+<div class="bar-row"><span>Базовий</span><div class="track"><div class="bar" id="barBase"></div></div><span class="bar-value" id="base">0 грн</span></div>
+<div class="bar-row"><span>Сприятливий</span><div class="track"><div class="bar up" id="barUp"></div></div><span class="bar-value" id="up">0 грн</span></div>
+</div>
+<div class="note" id="advice"></div>
+<div class="formula">Прості проценти нараховуються лише на початкову суму. Складні проценти додають до бази попередній дохід і регулярні внески. Для сценаріїв ставка змінюється на величину обраного рівня коливань.</div>
+</aside>
+<section class="panel quiz"><h2>Перевірте рішення</h2><p class="intro">Перед вибором реального інструмента знайдіть відповіді на три запитання.</p><div class="questions">
+<div class="q"><strong>1. Звідки береться дохід?</strong><span>Проценти, дивіденди, зростання ціни чи інше джерело?</span></div>
+<div class="q"><strong>2. Що може зменшити результат?</strong><span>Інфляція, комісії, податки, падіння ціни або достроковий вихід?</span></div>
+<div class="q"><strong>3. Чи доступні гроші вчасно?</strong><span>Які строки, обмеження та умови повернення коштів?</span></div>
+</div></section>
+</div></div></main>
+<footer class="footer"><div class="wrap">CASHBRAIN · Мистецтво розумних рішень</div></footer>
+<script>
+const el=id=>document.getElementById(id);
+const num=(id,min,max)=>Math.min(max,Math.max(min,Number(el(id).value)||0));
+const money=n=>Math.round(n).toLocaleString('uk-UA')+' грн';
+function futureValue(principal,monthly,annualRate,years,frequency){
+  const periods=Math.max(1,Math.round(years*frequency));
+  const rate=annualRate/frequency;
+  let total=principal;
+  for(let p=0;p<periods;p++){
+    total*=Math.max(0,1+rate);
+    total+=monthly*12/frequency;
+  }
+  return total;
+}
+function calc(){
+  const principal=num('sum',0,100000000);
+  const monthly=num('monthly',0,10000000);
+  const expected=num('rate',-50,100)/100;
+  const years=num('years',1,40);
+  const frequency=Number(el('frequency').value);
+  const inflation=num('infl',0,100)/100;
+  const fee=num('fee',0,20)/100;
+  const swing=Number(el('risk').value)/100;
+  const netRate=expected-fee;
+  const contributed=principal+monthly*12*years;
+  const simple=Math.max(0,principal*(1+netRate*years)+monthly*12*years);
+  const base=futureValue(principal,monthly,netRate,years,frequency);
+  const down=futureValue(principal,monthly,netRate-swing,years,frequency);
+  const up=futureValue(principal,monthly,netRate+swing,years,frequency);
+  const real=base/Math.pow(1+inflation,years);
+  el('periodLabel').textContent='Горизонт: '+years+' '+(years===1?'рік':years<5?'роки':'років')+'. Ставка після комісії: '+(netRate*100).toLocaleString('uk-UA',{maximumFractionDigits:1})+'%.';
+  el('contributed').textContent=money(contributed);
+  el('simple').textContent=money(simple);
+  el('compound').textContent=money(base);
+  el('real').textContent=money(real);
+  el('down').textContent=money(down);el('base').textContent=money(base);el('up').textContent=money(up);
+  const max=Math.max(up,base,down,1);
+  el('barDown').style.width=(down/max*100)+'%';el('barBase').style.width=(base/max*100)+'%';el('barUp').style.width=(up/max*100)+'%';
+  const realGain=real-contributed;
+  const compDiff=base-simple;
+  let message='За базовим сценарієм складні проценти ';
+  message+=compDiff>=0?'додають '+money(compDiff)+' порівняно з простими. ':'дають на '+money(Math.abs(compDiff))+' менше через задані умови. ';
+  message+=realGain>=0?'Купівельна спроможність результату вища за внесену суму на '+money(realGain)+'.':'Після інфляції купівельна спроможність нижча за внесену суму на '+money(Math.abs(realGain))+'.';
+  el('advice').textContent=message;
+}
+el('calculate').addEventListener('click',calc);
+document.querySelectorAll('input,select').forEach(x=>x.addEventListener('change',calc));
+calc();
+</script>
+</body>
+</html>
