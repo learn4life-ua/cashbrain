@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Навчальний симулятор CASHBRAIN для порівняння тарифів банківських карток, комісій, кешбеку та умов обслуговування.">
+<meta name="theme-color" content="#174A3D">
+<title>Мій банківський вибір - CASHBRAIN</title>
+<link rel="icon" href="../../assets/cashbrain-logo.png">
+<link rel="stylesheet" href="../../assets/ui.css?v=20260911-logo-small">
+<style>
+:root{--green:#1C5345;--dark:#174A3D;--deep:#103A31;--accent:#62C96B;--soft:#DFF6DF;--surface:#F7F9F6;--white:#fff;--text:#10231C;--muted:#63736D;--border:#DDE7E0;--danger:#9C3443;--warn:#9A6700;--shadow:0 16px 42px rgba(23,74,61,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;background:var(--surface);color:var(--text);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.container{width:min(1120px,calc(100% - 32px));margin:auto}
+.cb-header{background:var(--deep)}.cb-trail{background:var(--white)}
+.hero{padding:72px 0 58px;background:var(--dark);color:var(--white)}.eyebrow{color:#A8E7AD;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{max-width:850px;margin:14px 0 18px;font-size:clamp(42px,7vw,74px);line-height:.96;letter-spacing:-.055em}.hero p{max-width:760px;margin:0;color:#D4E4DE;font-size:17px;line-height:1.65}.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.chip{padding:9px 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;color:#DDEAE5;font-size:11px;font-weight:800}
+.main{padding:50px 0 70px}.intro{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:24px}.panel{padding:26px;border:1px solid var(--border);border-radius:20px;background:var(--white);box-shadow:var(--shadow)}h2{margin:0 0 10px;font-size:27px;letter-spacing:-.025em}.panel>p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{padding:15px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.step b{display:block;margin-bottom:6px;color:var(--green);font-size:11px}.step span{font-size:13px;line-height:1.45}
+.section-title{margin:38px 0 18px}.section-title small{display:block;margin-bottom:8px;color:var(--green);font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.section-title h2{margin:0}
+.scenario{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.field label{display:block;margin-bottom:7px;font-size:12px;font-weight:850}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:#fff;color:var(--text);font:inherit}.field input:focus,.field select:focus{outline:3px solid rgba(98,201,107,.24);border-color:var(--accent)}
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.offer{position:relative;padding:22px;border:1px solid var(--border);border-radius:18px;background:var(--white)}.offer h3{margin:0 0 6px;font-size:21px}.offer__tag{display:inline-flex;margin-bottom:15px;padding:6px 9px;border-radius:999px;background:var(--soft);color:var(--dark);font-size:10px;font-weight:900}.offer .field{margin-bottom:13px}.check{display:flex;gap:9px;align-items:flex-start;margin-top:12px;color:var(--muted);font-size:12px;line-height:1.45}.check input{margin-top:2px;accent-color:var(--green)}
+.action{display:flex;justify-content:center;margin:28px 0}.btn{min-height:52px;padding:0 28px;border:0;border-radius:13px;background:var(--dark);color:#fff;font:inherit;font-weight:900;cursor:pointer}.btn:hover{background:var(--green)}
+.results{display:none}.results.visible{display:block}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.result{padding:22px;border:1px solid var(--border);border-radius:18px;background:#fff}.result.best{border:2px solid var(--accent);background:#F6FCF6}.result__head{display:flex;justify-content:space-between;gap:10px;align-items:center}.result h3{margin:0;font-size:20px}.badge{display:none;padding:6px 9px;border-radius:999px;background:var(--green);color:#fff;font-size:10px;font-weight:900}.best .badge{display:inline-flex}.metric{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--border);font-size:13px}.metric strong{text-align:right}.metric:last-of-type{border-bottom:0}.net{margin-top:10px;font-size:26px;font-weight:950;color:var(--dark)}.net small{display:block;margin-bottom:4px;color:var(--muted);font-size:11px;font-weight:800}.warning{margin-top:12px;color:var(--danger);font-size:12px;line-height:1.45}.decision{margin-top:18px;padding:24px;border-radius:18px;background:var(--soft)}.decision h3{margin:0 0 9px;color:var(--dark);font-size:22px}.decision p{margin:0;color:#365C50;line-height:1.6}.questions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.question{padding:14px;border:1px solid #C7DDD0;border-radius:12px;background:#fff;color:#34584D;font-size:13px;line-height:1.45}
+.note{margin-top:28px;padding:18px 20px;border-left:4px solid var(--green);background:#fff;color:var(--muted);font-size:13px;line-height:1.6}.footer{padding:28px 0;background:var(--deep);color:#BDD0C8;font-size:12px}.footer .container{display:flex;justify-content:space-between;gap:18px}.footer a{color:#A8E7AD;font-weight:850}
+@media(max-width:900px){.scenario{grid-template-columns:1fr 1fr}.offers,.summary{grid-template-columns:1fr}.intro{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:620px){.container{width:min(100% - 24px,1120px)}.hero{padding:48px 0 40px}.hero p{font-size:15px}.main{padding:30px 0 54px}.panel,.offer,.result{padding:19px}.scenario,.steps,.questions{grid-template-columns:1fr}.action .btn{width:100%}.footer .container{flex-direction:column}}
+ .learning-note{width:min(1100px,calc(100% - 28px));margin:16px auto 0;padding:12px 15px;border-left:4px solid var(--a);background:#EEF8EF;color:#315A4D;font-size:12px;line-height:1.5}</style>
+</head>
+<body class="cb-page cb-shell">
+<header class="cb-header"><div class="cb-shell-width cb-header-inner">
+<a class="cb-logo" href="../../" aria-label="CASHBRAIN - головна"><span class="cb-logo-mark" aria-hidden="true" style="position:relative;display:block;flex:0 0 58px;width:58px;height:44px;overflow:hidden"><img src="../../assets/cashbrain-logo.png" alt="" width="126" height="126" style="position:absolute;width:126px;height:126px;max-width:none;left:-34px;top:-34px"></span><strong>CASHBRAIN</strong></a>
+<nav class="cb-global-nav" aria-label="Головна навігація"><details class="cb-menu"><summary>Усі формати</summary><ul><li><a href="../" aria-current="page">Симулятори</a></li><li><a href="../../calculators/">Калькулятори</a></li><li><a href="../../tests/">Тести</a></li><li><a href="../../interactive-cases/">Інтерактивні кейси</a></li><li><a href="../../worksheets/">Робочі аркуші</a></li><li><a href="../../financial-investigations/">Фінансові розслідування</a></li></ul></details><a href="../">Усі симулятори</a><a href="https://cashbrain.agrokoledg.poltava.ua/">Сайт проєкту ↗</a></nav>
+</div></header>
+<div class="cb-trail"><nav class="cb-shell-width" aria-label="Хлібні крихти"><ol><li><a href="../../">Головна</a></li><li><a href="../">Симулятори</a></li><li><span aria-current="page">Мій банківський вибір</span></li></ol></nav></div>
+
+<main>
+<section class="hero"><div class="container"><div class="eyebrow">Симулятор CASHBRAIN · Маршрут 04</div><h1>Мій банківський вибір</h1><p>Порівняйте три карткові пропозиції за власним сценарієм користування. Симулятор врахує обслуговування, зняття готівки, перекази та кешбек.</p><div class="chips"><span class="chip">3 пропозиції</span><span class="chip">Річна повна вартість</span><span class="chip">Перевірка прихованих умов</span></div></div></section><div class="learning-note" role="note">Навчальний приклад. Назви та умови банківських пропозицій є умовними й не становлять реальної пропозиції банку.</div>
+
+<section class="main"><div class="container">
+<div class="intro"><div class="panel"><h2>Не шукайте просто «безкоштовну картку»</h2><p>Вигідність залежить від того, як саме ви користуєтеся карткою. Нульова плата за обслуговування може поєднуватися з комісіями за зняття чи перекази, а кешбек часто має ліміти та умови.</p></div><div class="steps"><div class="step"><b>01</b><span>Опишіть своє користування карткою.</span></div><div class="step"><b>02</b><span>Введіть тарифи трьох пропозицій.</span></div><div class="step"><b>03</b><span>Порівняйте чистий результат і ризики.</span></div></div></div>
+
+<div class="section-title"><small>Крок 1</small><h2>Ваш місячний сценарій</h2></div>
+<section class="panel scenario">
+<div class="field"><label for="spend">Покупки карткою, грн</label><input id="spend" type="number" min="0" value="8000"></div>
+<div class="field"><label for="cash">Зняття готівки, грн</label><input id="cash" type="number" min="0" value="2000"></div>
+<div class="field"><label for="transfers">Перекази на інші картки, грн</label><input id="transfers" type="number" min="0" value="1500"></div>
+<div class="field"><label for="balance">Середній залишок, грн</label><input id="balance" type="number" min="0" value="3000"></div>
+</section>
+
+<div class="section-title"><small>Крок 2</small><h2>Умови банківських пропозицій</h2></div>
+<div class="offers">
+<section class="offer" data-offer="a"><span class="offer__tag">ПРОПОЗИЦІЯ А</span><h3>Базова картка</h3>
+<div class="field"><label for="aFee">Обслуговування, грн/міс.</label><input id="aFee" type="number" min="0" value="0"></div>
+<div class="field"><label for="aCash">Зняття готівки, %</label><input id="aCash" type="number" min="0" step=".1" value="1"></div>
+<div class="field"><label for="aTransfer">Перекази, %</label><input id="aTransfer" type="number" min="0" step=".1" value="0.5"></div>
+<div class="field"><label for="aBack">Кешбек, %</label><input id="aBack" type="number" min="0" step=".1" value="1"></div>
+<div class="field"><label for="aCap">Максимальний кешбек, грн/міс.</label><input id="aCap" type="number" min="0" value="200"></div>
+<label class="check"><input id="aCondition" type="checkbox"> Безкоштовність діє лише за додаткової умови</label>
+</section>
+
+<section class="offer" data-offer="b"><span class="offer__tag">ПРОПОЗИЦІЯ Б</span><h3>Картка з кешбеком</h3>
+<div class="field"><label for="bFee">Обслуговування, грн/міс.</label><input id="bFee" type="number" min="0" value="100"></div>
+<div class="field"><label for="bCash">Зняття готівки, %</label><input id="bCash" type="number" min="0" step=".1" value="0"></div>
+<div class="field"><label for="bTransfer">Перекази, %</label><input id="bTransfer" type="number" min="0" step=".1" value="0"></div>
+<div class="field"><label for="bBack">Кешбек, %</label><input id="bBack" type="number" min="0" step=".1" value="2"></div>
+<div class="field"><label for="bCap">Максимальний кешбек, грн/міс.</label><input id="bCap" type="number" min="0" value="300"></div>
+<label class="check"><input id="bCondition" type="checkbox" checked> Кешбек нараховується лише на окремі категорії</label>
+</section>
+
+<section class="offer" data-offer="c"><span class="offer__tag">ПРОПОЗИЦІЯ В</span><h3>Картка з умовою</h3>
+<div class="field"><label for="cFee">Обслуговування, грн/міс.</label><input id="cFee" type="number" min="0" value="150"></div>
+<div class="field"><label for="cMinBalance">Мінімальний залишок для безкоштовності, грн</label><input id="cMinBalance" type="number" min="0" value="5000"></div>
+<div class="field"><label for="cCash">Зняття готівки, %</label><input id="cCash" type="number" min="0" step=".1" value="0"></div>
+<div class="field"><label for="cTransfer">Перекази, %</label><input id="cTransfer" type="number" min="0" step=".1" value="0"></div>
+<div class="field"><label for="cBack">Кешбек, %</label><input id="cBack" type="number" min="0" step=".1" value="1.5"></div>
+<div class="field"><label for="cCap">Максимальний кешбек, грн/міс.</label><input id="cCap" type="number" min="0" value="250"></div>
+<label class="check"><input id="cCondition" type="checkbox" checked> Плата не стягується лише за достатнього залишку</label>
+</section>
+</div>
+
+<div class="action"><button class="btn" id="calculate" type="button">Порівняти пропозиції</button></div>
+
+<section class="results" id="results" aria-live="polite">
+<div class="section-title"><small>Крок 3</small><h2>Результат за 12 місяців</h2></div>
+<div class="summary" id="summary"></div>
+<div class="decision"><h3 id="decisionTitle">Порівняння готове</h3><p id="decisionText"></p><div class="questions"><div class="question">Чи діє кешбек саме на ваші покупки?</div><div class="question">Чи є плата за SMS, виписки або додаткову картку?</div><div class="question">Які ліміти на зняття й перекази без комісії?</div><div class="question">Що станеться, якщо не виконати умову безкоштовності?</div></div></div>
+</section>
+
+<div class="note"><strong>Навчальне застереження.</strong> Симулятор порівнює введені вами умови й не рекламує конкретний банк. Перед відкриттям рахунку перевірте офіційні тарифи, паспорт продукту, ліміти, умови кешбеку та порядок закриття рахунку.</div>
+</div></section>
+</main>
+
+<footer class="footer"><div class="container"><div><strong>CASHBRAIN</strong> · Мій банківський вибір</div><a href="../">Усі симулятори</a></div></footer>
+<script>
+const money=value=>Math.round(value).toLocaleString("uk-UA")+" грн";
+const value=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+const checked=id=>document.getElementById(id).checked;
+const names={a:"Пропозиція А",b:"Пропозиція Б",c:"Пропозиція В"};
+
+function calculateOffer(code){
+  const spend=value("spend");
+  const cash=value("cash");
+  const transfers=value("transfers");
+  const balance=value("balance");
+  const minBalance=code==="c"?value("cMinBalance"):0;
+  const conditionMet=minBalance>0&&balance>=minBalance;
+  const service=(conditionMet?0:value(code+"Fee"))*12;
+  const cashFee=cash*value(code+"Cash")/100*12;
+  const transferFee=transfers*value(code+"Transfer")/100*12;
+  const monthlyCashback=Math.min(spend*value(code+"Back")/100,value(code+"Cap"));
+  const cashback=monthlyCashback*12;
+  const totalFees=service+cashFee+transferFee;
+  const net=totalFees-cashback;
+  return {code,service,cashFee,transferFee,cashback,totalFees,net,condition:checked(code+"Condition"),conditionMet};
+}
+
+function render(){
+  const offers=["a","b","c"].map(calculateOffer);
+  const best=Math.min(...offers.map(item=>item.net));
+  document.getElementById("summary").innerHTML=offers.map(item=>{
+    const isBest=Math.abs(item.net-best)<0.01;
+    const warning=item.condition?'<div class="warning">'+(item.code==="c"?(item.conditionMet?'Умову безкоштовного обслуговування виконано.':'Умову безкоштовного обслуговування не виконано.'):'Є додаткова умова. Перевірте її перед вибором.')+'</div>':"";
+    return '<article class="result '+(isBest?"best":"")+'"><div class="result__head"><h3>'+names[item.code]+'</h3><span class="badge">НАЙКРАЩИЙ РЕЗУЛЬТАТ</span></div><div class="metric"><span>Обслуговування</span><strong>'+money(item.service)+'</strong></div><div class="metric"><span>Комісія за готівку</span><strong>'+money(item.cashFee)+'</strong></div><div class="metric"><span>Комісія за перекази</span><strong>'+money(item.transferFee)+'</strong></div><div class="metric"><span>Кешбек</span><strong>- '+money(item.cashback)+'</strong></div><div class="net"><small>Чисті витрати за рік</small>'+money(item.net)+'</div>'+warning+'</article>';
+  }).join("");
+
+  const winners=offers.filter(item=>Math.abs(item.net-best)<0.01);
+  const title=winners.length>1?"Є кілька рівноцінних варіантів":names[winners[0].code]+" має найменші чисті витрати";
+  const ordered=[...offers].sort((x,y)=>x.net-y.net);
+  const difference=ordered[1].net-ordered[0].net;
+  document.getElementById("decisionTitle").textContent=title;
+  document.getElementById("decisionText").textContent=winners.length>1
+    ?"За введеним сценарієм кілька пропозицій мають однаковий результат. Порівняйте нефінансові умови, ліміти та зручність."
+    :"Орієнтовна перевага над наступною пропозицією становить "+money(difference)+" за рік. Це не остаточна рекомендація: перевірте умови, позначені біля кожної картки.";
+  document.getElementById("results").classList.add("visible");
+  document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.getElementById("calculate").addEventListener("click",render);
+</script>
+</body>
+</html>

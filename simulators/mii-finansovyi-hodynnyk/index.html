@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#174A3D">
+<title>Мій фінансовий годинник - CASHBRAIN</title>
+<link rel="icon" href="../../assets/cashbrain-logo.png">
+<style>
+:root{--g:#1C5345;--gd:#174A3D;--a:#62C96B;--s:#DFF6DF;--bg:#F7F9F6;--t:#10231C;--m:#63736D;--b:#DDE7E0;--warn:#FFF4D6;--bad:#FDE8E8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}.top{padding:18px 0;background:#103A31;color:white}.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900}.top a{font-size:13px;color:#DFF6DF}.hero{padding:58px 0 44px;background:var(--gd);color:white}.tag{font-size:11px;font-weight:900;letter-spacing:.12em;color:#A8E7AD;text-transform:uppercase}h1{margin:12px 0;font-size:clamp(36px,7vw,64px);line-height:1;letter-spacing:-.045em}.lead{max-width:800px;margin:0;color:#D8E5E0;line-height:1.65}.learning-note{width:min(1120px,calc(100% - 28px));margin:16px auto 0;padding:12px 15px;border-left:4px solid var(--a);background:#EEF8EF;color:#315A4D;font-size:12px;line-height:1.5}.main{padding:28px 0 68px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}.panel{padding:24px;border:1px solid var(--b);border-radius:20px;background:white;box-shadow:0 12px 34px rgba(23,74,61,.07)}h2{margin:0 0 7px;font-size:24px}.intro{margin:0 0 18px;color:var(--m);font-size:14px;line-height:1.55}.section-title{margin:21px 0 13px;padding-top:17px;border-top:1px solid var(--b);color:var(--gd);font-size:15px;font-weight:900}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:14px}.field label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:white;color:var(--t);font:inherit}.field input:focus,.field select:focus{outline:3px solid rgba(98,201,107,.25);border-color:var(--a)}.btn{width:100%;min-height:49px;border:0;border-radius:12px;background:var(--gd);color:white;font-weight:900;cursor:pointer}.btn:hover{background:var(--g)}.result{position:sticky;top:18px}.metric{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--b)}.metric span{color:var(--m)}.metric strong{text-align:right}.metric.primary{margin:8px -9px 0;padding:14px 9px;border:0;border-radius:11px;background:var(--s);color:var(--gd)}.metric.primary span{color:var(--gd)}.status{margin-top:17px;padding:15px;border-radius:12px;background:var(--s);color:#315A4D;font-size:13px;line-height:1.55}.status.warn{background:var(--warn);color:#68521A}.status.bad{background:var(--bad);color:#843232}.progress-group{margin-top:17px}.progress-label{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px;color:var(--m);font-size:12px}.track{height:13px;border-radius:20px;background:#E8EEEA;overflow:hidden}.bar{height:100%;border-radius:20px;background:var(--a);transition:width .3s}.timeline{grid-column:1/-1}.table-wrap{overflow-x:auto;border:1px solid var(--b);border-radius:13px}table{width:100%;min-width:850px;border-collapse:collapse;font-size:12px}th,td{padding:11px 10px;border-bottom:1px solid var(--b);text-align:right;white-space:nowrap}th{background:#F0F5F1;color:var(--gd);font-size:11px}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}.event-cell{color:#8A5B17;font-weight:800}.negative{color:#A43D3D;font-weight:800}.positive{color:#267A4E;font-weight:800}.questions{grid-column:1/-1}.question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.question{padding:15px;border:1px solid var(--b);border-radius:13px;background:#FBFCFB}.question strong{display:block;margin-bottom:6px}.question span{color:var(--m);font-size:13px;line-height:1.45}.footer{padding:25px 0;background:#103A31;color:#BDD0C8;font-size:12px}
+@media(max-width:820px){.grid,.question-grid{grid-template-columns:1fr}.hero{padding:44px 0 34px}.main{padding-top:24px}.panel{padding:20px}.result{position:static}.timeline,.questions{grid-column:auto}}
+@media(max-width:480px){.row{grid-template-columns:1fr}.top .wrap{align-items:flex-start}.top a:last-child{text-align:right}.metric{font-size:14px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="../../">CASHBRAIN</a><a href="../">← До фінансових симуляторів</a></div></header>
+<section class="hero"><div class="wrap"><div class="tag">Симулятор · Маршрут 12</div><h1>Мій фінансовий годинник</h1><p class="lead">Складіть персональний план на 12 місяців. Простежте, як регулярні рішення, боргова ставка та непередбачена подія змінюють резерв, фінансову ціль і підсумок року.</p></div></section>
+<div class="learning-note" role="note">Навчальна модель. Розрахунок не враховує інфляцію, податки, зміну доходів і витрат протягом року, якщо їх не внесено до сценарію.</div>
+<main class="main"><div class="wrap"><div class="grid">
+<section class="panel">
+<h2>Налаштуйте річний план</h2><p class="intro">Усі регулярні суми вводяться за один місяць. Симулятор послідовно розрахує кожен із 12 місяців.</p>
+<div class="section-title">1. Щомісячний бюджет</div>
+<div class="row"><div class="field"><label for="income">Дохід, грн</label><input id="income" type="number" min="0" max="10000000" step="100" value="18000"></div><div class="field"><label for="needs">Обов'язкові витрати, грн</label><input id="needs" type="number" min="0" max="10000000" step="100" value="11000"></div></div>
+<div class="row"><div class="field"><label for="wants">Необов'язкові витрати, грн</label><input id="wants" type="number" min="0" max="10000000" step="100" value="2500"></div><div class="field"><label for="goalContribution">План на фінансову ціль, грн</label><input id="goalContribution" type="number" min="0" max="10000000" step="100" value="2000"></div></div>
+<div class="section-title">2. Резерв, ціль і борг</div>
+<div class="row"><div class="field"><label for="startReserve">Початковий резерв, грн</label><input id="startReserve" type="number" min="0" max="100000000" step="100" value="5000"></div><div class="field"><label for="goalTarget">Вартість фінансової цілі, грн</label><input id="goalTarget" type="number" min="0" max="100000000" step="100" value="24000"></div></div>
+<div class="row"><div class="field"><label for="debtBalance">Залишок боргу, грн</label><input id="debtBalance" type="number" min="0" max="100000000" step="100" value="12000"></div><div class="field"><label for="debtPayment">Платіж за боргом, грн</label><input id="debtPayment" type="number" min="0" max="10000000" step="100" value="1200"></div></div>
+<div class="field"><label for="debtRate">Річна ставка за боргом, %</label><input id="debtRate" type="number" min="0" max="200" step="0.1" value="18"></div>
+<div class="section-title">3. Непередбачена подія</div>
+<div class="row"><div class="field"><label for="event">Подія</label><select id="event"><option value="none">Без події</option><option value="expense5000">Термінова витрата 5 000 грн</option><option value="expense12000" selected>Термінова витрата 12 000 грн</option><option value="incomeLoss">Місяць без доходу</option><option value="bonus5000">Додатковий дохід 5 000 грн</option></select></div><div class="field"><label for="eventMonth">Місяць події</label><select id="eventMonth"><option value="1">Січень</option><option value="2">Лютий</option><option value="3">Березень</option><option value="4" selected>Квітень</option><option value="5">Травень</option><option value="6">Червень</option><option value="7">Липень</option><option value="8">Серпень</option><option value="9">Вересень</option><option value="10">Жовтень</option><option value="11">Листопад</option><option value="12">Грудень</option></select></div></div>
+<button class="btn" id="calculate" type="button">Побудувати фінансовий рік</button>
+</section>
+<aside class="panel result" aria-live="polite">
+<h2>Підсумок року</h2><p class="intro">Результат враховує послідовність усіх 12 місяців.</p>
+<div class="metric"><span>Річний дохід</span><strong id="yearIncome">0 грн</strong></div>
+<div class="metric"><span>Резерв наприкінці року</span><strong id="endReserve">0 грн</strong></div>
+<div class="metric"><span>Накопичено на ціль</span><strong id="goalSaved">0 грн</strong></div>
+<div class="metric"><span>Залишок боргу</span><strong id="endDebt">0 грн</strong></div>
+<div class="metric"><span>Сплачено процентів</span><strong id="interestPaid">0 грн</strong></div>
+<div class="metric"><span>Непокритий дефіцит</span><strong id="deficit">0 грн</strong></div>
+<div class="metric primary"><span>Фінансова позиція</span><strong id="netPosition">0 грн</strong></div>
+<div class="progress-group"><div class="progress-label"><span>Фінансова ціль</span><strong id="goalLabel"></strong></div><div class="track"><div class="bar" id="goalBar"></div></div></div>
+<div class="progress-group"><div class="progress-label"><span>Резерв у місяцях обов'язкових витрат</span><strong id="reserveLabel"></strong></div><div class="track"><div class="bar" id="reserveBar"></div></div></div>
+<div class="status" id="advice"></div>
+</aside>
+<section class="panel timeline"><h2>Ваші 12 місяців</h2><p class="intro">Таблиця показує, коли план витримує навантаження, а коли доводиться використовувати резерв або накопичення.</p><div class="table-wrap"><table><thead><tr><th>Місяць</th><th>Дохід</th><th>Витрати</th><th>Подія</th><th>На ціль</th><th>Резерв</th><th>Борг</th><th>Дефіцит</th></tr></thead><tbody id="monthsBody"></tbody></table></div></section>
+<section class="panel questions"><h2>Після симуляції</h2><div class="question-grid">
+<div class="question"><strong>Що змінило подію?</strong><span>Порівняйте результат із варіантом «Без події».</span></div>
+<div class="question"><strong>Яке рішення найсильніше?</strong><span>Змініть одну суму й знайдіть дію з найбільшим впливом.</span></div>
+<div class="question"><strong>Чи реальний план?</strong><span>Перевірте, чи враховані сезонні покупки, навчання, лікування та відпочинок.</span></div>
+</div></section>
+</div></div></main>
+<footer class="footer"><div class="wrap">CASHBRAIN · Мистецтво розумних рішень</div></footer>
+<script>
+const monthNames=['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+const el=id=>document.getElementById(id);
+const number=(id,min,max)=>Math.min(max,Math.max(min,Number(el(id).value)||0));
+const money=n=>(n<0?'-':'')+Math.round(Math.abs(n)).toLocaleString('uk-UA')+' грн';
+function eventFor(type,income){
+ if(type==='expense5000')return {amount:-5000,label:'Витрата 5 000'};
+ if(type==='expense12000')return {amount:-12000,label:'Витрата 12 000'};
+ if(type==='incomeLoss')return {amount:-income,label:'Без доходу'};
+ if(type==='bonus5000')return {amount:5000,label:'Дохід +5 000'};
+ return {amount:0,label:'Немає'};
+}
+function calculate(){
+ const income=number('income',0,10000000);
+ const needs=number('needs',0,10000000);
+ const wants=number('wants',0,10000000);
+ const plannedGoal=number('goalContribution',0,10000000);
+ const goalTarget=number('goalTarget',0,100000000);
+ let reserve=number('startReserve',0,100000000);
+ let debt=number('debtBalance',0,100000000);
+ const debtPayment=number('debtPayment',0,10000000);
+ const monthlyRate=number('debtRate',0,200)/100/12;
+ const eventType=el('event').value;
+ const eventMonth=Number(el('eventMonth').value);
+ let goal=0,totalIncome=0,totalInterest=0,deficit=0;
+ const rows=[];
+ for(let month=1;month<=12;month++){
+  const event=month===eventMonth?eventFor(eventType,income):{amount:0,label:'Немає'};
+  const actualIncome=eventType==='incomeLoss'&&month===eventMonth?0:income+(event.amount>0?event.amount:0);
+  const extraExpense=event.amount<0&&eventType!=='incomeLoss'?Math.abs(event.amount):0;
+  const interest=debt*monthlyRate;
+  const payment=Math.min(debt+interest,debtPayment);
+  debt=Math.max(0,debt+interest-payment);
+  totalInterest+=Math.min(payment,interest);
+  totalIncome+=actualIncome;
+  const regularExpenses=needs+wants+payment;
+  let available=actualIncome-regularExpenses-extraExpense;
+  let addedGoal=0;
+  if(available>=0){
+   const remainingGoal=Math.max(0,goalTarget-goal);
+   addedGoal=goalTarget>0?Math.min(plannedGoal,available,remainingGoal):0;
+   goal+=addedGoal;
+   reserve+=available-addedGoal;
+  }else{
+   let shortage=Math.abs(available);
+   const fromReserve=Math.min(reserve,shortage);
+   reserve-=fromReserve;shortage-=fromReserve;
+   const fromGoal=Math.min(goal,shortage);
+   goal-=fromGoal;shortage-=fromGoal;
+   deficit+=shortage;
+  }
+  rows.push({month:monthNames[month-1],income:actualIncome,expenses:regularExpenses+extraExpense,event:event.label,goal:addedGoal,reserve,debt,deficit});
+ }
+ const net=reserve+goal-debt-deficit;
+ el('yearIncome').textContent=money(totalIncome);
+ el('endReserve').textContent=money(reserve);
+ el('goalSaved').textContent=money(goal);
+ el('endDebt').textContent=money(debt);
+ el('interestPaid').textContent=money(totalInterest);
+ el('deficit').textContent=money(deficit);
+ el('netPosition').textContent=money(net);
+ const goalPercent=goalTarget?Math.min(100,goal/goalTarget*100):(goal>0?100:0);
+ el('goalBar').style.width=goalPercent+'%';
+ el('goalLabel').textContent=goalTarget?Math.round(goalPercent)+'%':'Ціль не задана';
+ const reserveMonths=needs?reserve/needs:0;
+ el('reserveBar').style.width=Math.min(100,reserveMonths/3*100)+'%';
+ el('reserveLabel').textContent=reserveMonths.toLocaleString('uk-UA',{maximumFractionDigits:1})+' міс.';
+ el('monthsBody').innerHTML=rows.map(r=>'<tr><td>'+r.month+'</td><td>'+money(r.income)+'</td><td>'+money(r.expenses)+'</td><td class="'+(r.event==='Немає'?'':'event-cell')+'">'+r.event+'</td><td>'+money(r.goal)+'</td><td>'+money(r.reserve)+'</td><td>'+money(r.debt)+'</td><td class="'+(r.deficit>0?'negative':'')+'">'+money(r.deficit)+'</td></tr>').join('');
+ let message='',state='';
+ if(deficit>0){message='План завершується непокритим дефіцитом '+money(deficit)+'. Спочатку скоротіть необов\'язкові витрати або збільште щомісячний запас.';state='bad';}
+ else if(reserveMonths<1){message='Дефіциту немає, але резерв менший за один місяць обов\'язкових витрат. План залишається вразливим.';state='warn';}
+ else if(goalTarget&&goal<goalTarget){message='План витримує рік, але до фінансової цілі бракує '+money(goalTarget-goal)+'. Перевірте строк цілі або розмір внеску.';state='warn';}
+ else{message='План витримує обраний сценарій. Резерв покриває '+reserveMonths.toLocaleString('uk-UA',{maximumFractionDigits:1})+' місяця обов\'язкових витрат.';}
+ if(debt>0&&debtPayment<=number('debtBalance',0,100000000)*monthlyRate)message+=' Платіж за боргом замалий для помітного зменшення основної суми.';
+ el('advice').textContent=message;
+ el('advice').className='status'+(state?' '+state:'');
+}
+el('calculate').addEventListener('click',calculate);
+document.querySelectorAll('input,select').forEach(input=>input.addEventListener('change',calculate));
+calculate();
+</script>
+</body>
+</html>
