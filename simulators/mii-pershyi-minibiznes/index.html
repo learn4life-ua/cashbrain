@@ -1,2 +1,107 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#174A3D"><title>Мій перший мінібізнес - CASHBRAIN</title><link rel="icon" href="../../assets/cashbrain-logo.png"><style>
-:root{--g:#1C5345;--gd:#174A3D;--a:#62C96B;--s:#DFF6DF;--bg:#F7F9F6;--t:#10231C;--m:#63736D;--b:#DDE7E0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1040px,calc(100% - 28px));margin:auto}.top{padding:18px 0;background:#103A31;color:white}.top .wrap{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900}.top a{font-size:13px;color:#DFF6DF}.hero{padding:64px 0 48px;background:var(--gd);color:white}.tag{font-size:11px;font-weight:900;letter-spacing:.12em;color:#A8E7AD;text-transform:uppercase}h1{margin:12px 0;font-size:clamp(38px,7vw,68px);line-height:1;letter-spacing:-.045em}.lead{max-width:760px;margin:0;color:#D8E5E0;line-height:1.65}.main{padding:42px 0 68px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}.panel{padding:26px;border:1px solid var(--b);border-radius:20px;background:white;box-shadow:0 12px 34px rgba(23,74,61,.07)}h2{margin:0 0 18px;font-size:25px}.field{margin:0 0 16px}.field label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:white;font:inherit}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.btn{width:100%;min-height:48px;border:0;border-radius:12px;background:var(--gd);color:white;font-weight:900;cursor:pointer}.result{position:sticky;top:18px}.metric{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--b)}.metric strong{text-align:right}.note{margin-top:18px;padding:16px;border-radius:12px;background:var(--s);color:#315A4D;line-height:1.55}.choices{display:grid;gap:10px}.choice{padding:15px;border:1px solid var(--b);border-radius:12px;background:white;text-align:left;font:inherit;cursor:pointer}.choice:hover,.choice.active{border-color:var(--a);background:#F1FAF2}.footer{padding:25px 0;background:#103A31;color:#BDD0C8;font-size:12px}@media(max-width:760px){.grid,.row{grid-template-columns:1fr}.hero{padding:46px 0 36px}.main{padding-top:26px}.panel{padding:20px}.result{position:static}}</style></head><body><header class="top"><div class="wrap"><a class="brand" href="../../">CASHBRAIN</a><a href="../">← До розділу</a></div></header><section class="hero"><div class="wrap"><div class="tag">Симулятор · Маршрут 10</div><h1>Мій перший мінібізнес</h1><p class="lead">Розрахуйте виручку, витрати, прибуток, рентабельність і точку беззбитковості навчальної бізнес-ідеї.</p></div></section><main class="main"><div class="wrap"><div class="grid"><section class="panel"><h2>Модель мінібізнесу</h2><div class="row"><div class="field"><label>Постійні витрати, грн/міс.</label><input id="fixed" type="number" min="0" value="5000"></div><div class="field"><label>Змінні витрати на одиницю, грн</label><input id="variable" type="number" min="0" value="120"></div></div><div class="row"><div class="field"><label>Ціна продажу, грн</label><input id="price" type="number" min="0" value="250"></div><div class="field"><label>План продажів, одиниць</label><input id="qty" type="number" min="0" value="60"></div></div><button class="btn" onclick="calc()">Розрахувати модель</button></section><aside class="panel result"><h2>Результат</h2><div class="metric"><span>Виручка</span><strong id="revenue"></strong></div><div class="metric"><span>Усі витрати</span><strong id="cost"></strong></div><div class="metric"><span>Прибуток</span><strong id="profit"></strong></div><div class="metric"><span>Рентабельність продажів</span><strong id="margin"></strong></div><div class="metric"><span>Точка беззбитковості</span><strong id="breakEven"></strong></div><div class="note" id="advice"></div></aside></div></div></main><footer class="footer"><div class="wrap">CASHBRAIN · Мистецтво розумних рішень</div></footer><script>const v=id=>Math.max(0,Number(document.getElementById(id).value)||0),m=x=>Math.round(x).toLocaleString('uk-UA')+' грн';function calc(){let f=v('fixed'),c=v('variable'),p=v('price'),q=v('qty'),rev=p*q,co=f+c*q,pr=rev-co,be=p>c?Math.ceil(f/(p-c)):null;revenue.textContent=m(rev);cost.textContent=m(co);profit.textContent=m(pr);margin.textContent=rev?((pr/rev)*100).toFixed(1)+'%':'0%';breakEven.textContent=be===null?'Неможливо':be+' од.';advice.textContent=p<=c?'Ціна не покриває змінних витрат. Модель не має точки беззбитковості.':pr>=0?'План перевищує точку беззбитковості. Додайте податки й резерв перед реальним запуском.':'Для беззбитковості потрібно продати щонайменше '+be+' одиниць.'}calc();</script></body></html>
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#174A3D">
+<title>Мій перший мінібізнес - CASHBRAIN</title>
+<link rel="icon" href="../../assets/cashbrain-logo.png">
+<style>
+:root{--g:#1C5345;--gd:#174A3D;--a:#62C96B;--s:#DFF6DF;--bg:#F7F9F6;--t:#10231C;--m:#63736D;--b:#DDE7E0;--warn:#FFF4D6;--bad:#FDE8E8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1100px,calc(100% - 28px));margin:auto}.top{padding:18px 0;background:#103A31;color:white}.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900}.top a{font-size:13px;color:#DFF6DF}.hero{padding:58px 0 44px;background:var(--gd);color:white}.tag{font-size:11px;font-weight:900;letter-spacing:.12em;color:#A8E7AD;text-transform:uppercase}h1{margin:12px 0;font-size:clamp(36px,7vw,64px);line-height:1;letter-spacing:-.045em}.lead{max-width:780px;margin:0;color:#D8E5E0;line-height:1.65}.main{padding:34px 0 68px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}.panel{padding:24px;border:1px solid var(--b);border-radius:20px;background:white;box-shadow:0 12px 34px rgba(23,74,61,.07)}h2{margin:0 0 7px;font-size:24px}.intro{margin:0 0 18px;color:var(--m);font-size:14px;line-height:1.55}.section-title{margin:22px 0 13px;padding-top:18px;border-top:1px solid var(--b);font-size:15px;font-weight:900;color:var(--gd)}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:14px}.field label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #BDD0C4;border-radius:11px;background:white;color:var(--t);font:inherit}.field input:focus,.field select:focus{outline:3px solid rgba(98,201,107,.25);border-color:var(--a)}.btn{width:100%;min-height:49px;border:0;border-radius:12px;background:var(--gd);color:white;font-weight:900;cursor:pointer}.btn:hover{background:var(--g)}.result{position:sticky;top:18px}.metric{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--b)}.metric span{color:var(--m)}.metric strong{text-align:right}.metric.primary{margin:8px -9px 0;padding:14px 9px;border:0;border-radius:11px;background:var(--s);color:var(--gd)}.metric.primary span{color:var(--gd)}.status{margin-top:17px;padding:15px;border-radius:12px;background:var(--s);color:#315A4D;font-size:13px;line-height:1.55}.status.bad{background:var(--bad);color:#843232}.bar-wrap{margin-top:18px}.bar-label{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px;font-size:12px;color:var(--m)}.track{height:14px;border-radius:20px;background:#E8EEEA;overflow:hidden}.bar{height:100%;border-radius:20px;background:var(--a);transition:width .3s}.formula{margin-top:16px;padding:14px;border-radius:12px;background:var(--warn);color:#675019;font-size:12px;line-height:1.6}.tasks{grid-column:1/-1}.task-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.task{padding:16px;border:1px solid var(--b);border-radius:13px;background:#FBFCFB}.task strong{display:block;margin-bottom:6px}.task span{font-size:13px;line-height:1.45;color:var(--m)}.footer{padding:25px 0;background:#103A31;color:#BDD0C8;font-size:12px}
+@media(max-width:800px){.grid,.task-grid{grid-template-columns:1fr}.hero{padding:44px 0 34px}.main{padding-top:24px}.panel{padding:20px}.result{position:static}.tasks{grid-column:auto}}
+@media(max-width:480px){.row{grid-template-columns:1fr}.top .wrap{align-items:flex-start}.top a:last-child{text-align:right}.metric{font-size:14px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="../../">CASHBRAIN</a><a href="../">← До фінансових симуляторів</a></div></header>
+<section class="hero"><div class="wrap"><div class="tag">Симулятор · Маршрут 10</div><h1>Мій перший мінібізнес</h1><p class="lead">Перевірте бізнес-ідею в цифрах. Розрахуйте собівартість, виручку, прибуток, рентабельність і мінімальний обсяг продажів без збитку.</p></div></section>
+<main class="main"><div class="wrap"><div class="grid">
+<section class="panel">
+<h2>Побудуйте модель на місяць</h2><p class="intro">Для прикладу можна взяти свічки, випічку, листівки, сувеніри або інший невеликий продукт.</p>
+<div class="field"><label for="idea">Назва продукту</label><input id="idea" type="text" maxlength="60" value="Авторські свічки"></div>
+<div class="section-title">1. Витрати на одну одиницю</div>
+<div class="row"><div class="field"><label for="materials">Матеріали, грн</label><input id="materials" type="number" min="0" max="1000000" step="1" value="90"></div><div class="field"><label for="packaging">Пакування, грн</label><input id="packaging" type="number" min="0" max="1000000" step="1" value="20"></div></div>
+<div class="row"><div class="field"><label for="labor">Ваша праця, грн</label><input id="labor" type="number" min="0" max="1000000" step="1" value="40"></div><div class="field"><label for="fee">Комісія з продажу, % від ціни</label><input id="fee" type="number" min="0" max="50" step="0.1" value="3"></div></div>
+<div class="section-title">2. План продажів</div>
+<div class="row"><div class="field"><label for="fixed">Постійні витрати, грн на місяць</label><input id="fixed" type="number" min="0" max="10000000" step="100" value="5000"></div><div class="field"><label for="price">Ціна продажу, грн</label><input id="price" type="number" min="0" max="10000000" step="1" value="300"></div></div>
+<div class="row"><div class="field"><label for="qty">План продажів, одиниць</label><input id="qty" type="number" min="0" max="1000000" step="1" value="60"></div><div class="field"><label for="reserve">Резерв на непередбачені витрати, %</label><input id="reserve" type="number" min="0" max="50" step="0.1" value="5"></div></div>
+<button class="btn" id="calculate" type="button">Розрахувати модель</button>
+</section>
+<aside class="panel result" aria-live="polite">
+<h2 id="resultTitle">Результат</h2><p class="intro">Усі показники розраховано для одного місяця.</p>
+<div class="metric"><span>Змінна собівартість одиниці</span><strong id="variableUnit">0 грн</strong></div>
+<div class="metric"><span>Повна собівартість одиниці</span><strong id="fullUnit">0 грн</strong></div>
+<div class="metric"><span>Виручка</span><strong id="revenue">0 грн</strong></div>
+<div class="metric"><span>Усі витрати</span><strong id="cost">0 грн</strong></div>
+<div class="metric primary"><span>Прибуток або збиток</span><strong id="profit">0 грн</strong></div>
+<div class="metric"><span>Рентабельність витрат</span><strong id="profitability">0%</strong></div>
+<div class="metric"><span>Рентабельність продажів</span><strong id="salesMargin">0%</strong></div>
+<div class="metric"><span>Точка беззбитковості</span><strong id="breakEven">0 од.</strong></div>
+<div class="bar-wrap"><div class="bar-label"><span>План продажів</span><strong id="progressLabel"></strong></div><div class="track"><div class="bar" id="progress"></div></div></div>
+<div class="status" id="advice"></div>
+<div class="formula">Точка беззбитковості = постійні витрати ÷ дохід з одиниці після змінних витрат і комісії. Резерв включено до загальних витрат.</div>
+</aside>
+<section class="panel tasks"><h2>Перевірте свою бізнес-ідею</h2><p class="intro">Змініть один показник за раз і простежте, як зміниться результат.</p><div class="task-grid">
+<div class="task"><strong>Сценарій 1. Продажі нижчі</strong><span>Зменште план на 20%. Чи залишиться бізнес прибутковим?</span></div>
+<div class="task"><strong>Сценарій 2. Матеріали дорожчають</strong><span>Збільште їхню вартість на 15%. Якою має бути ціна?</span></div>
+<div class="task"><strong>Сценарій 3. Рішення</strong><span>Знайдіть спосіб знизити точку беззбитковості без погіршення якості.</span></div>
+</div></section>
+</div></div></main>
+<footer class="footer"><div class="wrap">CASHBRAIN · Мистецтво розумних рішень</div></footer>
+<script>
+const el=id=>document.getElementById(id);
+const number=(id,min,max)=>Math.min(max,Math.max(min,Number(el(id).value)||0));
+const money=n=>(n<0?'-':'')+Math.round(Math.abs(n)).toLocaleString('uk-UA')+' грн';
+function calculate(){
+ const name=el('idea').value.trim()||'Мінібізнес';
+ const materials=number('materials',0,1000000);
+ const packaging=number('packaging',0,1000000);
+ const labor=number('labor',0,1000000);
+ const feeRate=number('fee',0,50)/100;
+ const fixed=number('fixed',0,10000000);
+ const price=number('price',0,10000000);
+ const qty=Math.floor(number('qty',0,1000000));
+ const reserveRate=number('reserve',0,50)/100;
+ const variableUnit=materials+packaging+labor;
+ const revenue=price*qty;
+ const salesFee=revenue*feeRate;
+ const baseCost=fixed+variableUnit*qty+salesFee;
+ const reserve=baseCost*reserveRate;
+ const totalCost=baseCost+reserve;
+ const profit=revenue-totalCost;
+ const fullUnit=qty?totalCost/qty:0;
+ const profitability=totalCost?profit/totalCost*100:0;
+ const salesMargin=revenue?profit/revenue*100:0;
+ const contribution=price*(1-feeRate)-variableUnit;
+ const fixedWithReserve=fixed*(1+reserveRate);
+ const variableWithReserve=(variableUnit+price*feeRate)*(1+reserveRate);
+ const breakEvenContribution=price-variableWithReserve;
+ const breakEven=breakEvenContribution>0?Math.ceil(fixedWithReserve/breakEvenContribution):null;
+ el('resultTitle').textContent=name;
+ el('variableUnit').textContent=money(variableUnit);
+ el('fullUnit').textContent=qty?money(fullUnit):'Немає продажів';
+ el('revenue').textContent=money(revenue);
+ el('cost').textContent=money(totalCost);
+ el('profit').textContent=money(profit);
+ el('profitability').textContent=(Number.isFinite(profitability)?profitability:0).toLocaleString('uk-UA',{maximumFractionDigits:1})+'%';
+ el('salesMargin').textContent=(Number.isFinite(salesMargin)?salesMargin:0).toLocaleString('uk-UA',{maximumFractionDigits:1})+'%';
+ el('breakEven').textContent=breakEven===null?'Неможливо':breakEven.toLocaleString('uk-UA')+' од.';
+ const ratio=breakEven&&breakEven>0?Math.min(100,qty/breakEven*100):(profit>=0?100:0);
+ el('progress').style.width=ratio+'%';
+ el('progressLabel').textContent=breakEven===null?qty+' од.':qty+' із '+breakEven+' од.';
+ let message='';
+ if(price<=0){message='Без ціни продажу модель не може створювати виручку.';}
+ else if(contribution<=0||breakEven===null){message='Ціна не покриває змінні витрати, комісію та резерв. Кожна додаткова продана одиниця збільшує збиток.';}
+ else if(qty===0){message='Продажів немає, але постійні витрати залишаються. Додайте реалістичний план продажів.';}
+ else if(profit<0){message='За цим планом виникає збиток '+money(Math.abs(profit))+'. Для беззбитковості потрібно продати щонайменше '+breakEven+' одиниць.';}
+ else{message='План покриває витрати й створює прибуток '+money(profit)+'. Перевірте, чи реальний такий обсяг продажів і чи враховані податки.';}
+ el('advice').textContent=message;
+ el('advice').classList.toggle('bad',profit<0);
+}
+el('calculate').addEventListener('click',calculate);
+document.querySelectorAll('input').forEach(input=>input.addEventListener('change',calculate));
+calculate();
+</script>
+</body>
+</html>
