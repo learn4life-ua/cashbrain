@@ -67,6 +67,7 @@
 
 <section class="offer" data-offer="c"><span class="offer__tag">ПРОПОЗИЦІЯ В</span><h3>Картка з умовою</h3>
 <div class="field"><label for="cFee">Обслуговування, грн/міс.</label><input id="cFee" type="number" min="0" value="150"></div>
+<div class="field"><label for="cMinBalance">Мінімальний залишок для безкоштовності, грн</label><input id="cMinBalance" type="number" min="0" value="5000"></div>
 <div class="field"><label for="cCash">Зняття готівки, %</label><input id="cCash" type="number" min="0" step=".1" value="0"></div>
 <div class="field"><label for="cTransfer">Перекази, %</label><input id="cTransfer" type="number" min="0" step=".1" value="0"></div>
 <div class="field"><label for="cBack">Кешбек, %</label><input id="cBack" type="number" min="0" step=".1" value="1.5"></div>
@@ -98,14 +99,17 @@ function calculateOffer(code){
   const spend=value("spend");
   const cash=value("cash");
   const transfers=value("transfers");
-  const service=value(code+"Fee")*12;
+  const balance=value("balance");
+  const minBalance=code==="c"?value("cMinBalance"):0;
+  const conditionMet=minBalance>0&&balance>=minBalance;
+  const service=(conditionMet?0:value(code+"Fee"))*12;
   const cashFee=cash*value(code+"Cash")/100*12;
   const transferFee=transfers*value(code+"Transfer")/100*12;
   const monthlyCashback=Math.min(spend*value(code+"Back")/100,value(code+"Cap"));
   const cashback=monthlyCashback*12;
   const totalFees=service+cashFee+transferFee;
   const net=totalFees-cashback;
-  return {code,service,cashFee,transferFee,cashback,totalFees,net,condition:checked(code+"Condition")};
+  return {code,service,cashFee,transferFee,cashback,totalFees,net,condition:checked(code+"Condition"),conditionMet};
 }
 
 function render(){
@@ -113,7 +117,7 @@ function render(){
   const best=Math.min(...offers.map(item=>item.net));
   document.getElementById("summary").innerHTML=offers.map(item=>{
     const isBest=Math.abs(item.net-best)<0.01;
-    const warning=item.condition?'<div class="warning">Є додаткова умова. Результат справедливий лише за її виконання.</div>':"";
+    const warning=item.condition?'<div class="warning">'+(item.code==="c"?(item.conditionMet?'Умову безкоштовного обслуговування виконано.':'Умову безкоштовного обслуговування не виконано.'):'Є додаткова умова. Перевірте її перед вибором.')+'</div>':"";
     return '<article class="result '+(isBest?"best":"")+'"><div class="result__head"><h3>'+names[item.code]+'</h3><span class="badge">НАЙКРАЩИЙ РЕЗУЛЬТАТ</span></div><div class="metric"><span>Обслуговування</span><strong>'+money(item.service)+'</strong></div><div class="metric"><span>Комісія за готівку</span><strong>'+money(item.cashFee)+'</strong></div><div class="metric"><span>Комісія за перекази</span><strong>'+money(item.transferFee)+'</strong></div><div class="metric"><span>Кешбек</span><strong>- '+money(item.cashback)+'</strong></div><div class="net"><small>Чисті витрати за рік</small>'+money(item.net)+'</div>'+warning+'</article>';
   }).join("");
 
