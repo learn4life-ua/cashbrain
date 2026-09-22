@@ -79,7 +79,7 @@ function calculate(){
  const eligible=Math.min(loss,policy.limit);
  let deductible=0;
  if(covered){
-  deductible=policy.deductible==='fixed'?policy.deductibleValue:Math.max(policy.minDeductible,eligible*policy.deductibleValue);
+  deductible=policy.deductible==='fixed'?policy.deductibleValue:Math.max(policy.minDeductible,loss*policy.deductibleValue);
   deductible=Math.min(deductible,eligible);
  }
  const payout=covered?Math.max(0,eligible-deductible):0;
