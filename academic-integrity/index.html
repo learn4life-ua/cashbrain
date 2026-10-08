@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F9F6">
+  <title>Навчайся чесно — CASHBRAIN</title>
+  <link rel="stylesheet" href="https://learn4life-ua.github.io/cashbrain/assets/ui.css?v=20260911-logo-small">
+
+  <style>
+    :root{
+      --green:#1C5345;
+      --green-dark:#174A3D;
+      --lime:#62C96B;
+      --lime-soft:#DFF6DF;
+      --bg:#F7F9F6;
+      --surface:#FFFFFF;
+      --ink:#10231C;
+      --muted:#607067;
+      --line:#D9E5DC;
+      --soft:#EEF4EF;
+      --danger:#A44548;
+      --danger-soft:#FCEDEE;
+      --success:#397A49;
+      --success-soft:#EEF8F0;
+      --shadow:0 10px 30px rgba(18,55,45,.06);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Inter,Manrope,"Segoe UI",Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    button{font:inherit}
+
+    .wrap{
+      width:min(1180px,calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    /* HERO */
+    .hero{
+      margin-top:0;
+      padding:72px 0 62px;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(98,201,107,.20), transparent 29%),
+        radial-gradient(circle at 94% 92%, rgba(98,201,107,.10), transparent 26%),
+        linear-gradient(120deg,#103A31 0%,var(--green-dark) 50%,#286A4B 100%);
+      color:#fff;
+    }
+
+    .hero__inner{
+      width:min(1180px,calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .hero__eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+      color:#A7E8AC;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .hero__eyebrow:before{
+      content:"";
+      width:26px;
+      height:2px;
+      border-radius:999px;
+      background:var(--lime);
+    }
+
+    .hero h1{
+      max-width:900px;
+      margin:0;
+      color:#fff;
+      font-size:clamp(44px,7vw,72px);
+      line-height:.98;
+      letter-spacing:-.055em;
+    }
+
+    .hero p{
+      max-width:790px;
+      margin:18px 0 0;
+      color:rgba(255,255,255,.82);
+      font-size:16px;
+      line-height:1.7;
+    }
+
+
+    .hero__meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .hero__chip{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:6px 14px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-size:12px;
+      font-weight:850;
+    }
+
+    /* MAIN GRID */
+    .layout{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:22px;
+      align-items:start;
+      padding-bottom:48px;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .quiz__head{
+      padding:22px 26px 18px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .progressline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:11px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:750;
+    }
+
+    .progress{
+      height:8px;
+      overflow:hidden;
+      border-radius:999px;
+      background:#EAF0EB;
+    }
+
+    .progress__bar{
+      width:0;
+      height:100%;
+      border-radius:999px;
+      background:var(--green);
+      transition:width .25s ease;
+    }
+
+    .quiz__body{
+      padding:30px 26px 26px;
+    }
+
+    .qtype{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      color:var(--green);
+      font-size:12px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+
+    .qtype:before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--lime);
+    }
+
+    .question{
+      margin:0 0 22px;
+      font-size:clamp(23px,3vw,31px);
+      line-height:1.25;
+      letter-spacing:-.025em;
+    }
+
+    .options{
+      display:grid;
+      gap:11px;
+    }
+
+    .option{
+      width:100%;
+      display:grid;
+      grid-template-columns:30px 1fr;
+      gap:13px;
+      align-items:start;
+      padding:15px 16px;
+      border:1px solid var(--line);
+      border-radius:15px;
+      background:#fff;
+      color:var(--ink);
+      text-align:left;
+      cursor:pointer;
+      transition:.16s ease;
+    }
+
+    .option:hover{
+      border-color:#B8CCBD;
+      background:#FBFDFB;
+    }
+
+    .option.is-selected{
+      border-color:var(--green);
+      background:#F2F7F3;
+      box-shadow:inset 0 0 0 1px var(--green);
+    }
+
+    .option.is-correct{
+      border-color:#8FC59A;
+      background:var(--success-soft);
+    }
+
+    .option.is-wrong{
+      border-color:#DFABAD;
+      background:var(--danger-soft);
+    }
+
+    .option:disabled{
+      cursor:default;
+    }
+
+    .option__letter{
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:#EEF3EF;
+      color:var(--green);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .option.is-selected .option__letter{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .feedback{
+      display:none;
+      margin-top:18px;
+      padding:16px 17px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#F8FAF8;
+      font-size:14px;
+    }
+
+    .feedback.show{display:block}
+    .feedback.correct{background:var(--success-soft);border-color:#BAD9C0}
+    .feedback.wrong{background:var(--danger-soft);border-color:#E7BFC0}
+
+    .feedback strong{
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .btn{
+      appearance:none;
+      border:0;
+      border-radius:12px;
+      padding:12px 17px;
+      font-weight:850;
+      cursor:pointer;
+    }
+
+    .btn:disabled{
+      opacity:.42;
+      cursor:not-allowed;
+    }
+
+    .btn--primary{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .btn--primary:hover:not(:disabled){
+      background:var(--green-dark);
+    }
+
+    .btn--secondary{
+      background:var(--soft);
+      color:var(--green);
+    }
+
+    /* SIDEBAR */
+    .side{
+      position:sticky;
+      top:18px;
+      padding:22px;
+    }
+
+    .side__label{
+      margin-bottom:16px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .stat{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:13px 0;
+      border-bottom:1px solid var(--line);
+      font-size:14px;
+    }
+
+    .stat:last-of-type{
+      border-bottom:0;
+    }
+
+    .stat span{color:var(--muted)}
+    .stat b{color:var(--ink)}
+
+    .side__note{
+      margin-top:18px;
+      padding:14px;
+      border-radius:13px;
+      background:var(--lime-soft);
+      color:#31583F;
+      font-size:13px;
+    }
+
+    /* RESULT */
+    .result{
+      display:none;
+      padding:32px 26px;
+    }
+
+    .result.show{display:block}
+
+    .result__top{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+
+    .result__score{
+      flex:0 0 auto;
+      width:128px;
+      height:128px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:conic-gradient(var(--green) var(--score,0%),#E9F0EA 0);
+      position:relative;
+    }
+
+    .result__score:after{
+      content:"";
+      position:absolute;
+      inset:11px;
+      border-radius:50%;
+      background:#fff;
+    }
+
+    .result__scorebox{
+      position:relative;
+      z-index:1;
+      text-align:center;
+    }
+
+    .result__scorebox strong{
+      display:block;
+      font-size:32px;
+      line-height:1;
+    }
+
+    .result__scorebox span{
+      color:var(--muted);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .result h2{
+      margin:0 0 7px;
+      font-size:29px;
+      letter-spacing:-.03em;
+    }
+
+    .result p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .result__buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .review{
+      display:grid;
+      gap:9px;
+      margin-top:26px;
+    }
+
+    .review__item{
+      padding:13px 14px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#FBFCFB;
+      font-size:13px;
+    }
+
+    .review__item b{
+      color:var(--green);
+    }
+
+    /* SOURCES */
+    .sources{
+      margin-bottom:48px;
+      padding:24px 26px;
+    }
+
+    .sources h2{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:-.02em;
+    }
+
+    .sources p{
+      margin:0 0 15px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .sources__links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+    }
+
+    .source{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:9px 12px;
+      border-radius:11px;
+      background:#F0F5F1;
+      color:var(--green);
+      text-decoration:none;
+      font-size:13px;
+      font-weight:750;
+    }
+
+    .source:hover{
+      background:#E6F0E8;
+    }
+
+    .footer{
+      margin-top:0;
+      padding:30px 0;
+      border-top:1px solid rgba(255,255,255,.09);
+      background:var(--green-dark);
+      color:rgba(255,255,255,.62);
+    }
+
+    .footer__inner{
+      min-height:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:24px;
+      color:rgba(255,255,255,.62);
+      font-size:12px;
+    }
+
+    .footer__brand strong{
+      color:#fff;
+      letter-spacing:.04em;
+    }
+
+    .footer__links{
+      display:flex;
+      gap:8px 18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer a{
+      text-decoration:none;
+      color:#A7E8AC;
+      font-weight:850;
+    }
+
+    .footer a:hover{color:#fff}
+
+    @media(max-width:920px){
+      .nav{display:none}
+      .layout{grid-template-columns:1fr}
+      .side{position:static}
+    }
+
+    @media(max-width:640px){
+      .wrap{width:min(100% - 20px,1180px)}
+      .top__inner{min-height:62px}
+      .brand__all{display:none}
+      .hero{padding-top:12px}
+      .hero h1{font-size:36px}
+      .quiz__head,.quiz__body,.result,.sources{padding-left:18px;padding-right:18px}
+      .result__top{align-items:flex-start;flex-direction:column}
+      .actions .btn{flex:1}
+      .footer__inner{padding:0;align-items:flex-start;flex-direction:column;gap:13px}
+    }
+  </style>
+</head>
+
+<body class="cb-page cb-shell">
+  <!-- cashbrain-navigation:start -->
+  <header class="cb-header">
+    <div class="cb-shell-width cb-header-inner">
+      <a class="cb-logo" href="https://learn4life-ua.github.io/cashbrain/" aria-label="CASHBRAIN - головна">
+        <span class="cb-logo-mark" aria-hidden="true">
+          <img src="https://learn4life-ua.github.io/cashbrain/assets/cashbrain-logo.png" alt="" width="126" height="126">
+        </span>
+        <strong>CASHBRAIN</strong>
+      </a>
+
+      <nav class="cb-global-nav" aria-label="Головна навігація">
+        <details class="cb-menu">
+          <summary>Усі формати</summary>
+          <ul>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/simulators/">Симулятори</a></li>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/calculators/">Калькулятори</a></li>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/tests/">Тести</a></li>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/interactive-cases/">Інтерактивні кейси</a></li>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/worksheets/">Робочі аркуші</a></li>
+            <li><a href="https://learn4life-ua.github.io/cashbrain/financial-investigations/">Фінансові розслідування</a></li>
+          </ul>
+        </details>
+
+        <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cb-trail">
+    <nav class="cb-shell-width" aria-label="Хлібні крихти">
+      <ol>
+        <li><a href="https://learn4life-ua.github.io/cashbrain/">Головна</a></li>
+        <li><span aria-current="page">Навчайся чесно</span></li>
+      </ol>
+    </nav>
+  </div>
+  <!-- cashbrain-navigation:end -->
+
+  <main>
+
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__eyebrow">Академічна доброчесність</div>
+        <h1>Навчайся чесно</h1>
+        <p>
+          Академічна доброчесність у навчанні, роботі з джерелами та використанні ШІ.
+          Розберіться в типових ситуаціях, перевірте свої рішення та дізнайтеся,
+          де проходить межа між допомогою і порушенням.
+        </p>
+
+        <div class="hero__meta" aria-label="Про інтерактив">
+          <span class="hero__chip">14 запитань</span>
+          <span class="hero__chip">Пояснення після відповіді</span>
+          <span class="hero__chip">Без реєстрації</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+
+      <section class="layout">
+        <div class="card quiz">
+          <div id="quizScreen">
+            <div class="quiz__head">
+              <div class="progressline">
+                <span id="questionCounter">Запитання 1 з 14</span>
+                <span id="scoreMini">0 правильних</span>
+              </div>
+              <div class="progress">
+                <div class="progress__bar" id="progressBar"></div>
+              </div>
+            </div>
+
+            <div class="quiz__body">
+              <div class="qtype" id="questionType">Ситуація</div>
+              <h2 class="question" id="questionText"></h2>
+
+              <div class="options" id="options"></div>
+
+              <div class="feedback" id="feedback">
+                <strong id="feedbackTitle"></strong>
+                <span id="feedbackText"></span>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn--secondary" id="backBtn" type="button">Назад</button>
+                <button class="btn btn--primary" id="checkBtn" type="button" disabled>Перевірити</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="result" id="resultScreen">
+            <div class="result__top">
+              <div class="result__score" id="scoreRing">
+                <div class="result__scorebox">
+                  <strong id="scorePercent">0%</strong>
+                  <span id="scoreFraction">0 із 14</span>
+                </div>
+              </div>
+
+              <div>
+                <h2 id="resultTitle">Результат</h2>
+                <p id="resultText"></p>
+
+                <div class="result__buttons">
+                  <button class="btn btn--primary" id="restartBtn" type="button">Пройти ще раз</button>
+                  <a class="btn btn--secondary" href="#sources" style="text-decoration:none">Джерела</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="review" id="review"></div>
+          </div>
+        </div>
+
+        <aside class="card side">
+          <div class="side__label">Перевір свої рішення</div>
+
+          <div class="stat">
+            <span>Запитань</span>
+            <b>14</b>
+          </div>
+
+          <div class="stat">
+            <span>Формат</span>
+            <b>1 відповідь</b>
+          </div>
+
+          <div class="stat">
+            <span>Пояснення</span>
+            <b>Після відповіді</b>
+          </div>
+
+          <div class="side__note">
+            Академічна доброчесність - це не лише про списування.
+            У тесті є ситуації про авторство, дані, самостійність,
+            використання чужих матеріалів і ШІ.
+          </div>
+        </aside>
+      </section>
+
+      <section class="card sources" id="sources">
+        <h2>На чому ґрунтується тест</h2>
+        <p>Запитання укладено з урахуванням чинного законодавства України та документів коледжу.</p>
+
+        <div class="sources__links">
+          <a class="source"
+             href="https://zakon.rada.gov.ua/laws/show/4742-20"
+             target="_blank" rel="noopener">
+             Закон «Про академічну доброчесність» ↗
+          </a>
+
+          <a class="source"
+             href="https://zakon.rada.gov.ua/laws/show/2745-19"
+             target="_blank" rel="noopener">
+             Закон «Про фахову передвищу освіту» ↗
+          </a>
+
+          <a class="source"
+             href="https://agrokoledg.poltava.ua/akademichna-dobrochesnist-u-koledzhi/"
+             target="_blank" rel="noopener">
+             Академічна доброчесність у коледжі ↗
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <strong>CASHBRAIN</strong> · Навчайся чесно
+      </div>
+
+      <div class="footer__links">
+        <a href="https://learn4life-ua.github.io/cashbrain/">Головний хаб</a>
+        <a href="https://cashbrain.agrokoledg.poltava.ua/" target="_blank" rel="noopener">Сайт проєкту ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const quizData = [
+      {
+        type:"Основи",
+        q:"Що найточніше описує академічну доброчесність?",
+        options:[
+          "Лише заборона списування під час контрольних робіт",
+          "Система цінностей, принципів і правил доброчесної академічної діяльності",
+          "Перевірка всіх робіт спеціальною програмою на збіги",
+          "Правила оформлення списку використаних джерел"
+        ],
+        correct:1,
+        explanation:"Академічна доброчесність значно ширша за боротьбу зі списуванням. Вона охоплює цінності, принципи та правила, якими мають керуватися учасники академічної діяльності."
+      },
+      {
+        type:"Ситуація",
+        q:"Студент вставив у свою роботу абзац із чужої статті без лапок і без посилання на автора. Що тут не так?",
+        options:[
+          "Нічого, якщо абзац займає менше половини сторінки",
+          "Це допустимо, якщо стаття є у відкритому доступі",
+          "Чужий результат використано без належного зазначення джерела та автора",
+          "Порушення є лише тоді, коли автор статті подасть скаргу"
+        ],
+        correct:2,
+        explanation:"Використовуючи текст, ідею, зображення, твердження чи інший результат інтелектуальної діяльності іншої особи, потрібно належно позначати джерело та/або автора."
+      },
+      {
+        type:"Ситуація",
+        q:"Викладач дозволив виконувати навчальне завдання в парах. Двоє студентів підготували спільний результат. Чи є це порушенням?",
+        options:[
+          "Так, будь-яка спільна робота є списуванням",
+          "Ні, якщо умови завдання дозволяли спільне виконання",
+          "Так, якщо студенти користувалися інтернетом",
+          "Ні, але лише якщо вони отримали однакову оцінку"
+        ],
+        correct:1,
+        explanation:"Навчальне завдання має виконуватися самостійно, крім випадків, коли його умови прямо передбачають спільну роботу або дозволену допомогу."
+      },
+      {
+        type:"Термін",
+        q:"Як називається вигадування даних або фактів, яких насправді не було?",
+        options:["Фабрикація","Фальсифікація","Цитування","Рецензування"],
+        correct:0,
+        explanation:"Фабрикація пов'язана зі створенням вигаданих даних, фактів або результатів. Це не те саме, що зміна вже наявних даних."
+      },
+      {
+        type:"Термін",
+        q:"Студент отримав реальні результати опитування, але змінив частину відповідей, щоб висновок виглядав переконливіше. Як це кваліфікувати?",
+        options:["Фабрикація","Фальсифікація","Коректне редагування","Академічне цитування"],
+        correct:1,
+        explanation:"Фальсифікація - це свідома зміна чи модифікація наявних даних або результатів так, що вони перестають достовірно відображати реальність."
+      },
+      {
+        type:"Ситуація",
+        q:"Студент повторно подав значну частину своєї минулорічної роботи як нове завдання. Умови нового завдання такого повторного використання не дозволяли. Чи це допустимо?",
+        options:[
+          "Так, бо автор тексту той самий",
+          "Так, якщо викладач не пам'ятає старої роботи",
+          "Ні, повторне використання власного академічного твору залежить від умов завдання",
+          "Ні, але тільки якщо робота вже опублікована в інтернеті"
+        ],
+        correct:2,
+        explanation:"Академічний твір здобувача може включати його раніше створений твір повністю або частково лише тоді, коли це дозволено умовами навчального завдання."
+      },
+      {
+        type:"ШІ",
+        q:"Студент використав генеративний ШІ для створення частини академічного твору. Який підхід відповідає чинному Закону?",
+        options:[
+          "Приховати використання ШІ, якщо результат відредаговано вручну",
+          "Вказати використання ШІ відповідно до встановлених вимог, зокрема методику генерування та/або програму",
+          "Завжди вважати будь-яке використання ШІ академічним порушенням",
+          "Зазначити лише назву браузера, через який відкривали ШІ"
+        ],
+        correct:1,
+        explanation:"Якщо в академічному творі використано об'єкт, згенерований ШІ, автор має повідомити про це згідно з установленими вимогами, зазначивши методику генерування та/або відповідну програму чи її опис."
+      },
+      {
+        type:"ШІ",
+        q:"Яке твердження про ШІ та академічну доброчесність є найточнішим?",
+        options:[
+          "ШІ автоматично робить будь-яку навчальну роботу недоброчесною",
+          "ШІ можна використовувати без обмежень і без повідомлення",
+          "Важливі умови завдання, правила закладу, прозорість використання та власний внесок автора",
+          "Достатньо замінити кілька слів у відповіді ШІ, щоб авторство стало повністю власним"
+        ],
+        correct:2,
+        explanation:"Питання не зводиться до самої наявності ШІ. Значення мають правила конкретного завдання, вимоги закладу, прозорість використання інструмента та реальний інтелектуальний внесок здобувача."
+      },
+      {
+        type:"Авторство",
+        q:"Хто має бути зазначений автором академічного твору?",
+        options:[
+          "Будь-хто, хто допоміг надрукувати або оформити документ",
+          "Особи, які зробили авторський інтелектуальний внесок у створення твору",
+          "Лише людина, яка першою завантажила файл",
+          "Керівник роботи незалежно від його реального внеску"
+        ],
+        correct:1,
+        explanation:"Авторство пов'язане з реальним творчим та інтелектуальним внеском. Інші особи, які консультували, редагували, перекладали чи виконували іншу допоміжну роботу, можуть бути зазначені окремо з описом їхнього внеску."
+      },
+      {
+        type:"Ситуація",
+        q:"Друг надіслав студенту готові відповіді на індивідуальне завдання, а студент видав їх за власну роботу. Який принцип порушено насамперед?",
+        options:[
+          "Самостійність виконання навчального завдання",
+          "Право на академічну мобільність",
+          "Правило оформлення титульної сторінки",
+          "Право на перерву під час навчання"
+        ],
+        correct:0,
+        explanation:"Якщо завдання передбачає самостійне виконання, використання готової чужої відповіді як власної суперечить правилу самостійності."
+      },
+      {
+        type:"Достовірність",
+        q:"У роботі автор подає припущення, яке ще не доведене. Як діяти доброчесно?",
+        options:[
+          "Подати його як встановлений факт, щоб текст був переконливішим",
+          "Не згадувати про нього взагалі",
+          "Чітко позначити, що це припущення або недоведене твердження",
+          "Замінити припущення цитатою без джерела"
+        ],
+        correct:2,
+        explanation:"Академічний твір має містити достовірну інформацію. Якщо автор наводить припущення чи недоведене твердження, його статус потрібно чітко позначити."
+      },
+      {
+        type:"Процедура",
+        q:"Чи можна автоматично вважати людину порушником лише через підозру або високий відсоток текстових збігів?",
+        options:[
+          "Так, якщо збіг перевищує 30%",
+          "Так, якщо так вирішив один викладач без розгляду",
+          "Ні, факт порушення має бути встановлено за визначеною процедурою",
+          "Ні, але лише для працівників закладу освіти"
+        ],
+        correct:2,
+        explanation:"Особа вважається такою, що допустила порушення, лише після встановлення цього факту відповідно до визначеної процедури."
+      },
+      {
+        type:"Ситуація",
+        q:"Студента схиляють до участі в недоброчесній схемі під час навчання. Що передбачає Закон?",
+        options:[
+          "Погодитися, якщо оцінка не впливає на диплом",
+          "Відмовитися та повідомити уповноважений орган або особу не пізніше наступного робочого дня",
+          "Мовчати, бо відповідальність не стосується того, кого схиляють",
+          "Опублікувати імена всіх учасників у соцмережах"
+        ],
+        correct:1,
+        explanation:"Особа, яку схиляють до порушення академічної доброчесності, має відмовитися та невідкладно, не пізніше наступного робочого дня, повідомити уповноважений орган або уповноважену особу."
+      },
+      {
+        type:"Відповідальність",
+        q:"Який підхід до реагування на порушення академічної доброчесності є правильним?",
+        options:[
+          "Однакова найсуворіша санкція за будь-яке порушення",
+          "Відповідальність і заходи реагування мають застосовуватися за встановленою процедурою та бути співмірними порушенню",
+          "Будь-яке порушення автоматично означає відрахування",
+          "Рішення не потрібно пояснювати, якщо порушення здається очевидним"
+        ],
+        correct:1,
+        explanation:"Реагування має відбуватися процедурно, неупереджено та пропорційно. Закон передбачає різні види заходів і санкцій, а не автоматичне однакове покарання для всіх випадків."
+      }
+    ];
+
+    let current=0, score=0, selected=null, checked=false;
+    let answers=Array(quizData.length).fill(null);
+
+    const $=id=>document.getElementById(id);
+    const questionCounter=$("questionCounter");
+    const scoreMini=$("scoreMini");
+    const progressBar=$("progressBar");
+    const questionType=$("questionType");
+    const questionText=$("questionText");
+    const optionsEl=$("options");
+    const feedback=$("feedback");
+    const feedbackTitle=$("feedbackTitle");
+    const feedbackText=$("feedbackText");
+    const backBtn=$("backBtn");
+    const checkBtn=$("checkBtn");
+    const quizScreen=$("quizScreen");
+    const resultScreen=$("resultScreen");
+    const scoreRing=$("scoreRing");
+    const scorePercent=$("scorePercent");
+    const scoreFraction=$("scoreFraction");
+    const resultTitle=$("resultTitle");
+    const resultText=$("resultText");
+    const review=$("review");
+    const restartBtn=$("restartBtn");
+
+    function renderQuestion(){
+      const item=quizData[current];
+      const saved=answers[current];
+
+      selected=saved ? saved.selected : null;
+      checked=!!saved;
+
+      questionCounter.textContent=`Запитання ${current+1} з ${quizData.length}`;
+      scoreMini.textContent=`${score} правильних`;
+      progressBar.style.width=`${(current/quizData.length)*100}%`;
+      questionType.textContent=item.type;
+      questionText.textContent=item.q;
+      optionsEl.innerHTML="";
+      feedback.className="feedback";
+
+      item.options.forEach((opt,index)=>{
+        const btn=document.createElement("button");
+        btn.type="button";
+        btn.className="option";
+        btn.innerHTML=`<span class="option__letter">${String.fromCharCode(65+index)}</span><span>${opt}</span>`;
+
+        if(selected===index) btn.classList.add("is-selected");
+
+        if(checked){
+          btn.disabled=true;
+          if(index===item.correct) btn.classList.add("is-correct");
+          if(index===selected && selected!==item.correct) btn.classList.add("is-wrong");
+        }else{
+          btn.addEventListener("click",()=>selectOption(index));
+        }
+
+        optionsEl.appendChild(btn);
+      });
+
+      backBtn.disabled=current===0;
+
+      if(checked){
+        showFeedback(item,selected===item.correct);
+        checkBtn.disabled=false;
+        checkBtn.textContent=current===quizData.length-1 ? "Показати результат" : "Далі";
+      }else{
+        checkBtn.disabled=selected===null;
+        checkBtn.textContent="Перевірити";
+      }
+    }
+
+    function selectOption(index){
+      selected=index;
+      [...optionsEl.children].forEach((el,i)=>el.classList.toggle("is-selected",i===index));
+      checkBtn.disabled=false;
+    }
+
+    function showFeedback(item,isCorrect){
+      feedback.className=`feedback show ${isCorrect ? "correct" : "wrong"}`;
+      feedbackTitle.textContent=isCorrect ? "Правильна відповідь." : "Не зовсім.";
+      feedbackText.textContent=item.explanation;
+    }
+
+    function checkAnswer(){
+      const item=quizData[current];
+
+      if(!checked){
+        if(selected===null) return;
+        const isCorrect=selected===item.correct;
+        if(isCorrect) score++;
+
+        answers[current]={selected,correct:isCorrect};
+        checked=true;
+
+        [...optionsEl.children].forEach((el,i)=>{
+          el.disabled=true;
+          if(i===item.correct) el.classList.add("is-correct");
+          if(i===selected && selected!==item.correct) el.classList.add("is-wrong");
+        });
+
+        scoreMini.textContent=`${score} правильних`;
+        showFeedback(item,isCorrect);
+        checkBtn.textContent=current===quizData.length-1 ? "Показати результат" : "Далі";
+        return;
+      }
+
+      if(current<quizData.length-1){
+        current++;
+        renderQuestion();
+      }else{
+        showResult();
+      }
+    }
+
+    function goBack(){
+      if(current>0){
+        current--;
+        renderQuestion();
+      }
+    }
+
+    function showResult(){
+      quizScreen.style.display="none";
+      resultScreen.classList.add("show");
+
+      const percent=Math.round((score/quizData.length)*100);
+      scoreRing.style.setProperty("--score",`${percent}%`);
+      scorePercent.textContent=`${percent}%`;
+      scoreFraction.textContent=`${score} із ${quizData.length}`;
+
+      if(percent>=90){
+        resultTitle.textContent="Відмінний результат";
+        resultText.textContent="Ви добре орієнтуєтеся в ключових правилах академічної доброчесності та типових навчальних ситуаціях.";
+      }else if(percent>=70){
+        resultTitle.textContent="Добрий результат";
+        resultText.textContent="Основи засвоєні. Перегляньте пояснення до помилок, щоб уточнити окремі нюанси.";
+      }else if(percent>=50){
+        resultTitle.textContent="Є над чим попрацювати";
+        resultText.textContent="Базові орієнтири є, але частину ситуацій варто розібрати уважніше.";
+      }else{
+        resultTitle.textContent="Варто повторити";
+        resultText.textContent="Перегляньте пояснення та джерела нижче, а потім спробуйте пройти тест ще раз.";
+      }
+
+      review.innerHTML="";
+      answers.forEach((a,index)=>{
+        const div=document.createElement("div");
+        div.className="review__item";
+        div.innerHTML=`<b>${a.correct ? "✓" : "✕"} ${index+1}.</b> ${quizData[index].q}`;
+        review.appendChild(div);
+      });
+
+      progressBar.style.width="100%";
+    }
+
+    function restartQuiz(){
+      current=0;
+      score=0;
+      selected=null;
+      checked=false;
+      answers=Array(quizData.length).fill(null);
+      resultScreen.classList.remove("show");
+      quizScreen.style.display="block";
+      renderQuestion();
+    }
+
+    checkBtn.addEventListener("click",checkAnswer);
+    backBtn.addEventListener("click",goBack);
+    restartBtn.addEventListener("click",restartQuiz);
+
+    renderQuestion();
+  </script>
+</body>
+</html>
