@@ -105,6 +105,21 @@
   </style>
   <link rel="stylesheet" href="assets/ui.css?v=20260911-logo-small">
 <link rel="icon" type="image/png" href="./assets/cashbrain-logo.png">
+
+  <style>
+    .integrity{padding:0 0 40px;background:var(--surface)}
+    .integrity__box{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 32px;border:1px solid #C8DED0;border-radius:22px;background:linear-gradient(115deg,#F0F8F1 0%,#DFF6DF 100%)}
+    .integrity__copy{min-width:0;max-width:780px}
+    .cb-page .integrity h2{font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.03em}
+    .integrity p{margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.6}
+    .integrity__button{flex-shrink:0;background:var(--green-dark);color:#fff}
+    .integrity__button:hover{background:var(--green)}
+    @media(max-width:720px){
+      .integrity{padding-bottom:28px}
+      .integrity__box{align-items:flex-start;flex-direction:column;gap:18px;padding:22px 20px}
+      .integrity__button{width:100%}
+    }
+  </style>
 </head>
 <body class="cb-page cb-home cb-shell">
   <!-- cashbrain-navigation:start -->
@@ -194,6 +209,20 @@
             <img class="format-card__character format-card__character--fake" src="./assets/characters/fake.webp?v=20260921-4" alt="" aria-hidden="true" width="150" height="188" loading="lazy" decoding="async"><img class="format-card__character" src="./assets/characters/cyberdog.webp?v=20260921-2" alt="" aria-hidden="true" width="220" height="275" loading="lazy" decoding="async">
             <span class="format-card__foot">Переглянути справи <span class="format-card__arrow">→</span></span>
           </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="integrity" aria-labelledby="integrity-title">
+      <div class="container">
+        <div class="integrity__box">
+          <div class="integrity__copy">
+            <div class="section-kicker">Академічна доброчесність</div>
+            <h2 id="integrity-title">Навчайся чесно. Поважай чужу працю</h2>
+            <p>Чи завжди допомога є чесною? Перевір себе у 14 запитаннях про самостійність, авторство, джерела, правдивість даних і використання ШІ.</p>
+          </div>
+          <a class="button integrity__button" href="./academic-integrity/">Перевірити себе <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
